@@ -1,0 +1,104 @@
+//
+//  WBReachabilityManager.m
+//  AirMonitor
+//
+//  Created by 余天龙 on 2016/11/1.
+//  Copyright © 2016年 http://blog.csdn.net/yutianlong9306/. All rights reserved.
+//
+
+#import "WBReachabilityManager.h"
+#import "AFNetworkReachabilityManager.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+//#import "DKFoundation.h"
+
+@interface WBReachabilityManager ()
+
+@property (nonatomic, copy) NSString *currentRadioAccessTechnology;
+@property (nonatomic, assign) AFNetworkReachabilityStatus currentReachabilityStatus;
+
+@end
+
+@implementation WBReachabilityManager
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        WEAK_SELF();
+        
+        self.currentReachabilityStatus = AFNetworkReachabilityStatusUnknown;
+        
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            if ( weakSelf.netWorkStatus) {
+                weakSelf.netWorkStatus(status);
+            }
+            if (weakSelf.currentReachabilityStatus != AFNetworkReachabilityStatusUnknown && weakSelf.currentReachabilityStatus != status) {
+                weakSelf.currentReachabilityStatus = status;
+                
+                [weakSelf notifyObserversWithSelector:@selector(reachabilityNetworkStatusChanged) withObject:nil];
+            } else {
+                weakSelf.currentReachabilityStatus = status;
+            }
+        }];
+        
+        CTTelephonyNetworkInfo *telephonyInfo = [CTTelephonyNetworkInfo new];
+        [NSNotificationCenter.defaultCenter addObserverForName:CTRadioAccessTechnologyDidChangeNotification
+                                                        object:nil
+                                                         queue:nil
+                                                    usingBlock:^(NSNotification *note) {
+                                                        if (weakSelf.currentRadioAccessTechnology != nil && ![weakSelf.currentRadioAccessTechnology isEqualToString:telephonyInfo.currentRadioAccessTechnology]) {
+                                                            weakSelf.currentRadioAccessTechnology = telephonyInfo.currentRadioAccessTechnology;
+                                                            
+                                                            [weakSelf notifyObserversWithSelector:@selector(reachabilityNetworkStatusChanged) withObject:nil];
+                                                        } else {
+                                                            weakSelf.currentRadioAccessTechnology = telephonyInfo.currentRadioAccessTechnology;
+                                                        }
+                                                    }];
+    }
+    return self;
+}
+
+- (BOOL)isReachable {
+    return [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable;
+}
+
+- (BOOL)isReachableViaWiFi {
+    return [AFNetworkReachabilityManager sharedManager].isReachableViaWiFi;
+}
+
+- (BOOL)isReachableViaWWAN {
+    return [AFNetworkReachabilityManager sharedManager].isReachableViaWWAN;
+}
+
+- (NSString *)networkTypeString {
+    if (!self.isReachable) {
+        return @"无网络";
+    }
+    
+    if (self.isReachableViaWiFi) {
+        return @"WiFi";
+    } else {
+        return @"移动网络";
+    }
+}
+
+- (BOOL)isSlowlyNetworking {
+    /*
+     CTRadioAccessTechnologyGPRS
+     CTRadioAccessTechnologyEdge
+     CTRadioAccessTechnologyWCDMA
+     CTRadioAccessTechnologyHSDPA
+     CTRadioAccessTechnologyHSUPA
+     CTRadioAccessTechnologyCDMA1x
+     CTRadioAccessTechnologyCDMAEVDORev0
+     CTRadioAccessTechnologyCDMAEVDORevA
+     CTRadioAccessTechnologyCDMAEVDORevB
+     CTRadioAccessTechnologyeHRPD
+     CTRadioAccessTechnologyLTE
+     */
+    
+    return [self.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyGPRS]
+    || [self.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyEdge];
+}
+
+@end

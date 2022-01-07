@@ -1,0 +1,253 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - AgoraRtcEngine_iOS (3.6.0.2)
+  - AMap2DMap (5.6.1):
+    - AMapFoundation (~> 1.4)
+  - AMapFoundation (1.6.9)
+  - AMapLocation (2.8.0):
+    - AMapFoundation (~> 1.6.9)
+  - AMapSearch (7.7.0):
+    - AMapFoundation (~> 1.6.4)
+  - Bugly (2.5.91)
+  - FLAnimatedImage (1.0.12)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - GPUImage (0.1.7)
+  - HappyDNS (0.3.17)
+  - IQKeyboardManager (6.5.6)
+  - JSONModel (1.8.0)
+  - LCActionSheet (3.3.3):
+    - Masonry (~> 1.1.0)
+  - libOpenInstallSDK (2.5.4.1)
+  - lottie-ios (2.5.3)
+  - Masonry (1.1.0)
+  - MGSwipeTableCell (1.6.11)
+  - MJRefresh (3.2.3)
+  - NJKScrollFullScreen (0.2.6)
+  - NMRangeSlider (1.2.1)
+  - ObjectMapper (4.2.0)
+  - Pingpp/Alipay (2.2.23):
+    - Pingpp/Core
+    - PingppAlipaySDK (~> 15.5)
+  - Pingpp/Core (2.2.23)
+  - Pingpp/Wx (2.2.23):
+    - Pingpp/Core
+  - PingppAlipaySDK (15.8.3)
+  - PLPlayerKit (3.4.7):
+    - PLPlayerKit/iphoneos (= 3.4.7)
+  - PLPlayerKit/iphoneos (3.4.7)
+  - PLShortVideoKit (3.0.0):
+    - PLShortVideoKit/ex-libMuseProcessor (= 3.0.0)
+    - PLShortVideoKit/libMuseProcessor (= 3.0.0)
+    - Qiniu (= 7.2.5)
+  - PLShortVideoKit/ex-libMuseProcessor (3.0.0):
+    - Qiniu (= 7.2.5)
+  - PLShortVideoKit/libMuseProcessor (3.0.0):
+    - Qiniu (= 7.2.5)
+  - Qiniu (7.2.5):
+    - HappyDNS (~> 0.3)
+  - RegexKitLite-NoWarning (1.1.0)
+  - RongCloudIM/ChatRoom (5.1.7.1):
+    - RongCloudIM/IMLibCore
+  - RongCloudIM/CustomerService (5.1.7.1):
+    - RongCloudIM/IMLibCore
+  - RongCloudIM/Discussion (5.1.7.1):
+    - RongCloudIM/IMLibCore
+  - RongCloudIM/IMKit (5.1.7.1):
+    - RongCloudIM/IMLib
+  - RongCloudIM/IMLib (5.1.7.1):
+    - RongCloudIM/ChatRoom
+    - RongCloudIM/CustomerService
+    - RongCloudIM/Discussion
+    - RongCloudIM/IMLibCore
+    - RongCloudIM/Location
+    - RongCloudIM/PublicService
+  - RongCloudIM/IMLibCore (5.1.7.1)
+  - RongCloudIM/Location (5.1.7.1):
+    - RongCloudIM/IMLibCore
+  - RongCloudIM/PublicService (5.1.7.1):
+    - RongCloudIM/IMLibCore
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SKTagView (0.9.2)
+  - SobotKit (3.0.6.2)
+  - SSZipArchive (2.2.2)
+  - SVProgressHUD (2.2.5)
+  - TMCache (2.1.0)
+  - "UITableView+FDTemplateLayoutCell (1.6)"
+  - UMengAnalytics (4.2.4)
+  - Underscore.m (0.3.0)
+  - XHLaunchAd (3.9.12):
+    - FLAnimatedImage (~> 1.0.12)
+  - YBImageBrowser (2.1.5):
+    - SDWebImage
+    - YYImage
+  - YTKKeyValueStore (0.1.2):
+    - FMDB (~> 2.0)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking
+  - AgoraRtcEngine_iOS
+  - AMap2DMap
+  - AMapFoundation
+  - AMapLocation
+  - AMapSearch
+  - Bugly
+  - FLAnimatedImage (~> 1.0)
+  - GPUImage (~> 0.1.7)
+  - IQKeyboardManager
+  - JSONModel
+  - LCActionSheet (~> 3.3.3)
+  - libOpenInstallSDK
+  - lottie-ios
+  - Masonry
+  - MGSwipeTableCell
+  - MJRefresh (~> 3.2.3)
+  - NJKScrollFullScreen
+  - NMRangeSlider
+  - ObjectMapper
+  - Pingpp/Alipay
+  - Pingpp/Wx
+  - PLPlayerKit
+  - PLShortVideoKit (~> 3.0.0)
+  - Qiniu
+  - RegexKitLite-NoWarning
+  - RongCloudIM/IMKit
+  - RongCloudIM/IMLib
+  - SDWebImage (~> 4.4.6)
+  - SKTagView
+  - SobotKit
+  - SSZipArchive
+  - SVProgressHUD
+  - TMCache
+  - "UITableView+FDTemplateLayoutCell"
+  - UMengAnalytics
+  - Underscore.m
+  - XHLaunchAd
+  - YBImageBrowser
+  - YTKKeyValueStore
+  - YYImage (from `https://github.com/QiuYeHong90/YYImage.git`)
+  - YYModel
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - AgoraRtcEngine_iOS
+    - AMap2DMap
+    - AMapFoundation
+    - AMapLocation
+    - AMapSearch
+    - Bugly
+    - FLAnimatedImage
+    - FMDB
+    - GPUImage
+    - HappyDNS
+    - IQKeyboardManager
+    - JSONModel
+    - LCActionSheet
+    - libOpenInstallSDK
+    - lottie-ios
+    - Masonry
+    - MGSwipeTableCell
+    - MJRefresh
+    - NJKScrollFullScreen
+    - NMRangeSlider
+    - ObjectMapper
+    - Pingpp
+    - PingppAlipaySDK
+    - PLPlayerKit
+    - PLShortVideoKit
+    - Qiniu
+    - RegexKitLite-NoWarning
+    - RongCloudIM
+    - SDWebImage
+    - SKTagView
+    - SobotKit
+    - SSZipArchive
+    - SVProgressHUD
+    - TMCache
+    - "UITableView+FDTemplateLayoutCell"
+    - UMengAnalytics
+    - Underscore.m
+    - XHLaunchAd
+    - YBImageBrowser
+    - YTKKeyValueStore
+    - YYModel
+
+EXTERNAL SOURCES:
+  YYImage:
+    :git: https://github.com/QiuYeHong90/YYImage.git
+
+CHECKOUT OPTIONS:
+  YYImage:
+    :commit: 4164acb76e8979c0612530bd874e099a1fa51e9d
+    :git: https://github.com/QiuYeHong90/YYImage.git
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AgoraRtcEngine_iOS: abea1f9994e400611563c18b82ef6b26f95856a8
+  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
+  AMapFoundation: 8d8ecbb0b2e9ce5487995360d26c885d94642bfd
+  AMapLocation: 5ef44a1117be7dc541cb7a7d43d03c5ee91e4387
+  AMapSearch: 93bccff245dada46060758f828ca1058ec3363fc
+  Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
+  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  LCActionSheet: b111d036a2323a580e51facfe57c0440bb374f52
+  libOpenInstallSDK: b7b2e92256d845d6e74a76c144c4d65ddf57c06d
+  lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
+  NJKScrollFullScreen: 13e370f935da7385b92779644b31df8d83a91447
+  NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  Pingpp: 37559ecb34bf0d7a43e0ba9bba19fcb4653e8db3
+  PingppAlipaySDK: ae632e43eb97c03e171e426cebb4228aaceb9d39
+  PLPlayerKit: a4c6da506dc4ae368ae71a95b49e2256f33c0de7
+  PLShortVideoKit: 901da81b11ae8e397f530bf3d4014921426cbf4c
+  Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
+  RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
+  RongCloudIM: 728913e755fb5e4c618ac283bab7896f11cb4249
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  SKTagView: 59cdadcd16e4a09300746ad1811a72371e1327f7
+  SobotKit: dd3e7d4e8ba344a9ae2a61189c5d6918e67bde3e
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
+  "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
+  Underscore.m: dc9ca06fe2c9a79d01ce20c3d2c1e8f91f2d92dc
+  XHLaunchAd: 6320f9c68732667323072fc3a5f104e40fbe9cfe
+  YBImageBrowser: 549bc0f8bc7df723381e1516db240d827ded3673
+  YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
+  YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: 3b699f155928fd4530550f0c9a666853cf7993af
+
+COCOAPODS: 1.11.2
