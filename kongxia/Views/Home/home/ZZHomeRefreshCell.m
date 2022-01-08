@@ -133,26 +133,6 @@
             make.right.mas_equalTo(bgView.mas_right).offset(-10);
         }];
         
-        _cancelBtn = [[UIButton alloc] init];
-        [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:_cancelBtn];
-        
-        [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.right.mas_equalTo(bgView);
-            make.size.mas_equalTo(CGSizeMake(35, 40));
-        }];
-        
-        UIImageView *cancelImgView = [[UIImageView alloc] init];
-        cancelImgView.image = [UIImage imageNamed:@"icon_home_refresh_cancel"];
-        cancelImgView.userInteractionEnabled = NO;
-        [bgView addSubview:cancelImgView];
-        
-        [cancelImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(_nameLabel.mas_centerY);
-            make.right.mas_equalTo(bgView.mas_right).offset(-8);
-            make.size.mas_equalTo(CGSizeMake(10, 10));
-        }];
-        
         _skillLabel = [[UILabel alloc] init];
         _skillLabel.textAlignment = NSTextAlignmentLeft;
         _skillLabel.textColor = kGrayTextColor;
@@ -221,12 +201,6 @@
     }
 }
 
-- (void)cancelBtnClick
-{
-    if (_touchCancel) {
-        _touchCancel();
-    }
-}
 
 #pragma mark -
 

@@ -32,10 +32,7 @@
 @property (nonatomic, strong) UIImageView *locationImgView;
 @property (nonatomic, strong) UILabel *locationLabel;
 @property (nonatomic, strong) ZZLevelImgView *levelImgView;
-@property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) ZZHomeStatusView *statusView;
 @property (nonatomic, weak) ZZHomeNearbyModel *model;
-
-@property (nonatomic, copy) dispatch_block_t touchCancel;
 
 @end
