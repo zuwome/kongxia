@@ -26,7 +26,6 @@ target 'kongxia' do
     pod 'SobotKit'
     
 #   七牛短视频
-#    pod 'PLShortVideoKit', :podspec => 'https://raw.githubusercontent.com/pili-engineering/PLShortVideoKit/master/PLShortVideoKit-Basic.podspec'
     pod 'PLShortVideoKit', '~> 3.0.0'
     pod 'PLPlayerKit'
     
