@@ -284,10 +284,6 @@
     }
     cell.delegate = self;
     [cell setModel:_dataArray[indexPath.row]];
-    __weak typeof(cell)weakCell = cell;
-    cell.touchCancel = ^{
-        [self touchCancelCell:weakCell];
-    };
     return cell;
 }
 
@@ -304,38 +300,6 @@
             self.canScroll = NO;
             scrollView.contentOffset = CGPointZero;
             [[NSNotificationCenter defaultCenter] postNotificationName:SubTableCanNotScrollNotify object:nil];
-        }
-    }
-}
-
-- (void)touchCancelCell:(ZZHomeRefreshCell *)cell {
-    if (self.tableView.mj_header.isRefreshing) {
-        return;
-    }
-    [MobClick event:Event_click_home_refresh_cancel];
-    if ([ZZUtils isUserLogin]) {
-        if (cell) {
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            ZZHomeNearbyModel *model = self.dataArray[indexPath.row];
-            [ZZHomeModel refreshCancel:model.user.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                
-            }];
-            
-            [_dataArray removeObjectAtIndex:indexPath.row];
-            if (indexPath.row < [self.tableView numberOfRowsInSection:indexPath.section]) {
-                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
-            else {
-                [self.tableView reloadData];
-            }
-            
-            if (_touchCancel) {
-                _touchCancel(model.user.uid);
-            }
-            
-            if (_dataArray.count == 0) {
-                [self.tableView.mj_header beginRefreshing];
-            }
         }
     }
 }
