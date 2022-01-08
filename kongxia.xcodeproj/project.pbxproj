@@ -1206,6 +1206,9 @@
 		BDA42DDF22782B1300760DE7 /* ZZNewGuidView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA42DDE22782B1300760DE7 /* ZZNewGuidView.m */; };
 		BDA4B3B9235D58580034D553 /* ZZMyLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */; };
 		BDA4B3BC235D8CA50034D553 /* ZZMyLocationsSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */; };
+		BDA4E51F2789645700403344 /* MGFaceIDBaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */; };
+		BDA4E5202789645800403344 /* MGFaceIDLiveDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */; };
+		BDA4E5212789645800403344 /* MGFaceIDLiveCustomDetect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */; };
 		BDA5001022FA785A00BCB48E /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCA822FA785800BCB48E /* ZHPickView.m */; };
 		BDA5001222FA785A00BCB48E /* WBPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCAD22FA785800BCB48E /* WBPopoverContainerView.m */; };
 		BDA5001322FA785A00BCB48E /* WBActionContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCAF22FA785800BCB48E /* WBActionContainerView.m */; };
@@ -3813,6 +3816,9 @@
 		BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationsViewController.m; sourceTree = "<group>"; };
 		BDA4B3BA235D8CA50034D553 /* ZZMyLocationsSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMyLocationsSelectViewController.h; sourceTree = "<group>"; };
 		BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationsSelectViewController.m; sourceTree = "<group>"; };
+		BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDBaseKit.framework; sourceTree = "<group>"; };
+		BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDLiveDetect.framework; sourceTree = "<group>"; };
+		BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MGFaceIDLiveCustomDetect.bundle; sourceTree = "<group>"; };
 		BDA5000222FA785A00BCB48E /* AdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdView.h; sourceTree = "<group>"; };
 		BDA5000322FA785A00BCB48E /* AdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdView.m; sourceTree = "<group>"; };
 		BDA5000522FA785A00BCB48E /* ESAutoHeightImageScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAutoHeightImageScroll.h; sourceTree = "<group>"; };
@@ -4449,6 +4455,7 @@
 				BDFDC45922D431D100B92634 /* libiconv.tbd in Frameworks */,
 				BDA500FA22FA785B00BCB48E /* libWeiboSDK.a in Frameworks */,
 				9101AE1B1DB626050014F1CB /* WebKit.framework in Frameworks */,
+				BDA4E51F2789645700403344 /* MGFaceIDBaseKit.framework in Frameworks */,
 				91D376561D2F4A2C0002F63B /* AssetsLibrary.framework in Frameworks */,
 				BD17816A23CE0486005567BA /* libfaac.a in Frameworks */,
 				BDFDC45622D4315500B92634 /* AddressBookUI.framework in Frameworks */,
@@ -4474,6 +4481,7 @@
 				33EC7FCC1C5E6E75001D157F /* CoreMotion.framework in Frameworks */,
 				B76E8ABD1FBAEFD60081EB48 /* CoreMedia.framework in Frameworks */,
 				913841D31D36451500370348 /* AVFoundation.framework in Frameworks */,
+				BDA4E5202789645800403344 /* MGFaceIDLiveDetect.framework in Frameworks */,
 				BDA500F822FA785B00BCB48E /* libSocialSina.a in Frameworks */,
 				BD52A8C6253C835F0099759E /* ATAuthSDK.framework in Frameworks */,
 				BD69E9E7243B1C9500AA2D8A /* AuthenticationServices.framework in Frameworks */,
@@ -9080,6 +9088,32 @@
 			path = AgoraRtcTools;
 			sourceTree = "<group>";
 		};
+		BDA4E5192789645700403344 /* FaceID */ = {
+			isa = PBXGroup;
+			children = (
+				BDA4E51A2789645700403344 /* framework */,
+				BDA4E51D2789645700403344 /* resource */,
+			);
+			path = FaceID;
+			sourceTree = "<group>";
+		};
+		BDA4E51A2789645700403344 /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */,
+				BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		BDA4E51D2789645700403344 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		BDA5000122FA785A00BCB48E /* AdView */ = {
 			isa = PBXGroup;
 			children = (
@@ -9114,6 +9148,7 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				BDA4E5192789645700403344 /* FaceID */,
 				BD358A3A26FF044C00CE843B /* TZImagePickerController */,
 				BDE2DE232532EC7D003C6D7A /* AliAuthSDK */,
 				BD442758252A53590018A84E /* TYAttributedLabel */,
@@ -10637,6 +10672,7 @@
 				BD48E9CE231F6CB7005FCBC6 /* PostTask.gif in Resources */,
 				ACBC30BB20E24C1F00480832 /* Futu_Bd.ttf in Resources */,
 				B73DFCDF1F9F290C00D02104 /* btn_bar_next_b@2x.png in Resources */,
+				BDA4E5212789645800403344 /* MGFaceIDLiveCustomDetect.bundle in Resources */,
 				AC889586202AB15300497530 /* zz_callVideo.caf in Resources */,
 				B73DFD061F9F290C00D02104 /* cut_bar_right@2x.png in Resources */,
 				B73DFCFF1F9F290C00D02104 /* cut_bar_left.png in Resources */,
