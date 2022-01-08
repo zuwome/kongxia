@@ -1,0 +1,142 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+ 
+# app_identifier  "com.zuwome.zuwomekongxia"
+# apple_id  "qming.xiao@gmail.com"
+team_id = 'GTQV48M3S3'
+
+scheme = 'kongxia'
+info_path = "./kongxia/Info.plist"
+build_number_key = "CFBundleVersion"
+veriosn_key = "CFBundleShortVersionString"
+identifier_key = "CFBundleIdentifier"
+
+output_directory = '../firim'
+output_app_name = 'kongxia'
+
+firim_api_token = "ac88d6e0519356744c6fd4539c9074e2"
+
+platform :ios do
+
+  lane :to_fir do 
+
+    increment_build_num
+
+    to_fir_debug
+
+    to_fir_release
+
+    comit_git
+
+    notifyMessage(title: "Fir", subtitle: "debug / release", message: "upload to fir success")
+
+  end
+
+  lane :to_fir_debug do 
+    build(export_method: 'development', configuration:'Debug')
+    fir(changelog: "测试")
+  end
+
+  lane :to_fir_debug_full do 
+    increment_build_num
+    build(export_method: 'development', configuration:'Debug')
+    notifyMessage(title: "Build", subtitle: "method: debug", message: "build success, ready to upload")
+    fir(changelog: "测试")
+    notifyMessage(title: "Upload", subtitle: "method: debug", message: "upload to fir success")
+    comit_git
+  end
+
+  lane :to_fir_release do 
+    build(export_method: 'ad-hoc', configuration:'Release')
+    fir(changelog: "正式")
+  end
+
+  lane :to_fir_release_full do 
+    increment_build_num
+    build(export_method: 'ad-hoc', configuration:'Release')
+    notifyMessage(title: "Build", subtitle: "method: release", message: "build success, ready to upload")
+    fir(changelog: "正式")
+    notifyMessage(title: "Upload", subtitle: "method: release", message: "upload to fir success")
+    comit_git
+  end
+
+  lane :build do |values|
+    export_method = values[:export_method]
+    configuration = values[:configuration]
+    build_number = get_info_plist_value(path: info_path, key: build_number_key)
+    gym(
+        scheme: scheme,
+        export_options: {
+	        method: export_method, # 定打包方式 ["app-store", "ad-hoc", "package", "enterprise", "development", "developer-id"]
+	        teamID: team_id
+	      },
+        clean: true,
+        xcargs: "-allowProvisioningUpdates",
+        output_directory: output_directory,
+        output_name: "#{output_app_name}_#{build_number}_#{export_method}.ipa"
+    )
+  end
+
+  desc "上传ipa到fir.im服务器"
+  lane :fir do |options|
+    changelog = options[:changelog]
+    firim(
+      firim_api_token: firim_api_token, 
+      app_changelog: changelog
+    )
+  end
+
+  desc "更新build版本号"
+  lane :increment_build_num do 
+    build_number = get_info_plist_value(path: info_path, key: build_number_key)
+    build_number = (build_number.to_i + 1).to_s
+    set_info_plist_value(path: info_path, key: build_number_key, value: build_number)
+    # build_number = get_build_number()
+    # increment_build_number(
+    #   build_number: (build_number.to_i + 1).to_s
+    # )
+  end
+
+  desc "添加git commit"
+  lane :comit_git do 
+    build_number = get_info_plist_value(path: info_path, key: build_number_key)
+    git_commit(path: [info_path], message: "Change build #{build_number}")
+  end
+
+  desc "推送分支到远程"
+  lane :push_git do
+    push_to_git_remote(tags: false)
+  end
+
+  desc "mac 推送消息"
+  lane :notifyMessage do |values|
+    title = values[:title]
+    subtitle = values[:subtitle]
+    message = values[:message]
+    notification(title: title, subtitle: subtitle, message: message)
+  end 
+
+  lane :test do 
+    # build(export_method: 'ad-hoc', configuration:'Release')
+
+    build_number = get_info_plist_value(path: info_path, key: build_number_key)
+    
+    build_number = (build_number.to_i + 1).to_s
+    puts "ssss: #{build_number}"
+  end
+
+end
