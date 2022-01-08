@@ -442,7 +442,7 @@ extension ZZWXOrderDetailViewController {
         MBProgressHUD.hide(for: self.view, animated: true)
         ZZHUD.showError(withStatus: "上传失败")
         
-        if ZZUserHelper.shareInstance()!.unreadModel.open_log {
+        if ZZUserHelper.shareInstance()!.unreadModel.open_log, let userId = ZZUserHelper.shareInstance()!.loginer.uid {
             var subParam = [
                 "type": "上传用户证件照错误"
             ]
@@ -459,8 +459,8 @@ extension ZZWXOrderDetailViewController {
             }
             
             let param: [AnyHashable : Any] = [
-                "uid": ZZUserHelper.shareInstance()!.loginer.uid,
-                "content": ZZUtils.dictionary(toJson: subParam)
+                "uid": userId,
+                "content": ZZUtils.dictionary(toJson: subParam)!
             ]
             ZZUserHelper.uploadLog(withParam: param, next: nil)
         }
@@ -480,11 +480,11 @@ extension ZZWXOrderDetailViewController {
                 if let dataDic = data as? Dictionary<String, Any> {
                     if dataDic["say_hi_status"] as? String == "0" {
                         if ZZUserHelper.shareInstance()?.loginer.avatar_manual_status == 1 {
-                            UIAlertView.show(withTitle: "提示",
-                                             message: "打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼",
-                                             cancelButtonTitle: "知道了",
-                                             otherButtonTitles: nil,
-                                             tap: nil)
+                            self.showOKAlert(
+                                withTitle: "提示",
+                                message: "打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼",
+                                okTitle: "知道了",
+                                okBlock: nil)
                         }
                     }
                     else {

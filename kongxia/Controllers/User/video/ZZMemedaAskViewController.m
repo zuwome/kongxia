@@ -206,7 +206,7 @@
         return headView;
     }
     
-    return [[UIView alloc] init];
+    return [[UICollectionReusableView alloc] init];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

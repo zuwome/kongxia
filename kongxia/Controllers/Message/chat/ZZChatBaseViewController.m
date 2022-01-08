@@ -1161,24 +1161,25 @@
     if ([ZZUtils isBan]) {
         return;
     }
-     __block  NSInteger  sendMessageCount = [ZZPrivateChatPayManager questPrivateChatFeeISFirstTenWithUid:self.uid];
+    __block NSInteger sendMessageCount = [ZZPrivateChatPayManager questPrivateChatFeeISFirstTenWithUid:self.uid];
     if (sendMessageCount <= 30) {
         NSString *str = [ZZChatUtil getSensitiveStringWithString:messageStr];
         if (!isNullString(str)) {
-                [UIAlertView showWithTitle:@"不良信息提示" message:@"发送不良信息会被封禁处理,\n您发送的消息可能包含不良信息，请遵守社区规则。" cancelButtonTitle:@"撤回" otherButtonTitles:@[@"发送"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                    if (buttonIndex==1) {
-                        sendMessageCount +=1;
-                        NSString *key = [NSString stringWithFormat:@"getBannedNumber%@%@",[ZZUserHelper shareInstance].loginer.uid,self.uid];
-                        [ZZKeyValueStore saveValue:@(sendMessageCount) key:key];
-                        [self sendMessageWithContent:messageStr completion:nil];
-                    }else{
-                        self.boxView.topView.textView.text = nil;
-                    }
-                }];
-                return;
+            [self showOKCancelAlertWithTitle:@"不良信息提示"
+                                     message:@"发送不良信息会被封禁处理,\n您发送的消息可能包含不良信息，请遵守社区规则"
+                                 cancelTitle:@"撤回" cancelBlock:^{
+                self.boxView.topView.textView.text = nil;
             }
+                                     okTitle:@"发送"
+                                     okBlock:^{
+                sendMessageCount +=1;
+                NSString *key = [NSString stringWithFormat:@"getBannedNumber%@%@",[ZZUserHelper shareInstance].loginer.uid,self.uid];
+                [ZZKeyValueStore saveValue:@(sendMessageCount) key:key];
+                [self sendMessageWithContent:messageStr completion:nil];
+            }];
+        }
     }
-    
+
     [self sendMessageWithContent:messageStr completion:nil];
 
 }
@@ -1486,7 +1487,7 @@
             else if (phAsset.mediaType == PHAssetMediaTypeVideo) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
-                        options.version = PHImageRequestOptionsVersionCurrent;
+                        options.version = PHVideoRequestOptionsVersionCurrent;
                         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
                         
                         PHImageManager *manager = [PHImageManager defaultManager];
@@ -3141,13 +3142,11 @@
         return;
     }
     if (isFrom && _order.to.banStatus) {
-        [UIAlertView showWithTitle:@"提示" message:@"该用户已被封禁!" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        }];
+        [self showOKAlertWithTitle:@"提示" message:@"该用户已被封禁!" okTitle:@"确定" okBlock:nil];
         return;
     }
     if (!isFrom && _order.from.banStatus) {
-        [UIAlertView showWithTitle:@"提示" message:@"该用户已被封禁!" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        }];
+        [self showOKAlertWithTitle:@"提示" message:@"该用户已被封禁!" okTitle:@"确定" okBlock:nil];
         return;
     }
     

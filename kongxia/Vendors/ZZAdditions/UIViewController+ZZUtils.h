@@ -16,15 +16,15 @@ typedef void (^ActionBlock)(void);
 
 + (__kindof UIViewController *)currentDisplayViewController;
 
-- (void)showOKCancelAlertWithTitle:(NSString *)title
-                           message:(NSString *)message
+- (void)showOKCancelAlertWithTitle:(NSString * _Nullable )title
+                           message:(NSString * _Nullable)message
                        cancelTitle:(NSString *)cancelTitle
                        cancelBlock:(_Nullable ActionBlock)cancelBlock
                            okTitle:(NSString *)okTitle
                            okBlock:(_Nullable ActionBlock)okBlock;
 
-- (void)showOKAlertWithTitle:(NSString *)title
-                     message:(NSString *)message
+- (void)showOKAlertWithTitle:(NSString * _Nullable)title
+                     message:(NSString * _Nullable)message
                      okTitle:(NSString *)okTitle
                      okBlock:(_Nullable ActionBlock)okBlock;
 

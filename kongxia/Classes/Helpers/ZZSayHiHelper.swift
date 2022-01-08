@@ -334,7 +334,9 @@ extension ZZSayHiHelper {
         let userDefault = UserDefaults.standard
         guard let users: Array<[String : Any]> = userDefault.object(forKey: "ShowedSayhiUsers") as? Array<[String : Any]> else {
             // 如果没有信息,直接创建
-            currentUserSayHiInfo = ["userID" : ZZUserHelper.shareInstance()!.loginer.uid]
+            if let userID = ZZUserHelper.shareInstance()!.loginer.uid {
+                currentUserSayHiInfo = ["userID" : userID]
+            }
             
             // 保存处理过的信息到本地
             saveUserInfosToLocal()
@@ -363,7 +365,9 @@ extension ZZSayHiHelper {
             currentUser = userInfo
         }
         else {
-            currentUser = ["userID" : ZZUserHelper.shareInstance()!.loginer.uid]
+            if let userID = ZZUserHelper.shareInstance()!.loginer.uid {
+                currentUser = ["userID" : userID]
+            }
         }
         
         currentUserSayHiInfo = currentUser
@@ -523,7 +527,7 @@ extension ZZSayHiHelper {
     }
     
     func fetchSayHiDataWithPage(page: Int, completeHandler: @escaping (_ responseModel: ZZSayHiModelRespones?) -> Void) {
-        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer else {
+        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let userId = user.uid else {
             return
         }
         
@@ -553,7 +557,7 @@ extension ZZSayHiHelper {
         }
         
         var info = [
-            "uid": user.uid,
+            "uid": userId,
             "lat": location!.coordinate.latitude,
             "lng": location!.coordinate.longitude,
             "firmType": type.rawValue,
@@ -597,7 +601,7 @@ extension ZZSayHiHelper {
      发送消息
      */
     func sendLogin(exclude users: String, content: String, didChangeContent: Bool, _ completeHandler: @escaping (_ isSuccess: Bool) -> Void) {
-        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer else {
+        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let userId = user.uid else {
             return
         }
         
@@ -622,7 +626,7 @@ extension ZZSayHiHelper {
                          params: [
                             "allNotice": 1,
                             "notNoticeArr": users,
-                            "from": user.uid,
+                            "from": userId,
                             "content": content,
                             "editType": editType,
                             "firmType": type.rawValue,
@@ -641,7 +645,7 @@ extension ZZSayHiHelper {
 
     
     func send(to users: String, content: String, didChangeContent: Bool, _ completeHandler: @escaping (_ isSuccess: Bool) -> Void) {
-        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer else {
+        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let userId = user.uid else {
             return
         }
         
@@ -664,7 +668,7 @@ extension ZZSayHiHelper {
         ZZRequest.method("POST",
                          path: "/api/sayhinew/sendSayhiToUsers",
                          params: [
-                            "from": user.uid,
+                            "from": userId,
                             "toUids": users,
                             "content": content,
                             "editType": editType,

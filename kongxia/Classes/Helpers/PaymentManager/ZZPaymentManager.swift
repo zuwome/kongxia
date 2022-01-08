@@ -215,9 +215,10 @@ extension ZZPaymentManager {
     
     // 获取优惠卷
     func fetchCoupon(block: @escaping (_ coupon: ZZWxCouponModel?) -> Void) {
-        ZZRequest.method("GET", path: "/api/wechat/voucher", params: ["userId": ZZUserHelper.shareInstance()!.loginerId]) { (error, data, _) in
-            print(data ?? "none")
-            
+        guard let userID = ZZUserHelper.shareInstance().loginer.uid else {
+            return
+        }
+        ZZRequest.method("GET", path: "/api/wechat/voucher", params: ["userId": userID]) { (error, data, _) in
             guard let _ = error else {
                 if let dataArray = data as? Array<Any> {
                     if dataArray.count > 0 {
@@ -269,15 +270,15 @@ extension ZZPaymentManager {
     
     // 使用优惠卷购买
     func buyWechatUsingCoupon(view: ZZPaymentView, paymentModel: ZZWxCouponModel) {
-        guard let payItem = payItem, let couponID = paymentModel._id else {
+        guard let payItem = payItem, let couponID = paymentModel._id, let toId = payItem.user.uid, let userId = ZZUserHelper.shareInstance()!.loginerId else {
             return
         }
         MobClick.event(Event_click_userpage_wx_buy)
         
         let params: [String : Any] = [
             "voucherId": couponID,
-            "fromId": ZZUserHelper.shareInstance()!.loginerId,
-            "toId": payItem.user.uid,
+            "fromId": userId,
+            "toId": toId,
             "channel": "查看微信",
             "action_by": "detail",
             "price": payItem.mcoinForItem
@@ -465,11 +466,12 @@ extension ZZPaymentManager: ZZPayHelperDelegate {
         
         ZZPayManager.upload(toServerData: params)
         ZZHUD.dismiss()
-        UIAlertView.show(withTitle: "温馨提示",
-                         message: transError,
-                         cancelButtonTitle: "确定",
-                         otherButtonTitles: nil,
-                         tap: nil)
+        parentVC?.showOKAlert(
+            withTitle: "温馨提示",
+            message: transError,
+            okTitle: "确定",
+            okBlock: nil
+        )
     }
     
     // 内购成功

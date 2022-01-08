@@ -135,7 +135,6 @@
 		91B1CC6F1CF6C6B20060261E /* ZZDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B1CC6E1CF6C6B20060261E /* ZZDateHelper.m */; };
 		91B3BE8B1E65661100655E4B /* ZZKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B3BE8A1E65661100655E4B /* ZZKeyValueStore.m */; };
 		91B51BFF1D0FE56100EF11E0 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B51BFE1D0FE56100EF11E0 /* libxml2.tbd */; };
-		91B51C011D0FE57E00EF11E0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B51C001D0FE57E00EF11E0 /* MobileCoreServices.framework */; };
 		91D376521D2F4A180002F63B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D376511D2F4A180002F63B /* MessageUI.framework */; };
 		91D376541D2F4A230002F63B /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D376531D2F4A230002F63B /* EventKit.framework */; };
 		91D376561D2F4A2C0002F63B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D376551D2F4A2C0002F63B /* AssetsLibrary.framework */; };
@@ -1209,6 +1208,8 @@
 		BDA4E51F2789645700403344 /* MGFaceIDBaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */; };
 		BDA4E5202789645800403344 /* MGFaceIDLiveDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */; };
 		BDA4E5212789645800403344 /* MGFaceIDLiveCustomDetect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */; };
+		BDA4E5232789745000403344 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA4E5222789745000403344 /* UIViewExtension.swift */; };
+		BDA4E52527897EE600403344 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E52427897EE600403344 /* CoreServices.framework */; };
 		BDA5001022FA785A00BCB48E /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCA822FA785800BCB48E /* ZHPickView.m */; };
 		BDA5001222FA785A00BCB48E /* WBPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCAD22FA785800BCB48E /* WBPopoverContainerView.m */; };
 		BDA5001322FA785A00BCB48E /* WBActionContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCAF22FA785800BCB48E /* WBActionContainerView.m */; };
@@ -1384,7 +1385,6 @@
 		BDA500FC22FA785B00BCB48E /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BDA5FF6722FA785900BCB48E /* TencentOpenApi_IOS_Bundle.bundle */; };
 		BDA500FD22FA785B00BCB48E /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA5FF6822FA785900BCB48E /* TencentOpenAPI.framework */; };
 		BDA500FE22FA785B00BCB48E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FF6A22FA785900BCB48E /* Reachability.m */; };
-		BDA5010022FA785B00BCB48E /* UIView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FF7122FA785900BCB48E /* UIView+Common.m */; };
 		BDA5010222FA785B00BCB48E /* WBSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FF7522FA785900BCB48E /* WBSearchHeaderView.m */; };
 		BDA5010322FA785B00BCB48E /* WBInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FF7822FA785900BCB48E /* WBInputView.m */; };
 		BDA5010422FA785B00BCB48E /* WBTokenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FF7A22FA785900BCB48E /* WBTokenButton.m */; };
@@ -3819,6 +3819,8 @@
 		BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDBaseKit.framework; sourceTree = "<group>"; };
 		BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDLiveDetect.framework; sourceTree = "<group>"; };
 		BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MGFaceIDLiveCustomDetect.bundle; sourceTree = "<group>"; };
+		BDA4E5222789745000403344 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		BDA4E52427897EE600403344 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		BDA5000222FA785A00BCB48E /* AdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdView.h; sourceTree = "<group>"; };
 		BDA5000322FA785A00BCB48E /* AdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdView.m; sourceTree = "<group>"; };
 		BDA5000522FA785A00BCB48E /* ESAutoHeightImageScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAutoHeightImageScroll.h; sourceTree = "<group>"; };
@@ -4153,8 +4155,6 @@
 		BDA5FF6822FA785900BCB48E /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		BDA5FF6A22FA785900BCB48E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BDA5FF6B22FA785900BCB48E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		BDA5FF7122FA785900BCB48E /* UIView+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Common.m"; sourceTree = "<group>"; };
-		BDA5FF7322FA785900BCB48E /* UIView+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Common.h"; sourceTree = "<group>"; };
 		BDA5FF7522FA785900BCB48E /* WBSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSearchHeaderView.m; sourceTree = "<group>"; };
 		BDA5FF7722FA785900BCB48E /* WBInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBInputView.h; sourceTree = "<group>"; };
 		BDA5FF7822FA785900BCB48E /* WBInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBInputView.m; sourceTree = "<group>"; };
@@ -4496,12 +4496,12 @@
 				BDA9E2F1237560A700E9E351 /* RongSight.framework in Frameworks */,
 				91E46B6F1DFEB39600851BE4 /* OpenGLES.framework in Frameworks */,
 				9195E8221D9B585700026D6D /* Foundation.framework in Frameworks */,
+				BDA4E52527897EE600403344 /* CoreServices.framework in Frameworks */,
 				BDA5007422FA785A00BCB48E /* libopencore-amrnb.a in Frameworks */,
 				33F7EF411C4BE03600B76F08 /* CoreTelephony.framework in Frameworks */,
 				91D376541D2F4A230002F63B /* EventKit.framework in Frameworks */,
 				BDA245F22334BB990039704B /* AgoraRtcCryptoLoader.framework in Frameworks */,
 				91D376521D2F4A180002F63B /* MessageUI.framework in Frameworks */,
-				91B51C011D0FE57E00EF11E0 /* MobileCoreServices.framework in Frameworks */,
 				33EC7FD01C5E6EA2001D157F /* QuartzCore.framework in Frameworks */,
 				33EC7FCE1C5E6E96001D157F /* CoreText.framework in Frameworks */,
 				BDA500F722FA785B00BCB48E /* libWeChatSDK.a in Frameworks */,
@@ -4776,19 +4776,19 @@
 		332759FA1C478137002ABF2B /* kongxia */ = {
 			isa = PBXGroup;
 			children = (
-				BD16E24F26FCDA8E00C57EA2 /* kongxiaDebug.entitlements */,
-				BD16E24E26FCDA5800C57EA2 /* kongxiaApp Store.entitlements */,
 				BD3AA9462407B87B008F1A02 /* kongxia.entitlements */,
+				BD16E24E26FCDA5800C57EA2 /* kongxiaApp Store.entitlements */,
+				BD16E24F26FCDA8E00C57EA2 /* kongxiaDebug.entitlements */,
 				33275A181C478137002ABF2B /* Classes */,
 				33275A171C478137002ABF2B /* Controllers */,
-				33275A121C478137002ABF2B /* Views */,
-				33275A151C478137002ABF2B /* Models */,
-				BDA5FCA522FA785800BCB48E /* Vendors */,
+				911431B91DCC603B00EB85CE /* Images */,
 				AC889584202AB12200497530 /* libResources */,
 				33275A161C478137002ABF2B /* Macro */,
+				33275A151C478137002ABF2B /* Models */,
 				33275A091C478137002ABF2B /* Resources */,
-				911431B91DCC603B00EB85CE /* Images */,
 				332759FB1C478137002ABF2B /* Supporting Files */,
+				BDA5FCA522FA785800BCB48E /* Vendors */,
+				33275A121C478137002ABF2B /* Views */,
 			);
 			path = kongxia;
 			sourceTree = "<group>";
@@ -7538,6 +7538,7 @@
 		A62365B697D064A894453B93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDA4E52427897EE600403344 /* CoreServices.framework */,
 				BD442754252A4B690018A84E /* libTYAttributedLabel.a */,
 				BD69E9E5243B1C8A00AA2D8A /* AuthenticationServices.framework */,
 				BDFDD61921DBAA330024C028 /* Accelerate.framework */,
@@ -9148,26 +9149,21 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				BDA4E5192789645700403344 /* FaceID */,
-				BD358A3A26FF044C00CE843B /* TZImagePickerController */,
-				BDE2DE232532EC7D003C6D7A /* AliAuthSDK */,
-				BD442758252A53590018A84E /* TYAttributedLabel */,
 				BD7F2E8323CEE8F800141DC3 /* ACRCloudLibraies */,
-				BD17815523CE0485005567BA /* Faac */,
-				BD2CFFFA23BB380900756D98 /* JXCategoryView */,
-				BD7C0EC223BC37F20017D7F5 /* ZZAppDelegateConfig.h */,
-				BD7C0EC323BC37F30017D7F5 /* ZZAppDelegateConfig.m */,
-				BDA5FCB222FA785800BCB48E /* ZZAdditions */,
 				BDA5000122FA785A00BCB48E /* AdView */,
 				BDA245EE2334BB990039704B /* AgoraRtcTools */,
 				BDA5FDBB22FA785800BCB48E /* Agreement */,
+				BDE2DE232532EC7D003C6D7A /* AliAuthSDK */,
 				BDA5FFD022FA785900BCB48E /* BaseManager */,
 				BDA5000422FA785A00BCB48E /* ESAutoHeightImageScroll */,
 				BDA5FE3422FA785900BCB48E /* ESMaskBanner */,
+				BD17815523CE0485005567BA /* Faac */,
+				BDA4E5192789645700403344 /* FaceID */,
 				BDA5FD8C22FA785800BCB48E /* FaceSDK */,
 				BDA5FD6522FA785800BCB48E /* HttpDNS */,
 				BDA5FD6F22FA785800BCB48E /* InputView */,
 				BDA5FFB122FA785900BCB48E /* JPVideoPlayer */,
+				BD2CFFFA23BB380900756D98 /* JXCategoryView */,
 				BDA5FD9222FA785800BCB48E /* JZLocationConverter */,
 				BDA5FE5022FA785900BCB48E /* KiwiFaceSDK */,
 				BDA5FD3E22FA785800BCB48E /* LBorderView */,
@@ -9189,14 +9185,18 @@
 				BDA5FF7422FA785900BCB48E /* TokenButtonContainerView */,
 				BDA5FD5C22FA785800BCB48E /* TPKeyboardAvoiding */,
 				BDA5FFD522FA785900BCB48E /* TTTAttributedLabel */,
+				BD442758252A53590018A84E /* TYAttributedLabel */,
+				BD358A3A26FF044C00CE843B /* TZImagePickerController */,
 				BDA5FF4B22FA785900BCB48E /* UMSocialSDK */,
 				BDA5FD9522FA785800BCB48E /* VoiceConvert */,
-				BDA5FF6F22FA785900BCB48E /* WaterfallLayout */,
 				BDA5FF8D22FA785900BCB48E /* WXSTransition */,
 				BDA5FE4022FA785900BCB48E /* YYFPSLabel */,
 				BDA5FCA622FA785800BCB48E /* ZHpickView */,
 				BDA5FFCF22FA785900BCB48E /* ZXPopupMenu.h */,
 				BDA5FE3F22FA785900BCB48E /* ZXPopupMenu.m */,
+				BDA5FCB222FA785800BCB48E /* ZZAdditions */,
+				BD7C0EC223BC37F20017D7F5 /* ZZAppDelegateConfig.h */,
+				BD7C0EC323BC37F30017D7F5 /* ZZAppDelegateConfig.m */,
 				BDA5FD4E22FA785800BCB48E /* ZZCustomUploadImage */,
 			);
 			path = Vendors;
@@ -9233,10 +9233,9 @@
 		BDA5FCB222FA785800BCB48E /* ZZAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				BDAFDF4123B31227008938DF /* AppDelegate */,
-				BDA5FD1522FA785800BCB48E /* ZZAdditions.h */,
 				BDEBBA7523618C28006A3B3C /* AMapPOI+AMapPOICatgory.h */,
 				BDEBBA7623618C28006A3B3C /* AMapPOI+AMapPOICatgory.m */,
+				BDAFDF4123B31227008938DF /* AppDelegate */,
 				BDA5FD2E22FA785800BCB48E /* Block */,
 				BDA5FCE322FA785800BCB48E /* CLLocation+Sino.h */,
 				BDA5FD2822FA785800BCB48E /* CLLocation+Sino.m */,
@@ -9274,6 +9273,7 @@
 				BDA5FCEE22FA785800BCB48E /* UIViewController+BackButtonHandler.m */,
 				BDA5FD2122FA785800BCB48E /* UIViewController+ZZUtils.h */,
 				BDA5FCCD22FA785800BCB48E /* UIViewController+ZZUtils.m */,
+				BDA5FD1522FA785800BCB48E /* ZZAdditions.h */,
 			);
 			path = ZZAdditions;
 			sourceTree = "<group>";
@@ -9387,6 +9387,7 @@
 				BDA5FCE222FA785800BCB48E /* UIView+Extension.m */,
 				BDA5FCE022FA785800BCB48E /* UIView+Helpers.h */,
 				BDA5FCE122FA785800BCB48E /* UIView+Helpers.m */,
+				BDA4E5222789745000403344 /* UIViewExtension.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -10068,15 +10069,6 @@
 				BDA5FF6B22FA785900BCB48E /* Reachability.h */,
 			);
 			path = Reachability;
-			sourceTree = "<group>";
-		};
-		BDA5FF6F22FA785900BCB48E /* WaterfallLayout */ = {
-			isa = PBXGroup;
-			children = (
-				BDA5FF7122FA785900BCB48E /* UIView+Common.m */,
-				BDA5FF7322FA785900BCB48E /* UIView+Common.h */,
-			);
-			path = WaterfallLayout;
 			sourceTree = "<group>";
 		};
 		BDA5FF7422FA785900BCB48E /* TokenButtonContainerView */ = {
@@ -11770,6 +11762,7 @@
 				BD9A54922223D46000480390 /* ZZWXOrderModel.swift in Sources */,
 				91DBA5F21F6151F500013F4C /* ZZUserBlackModel.m in Sources */,
 				BDA4B3B9235D58580034D553 /* ZZMyLocationsViewController.m in Sources */,
+				BDA4E5232789745000403344 /* UIViewExtension.swift in Sources */,
 				91DBA2791F613CF700013F4C /* ZZChatTimeView.m in Sources */,
 				91DBA5E41F6151F500013F4C /* ZZRecordLabelModel.m in Sources */,
 				BD9A54892223C99300480390 /* ZZWechatOrdersViewController.swift in Sources */,
@@ -12045,7 +12038,6 @@
 				BDB2EBA221DDF8FA0083FF32 /* ZZIDPhotoExampleViewController.m in Sources */,
 				ACBC309820DB56EB00480832 /* ZZDayTaskDetailCell.m in Sources */,
 				BD47CB5D222FB1A800F320C1 /* ZZWechatOrderSmallView.swift in Sources */,
-				BDA5010022FA785B00BCB48E /* UIView+Common.m in Sources */,
 				91DB9D9B1F6129E600013F4C /* ZZFindHotViewController.m in Sources */,
 				ACBC309B20DBB0B500480832 /* ZZIntegralExchangeCell.m in Sources */,
 				91DBA4861F613D3400013F4C /* ZZTaskChooseCell.m in Sources */,

@@ -26,7 +26,7 @@
     ZZUserNotificationAlert *alert = [[ZZUserNotificationAlert alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[UIApplication sharedApplication].keyWindow addSubview:alert];
     [[UIApplication sharedApplication].keyWindow bringSubviewToFront:alert];
-    [UIView animateWithDuration:0.3 delay:0 options:(UIViewAnimationOptionTransitionFlipFromBottom) animations:nil completion:nil];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{} completion:^(BOOL finished) {}];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

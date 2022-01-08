@@ -96,8 +96,11 @@ extension ZZWechatOrdersViewController {
     }
     
     @objc class func fetchOrders(complete: @escaping ( _ ordersArray: NSArray) -> Void) {
+        guard let uid = ZZUserHelper.shareInstance()!.loginerId else {
+            return
+        }
         let params: [String: Any] = [
-            "userId": ZZUserHelper.shareInstance()!.loginerId,
+            "userId": uid,
             "pageIndex": 0,
         ]
         MBProgressHUD().show(true)
@@ -137,8 +140,12 @@ extension ZZWechatOrdersViewController {
     }
     
     func request() {
+        guard let uid = ZZUserHelper.shareInstance()!.loginerId else {
+            return
+        }
+        
         let params: [String: Any] = [
-            "userId": ZZUserHelper.shareInstance()!.loginerId,
+            "userId": uid,
             "pageIndex": page,
         ]
         ZZRequest.method("GET", path: "/api/wechat/wechatSeenList", params: params) { (error, data, _) in

@@ -424,7 +424,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        return [[UIView alloc] init];
+        return [[UICollectionReusableView alloc] init];
     }
     NSString *CellIdentifier = @"ZZWeiChatEvaluationHeaderCellID";
     ZZWeiChatEvaluationHeaderCell *cell = (ZZWeiChatEvaluationHeaderCell *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:CellIdentifier forIndexPath:indexPath];

@@ -18,7 +18,7 @@
 @property(nonatomic,  strong) NSString *content;
 
 /** 附加信息 */
-@property(nonatomic,  strong) NSString *extra;
+@property(nonatomic,  copy) NSString *extra;
 
 @property (nonatomic, copy) NSString *songUrl;
 

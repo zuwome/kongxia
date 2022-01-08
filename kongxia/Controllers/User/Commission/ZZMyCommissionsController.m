@@ -198,7 +198,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    cell.selectionStyle = UITableViewScrollPositionNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // 添加分页菜单
     [cell.contentView addSubview:self.pageMenu];
     [cell.contentView addSubview:self.scrollView];

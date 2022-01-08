@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, ChangeMobileStep) {
 #define kBase_URLWithouts            @"http://v2.zuwome.com" // 正式线
 #endif
 
-#define PeopleTOP_URLStr(string)    [NSString stringWithFormat:@"%@/user/%@/priority/page?v=",kBase_URL, string, [UIApplication version]] //人气值
+#define PeopleTOP_URLStr(string)    [NSString stringWithFormat:@"%@/user/%@/priority/page?v=%@",kBase_URL, string, [UIApplication version]] //人气值
 #ifdef DEBUG
 #define kQNPrefix_url        @"http://img.movtrip.com/"
 #else

@@ -583,8 +583,8 @@ extension ZZWXOrderReportViewController {
             }
             
             let param: [AnyHashable : Any] = [
-                "uid": ZZUserHelper.shareInstance()!.loginer.uid,
-                "content": ZZUtils.dictionary(toJson: subParam)
+                "uid": ZZUserHelper.shareInstance()!.loginer.uid!,
+                "content": ZZUtils.dictionary(toJson: subParam)!
             ]
             ZZUserHelper.uploadLog(withParam: param, next: nil)
         }

@@ -159,11 +159,12 @@ import UIKit
                     }
                     else
                     {
-                        UIAlertView.show(withTitle: "提示",
-                                         message: "打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼",
-                                         cancelButtonTitle: "知道了",
-                                         otherButtonTitles: nil,
-                                         tap: nil)
+                        self.showOKAlert(
+                            withTitle: "提示",
+                            message: "打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼",
+                            okTitle: "知道了",
+                            okBlock: nil
+                        )
                     }
                 }
                 else {
@@ -400,8 +401,8 @@ extension ZZRankingViewController {
     
     // 我的排名
     func fetchMyRanking() {
-        if let user = ZZUserHelper.shareInstance()?.loginer, let userHelper = ZZUserHelper.shareInstance(), userHelper.isLogin {
-            ZZRequest.method("GET", path: "/api/rangking/getMyRanking", params: ["uid": user.uid]) { (error, data, _) in
+        if let userId = ZZUserHelper.shareInstance()?.loginer.uid, ZZUserHelper.shareInstance().isLogin {
+            ZZRequest.method("GET", path: "/api/rangking/getMyRanking", params: ["uid": userId]) { (error, data, _) in
                 if error == nil {
                     let myRank = ZZRankModel()
                     myRank.userInfo = ZZUserHelper.shareInstance()?.loginer
@@ -436,9 +437,9 @@ extension ZZRankingViewController {
     // 隐身、显示
     func showAction(isShow: Bool) {
         ZZHUD.show()
-        if let user = ZZUserHelper.shareInstance()?.loginer, let userHelper = ZZUserHelper.shareInstance(), userHelper.isLogin {
+        if let userId = ZZUserHelper.shareInstance()?.loginer.uid, ZZUserHelper.shareInstance().isLogin {
             ZZHUD.dismiss()
-            ZZRequest.method("POST", path: "/api/rangking/settingUserShow", params: ["uid": user.uid, "rank_show": isShow ? -1 : 0]) { (error, data, _) in
+            ZZRequest.method("POST", path: "/api/rangking/settingUserShow", params: ["uid": userId, "rank_show": isShow ? -1 : 0]) { (error, data, _) in
                 if error == nil {
                     ZZHUD.showTastInfo(with: !isShow ? "隐榜成功" : "取消隐榜成功")
                     let user = try? ZZUser.init(dictionary: data as? [AnyHashable : Any])

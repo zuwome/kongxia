@@ -22,10 +22,12 @@
     [self createNavigationView];
     
     self.enableUnreadMessageIcon = YES;
-    [RCIM sharedRCIM].globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
-    [RCIM sharedRCIM].globalMessagePortraitSize = CGSizeMake(40, 40);
+    
+    RCKitConfigCenter.ui.globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
+    RCKitConfigCenter.ui.globalMessagePortraitSize = CGSizeMake(40, 40);
     self.displayUserNameInCell = NO;
-    self.defaultInputType = RC_CHAT_INPUT_BAR_STYLE_SWITCH_CONTAINER;
+    
+    self.defaultInputType = RCChatSessionInputBarInputExtention;
     
     [self.chatSessionInputBarControl.pluginBoardView removeItemWithTag:PLUGIN_BOARD_ITEM_VOIP_TAG];
     [self.chatSessionInputBarControl.pluginBoardView removeItemWithTag:PLUGIN_BOARD_ITEM_VIDEO_VOIP_TAG];

@@ -116,15 +116,15 @@ typedef enum {
             printf("error == %s\n",NeAACDecGetErrorMessage(self.frame_info.error));
             return resultData;
         }else if(pcm_data && self.frame_info.samples > 0){
-            printf("frame info: bytesconsumed %d, channels %d, header_type %d\
-                   object_type %d, samples %d, samplerate %d\n",
+            printf("frame info: bytesconsumed %lu, channels %d, header_type %d\
+                   object_type %d, samples %lu, samplerate %lu\n",
                    self.frame_info.bytesconsumed,
                    self.frame_info.channels, self.frame_info.header_type,
                    self.frame_info.object_type, self.frame_info.samples,
                    self.frame_info.samplerate);
             
             unsigned int length;
-            length = self.frame_info.samples * self.frame_info.channels;
+            length = (unsigned int)self.frame_info.samples * self.frame_info.channels;
             
             NSData *temPcmData = [NSData dataWithBytes:pcm_data length:length];
             [resultData appendData:temPcmData];

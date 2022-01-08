@@ -124,8 +124,8 @@
         self.fileUrl = json[KEY_TXTMSG_fileUrl];
         self.localPath = json[KEY_TXTMSG_localPath];
         self.type = json[KEY_TXTMSG_Type];
-        self.gifWidth = [json[KEY_TXTMSG_gifWidth] integerValue];
-        self.gifHeight = [json[KEY_TXTMSG_gifHeight] integerValue];
+        self.gifWidth = [json[KEY_TXTMSG_gifWidth] intValue];
+        self.gifHeight = [json[KEY_TXTMSG_gifHeight] intValue];
 
         NSObject *__object = [json objectForKey:@"user"];
         NSDictionary *userinfoDic = nil;

@@ -105,11 +105,12 @@ class ZZMyRanksViewController: ZZViewController {
             fetchSayHi(user: user) { (data) in
                 if let data = data as? [String: Any], let sayHiState = data["say_hi_status"] as? Int, sayHiState == 0 {
                     if loginer.didHaveOldAvatar() {
-                        UIAlertView.show(withTitle: "提示",
-                                         message: "打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼",
-                                         cancelButtonTitle: "知道了",
-                                         otherButtonTitles: nil,
-                                         tap: nil)
+                        self.showOKAlert(
+                            withTitle: "提示",
+                            message: "打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼",
+                            okTitle: "知道了",
+                            okBlock: nil
+                        )
                     }
                     else {
                         self.goToChatView(rankModel: rankModel)
@@ -232,8 +233,8 @@ extension ZZMyRanksViewController {
 // MARK: Request
 extension ZZMyRanksViewController {
     func fetchMyRank() {
-        if let user = ZZUserHelper.shareInstance()?.loginer, let userHelper = ZZUserHelper.shareInstance(), userHelper.isLogin {
-            ZZRequest.method("GET", path: "/api/rangking/getMyRankingDetail", params: ["uid": user.uid]) { (error, data, _) in
+        if let userId = ZZUserHelper.shareInstance()?.loginer.uid, ZZUserHelper.shareInstance().isLogin {
+            ZZRequest.method("GET", path: "/api/rangking/getMyRankingDetail", params: ["uid": userId]) { (error, data, _) in
                 if error == nil {
                     if let dic = data as? [AnyHashable : Any] {
                         if let responseModel: ZZMyRankDetailsResponeModel = ZZMyRankDetailsResponeModel.yy_model(with: dic) {

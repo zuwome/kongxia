@@ -125,7 +125,7 @@
         MGSwipeButton *chatBtn = [MGSwipeButton buttonWithTitle:@"私信" backgroundColor:kYellowColor];
         chatBtn.buttonWidth = 70;
         self.rightButtons = @[deleteBtn,chatBtn];
-        self.rightSwipeSettings.transition = MGSwipeStateSwippingRightToLeft;
+        self.rightSwipeSettings.transition = MGSwipeTransitionDrag;
         self.delegate = self;
     }
     
@@ -367,8 +367,9 @@
 
 - (void)delete:(UITableViewCell *)cell
 {
-    [UIAlertView showWithTitle:@"删除微信" message:@"删除TA的微信号后，您再次查看TA的微信号时需要重新支付红包" cancelButtonTitle:@"确定" otherButtonTitles:@[@"取消"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 0) {
+    [[UIViewController currentDisplayViewController] showOKCancelAlertWithTitle:@"删除微信" message:@"删除TA的微信号后，您再次查看TA的微信号时需要重新支付红包" cancelTitle:@"取消" cancelBlock:^{
+            
+        } okTitle:@"确定" okBlock:^{
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             ZZUserWXModel *model = self.dataArray[indexPath.row];
             [ZZUserWXModel deleteWXRecord:model.wid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
@@ -382,8 +383,7 @@
                     }
                 }
             }];
-        }
-    }];
+        }];
 }
 
 - (void)chat:(UITableViewCell *)cell

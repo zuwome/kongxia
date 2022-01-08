@@ -125,7 +125,7 @@
         MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:@"删除" backgroundColor:kRedColor];
         deleteBtn.buttonWidth = 70;
         self.rightButtons = @[_blackBtn,deleteBtn];
-        self.rightSwipeSettings.transition = MGSwipeStateSwippingRightToLeft;
+        self.rightSwipeSettings.transition = MGSwipeTransitionStatic;
         self.delegate = self;
     }
     

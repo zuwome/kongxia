@@ -388,7 +388,7 @@
         return headView;
     }
     
-    return [UIView new];
+    return [UICollectionReusableView new];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -445,26 +445,26 @@
 
 - (void)deleteBtnClick:(UICollectionViewCell *)cell
 {
-    [UIAlertView showWithTitle:@"确认删除" message:@"您确定要放弃上传并删除本视频？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-            NSDictionary *aDict = self.videoArray[indexPath.row];
-            [self.imageDict removeObjectForKey:[aDict objectForKey:@"tagId"]];
-            [self.videoArray removeObjectAtIndex:indexPath.row];
-            [self.collectionView performBatchUpdates:^{
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-            } completion:^(BOOL finished) {
-                [self.collectionView reloadData];
-                [self managerEmpty];
-            }];
-            
-            NSString *key = [NSString stringWithFormat:@"%@%@",[ZZStoreKey sharedInstance].uploadFailureVideo,[ZZUserHelper shareInstance].loginerId];
-            [ZZKeyValueStore saveValue:self.videoArray key:key tableName:kTableName_VideoSave];
-            NSString *url = [aDict objectForKey:@"url"];
-            url = [NSString stringWithFormat:@"%@/%@",[ZZFileHelper createPathWithChildPath:video_savepath],url];
-            [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:url] error:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_DeleteFailureVide object:nil];
-        }
+    [self showOKCancelAlertWithTitle:@"确认删除" message:@"您确定要放弃上传并删除本视频？" cancelTitle:@"取消" cancelBlock:^{
+        
+    } okTitle:@"确定" okBlock:^{
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSDictionary *aDict = self.videoArray[indexPath.row];
+        [self.imageDict removeObjectForKey:[aDict objectForKey:@"tagId"]];
+        [self.videoArray removeObjectAtIndex:indexPath.row];
+        [self.collectionView performBatchUpdates:^{
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        } completion:^(BOOL finished) {
+            [self.collectionView reloadData];
+            [self managerEmpty];
+        }];
+        
+        NSString *key = [NSString stringWithFormat:@"%@%@",[ZZStoreKey sharedInstance].uploadFailureVideo,[ZZUserHelper shareInstance].loginerId];
+        [ZZKeyValueStore saveValue:self.videoArray key:key tableName:kTableName_VideoSave];
+        NSString *url = [aDict objectForKey:@"url"];
+        url = [NSString stringWithFormat:@"%@/%@",[ZZFileHelper createPathWithChildPath:video_savepath],url];
+        [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:url] error:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_DeleteFailureVide object:nil];
     }];
 }
 

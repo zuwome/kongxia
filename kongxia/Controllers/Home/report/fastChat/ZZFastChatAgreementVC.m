@@ -95,7 +95,7 @@
         _wkWebView.allowsBackForwardNavigationGestures = YES;
         _wkWebView.scrollView.delegate = self;
         _wkWebView.scrollView.scrollEnabled = YES;
-        if (IOS11_OR_LATER) {
+        if (@available(iOS 11.0, *)) {
             _wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
@@ -228,20 +228,20 @@
         if ([ZZUserHelper shareInstance].loginer.open_qchat) {
             if ([ZZUserHelper shareInstance].loginer.base_video.status == 2) {
                 //视频审核失败
-                urlString = [NSString stringWithFormat:H5Url.fastChatOpeon];
+                urlString = H5Url.fastChatOpeon;
             } else {
                 // 有开通的情况下
-                urlString = [NSString stringWithFormat:H5Url.fastChatIntroduce];
+                urlString = H5Url.fastChatIntroduce;
                 [self.agreeButton removeFromSuperview];
                 [self.wkWebView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.leading.trailing.top.bottom.equalTo(@0);
                 }];
             }
         } else {
-            urlString = [NSString stringWithFormat:H5Url.fastChatOpeon];
+            urlString = H5Url.fastChatOpeon;
         }
     } else {
-        urlString = [NSString stringWithFormat:H5Url.fastChatOpeon];
+        urlString = H5Url.fastChatOpeon;
     }
     [NSObject asyncWaitingWithTime:0.5 completeBlock:^{
         [_wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];

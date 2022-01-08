@@ -83,7 +83,7 @@
     view.backgroundColor = kBGColor;
     [self.view addSubview:view];
     
-    NSString *urlString = [NSString stringWithFormat:H5Url.becomeShanZuDaren];
+    NSString *urlString = [NSString stringWithFormat:@"%@", H5Url.becomeShanZuDaren];
     _wkWebView = (WKWebView *)view;
     _wkWebView.navigationDelegate = self;
     _wkWebView.allowsBackForwardNavigationGestures = YES;

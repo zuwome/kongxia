@@ -57,9 +57,9 @@
 - (void)showOKCancelAlertWithTitle:(NSString *)title
                            message:(NSString *)message
                        cancelTitle:(NSString *)cancelTitle
-                       cancelBlock:(ActionBlock _Nullable)cancelBlock
-                           okTitle:(nonnull NSString *)okTitle
-                           okBlock:(ActionBlock _Nullable)okBlock{
+                       cancelBlock:(ActionBlock)cancelBlock
+                           okTitle:(NSString *)okTitle
+                           okBlock:(ActionBlock)okBlock {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *doneAction = [UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         if (okBlock)
