@@ -15,7 +15,7 @@ import UIKit
     lazy var myPlaceView: PlaceView = {
         let view = PlaceView()
         view.delegate = self
-        view.backgroundColor = rgbColor(253, 251, 245)
+        view.backgroundColor = UIColor.rgbColor(253, 251, 245)
         let tap = UITapGestureRecognizer(target: self, action: #selector(showMySelf))
         view.addGestureRecognizer(tap)
         return view
@@ -60,8 +60,8 @@ import UIKit
         super.viewWillAppear(animated)
         if offsetToShow != 0 {
             let alpha = 1 - (offsetToShow - tableView.contentOffset.y) / offsetToShow
-            self.navigationController?.navigationBar.shadowImage = UIImage.init(from: rgbaColor(244, 203, 7, alpha))
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(from: rgbaColor(244, 203, 7, alpha)), for: .default)
+            self.navigationController?.navigationBar.shadowImage = UIImage.init(from: UIColor.rgbColor(244, 203, 7, alpha))
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(from: UIColor.rgbColor(244, 203, 7, alpha)), for: .default)
         }
     }
     
@@ -486,7 +486,7 @@ extension ZZRankingViewController {
         }
         
         let line = UIView()
-        line.backgroundColor = hexColor("#e6e6e6")
+        line.backgroundColor = UIColor.hexColor("#e6e6e6")
         self.view.addSubview(line)
         
         line.mas_makeConstraints { (make) in
@@ -499,7 +499,7 @@ extension ZZRankingViewController {
         let footerLabel = UILabel()
         footerLabel.frame = CGRect(x: 0.0, y: 0, width: screenWidth, height: 40)
         footerLabel.text = "你触到我底线啦"
-        footerLabel.textColor = rgbColor(153, 153, 153)
+        footerLabel.textColor = UIColor.rgbColor(153, 153, 153)
         footerLabel.textAlignment = .center
         footerLabel.font = UIFont(name: "PingFangSC-Medium", size: 13.0) ?? UIFont.systemFont(ofSize: 17.0)
         

@@ -1476,6 +1476,7 @@
 		BDD42A3D226E9F8A00B65FA7 /* ZZTaskConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD42A3C226E9F8A00B65FA7 /* ZZTaskConfig.m */; };
 		BDD7A128233DF33C002863D0 /* MSDPreventImagePickerCrashOn3DTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD7A126233DF33B002863D0 /* MSDPreventImagePickerCrashOn3DTouch.m */; };
 		BDD80A2822291ECE004C78F2 /* ZZOrderDetailActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD80A2722291ECE004C78F2 /* ZZOrderDetailActionsCell.swift */; };
+		BDD88087278C650900C34C09 /* ZZSkillThemeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */; };
 		BDE200882297C52B00589E12 /* ZZRankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE200872297C52B00589E12 /* ZZRankModel.swift */; };
 		BDE34457234EDA06008290F0 /* ZZCommissionIndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE34456234EDA06008290F0 /* ZZCommissionIndexCell.m */; };
 		BDE3445A23506DAD008290F0 /* ZZCommissionPopulationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE3445923506DAD008290F0 /* ZZCommissionPopulationCell.m */; };
@@ -4326,6 +4327,7 @@
 		BDD7A126233DF33B002863D0 /* MSDPreventImagePickerCrashOn3DTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDPreventImagePickerCrashOn3DTouch.m; sourceTree = "<group>"; };
 		BDD7A127233DF33C002863D0 /* MSDPreventImagePickerCrashOn3DTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDPreventImagePickerCrashOn3DTouch.h; sourceTree = "<group>"; };
 		BDD80A2722291ECE004C78F2 /* ZZOrderDetailActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZOrderDetailActionsCell.swift; sourceTree = "<group>"; };
+		BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSkillThemeFooterCell.swift; sourceTree = "<group>"; };
 		BDE200872297C52B00589E12 /* ZZRankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZRankModel.swift; sourceTree = "<group>"; };
 		BDE34455234EDA06008290F0 /* ZZCommissionIndexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZCommissionIndexCell.h; sourceTree = "<group>"; };
 		BDE34456234EDA06008290F0 /* ZZCommissionIndexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZCommissionIndexCell.m; sourceTree = "<group>"; };
@@ -4734,6 +4736,7 @@
 				04FE08242112AEE600E129A0 /* ZZSkillThemeCell.m */,
 				04DEB5A4214A383C00162A90 /* ZZPrivateLetterSwitchCell.h */,
 				04DEB5A5214A383C00162A90 /* ZZPrivateLetterSwitchCell.m */,
+				BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */,
 			);
 			name = "SkillThemeManage(主题管理)";
 			sourceTree = "<group>";
@@ -11540,6 +11543,7 @@
 				BD44276D252A53590018A84E /* TYLinkTextStorage.m in Sources */,
 				AC22872F20BD5D01000E9135 /* ZZApplyUploadView.m in Sources */,
 				0489EF4A21267DB400086FBE /* ZZNewHomeTableView.m in Sources */,
+				BDD88087278C650900C34C09 /* ZZSkillThemeFooterCell.swift in Sources */,
 				04FE08182111BACA00E129A0 /* ZZThemePictureCell.m in Sources */,
 				BDA5004522FA785A00BCB48E /* UITabBar+Badge.m in Sources */,
 				BD17817623CE282E005567BA /* ZZKTVReceiveUserModel.m in Sources */,

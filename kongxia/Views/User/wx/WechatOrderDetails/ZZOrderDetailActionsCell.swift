@@ -24,7 +24,7 @@ class ZZOrderDetailActionsCell: ZZTableViewCell {
     lazy var chatBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("私信", for: .normal)
-        btn.setTitleColor(zzBlackColor, for: .normal)
+        btn.setTitleColor(.zzBlack, for: .normal)
         btn.titleLabel?.font = sysFont(15.0)
         btn.addTarget(self, action: #selector(chat), for: .touchUpInside)
         btn.backgroundColor = .white
@@ -35,10 +35,10 @@ class ZZOrderDetailActionsCell: ZZTableViewCell {
     lazy var confirmBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("确认添加成功", for: .normal)
-        btn.setTitleColor(zzBlackColor, for: .normal)
+        btn.setTitleColor(.zzBlack, for: .normal)
         btn.titleLabel?.font = sysFont(15.0)
         btn.addTarget(self, action: #selector(confirm), for: .touchUpInside)
-        btn.backgroundColor = zzGoldenColor
+        btn.backgroundColor = .golden
         btn.layer.cornerRadius = 1.5
         return btn
     }()
@@ -63,10 +63,10 @@ class ZZOrderDetailActionsCell: ZZTableViewCell {
     lazy var evaluationBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("匿名评价", for: .normal)
-        btn.setTitleColor(zzBlackColor, for: .normal)
+        btn.setTitleColor(.zzBlack, for: .normal)
         btn.titleLabel?.font = sysFont(15.0)
         btn.addTarget(self, action: #selector(evaluation), for: .touchUpInside)
-        btn.backgroundColor = zzGoldenColor
+        btn.backgroundColor = .golden
         btn.layer.cornerRadius = 25
         return btn
     }()
@@ -85,7 +85,7 @@ class ZZOrderDetailActionsCell: ZZTableViewCell {
         self.backgroundColor = .white
         if status == .buyer_bought
             || status == .buyer_waitToBeEvaluated {
-            self.backgroundColor = hexColor("#f6f6f6")
+            self.backgroundColor = UIColor.hexColor("#f6f6f6")
             chatBtn.layer.cornerRadius = 1.5
             confirmBtn.layer.cornerRadius = 1.5
         }
@@ -97,14 +97,14 @@ class ZZOrderDetailActionsCell: ZZTableViewCell {
             || status == .buyer_reportFail
             || status == .seller_reportSuccess
             || status == .seller_reportFail {
-            self.backgroundColor = hexColor("#f6f6f6")
+            self.backgroundColor = UIColor.hexColor("#f6f6f6")
             chatBtn.layer.cornerRadius = 25
-            chatBtn.backgroundColor = zzGoldenColor
+            chatBtn.backgroundColor = .golden
         }
         else if status == .buyer_commented {
             evaluationBtn.isUserInteractionEnabled = false;
             evaluationBtn.setTitle("已评价", for: .normal)
-            evaluationBtn.backgroundColor = rgbColor(223, 223, 223)
+            evaluationBtn.backgroundColor = UIColor.rgbColor(223, 223, 223)
         }
         createLayout()
     }

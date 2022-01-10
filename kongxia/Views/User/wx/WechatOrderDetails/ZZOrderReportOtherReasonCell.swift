@@ -26,7 +26,7 @@ class ZZOrderReportOtherReasonCell: ZZTableViewCell {
     lazy var placeHolderLabel: UILabel = {
         let label = UILabel(text: "请输入您遇到的问题",
                             font: sysFont(14),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         
         return label
     }()
@@ -34,7 +34,7 @@ class ZZOrderReportOtherReasonCell: ZZTableViewCell {
     lazy var countsLabel: UILabel = {
         let label = UILabel(text: "0/100",
                             font: sysFont(14.0),
-                            textColor: rgbColor(102, 102, 102))
+                            textColor: UIColor.rgbColor(102, 102, 102))
         
         return label
     }()

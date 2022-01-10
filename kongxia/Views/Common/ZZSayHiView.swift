@@ -306,7 +306,7 @@ class ZZSayHiContentView: UIView {
         label.text = "一键打招呼"
         label.font = boldFont(17)
         label.textAlignment = .center
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         return label
     }()
     
@@ -319,8 +319,8 @@ class ZZSayHiContentView: UIView {
     lazy var confirmBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "一键打招呼"
-        btn.backgroundColor = rgbColor(244, 203, 7)
-        btn.normalTitleColor = rgbColor(63, 58, 58)
+        btn.backgroundColor = UIColor.rgbColor(244, 203, 7)
+        btn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         btn.titleLabel?.font = UIFont(name: "PingFangSC-Medium", size: 14)
         btn.layer.cornerRadius = 22
         return btn
@@ -351,7 +351,7 @@ class ZZSayHiContentView: UIView {
     lazy var preBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "上一页"
-        btn.normalTitleColor = rgbColor(153, 153, 153) //rgbColor(63, 58, 58)
+        btn.normalTitleColor = UIColor.rgbColor(153, 153, 153) //rgbColor(63, 58, 58)
         btn.titleLabel?.font = UIFont(name: "PingFangSC-Medium", size: 11) ?? font(11)
         
         btn.tag = 0
@@ -362,7 +362,7 @@ class ZZSayHiContentView: UIView {
     lazy var nextBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "下一页"
-        btn.normalTitleColor = rgbColor(63, 58, 58) //rgbColor(153, 153, 153)
+        btn.normalTitleColor = UIColor.rgbColor(63, 58, 58) //rgbColor(153, 153, 153)
         btn.titleLabel?.font = UIFont(name: "PingFangSC-Medium", size: 11) ?? font(11)
         
         btn.tag = 1
@@ -373,7 +373,7 @@ class ZZSayHiContentView: UIView {
     lazy var editBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "编辑招呼内容"
-        btn.normalTitleColor = rgbColor(244, 203, 7)
+        btn.normalTitleColor = UIColor.rgbColor(244, 203, 7)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 //        btn.addTarget(self, action: #selector(switchPageAction), for: .touchUpInside)
         return btn
@@ -423,16 +423,16 @@ class ZZSayHiContentView: UIView {
     func changeBtnStatus() {
         let page = Int(collectionView.contentOffset.x / self.width)
         if page ==  0 {
-            preBtn.normalTitleColor = rgbColor(153, 153, 153)
-            nextBtn.normalTitleColor = rgbColor(63, 58, 58)
+            preBtn.normalTitleColor = UIColor.rgbColor(153, 153, 153)
+            nextBtn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         }
         else if page == totalPages - 1 {
-            preBtn.normalTitleColor = rgbColor(63, 58, 58)
-            nextBtn.normalTitleColor = rgbColor(153, 153, 153)
+            preBtn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
+            nextBtn.normalTitleColor = UIColor.rgbColor(153, 153, 153)
         }
         else {
-            preBtn.normalTitleColor = rgbColor(63, 58, 58)
-            nextBtn.normalTitleColor = rgbColor(63, 58, 58)
+            preBtn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
+            nextBtn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         }
     }
     
@@ -622,7 +622,7 @@ class SayHiFirstPageCell: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "向附近的优质用户打招呼，你将获得高曝光、高排名、高人气、高收益"
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         label.font = UIFont(name: "PingFangSC-Medium", size: 14)
         label.textAlignment = .center
         label.numberOfLines = 2
@@ -785,7 +785,7 @@ class SayHiPeopleView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "PingFangSC-Medium", size: 10)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.text = "小小说说"
         return label
     }()
@@ -858,7 +858,7 @@ class SayHiPeopleView: UIView {
 extension SayHiPeopleView {
     func layout() {
         self.layer.cornerRadius = 15
-        self.backgroundColor = rgbColor(240, 240, 240 )
+        self.backgroundColor = UIColor.rgbColor(240, 240, 240 )
         
         self.addSubview(userIconImageView)
         self.addSubview(titleLabel)
@@ -912,7 +912,7 @@ class SayhiEditContentView: UIView {
         label.text = "编辑打招呼内容"
         label.font = boldFont(17)
         label.textAlignment = .center
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         return label
     }()
     
@@ -925,7 +925,7 @@ class SayhiEditContentView: UIView {
     
     lazy var textBGView: UIView = {
         let view = UIView()
-        view.backgroundColor = rgbColor(245, 245, 245)
+        view.backgroundColor = UIColor.rgbColor(245, 245, 245)
         view.layer.cornerRadius = 5
         return view
     }()
@@ -933,7 +933,7 @@ class SayhiEditContentView: UIView {
     lazy var inputTextView: UITextView = {
         let view = UITextView()
         view.text = "本人不高冷逗比有话题~喜欢可邀约呦，公众场合出租，真诚交友~真诚交友真"
-        view.textColor = rgbColor(63, 58, 58)
+        view.textColor = UIColor.rgbColor(63, 58, 58)
         view.backgroundColor = .clear
         view.textContainerInset = .zero
 //        view.delegate = self
@@ -943,7 +943,7 @@ class SayhiEditContentView: UIView {
     lazy var countsLabel: UILabel = {
         let label = UILabel()
         label.text = "0/\(maxCount)"
-        label.textColor = rgbColor(153, 153, 153)
+        label.textColor = UIColor.rgbColor(153, 153, 153)
         label.font = UIFont(name: "PingFangSC-Medium", size: 11)
         return label
     }()
@@ -951,8 +951,8 @@ class SayhiEditContentView: UIView {
     lazy var confirmBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "发送"
-        btn.backgroundColor = rgbColor(244, 203, 7)
-        btn.normalTitleColor = rgbColor(63, 58, 58)
+        btn.backgroundColor = UIColor.rgbColor(244, 203, 7)
+        btn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         btn.titleLabel?.font = UIFont(name: "PingFangSC-Medium", size: 14)
         btn.layer.cornerRadius = 22
         btn.addTarget(self, action: #selector(send), for: .touchUpInside)

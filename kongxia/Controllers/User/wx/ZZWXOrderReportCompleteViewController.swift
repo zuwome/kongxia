@@ -132,7 +132,7 @@ extension ZZWXOrderReportCompleteViewController {
     }
     
     func layout() {
-        self.view.backgroundColor = rgbColor(247, 247, 247)
+        self.view.backgroundColor = UIColor.rgbColor(247, 247, 247)
         self.view.addSubview(self.tableView)
         tableView.mas_makeConstraints { (make) in
             make?.edges.equalTo()(self.view)

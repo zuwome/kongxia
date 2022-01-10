@@ -227,7 +227,7 @@ class ZZIAPPayInfoView: UIView {
     lazy var titleLable:  UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont(name: "PingFangSC-Medium", size: 15) ?? sysFont(15),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         label.textAlignment = .center
         return label
     }()
@@ -241,7 +241,7 @@ class ZZIAPPayInfoView: UIView {
     lazy var balanceLabel: UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont(name: "PingFangSC-Medium", size: 17) ?? sysFont(17),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         
         return label
     }()
@@ -249,7 +249,7 @@ class ZZIAPPayInfoView: UIView {
     lazy var statusLabel: UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont(name: "PingFangSC-Medium", size: 15) ?? sysFont(15),
-                            textColor: rgbColor(173, 173, 177))
+                            textColor: UIColor.rgbColor(173, 173, 177))
         
         return label
     }()
@@ -384,7 +384,7 @@ extension ZZIAPPayInfoView {
         
         
         let seperateLine = UIView()
-        seperateLine.backgroundColor = rgbColor(216, 216, 216)
+        seperateLine.backgroundColor = UIColor.rgbColor(216, 216, 216)
         self.addSubview(seperateLine)
         seperateLine.mas_makeConstraints { (make) in
             make?.left.right()?.bottom()?.equalTo()(titleLable)
@@ -400,7 +400,7 @@ class ZZIAPItemView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont(name: "PingFang-SC-Medium", size: 17.0) ?? UIFont.systemFont(ofSize: 17.0),
-                            textColor: Color.black)
+                            textColor: .black)
         label.textAlignment = .center
         return label
     }()
@@ -408,7 +408,7 @@ class ZZIAPItemView: UIView {
     lazy var subTitleLabel: UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont.systemFont(ofSize: 15.0),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         label.textAlignment = .center
         return label
     }()
@@ -434,13 +434,13 @@ class ZZIAPItemView: UIView {
     
     func setBorder(show: Bool) {
         if (show) {
-            self.backgroundColor = rgbColor(240, 203, 7)
-            self.layer.borderColor = rgbColor(37, 39, 43).cgColor
+            self.backgroundColor = UIColor.rgbColor(240, 203, 7)
+            self.layer.borderColor = UIColor.rgbColor(37, 39, 43).cgColor
             self.layer.borderWidth = 0;
         }
         else{
-            self.backgroundColor = .white//RGBCOLOR(240, 203, 7);
-            self.layer.borderColor = rgbColor(37, 39, 43).cgColor
+            self.backgroundColor = .white
+            self.layer.borderColor = UIColor.rgbColor(37, 39, 43).cgColor
             self.layer.borderWidth = 0.5;
         }
     }

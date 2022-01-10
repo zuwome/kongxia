@@ -43,4 +43,7 @@
 
 // 获取技能通过ID
 - (void)fetchSkillByID:(NSString *)skillID next:(requestCallback)next;
+
+
+- (void)getSkillsCustomService:(requestCallback)next;
 @end

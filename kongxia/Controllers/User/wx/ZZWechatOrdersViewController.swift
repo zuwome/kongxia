@@ -14,7 +14,7 @@ class ZZWechatOrdersViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = hexColor("#f6f6f6")
+        tableView.backgroundColor = UIColor.hexColor("#f6f6f6")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ZZWXOrderCell.self, forCellReuseIdentifier: ZZWXOrderCell.cellIdentifier())

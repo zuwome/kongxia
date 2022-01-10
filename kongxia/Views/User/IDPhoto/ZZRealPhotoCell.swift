@@ -26,7 +26,7 @@ class ZZRealPhotoCell: ZZTableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "PingFang-SC-Medium", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)
-        label.textColor = rgbColor(153, 153, 153)
+        label.textColor = UIColor.rgbColor(153, 153, 153)
         label.numberOfLines = 2
         return label
     }()
@@ -34,8 +34,8 @@ class ZZRealPhotoCell: ZZTableViewCell {
     lazy var actionButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        button.backgroundColor = rgbaColor(254, 66, 70, 0.13)
-        button.setTitleColor(rgbColor(254, 66, 70), for: .normal)
+        button.backgroundColor = UIColor.rgbColor(254, 66, 70, 0.13)
+        button.setTitleColor(UIColor.rgbColor(254, 66, 70), for: .normal)
         button.titleLabel?.font = UIFont(name: "PingFang-SC-Medium", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)
         button.layer.cornerRadius = 2
         return button

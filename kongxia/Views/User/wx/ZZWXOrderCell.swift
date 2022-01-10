@@ -150,7 +150,7 @@ class ZZWXOrderCell: ZZTableViewCell {
 
 extension ZZWXOrderCell {
     func layout() {
-        self.backgroundColor = rgbColor(245, 245, 245)
+        self.backgroundColor = UIColor.rgbColor(245, 245, 245)
         
         self.addSubview(self.cardView)
         cardView.addSubview(self.userInfoView)
@@ -207,7 +207,7 @@ class WXOrderUserInfoView: UIView {
     lazy var statusLabel: UILabel = {
         let label = UILabel(text: "被查看微信",
                             font: font(15.0),
-                            textColor: rgbColor(102, 102, 102))
+                            textColor: UIColor.rgbColor(102, 102, 102))
         label.textAlignment = .right
         return label
     }()
@@ -215,7 +215,7 @@ class WXOrderUserInfoView: UIView {
     lazy var memeLabel: UILabel = {
         let label = UILabel(text: "么么号：7665443",
                             font: font(14.0),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         
         return label
     }()
@@ -223,14 +223,14 @@ class WXOrderUserInfoView: UIView {
     lazy var timeLabel: UILabel = {
         let label = UILabel(text: "2019-01-19 11:34:28",
                             font: font(12.0),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         label.textAlignment = .right
         return label
     }()
     
     lazy var line: UIView = {
         let view = UIView()
-        view.backgroundColor = rgbColor(237, 237, 237)
+        view.backgroundColor = UIColor.rgbColor(237, 237, 237)
         return view
     }()
     
@@ -317,10 +317,10 @@ class WXOrderStatusView: UIView {
     lazy var actionLabel: UILabel = {
         let btn = UILabel(text: "待添加",
                           font: font(13.0),
-                          textColor: rgbColor(63, 58, 58))
+                          textColor: UIColor.rgbColor(63, 58, 58))
         btn.textAlignment = .center
         btn.layer.cornerRadius = 16.0
-        btn.backgroundColor = rgbColor(244, 203, 7)
+        btn.backgroundColor = UIColor.rgbColor(244, 203, 7)
         return btn
     }()
     

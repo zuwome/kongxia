@@ -36,8 +36,8 @@ class ZZMyRankInfoVIew: UIView {
             print(tips)
             let tipAttr = NSMutableAttributedString(string: tips)
             tipAttr.addAttributes([NSAttributedString.Key.font: font(13)], range: NSRange(location: 0, length: tips.count))
-            tipAttr.addAttributes([NSAttributedString.Key.foregroundColor: rgbColor(63, 58, 58)], range: NSRange(location: 0, length: tips.count))
-            tipAttr.addAttributes([NSAttributedString.Key.foregroundColor: rgbColor(244, 203, 7)], range: NSRange(location: 0, length: 1))
+            tipAttr.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.rgbColor(63, 58, 58)], range: NSRange(location: 0, length: tips.count))
+            tipAttr.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.rgbColor(244, 203, 7)], range: NSRange(location: 0, length: 1))
             attributeStrArr.append(tipAttr)
         }
         
@@ -48,7 +48,7 @@ class ZZMyRankInfoVIew: UIView {
         let titleStr = "壕力飙升小攻略: \n"
         let titleAttr = NSMutableAttributedString(string: titleStr)
         titleAttr.addAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13)], range: NSRange(location: 0, length: titleAttr.length))
-        titleAttr.addAttributes([NSAttributedString.Key.foregroundColor: rgbColor(63, 58, 58)], range: NSRange(location: 0, length: titleAttr.length))
+        titleAttr.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.rgbColor(63, 58, 58)], range: NSRange(location: 0, length: titleAttr.length))
         tipsAttr.append(titleAttr)
         attributeStrArr.forEach {
             tipsAttr.append($0)

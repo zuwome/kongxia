@@ -13,7 +13,7 @@ class ZZAutoCreateSelectCell: ZZTableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         label.numberOfLines = 2
         return label
     }()
@@ -21,7 +21,7 @@ class ZZAutoCreateSelectCell: ZZTableViewCell {
     lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         label.numberOfLines = 2
         return label
     }()
@@ -39,7 +39,7 @@ class ZZAutoCreateSelectCell: ZZTableViewCell {
         titleLabel.text = model.name
         subTitleLabel.text = "请选择你的\(model.name ?? "")"
         subTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
-        subTitleLabel.textColor = rgbColor(199, 199, 205)
+        subTitleLabel.textColor = UIColor.rgbColor(199, 199, 205)
         
         if let skillArray = skills {
             var skillDes = ""
@@ -52,7 +52,7 @@ class ZZAutoCreateSelectCell: ZZTableViewCell {
             if skillDes.count > 0 {
                 subTitleLabel.text = skillDes
                 subTitleLabel.font = UIFont.boldSystemFont(ofSize: 14)
-                subTitleLabel.textColor = rgbColor(63, 58, 58)
+                subTitleLabel.textColor = UIColor.rgbColor(63, 58, 58)
             }
         }
     }

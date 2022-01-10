@@ -166,9 +166,9 @@ class ZZWechatOrderSmallView: UIView {
                 let nsrange = NSRange(range, in: title)
                 let attriStr = NSMutableAttributedString(string: title)
                 
-                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Regular", size: 14.0)!, .foregroundColor: rgbColor(153,153,153)], range: NSRange(location: 0, length: title.count))
+                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Regular", size: 14.0)!, .foregroundColor: UIColor.rgbColor(153,153,153)], range: NSRange(location: 0, length: title.count))
                 
-                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Medium", size: 14.0)!, .foregroundColor: rgbColor(102, 102, 102)], range: nsrange)
+                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Medium", size: 14.0)!, .foregroundColor: UIColor.rgbColor(102, 102, 102)], range: nsrange)
                 
                 infoView.cardView.descriptLabel.attributedText = attriStr
             }
@@ -204,7 +204,7 @@ class ZZWechatOrderSmallInfoView: UIView {
     }()
     
     lazy var titleLabel: UILabel = {
-        let label = UILabel(text: "微信号订单", font: sysFont(19.0), textColor: zzGoldenColor)
+        let label = UILabel(text: "微信号订单", font: sysFont(19.0), textColor: .golden)
         label.textAlignment = .center
         return label
     }()
@@ -216,7 +216,7 @@ class ZZWechatOrderSmallInfoView: UIView {
     }()
     
     lazy var wxLabel: UILabel = {
-        let label = UILabel(text: "Ta的微信号：1233029ei", font: sysFont(15.0), textColor: zzBlackColor)
+        let label = UILabel(text: "Ta的微信号：1233029ei", font: sysFont(15.0), textColor: .zzBlack)
         
         return label
     }()
@@ -224,9 +224,9 @@ class ZZWechatOrderSmallInfoView: UIView {
     lazy var pasteBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("复制", for: .normal)
-        btn.setTitleColor(rgbColor(102, 102, 102), for: .normal)
+        btn.setTitleColor(UIColor.rgbColor(102, 102, 102), for: .normal)
         btn.titleLabel?.font = sysFont(14.0)
-        btn.layer.borderColor = rgbColor(102, 102, 102).cgColor
+        btn.layer.borderColor = UIColor.rgbColor(102, 102, 102).cgColor
         btn.layer.borderWidth = 1.0
         btn.layer.cornerRadius = 14
         return btn
@@ -299,13 +299,13 @@ class ZZWechatOrderSmallInfoCardView: UIView {
     }()
     
     lazy var titleLabel: UILabel = {
-        let label = UILabel(text: "待添加", font: boldFont(17.0), textColor: zzBlackColor)
+        let label = UILabel(text: "待添加", font: boldFont(17.0), textColor: .zzBlack)
         
         return label
     }()
     
     lazy var detailLabel: UILabel = {
-        let label = UILabel(text: "详情", font: sysFont(14.0), textColor: rgbColor(153, 153, 153))
+        let label = UILabel(text: "详情", font: sysFont(14.0), textColor: UIColor.rgbColor(153, 153, 153))
         label.textAlignment = .right
         return label
     }()
@@ -317,7 +317,7 @@ class ZZWechatOrderSmallInfoCardView: UIView {
     }()
     
     lazy var descriptLabel: UILabel = {
-        let label = UILabel(text: "请72小时内（02-07 11:34:30前）通过对方的微信好友申请，然后点击确认添加button，打赏将于48小时后自动到账，或对方确认后，立即到账。", font: UIFont(name: "PingFang-SC-Medium", size: 14.0)!, textColor: rgbColor(102, 102, 102))
+        let label = UILabel(text: "请72小时内（02-07 11:34:30前）通过对方的微信好友申请，然后点击确认添加button，打赏将于48小时后自动到账，或对方确认后，立即到账。", font: UIFont(name: "PingFang-SC-Medium", size: 14.0)!, textColor: UIColor.rgbColor(102, 102, 102))
         label.numberOfLines = 0
         return label
     }()
@@ -337,7 +337,7 @@ extension ZZWechatOrderSmallInfoCardView {
     func layout() {
         self.backgroundColor = .white;
         self.layer.cornerRadius = 4.0
-        self.layer.shadowColor = rgbaColor(93, 93, 93, 0.3).cgColor
+        self.layer.shadowColor = UIColor.rgbColor(93, 93, 93, 0.3).cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowOpacity = 0.3
         

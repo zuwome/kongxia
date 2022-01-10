@@ -25,7 +25,7 @@ class ZZOrderDetailUploadCell: ZZTableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: "请上传对方微信个人资料页截图",
                             font: UIFont.systemFont(ofSize: 14.0),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         return label
     }()
     
@@ -43,7 +43,7 @@ class ZZOrderDetailUploadCell: ZZTableViewCell {
     lazy var exampleDescLabel: UILabel = {
         let label = UILabel(text: "示例截图",
                             font: sysFont(13.0),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         
         return label
     }()
@@ -61,7 +61,7 @@ class ZZOrderDetailUploadCell: ZZTableViewCell {
     lazy var screenShotDescLabel: UILabel = {
         let label = UILabel(text: "请添加截图",
                             font: sysFont(13.0),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         
         return label
     }()
@@ -75,11 +75,11 @@ class ZZOrderDetailUploadCell: ZZTableViewCell {
             ])
         attributedString.addAttributes([
             .font: UIFont(name: "PingFang-SC-Medium", size: 13.0)!,
-            .foregroundColor: zzGoldenColor
+            .foregroundColor: UIColor.golden.cgColor
             ], range: NSRange(location: 0, length: 1))
         attributedString.addAttributes([
             .font: UIFont(name: "PingFangSC-Regular", size: 13.0)!,
-            .foregroundColor: zzGoldenColor
+            .foregroundColor: UIColor.golden.cgColor
             ], range: NSRange(location: 27, length: 1))
         label.attributedText = attributedString
         label.numberOfLines = 0
@@ -169,7 +169,7 @@ class ZZOrderDetailUploadView : UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: "添加照片",
                             font: sysFont(12),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         label.textAlignment = .center
         return label
     }()
@@ -195,7 +195,7 @@ class ZZOrderDetailUploadView : UIView {
 // MARK: Layout
 extension ZZOrderDetailUploadView {
     func layout() {
-        self.backgroundColor = rgbColor(236, 236, 236)
+        self.backgroundColor = UIColor.rgbColor(236, 236, 236)
         
         self.addSubview(iconImageView)
         self.addSubview(titleLabel)

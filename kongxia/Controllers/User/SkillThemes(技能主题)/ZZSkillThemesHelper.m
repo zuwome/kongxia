@@ -253,4 +253,11 @@ static id _instance = nil;
 //    }];
 }
 
+- (void)getSkillsCustomService:(requestCallback)next {
+    [ZZRequest method:@"GET" path:@"/get/skills/extends" params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        if (error) [ZZHUD showTastInfoErrorWithString:error.message];
+        else next(error, data, task);
+    }];
+}
+
 @end

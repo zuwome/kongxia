@@ -25,14 +25,14 @@ class ZZOrderDetailStatusCell: ZZTableViewCell {
     lazy var subTitleLabel: UILabel = {
         let label = UILabel(text: "微信订单详细信息微信订单详细信息微信订单详细信息微信订单详细信息微信订单详细信息微信订单详细信息微信订单详细信息微信订单详细信息微信订单详细信息",
                             font: UIFont.systemFont(ofSize: 14),
-                            textColor: rgbColor(153, 153, 153))
+                            textColor: UIColor.rgbColor(153, 153, 153))
         label.numberOfLines = 0
         return label
     }()
     
     lazy var line: UIView = {
         let view = UIView()
-        view.backgroundColor = rgbColor(237, 237, 237)
+        view.backgroundColor = UIColor.rgbColor(237, 237, 237)
         return view
     }()
     
@@ -80,9 +80,9 @@ class ZZOrderDetailStatusCell: ZZTableViewCell {
                 let nsrange = NSRange(range, in: statusDes!)
                 let attriStr = NSMutableAttributedString(string: statusDes!)
                 
-                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Regular", size: 14.0)!, .foregroundColor: rgbColor(153,153,153)], range: NSRange(location: 0, length: statusDes!.count))
+                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Regular", size: 14.0)!, .foregroundColor: UIColor.rgbColor(153,153,153)], range: NSRange(location: 0, length: statusDes!.count))
                 
-                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Medium", size: 14.0)!, .foregroundColor: rgbColor(102, 102, 102)], range: nsrange)
+                attriStr.addAttributes([.font: UIFont(name: "PingFang-SC-Medium", size: 14.0)!, .foregroundColor: UIColor.rgbColor(102, 102, 102)], range: nsrange)
                 
                 subTitleLabel.attributedText = attriStr
             }

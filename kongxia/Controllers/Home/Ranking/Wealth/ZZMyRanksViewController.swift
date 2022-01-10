@@ -33,7 +33,7 @@ class ZZMyRanksViewController: ZZViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        let color = hexColor("#F4CB07")
+        let color = UIColor.hexColor("#F4CB07")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(color: color, cornerRadius: 0), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init(color: color, cornerRadius: 0)
         self.navigationController?.navigationBar.isTranslucent = false

@@ -20,7 +20,7 @@ class ZZRankingTopsHeaderView: UIView {
         label.text = "壕力值是您近期30天的消费行为所获得的分值，快来展示您强大的实力吧!"
         label.textAlignment = .center
         label.font = UIFont(name: "PingFangSC-Medium", size: 15)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.numberOfLines = 2
         return label
     }()

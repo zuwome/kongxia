@@ -277,7 +277,7 @@ class ZZPaymentInfoView: UIView {
     lazy var itemNameLabel: UILabel = {
         let label = UILabel(text: paymentModel.type == .WX ? "查看微信" : "查看证件照",
                             font: UIFont.boldSystemFont(ofSize: 20.0),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         label.textAlignment = .left
         return label
     }()
@@ -286,7 +286,7 @@ class ZZPaymentInfoView: UIView {
         let label = UILabel()
         label.text = "\(String(format: "%0.f", paymentModel.mcoinForItem))么币"
         label.font = UIFont.systemFont(ofSize: 16.0)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.textAlignment = .right
         return label
     }()
@@ -326,16 +326,16 @@ class ZZPaymentInfoView: UIView {
     lazy var paymentLabel: UILabel = {
         let label = UILabel()
         label.font = font(12)
-        label.textColor = hexColor("#ababab")
+        label.textColor = UIColor.hexColor("#ababab")
         label.textAlignment = .center
         label.text = "还未选取支付方式";
         if currentSelectRechargeType == 1 {
             label.text = "使用微信支付";
-            label.textColor = hexColor("#72c448");
+            label.textColor = UIColor.hexColor("#72c448");
         }
         else if currentSelectRechargeType == 2 {
             label.text = "使用支付宝支付";
-            label.textColor =  hexColor("#51b6ec");
+            label.textColor =  UIColor.hexColor("#51b6ec");
         }
         return label
     }()
@@ -483,11 +483,11 @@ class ZZPaymentInfoView: UIView {
         aliPayBtn.isSelected = currentSelectRechargeType == 2
         if currentSelectRechargeType == 1 {
             paymentLabel.text = "使用微信支付";
-            paymentLabel.textColor = hexColor("#72c448");
+            paymentLabel.textColor = UIColor.hexColor("#72c448");
         }
         else if currentSelectRechargeType == 2 {
             paymentLabel.text = "使用支付宝支付";
-            paymentLabel.textColor =  hexColor("#51b6ec");
+            paymentLabel.textColor =  UIColor.hexColor("#51b6ec");
         }
         
         delegate?.choosePayType(type: currentSelectRechargeType)
@@ -796,7 +796,7 @@ class ZZPaymentInfoBalanceView: UIView {
     }()
     
     lazy var subTitleLabel: UILabel = {
-        let label = UILabel(text: "余额不足，请充值", font: UIFont.systemFont(ofSize: 15.0), textColor: rgbColor(173, 173, 177))
+        let label = UILabel(text: "余额不足，请充值", font: UIFont.systemFont(ofSize: 15.0), textColor: UIColor.rgbColor(173, 173, 177))
         return label
     }()
     
@@ -928,7 +928,7 @@ class ZZIAPDetailView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont(name: "PingFang-SC-Medium", size: 17.0) ?? UIFont.systemFont(ofSize: 17.0),
-                            textColor: Color.black)
+                            textColor: .black)
         label.textAlignment = .center
         return label
     }()
@@ -936,7 +936,7 @@ class ZZIAPDetailView: UIView {
     lazy var subTitleLabel: UILabel = {
         let label = UILabel(text: nil,
                             font: UIFont.systemFont(ofSize: 15.0),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         label.textAlignment = .center
         return label
     }()
@@ -953,13 +953,13 @@ class ZZIAPDetailView: UIView {
     
     func setBorder(show: Bool) {
         if (show) {
-            self.backgroundColor = rgbColor(240, 203, 7)//RGBCOLOR(240, 203, 7);
-            self.layer.borderColor = rgbColor(37, 39, 43).cgColor
+            self.backgroundColor = UIColor.rgbColor(240, 203, 7)//RGBCOLOR(240, 203, 7);
+            self.layer.borderColor = UIColor.rgbColor(37, 39, 43).cgColor
             self.layer.borderWidth = 0;
         }
         else{
             self.backgroundColor = .white//RGBCOLOR(240, 203, 7);
-            self.layer.borderColor = rgbColor(37, 39, 43).cgColor
+            self.layer.borderColor = UIColor.rgbColor(37, 39, 43).cgColor
             self.layer.borderWidth = 0.5;
         }
     }
@@ -991,12 +991,12 @@ extension ZZIAPDetailView {
 class ZZCouponView: UIView {
     lazy var line: UIView = {
         let view = UIView()
-        view.backgroundColor = rgbColor(237, 237, 237)
+        view.backgroundColor = UIColor.rgbColor(237, 237, 237)
         return view
     }()
     
     lazy var titleLabel: UILabel = {
-        let label = UILabel(text: "抵用券x1", font: sysFont(15.0), textColor: zzBlackColor)
+        let label = UILabel(text: "抵用券x1", font: sysFont(15.0), textColor: .zzBlack)
         
         return label
     }()
