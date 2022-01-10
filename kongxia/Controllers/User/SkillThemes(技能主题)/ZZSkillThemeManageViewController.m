@@ -6,6 +6,7 @@
 //  Copyright © 2018年 TimoreYu. All rights reserved.
 //
 
+
 #import "ZZSkillThemeManageViewController.h"
 #import "ZZSkillEditViewController.h"
 #import "ZZChooseSkillViewController.h"
@@ -23,7 +24,9 @@
 #define OpenString  @"收到每条私信可获得收益，24小时内回复自动领取"      //开启的文案
 #define CloseString @"开启后收到私信可获得咨询收益"                   //关闭的文案
 
-@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource>
+#import "WXApi.h"
+
+@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource, ZZSkillThemeFooterViewDelegate>
 
 @property (nonatomic, strong) ZZTableView *tableview;
 
@@ -100,6 +103,7 @@
     ZZSkillThemeFooterView *view = [[ZZSkillThemeFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, height)];
     [view setDataWithCustomerInfo:_customerServiceDic];
     view.height = view.totalHeight;
+    view.delegate = self;
     _tableview.tableFooterView = view;
 }
 
@@ -189,6 +193,16 @@
 - (void)updatePayChat:(UISwitch *)openSwitch {  //更新cell
     ZZPrivateLetterSwitchCell *cell = (ZZPrivateLetterSwitchCell *)[[openSwitch superview] superview];
     cell.promptLable.text = cell.openSwitch.on ? OpenString : CloseString;
+}
+
+#pragma mark - ZZSkillThemeFooterViewDelegate
+- (void)callCustomerServiceWithCell:(ZZSkillThemeFooterView *)cell wechat:(NSString *)wechat {
+    WXOpenCustomerServiceReq *req = [[WXOpenCustomerServiceReq alloc] init];
+        req.corpid = @"ww1066becb2c99e97b";    //企业ID
+        req.url = @"https://work.weixin.qq.com/kfid/kfc43a09d510afeb4cf";            //客服URL
+    [WXApi sendReq:req completion:^(BOOL success) {
+        NSLog(@"success");
+    }];
 }
 
 #pragma mark -- tableviewDelegate
