@@ -224,7 +224,7 @@
     
     if (self.dataArray.count == 0 && ![ZZUserHelper shareInstance].isFirstRent) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            ZZChatOrderInfoModel *orderMessage = [ZZChatOrderInfoModel messageWithContent:@"感谢使用空虾，平台提示\n1、平台只视空虾APP聊天凭证为有效证据，请勿使用第三方工具约定邀约内容。\n2、若对方存在粗鲁、诱导平台外交易，诱导额外花费，信息不实等不良或非法行为，请立即匿名举报，核实后将严厉处罚对方。\n3、若对方有违法要求请及时举报并拒绝，如默许、要求第三方平台联系或者报价将视为违规，将会被严厉处罚。\n4、邀约地点务必在人流量大的公众场合，不要乘坐他人交通工具或进入私密场所。"];
+            ZZChatOrderInfoModel *orderMessage = [ZZChatOrderInfoModel messageWithContent:@"感谢使用空虾，平台提示\n1、平台只视空虾APP聊天凭证为有效证据，请勿使用第三方工具约定邀约内容。\n2、若对方存在粗鲁、诱导平台外交易，诱导额外花费，信息不实等不良或非法行为，请立即匿名举报，核实后将严厉处罚对方。\n3、若对方有违法要求请及时举报并拒绝，如默许、要求第三方平台联系或者报价将视为违规，将会被严厉处罚。\n4、邀约地点务必在人流量大的公众场合，不要乘坐他人交通工具或进入私密场所\n5、平台严禁达人私下加价或索要红包，若遇到此情况，请及时举报，或联系客服反馈"];
             orderMessage.title = @"温馨提示";
             orderMessage.order_id = @"0";
             RCMessage *message = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:ConversationType_PRIVATE targetId:self.uid sentStatus:SentStatus_SENT content:orderMessage];
