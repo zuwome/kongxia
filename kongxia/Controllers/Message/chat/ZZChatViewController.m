@@ -48,6 +48,8 @@
 
 @property (nonatomic, strong) ZZCheckWXView *wxCopyView;
 
+@property (nonatomic, strong) InviteVideoChatView *inviteChatView;
+
 @end
 
 @implementation ZZChatViewController
@@ -157,16 +159,28 @@
     }
 }
 
+- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY {
+    [super showViewsWithAnimationWithShowKeyboard:showKeyboard keyboardY:keyboardY];
+    
+    if (_inviteChatView == nil) {
+        return;
+    }
+    _inviteChatView.bottom = self.boxView.top - 10;
+}
+
+- (void)hideViewsWithAnimation {
+    if (_inviteChatView == nil) {
+        return;
+    }
+    _inviteChatView.bottom = self.boxView.top - 10;
+}
+
 - (void)showInviteView {
-    InviteVideoChatView *chatView = [[InviteVideoChatView alloc] init];
-    [chatView showPrice];
-    chatView.delegate = self;
-    [self.view addSubview:chatView];
-    [chatView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.payChatBoxView.mas_top).offset(-10);
-        make.right.equalTo(self.view).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(150, 50));
-    }];
+    _inviteChatView = [[InviteVideoChatView alloc] init];
+    _inviteChatView.frame = CGRectMake(self.view.width - 150 - 10, self.boxView.top - 50 - 10, 150, 50);
+    [_inviteChatView showPriceWithPrice:[[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_get_money floatValue]];
+    _inviteChatView.delegate = self;
+    [self.view addSubview:_inviteChatView];
 }
 
 - (void)configureTaskFreeModel:(ZZTaskModel *)taskModel {
@@ -393,12 +407,20 @@
 #pragma mark - InviteVideoChatViewDelegate
 - (void)chatWithView:(InviteVideoChatView *)view {
     [self sendMySelfNotification:@"已发送邀请，请等待回复"];
-    LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [alertView setupData];
-    [alertView setStartVideoClousure:^{
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
+        LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
+        [alertView setStartVideoClousure:^{
+            [self sendInviteVideoChatMessage];
+        }];
+        [[UIApplication sharedApplication].keyWindow addSubview:alertView];
+    }
+    else {
         [self sendInviteVideoChatMessage];
-    }];
-    [[UIApplication sharedApplication].keyWindow addSubview:alertView];
+    }
+    
 }
 
 #pragma mark - Navigation

@@ -109,20 +109,29 @@ class LiveStreamAlertView: UIView {
     
     @objc func startVideoChat() {
         dismiss()
+        startVideoClousure?()
+        setRemindStatus()
     }
     
     @objc func remindAction() {
         remindBtn.isSelected = !remindBtn.isSelected
-        startVideoClousure?()
     } 
 }
 
 extension LiveStreamAlertView {
-    @objc func setupData() {
+    @objc func setupData(cards: Int, mcoinperCard: Int) {
         titleLabel.text = "发起1V1视频"
         iconImageView.image = UIImage(named: "icon_livestream_video")
-        contentLabel.text = "视频通话每分钟需赠送X张咨询卡，要发起视频通话吗？"
-        infoLabel.text = "1张咨询卡=10么币"
+        contentLabel.text = "视频通话每分钟需赠送\(cards)张咨询卡，要发起视频通话吗？"
+        infoLabel.text = "1张咨询卡=\(mcoinperCard)么币"
+    }
+    
+    func setRemindStatus() {
+        guard !remindBtn.isSelected  else {
+            return
+        }
+        let userDefault = UserDefaults.standard
+        userDefault.set(true, forKey: "DonotShowInviteVideoChatAlertStat")
     }
     
 }

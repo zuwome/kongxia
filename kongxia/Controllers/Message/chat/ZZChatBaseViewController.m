@@ -677,24 +677,8 @@
                                   delay:0.0
                                 options:options
                              animations:^{
-                                 CGFloat keyboardY = [weakSelf.view convertRect:keyboardRect fromView:nil].origin.y;
-                                 CGFloat inputViewFrameY = keyboardY - weakSelf.boxView.topView.height;
-
-                                 if (!showKeyboard) {
-                                     inputViewFrameY = inputViewFrameY - SafeAreaBottomHeight;
-                                 }
-                                 weakSelf.boxView.top = inputViewFrameY;
-                                 if (weakSelf.payChatModel.isChange) {
-                                     weakSelf.payChatBoxView.top =  weakSelf.boxView.top - 30;
-                                     [weakSelf setTableViewInsetsWithBottomValue:weakSelf.view.frame.size.height
-                                      - inputViewFrameY+30];
-                                 }else{
-                                     [weakSelf setTableViewInsetsWithBottomValue:weakSelf.view.frame.size.height
-                                      - inputViewFrameY];
-                                 }
-                                 if (showKeyboard) {
-                                     [weakSelf scrollToBottom:YES finish:nil];//偶尔会执行两次
-                                 };
+                [weakSelf showViewsWithAnimationWithShowKeyboard:showKeyboard
+                                                       keyboardY:[weakSelf.view convertRect:keyboardRect fromView:nil].origin.y];
                              }
                              completion:nil];
         }
@@ -703,15 +687,7 @@
                                   delay:0.0
                                 options:options
                              animations:^{
-                                 weakSelf.boxView.top = SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 20;
-                                 if (weakSelf.payChatModel.isChange) {
-                                     weakSelf.payChatBoxView.top =  weakSelf.boxView.top-30;
-                                      [weakSelf setTableViewInsetsWithBottomValue:weakSelf.boxView.topView.height+30];
-                                 }else{
-                                       [weakSelf setTableViewInsetsWithBottomValue:weakSelf.boxView.topView.height];
-                                 }
-                                 
-                                 
+                [weakSelf hideViewsWithAnimation];
                              }
                              completion:nil];
         }
@@ -719,6 +695,37 @@
     self.tableView.keyboardDidHide = ^() {
         [weakSelf endEditing];
     };
+}
+
+- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY {
+    CGFloat inputViewFrameY = keyboardY - self.boxView.topView.height;
+
+    if (!showKeyboard) {
+        inputViewFrameY = inputViewFrameY - SafeAreaBottomHeight;
+    }
+    self.boxView.top = inputViewFrameY;
+    if (self.payChatModel.isChange) {
+        self.payChatBoxView.top =  self.boxView.top - 30;
+        [self setTableViewInsetsWithBottomValue:self.view.frame.size.height
+         - inputViewFrameY+30];
+    }
+    else{
+        [self setTableViewInsetsWithBottomValue:self.view.frame.size.height
+         - inputViewFrameY];
+    }
+    if (showKeyboard) {
+        [self scrollToBottom:YES finish:nil];//偶尔会执行两次
+    };
+}
+
+- (void)hideViewsWithAnimation {
+    self.boxView.top = SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 20;
+    if (self.payChatModel.isChange) {
+        self.payChatBoxView.top =  self.boxView.top - 30;
+         [self setTableViewInsetsWithBottomValue:self.boxView.topView.height+30];
+    }else {
+          [self setTableViewInsetsWithBottomValue:self.boxView.topView.height];
+    }
 }
 
 - (void)showGiftView {

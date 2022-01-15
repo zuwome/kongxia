@@ -53,9 +53,9 @@ class InviteVideoChatView: UIView {
 }
 
 extension InviteVideoChatView {
-    @objc func showPrice() {
+    @objc func showPrice(price: Float) {
         titleLabel.text = "邀请视频通话"
-        subtitleLabel.text = "收益X.X元/分钟"
+        subtitleLabel.text = "收益\(price)元/分钟"
     }
 }
 

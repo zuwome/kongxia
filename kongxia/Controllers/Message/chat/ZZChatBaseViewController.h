@@ -134,4 +134,8 @@
 
 - (void)liveStreamConnect;
 
+- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY;
+
+- (void)hideViewsWithAnimation;
+
 @end
