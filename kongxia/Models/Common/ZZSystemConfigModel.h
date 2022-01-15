@@ -104,7 +104,7 @@
 // 每个结算单位 消耗X么币
 @property (nonatomic, copy) NSString *per_unit_cost_mcoin;
 
-// 每次结算需要消耗多少张咨询卡（每个结算单位 4张卡）
+// 每次结算需要消耗多少张咨询卡（每个结算单位 3张卡）
 @property (nonatomic, copy) NSString *per_unit_cost_card;
 
 // 汇率: 一张咨询卡 = X么币

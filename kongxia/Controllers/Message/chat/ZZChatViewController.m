@@ -23,7 +23,7 @@
 #import "ZZNewOrderRefundOptionsViewController.h" //新的退款流程的优化界面
 #import <SobotKit/SobotKit.h>
 
-@interface ZZChatViewController () {
+@interface ZZChatViewController () <InviteVideoChatViewDelegate>{
     BOOL                        _isBan;
     BOOL                        _isFrom;
     BOOL                        _loadAnswer;
@@ -47,6 +47,8 @@
 @property (nonatomic, strong) RCMessage *latestMessage;
 
 @property (nonatomic, strong) ZZCheckWXView *wxCopyView;
+
+@property (nonatomic, strong) InviteVideoChatView *inviteChatView;
 
 @end
 
@@ -133,6 +135,11 @@
 
     [self createRightBtn];
     [self managerViewControllers];
+    
+    if ([ZZUserHelper shareInstance].loginer.gender == 2) {
+        [self showInviteView];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadOrder)
                                                  name:kMsg_UpdateOrder
@@ -150,6 +157,30 @@
     else if([[ZZUserHelper shareInstance].loginer.uid isEqualToString:self.lastMessageSendId]){
         [ ZZOpenNotificationGuide showShanChatPromptWhenUserFirstIntoViewController:nil heightProportion:0.46 showMessageTitle:@"及时收到TA回复你的消息" showImageName:@"open_Notification_ men"];
     }
+}
+
+- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY {
+    [super showViewsWithAnimationWithShowKeyboard:showKeyboard keyboardY:keyboardY];
+    
+    if (_inviteChatView == nil) {
+        return;
+    }
+    _inviteChatView.bottom = self.boxView.top - 10;
+}
+
+- (void)hideViewsWithAnimation {
+    if (_inviteChatView == nil) {
+        return;
+    }
+    _inviteChatView.bottom = self.boxView.top - 10;
+}
+
+- (void)showInviteView {
+    _inviteChatView = [[InviteVideoChatView alloc] init];
+    _inviteChatView.frame = CGRectMake(self.view.width - 150 - 10, self.boxView.top - 50 - 10, 150, 50);
+    [_inviteChatView showPriceWithPrice:[[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_get_money floatValue]];
+    _inviteChatView.delegate = self;
+    [self.view addSubview:_inviteChatView];
 }
 
 - (void)configureTaskFreeModel:(ZZTaskModel *)taskModel {
@@ -371,6 +402,25 @@
         }
         self.navigationController.viewControllers = array;
     }
+}
+
+#pragma mark - InviteVideoChatViewDelegate
+- (void)chatWithView:(InviteVideoChatView *)view {
+    [self sendMySelfNotification:@"已发送邀请，请等待回复"];
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
+        LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
+        [alertView setStartVideoClousure:^{
+            [self sendInviteVideoChatMessage];
+        }];
+        [[UIApplication sharedApplication].keyWindow addSubview:alertView];
+    }
+    else {
+        [self sendInviteVideoChatMessage];
+    }
+    
 }
 
 #pragma mark - Navigation

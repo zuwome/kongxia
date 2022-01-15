@@ -105,3 +105,5 @@
 #import "ZZNavigationController.h"
 #import "WXApi.h"
 #import "UIView+Helpers.h"
+#import "ZZChatBaseModel.h"
+#import "ZZVideoInviteModel.h"

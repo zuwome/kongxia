@@ -95,6 +95,7 @@ static NSString *BurnAfterRead = @"BurnReaded";//阅后即焚
 static NSString *PrivateChatPay = @"PrivateChatPay";//私聊付费
 static NSString *ChatGifMessageCell = @"ChatGifMessageCell";//gif的
 static NSString *ChatTaskFreeModelMessageCell = @"ChatTaskFreeModelMessageCell";//gif的
+static NSString *ChatInviteVideoChatModelMessageCell = @"ChatInviteVideoChatModelMessageCell";//邀请视频聊天
 
 static NSString *ChatWechatPayModel = @"ZZMessageChatWechatPayModel";//微信号评价
 static NSString *ChatIDPhotoPayCellIdentifier = @"ChatIDPhotoPayCellIdentifier";//微信号评价

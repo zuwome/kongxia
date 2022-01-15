@@ -16,6 +16,7 @@
 #import "ZZChatTaskFreeModel.h"
 #import "ZZChatGiftModel.h"
 #import "ZZChatKTVModel.h"
+#import "ZZVideoInviteModel.h"
 
 @implementation ZZChatUtil
 
@@ -203,6 +204,9 @@
     else if ([content isKindOfClass:[ZZChatKTVModel class]]) {
         return ChatKTVCell;
     }
+    else if ([content isKindOfClass:[ZZVideoInviteModel class]]) {
+        return  ChatInviteVideoChatModelMessageCell;
+    }
     return ChatInfoNotification;
 }
 
@@ -265,6 +269,9 @@
     else if ([content isKindOfClass:[ZZChatKTVModel class]]) {
         return ChatCellTypeKTV;
     }
+    else if ([content isKindOfClass:[ZZVideoInviteModel class]]) {
+        return ChatCellTypeInviteVideo;
+    }
     return ChatCellTypeNofitication;
 }
 
@@ -318,7 +325,7 @@
 + (CGFloat)getCellHeightWithModel:(ZZChatBaseModel *)model {
     ChatCellType type = [self getCellTypeWithMessage:model];
     CGFloat height = 30;
-    if (model.showTime) {
+    if (model.showTime && type != ChatCellTypeInviteVideo) {
         height = 60;
     }
     RCMessage *message = model.message;
@@ -492,9 +499,6 @@
                 height = 120;
             }
             else {
-                //显示 查看我的钱包
-                //                height = 70;
-                //隐藏 查看我的钱包
                 height = 0;
             }
              break;
@@ -515,12 +519,12 @@
             break;
         }
         case ChatCellTypeKTV: {
-//            if (message.messageDirection == MessageDirection_RECEIVE) {
-                currentHeight = 94;
-//            }
-//            else {
-//                currentHeight = 52;
-//            }
+            currentHeight = 94;
+            break;
+        }
+        case ChatCellTypeInviteVideo: {
+            height = 0;
+            currentHeight = 42;
             break;
         }
         default:
