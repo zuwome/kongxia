@@ -59,7 +59,7 @@ class ZZRankingTopThreeView: UIView {
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.text = "虚位以待"
         label.textAlignment = .center
         return label
@@ -72,7 +72,7 @@ class ZZRankingTopThreeView: UIView {
     
     lazy var pointsLabel: UILabel = {
         let label = UILabel()
-        label.textColor = rgbaColor(63, 58, 58, 0.9)
+        label.textColor = UIColor.rgbColor(63, 58, 58, 0.9)
         label.text = "壕力值"
         label.font = UIFont.systemFont(ofSize: 11.0)
         label.textAlignment = .center
@@ -90,7 +90,7 @@ class ZZRankingTopThreeView: UIView {
         let label = UILabel()
         label.text = "隐榜潜水中"
         label.font = UIFont.systemFont(ofSize: 15.0)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.textAlignment = .center
         label.isHidden = true
         return label
@@ -99,10 +99,10 @@ class ZZRankingTopThreeView: UIView {
     lazy var chatBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "私信"
-        btn.normalTitleColor = rgbColor(63, 58, 58)
+        btn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
         btn.layer.cornerRadius = 16
-        btn.layer.borderColor = rgbColor(63, 58, 58).cgColor
+        btn.layer.borderColor = UIColor.rgbColor(63, 58, 58).cgColor
         btn.layer.borderWidth = 1
         btn.addTarget(self, action: #selector(chat), for: .touchUpInside)
         return btn
@@ -261,15 +261,15 @@ extension ZZRankingTopThreeView {
         }
         
         userIconImageView.layer.cornerRadius = userIconSize.width / 2
-        var color = rgbColor(255, 198, 66)
+        var color = UIColor.rgbColor(255, 198, 66)
         if place == 1 {
-            color = rgbColor(255, 198, 66)
+            color = UIColor.rgbColor(255, 198, 66)
         }
         else if place == 2 {
-            color = rgbColor(184, 196, 255)
+            color = UIColor.rgbColor(184, 196, 255)
         }
         else if place == 3 {
-            color = rgbColor(255, 186, 146)
+            color = UIColor.rgbColor(255, 186, 146)
         }
         userIconImageView.layer.borderColor = color.cgColor
         userIconImageView.layer.borderWidth = 3

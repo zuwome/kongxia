@@ -11,7 +11,7 @@ import UIKit
 class ZZOrderReportReasonCell: ZZTableViewCell {
 
     lazy var titleLabel: UILabel = {
-        let label = UILabel(text: "虚假微信号", font: sysFont(15.0), textColor: zzBlackColor)
+        let label = UILabel(text: "虚假微信号", font: sysFont(15.0), textColor: .zzBlack)
         
         return label
     }()
@@ -25,7 +25,7 @@ class ZZOrderReportReasonCell: ZZTableViewCell {
     
     lazy var line: UIView = {
         let view = UIView()
-        view.backgroundColor = rgbColor(230, 230, 230)
+        view.backgroundColor = UIColor.rgbColor(230, 230, 230)
         return view
     }()
     

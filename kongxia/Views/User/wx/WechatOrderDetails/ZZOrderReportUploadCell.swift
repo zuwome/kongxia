@@ -18,7 +18,7 @@ class ZZOrderReportUploadCell: ZZTableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "添加辅助证据"
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.font = UIFont(name: "PingFangSC-Medium", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)
         return label
     }()
@@ -148,7 +148,7 @@ class ZZOrderReportUploadView : UIImageView {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: "添加照片",
                             font: sysFont(12),
-                            textColor: rgbColor(128, 128, 128))
+                            textColor: UIColor.rgbColor(128, 128, 128))
         label.textAlignment = .center
         return label
     }()

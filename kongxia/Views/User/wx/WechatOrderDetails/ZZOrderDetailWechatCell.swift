@@ -22,10 +22,10 @@ class ZZOrderDetailWechatCell: ZZTableViewCell {
     lazy var actionButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("复制", for: .normal)
-        btn.setTitleColor(rgbColor(102, 102, 102), for: .normal)
+        btn.setTitleColor(UIColor.rgbColor(102, 102, 102), for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         btn.layer.cornerRadius = 14.0
-        btn.layer.borderColor = rgbColor(204, 204, 204).cgColor
+        btn.layer.borderColor = UIColor.rgbColor(204, 204, 204).cgColor
         btn.layer.borderWidth = 1.0
         btn.addTarget(self, action: #selector(pasteWX), for: .touchUpInside)
         return btn

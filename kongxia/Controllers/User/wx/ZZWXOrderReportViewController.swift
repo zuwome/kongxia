@@ -25,7 +25,7 @@ class ZZWXOrderReportViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = zzBackgroundColor
+        tableView.backgroundColor = .zzBackground
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -42,15 +42,15 @@ class ZZWXOrderReportViewController: UIViewController {
     
     lazy var confirmView: UIView = {
         let view = UIView()
-        view.backgroundColor = zzGoldenColor
+        view.backgroundColor = .golden
         return view
     }()
     
     lazy var confirmBtn: UIButton = {
         let btn = UIButton()
-        btn.backgroundColor = zzGoldenColor
+        btn.backgroundColor = .golden
         btn.setTitle("提交", for: .normal)
-        btn.setTitleColor(zzBlackColor, for: .normal)
+        btn.setTitleColor(.zzBlack, for: .normal)
         btn.titleLabel?.font = sysFont(15.0)
         btn.addTarget(self, action: #selector(confirm), for: .touchUpInside)
         return btn
@@ -425,7 +425,7 @@ extension ZZWXOrderReportViewController: UITableViewDelegate, UITableViewDataSou
             view.backgroundColor = .white
             
             let line = UIView()
-            line.backgroundColor = rgbColor(237, 237, 237)
+            line.backgroundColor = UIColor.rgbColor(237, 237, 237)
             view.addSubview(line)
 
             line.mas_makeConstraints { (make) in
@@ -433,7 +433,7 @@ extension ZZWXOrderReportViewController: UITableViewDelegate, UITableViewDataSou
                 make?.height.equalTo()(0.5)
             }
             
-            let titleLabel = UILabel(text: "您的联系方式有助于我们及时的与您沟通，工作人员将在一个工作日内联系您", font: sysFont(13.0), textColor: rgbColor(63, 58, 58))
+            let titleLabel = UILabel(text: "您的联系方式有助于我们及时的与您沟通，工作人员将在一个工作日内联系您", font: sysFont(13.0), textColor: UIColor.rgbColor(63, 58, 58))
             titleLabel.numberOfLines = 2
             view.addSubview(titleLabel)
 
@@ -643,7 +643,7 @@ extension ZZWXOrderReportViewController {
     }
     
     func layout() {
-        self.view.backgroundColor = rgbColor(247, 247, 247)
+        self.view.backgroundColor = UIColor.rgbColor(247, 247, 247)
         self.view.addSubview(confirmView)
         confirmView.addSubview(self.confirmBtn)
         self.view.addSubview(self.tableView)

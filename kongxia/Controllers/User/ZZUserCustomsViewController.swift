@@ -21,7 +21,7 @@ class ZZUserCustomsViewController: ZZViewController {
     lazy var wechatBtn: UIButton = {
         let button = UIButton()
         button.setTitle("发送名片到微信", for: .normal)
-        button.setTitleColor(rgbColor(63, 58, 58), for: .normal)
+        button.setTitleColor(UIColor.rgbColor(63, 58, 58), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         button.setImage(UIImage(named: "Custom_wechat"), for: .normal)
         button.setImagePosition(.top, spacing: 5)
@@ -32,7 +32,7 @@ class ZZUserCustomsViewController: ZZViewController {
     lazy var albumBtn: UIButton = {
         let button = UIButton()
         button.setTitle("保存名片到相册", for: .normal)
-        button.setTitleColor(rgbColor(63, 58, 58), for: .normal)
+        button.setTitleColor(UIColor.rgbColor(63, 58, 58), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         button.setImage(UIImage(named: "Custom_Album"), for: .normal)
         button.setImagePosition(.top, spacing: 5)
@@ -71,7 +71,7 @@ class ZZUserCustomsViewController: ZZViewController {
         let label = UILabel()
         label.text = "使用问题优先处理"
         label.font = UIFont(name: "PingFang-SC-Medium", size: 13.0) ?? UIFont.systemFont(ofSize: 13.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         return label
     }()
     
@@ -85,7 +85,7 @@ class ZZUserCustomsViewController: ZZViewController {
         let label = UILabel()
         label.text = "专属的一对一咨询服务"
         label.font = UIFont(name: "PingFang-SC-Medium", size: 13.0) ?? UIFont.systemFont(ofSize: 13.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         return label
     }()
     
@@ -99,7 +99,7 @@ class ZZUserCustomsViewController: ZZViewController {
         let label = UILabel()
         label.text = "充值问题及优惠活动通知"
         label.font = UIFont(name: "PingFang-SC-Medium", size: 13.0) ?? UIFont.systemFont(ofSize: 13.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         return label
     }()
     
@@ -113,7 +113,7 @@ class ZZUserCustomsViewController: ZZViewController {
         let label = UILabel()
         label.text = "优质用户交流群进群资格"
         label.font = UIFont(name: "PingFang-SC-Medium", size: 13.0) ?? UIFont.systemFont(ofSize: 13.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         return label
     }()
     

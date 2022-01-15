@@ -6,6 +6,7 @@
 //  Copyright © 2018年 TimoreYu. All rights reserved.
 //
 
+
 #import "ZZSkillThemeManageViewController.h"
 #import "ZZSkillEditViewController.h"
 #import "ZZChooseSkillViewController.h"
@@ -23,11 +24,15 @@
 #define OpenString  @"收到每条私信可获得收益，24小时内回复自动领取"      //开启的文案
 #define CloseString @"开启后收到私信可获得咨询收益"                   //关闭的文案
 
-@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource>
+#import "WXApi.h"
+
+@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource, ZZSkillThemeFooterViewDelegate>
 
 @property (nonatomic, strong) ZZTableView *tableview;
 
 @property (nonatomic, strong) NSMutableArray *themesArray;
+
+@property (nonatomic, strong) NSDictionary *customerServiceDic;
 
 @end
 
@@ -76,8 +81,36 @@
             user.rent.topics = [self.themesArray copy];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             [self.tableview reloadData];
+            
+            if (_themesArray.count > 0) {
+                [self getSkillCustomService];
+            }
         }
     }];
+}
+
+- (void)requestAPriceIncrease {
+    [[ZZSkillThemesHelper shareInstance] requestAPriceIncrease:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        NSLog(@"asd");
+    }];
+}
+
+- (void)getSkillCustomService {
+    [[ZZSkillThemesHelper shareInstance] getSkillsCustomService:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        if (data && [data isKindOfClass:[NSDictionary class]]) {
+            _customerServiceDic = data;
+            [self createTableViewFooter];
+        }
+    }];
+}
+
+- (void)createTableViewFooter {
+    CGFloat height = 160;
+    ZZSkillThemeFooterView *view = [[ZZSkillThemeFooterView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, height)];
+    [view setDataWithCustomerInfo:_customerServiceDic];
+    view.height = view.totalHeight;
+    view.delegate = self;
+    _tableview.tableFooterView = view;
 }
 
 - (void)createRightBarButton {
@@ -124,25 +157,6 @@
     
     ZZTopic *topic = self.themesArray[indexPath.row];
     
-//    自定义主题这版不做，先不加 -- TODO
-//    ZZSkill *skill = topic.skills[0];
-//    if (isNullString(skill.id)) {   //自定义主题，id为空（后台说的，有问题再修改）
-//        if (skill.topicStatus == 1 || skill.topicStatus == 3) {     //1.待审核，3.待确认
-//            [ZZHUD showTastInfoErrorWithString:@"审核中，暂不支持编辑"];
-//        } else if (skill.topicStatus == 0) {    //0.审核不通过
-//            //进入编辑页面，编辑完成后，重新提交审核
-//        } else {
-//            //进入编辑页面，同非自定义技能，不可以编辑主题名称
-//        }
-//    } else {
-//        //进入编辑页面
-//    }
-//
-//    ZZSkillEditViewController *controller = [[ZZSkillEditViewController alloc] init];
-//    controller.skillEditType = SkillEditTypeEditTheme;
-//    controller.oldTopicModel = topic;
-//    [self.navigationController pushViewController:controller animated:YES];
-    
     ZZSkillDetailViewController *controller = [[ZZSkillDetailViewController alloc] init];
     controller.user = [ZZUserHelper shareInstance].loginer;
     controller.topic = topic;
@@ -187,6 +201,17 @@
     cell.promptLable.text = cell.openSwitch.on ? OpenString : CloseString;
 }
 
+#pragma mark - ZZSkillThemeFooterViewDelegate
+- (void)callCustomerServiceWithCell:(ZZSkillThemeFooterView *)cell wechat:(NSString *)wechat {
+    [self requestAPriceIncrease];
+//    WXOpenCustomerServiceReq *req = [[WXOpenCustomerServiceReq alloc] init];
+//        req.corpid = @"ww1066becb2c99e97b";    //企业ID
+//        req.url = @"https://work.weixin.qq.com/kfid/kfc43a09d510afeb4cf";            //客服URL
+//    [WXApi sendReq:req completion:^(BOOL success) {
+//        NSLog(@"success");
+//    }];
+}
+
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (UserHelper.loginer.gender == 2) {
@@ -210,6 +235,7 @@
         return self.themesArray.count >= 3 ? 3 : self.themesArray.count + 1;
     }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (UserHelper.loginer.gender == 2) {
         if (indexPath.section == 0) {
@@ -326,41 +352,51 @@
     return header;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return [_tableview numberOfSections] - 1 == section ? 44 : 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if ([_tableview numberOfSections] - 1 != section) {
+        return [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    
+    UIView *footerView = [[UIView alloc] init];
+    footerView.frame = CGRectMake(0.0, 0.0, SCREEN_WIDTH, 44.0);
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.userInteractionEnabled = YES;
+    //设置富文本
+    NSMutableAttributedString *attributeStr1 = [[NSMutableAttributedString alloc] initWithString:@"平台担保支付"];
+    NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13],NSFontAttributeName,
+                                   RGBCOLOR(153, 153, 153),NSForegroundColorAttributeName,nil];
+    [attributeStr1 addAttributes:attributeDict range:NSMakeRange(0, attributeStr1.length)];
+    
+    //添加图片
+    NSTextAttachment *attach = [[NSTextAttachment alloc] init];
+    attach.image = [UIImage imageNamed:@"icHelpYyCopy"];
+    attach.bounds = CGRectMake(3, -1, 16, 16);
+    NSAttributedString *attributeStr2 = [NSAttributedString attributedStringWithAttachment:attach];
+    [attributeStr1 appendAttributedString:attributeStr2];
+    titleLabel.attributedText = attributeStr1;
+    [footerView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(footerView);
+        make.top.bottom.equalTo(footerView);
+        make.width.equalTo(@200);
+    }];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showProtocol)];
+    [titleLabel addGestureRecognizer:tap];
+    
+    return footerView;
+}
+
 #pragma mark -- lazy load
 - (ZZTableView *)tableview {
     if (nil == _tableview) {
         _tableview = [[ZZTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) style:(UITableViewStylePlain)];
         [_tableview setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
-        
-        UIView *footerView = [[UIView alloc] init];
-        footerView.frame = CGRectMake(0.0, 0.0, SCREEN_WIDTH, 44.0);
-        
-        UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.userInteractionEnabled = YES;
-        //设置富文本
-        NSMutableAttributedString *attributeStr1 = [[NSMutableAttributedString alloc] initWithString:@"平台担保支付"];
-        NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13],NSFontAttributeName,
-                                       RGBCOLOR(153, 153, 153),NSForegroundColorAttributeName,nil];
-        [attributeStr1 addAttributes:attributeDict range:NSMakeRange(0, attributeStr1.length)];
-        
-        //添加图片
-        NSTextAttachment *attach = [[NSTextAttachment alloc] init];
-        attach.image = [UIImage imageNamed:@"icHelpYyCopy"];
-        attach.bounds = CGRectMake(3, -1, 16, 16);
-        NSAttributedString *attributeStr2 = [NSAttributedString attributedStringWithAttachment:attach];
-        [attributeStr1 appendAttributedString:attributeStr2];
-        titleLabel.attributedText = attributeStr1;
-        [footerView addSubview:titleLabel];
-        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(footerView);
-            make.top.bottom.equalTo(footerView);
-            make.width.equalTo(@200);
-        }];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showProtocol)];
-        [titleLabel addGestureRecognizer:tap];
-        
-        [_tableview setTableFooterView:footerView];
         _tableview.backgroundColor = RGBCOLOR(247, 247, 247);
         _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableview.delegate = self;

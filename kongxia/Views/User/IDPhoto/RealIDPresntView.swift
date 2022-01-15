@@ -161,7 +161,7 @@ class RealPhotoPresentView: UIView {
         let label = UILabel()
         label.text = "空虾的推荐达人都是头像真实的认证用户，请先完成真实头像认证";
         label.font = UIFont(name: "PingFang-SC-Medium", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.numberOfLines = 2
         label.textAlignment = .center
         return label
@@ -187,7 +187,7 @@ class RealPhotoPresentView: UIView {
     
     lazy var actionButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = rgbColor(244, 203, 7)
+        button.backgroundColor = .rgbColor(244, 203, 7)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.layer.cornerRadius = 25
@@ -197,17 +197,17 @@ class RealPhotoPresentView: UIView {
     lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "PingFang-SC-Medium", size: 13.0) ?? UIFont.systemFont(ofSize: 13.0)
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         label.numberOfLines = 2
         label.textAlignment = .center
         let attributedString = NSMutableAttributedString(string: "进行认证即视为同意真实头像认证条款", attributes: [
           .font: UIFont(name: "PingFang-SC-Medium", size: 13.0)!,
-          .foregroundColor: rgbColor(102, 102, 102),
+          .foregroundColor: UIColor.rgbColor(102, 102, 102),
           .kern: 0.0
         ])
         attributedString.addAttributes([
           .font: UIFont(name: "PingFangSC-Medium", size: 13.0)!,
-          .foregroundColor: rgbColor(74, 144, 226)
+          .foregroundColor: UIColor.rgbColor(74, 144, 226)
         ], range: NSRange(location: 9, length: 8))
         
         label.attributedText = attributedString

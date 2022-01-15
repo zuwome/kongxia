@@ -18,14 +18,14 @@ class ZZAutoCreateInputCell: ZZTableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15.0)
         label.numberOfLines = 2
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         return label
     }()
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.boldSystemFont(ofSize: 14)
-        textField.textColor = rgbColor(63, 58, 58)
+        textField.textColor = UIColor.rgbColor(63, 58, 58)
         textField.textAlignment = .left
         textField.delegate = self
         textField.returnKeyType = .done

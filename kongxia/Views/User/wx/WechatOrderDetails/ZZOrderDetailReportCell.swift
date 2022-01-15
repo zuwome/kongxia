@@ -26,7 +26,7 @@ class ZZOrderDetailReportCell: ZZTableViewCell {
     }()
 
     lazy var detailsLabel: UILabel = {
-        let label = UILabel(text: "抱歉，没能为您提供良好的体验，感谢您的举报，我们将在1个工作日内处理。请添加客服微信，我们将有金牌客服专门为您服务", font: UIFont.systemFont(ofSize: 14.0), textColor: rgbColor(153, 153, 153))
+        let label = UILabel(text: "抱歉，没能为您提供良好的体验，感谢您的举报，我们将在1个工作日内处理。请添加客服微信，我们将有金牌客服专门为您服务", font: UIFont.systemFont(ofSize: 14.0), textColor: UIColor.rgbColor(153, 153, 153))
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -35,7 +35,7 @@ class ZZOrderDetailReportCell: ZZTableViewCell {
     lazy var customerServiceLabel: UILabel = {
         let label = UILabel(text: "专属客服微信：1234abcwuwhd",
                             font: UIFont.systemFont(ofSize: 14.0),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         label.textAlignment = .center
         return label
     }()
@@ -43,7 +43,7 @@ class ZZOrderDetailReportCell: ZZTableViewCell {
     lazy var pasteBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("复制", for: .normal)
-        btn.setTitleColor(rgbColor(74, 144, 226), for: .normal)
+        btn.setTitleColor(UIColor.rgbColor(74, 144, 226), for: .normal)
         btn.titleLabel?.font = sysFont(13.0)
         btn.addTarget(self, action: #selector(pasteWX), for: .touchUpInside)
         return btn
@@ -134,7 +134,7 @@ class ReportTitleView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: "微信号被举报",
                             font: boldFont(18.0),
-                            textColor: rgbColor(63, 58, 58))
+                            textColor: UIColor.rgbColor(63, 58, 58))
         label.textAlignment = .center
         return label
     }()

@@ -29,7 +29,7 @@ class UserPrivateTermsController: UIViewController {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = rgbColor(27, 27, 27);
+        label.textColor = UIColor.rgbColor(27, 27, 27);
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.text = "欢迎使用空虾APP"
@@ -44,7 +44,7 @@ class UserPrivateTermsController: UIViewController {
     
     lazy var contentLabel: TYAttributedLabel = {
         let label = TYAttributedLabel(frame: CGRect.zero)
-        label.textColor = rgbColor(38, 38, 38);
+        label.textColor = UIColor.rgbColor(38, 38, 38);
         label.font = UIFont(name: "PingFang-SC-Regular", size: 15.0)
         label.numberOfLines = 0
         label.delegate = self
@@ -58,10 +58,10 @@ class UserPrivateTermsController: UIViewController {
     
     lazy var agreeButton: UIButton = {
         let button = UIButton();
-        button.backgroundColor = zzGoldenColor;
+        button.backgroundColor = .golden;
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.addTarget(self, action: #selector(AgreeAction), for: .touchUpInside)
-        button.setTitleColor(rgbColor(27, 27, 27), for: .normal)
+        button.setTitleColor(UIColor.rgbColor(27, 27, 27), for: .normal)
         button.setTitle("同意", for: .normal)
         button.layer.cornerRadius = 22
         return button
@@ -70,7 +70,7 @@ class UserPrivateTermsController: UIViewController {
     lazy var disagreeButton: UIButton = {
         let button = UIButton();
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.setTitleColor(rgbColor(151, 151, 151), for: .normal)
+        button.setTitleColor(UIColor.rgbColor(151, 151, 151), for: .normal)
         button.setTitle("不同意并退出", for: .normal)
         button.addTarget(self, action: #selector(DisagreeAction), for: .touchUpInside)
         return button

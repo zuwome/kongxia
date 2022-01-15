@@ -24,7 +24,7 @@ import Foundation
     private lazy var wechatTextField: UITextField = {
         let textField = UITextField();
         textField.font = UIFont.systemFont(ofSize: 15)
-        textField.textColor = rgbColor(63, 58, 58)
+        textField.textColor = UIColor.rgbColor(63, 58, 58)
         textField.placeholder = "或留下您的微信等待客服添加您"
         return textField;
     }()
@@ -37,11 +37,11 @@ import Foundation
         button.setTitleColor(.white, for: .normal)
         
         button.setTitle("已提交", for: .selected)
-        button.setTitleColor(rgbColor(122, 122, 122), for: .selected)
+        button.setTitleColor(UIColor.rgbColor(122, 122, 122), for: .selected)
         
         button.titleLabel?.font = UIFont(name: "PingFangSC-Medium", size: 13) ?? kongxia.font(13)
         
-        button.backgroundColor = rgbColor(250, 115, 78)
+        button.backgroundColor = UIColor.rgbColor(250, 115, 78)
         button.layer.cornerRadius = 5
         return button
     }()
@@ -71,7 +71,7 @@ import Foundation
     
     private func switchButtonStyle(isSubmin: Bool) {
         submitButton.isSelected = isSubmin
-        submitButton.backgroundColor = isSubmin ? .clear : rgbColor(250, 115, 78)
+        submitButton.backgroundColor = isSubmin ? .clear : UIColor.rgbColor(250, 115, 78)
     }
     
     @objc public func buttonState(isSubmin: Bool) {

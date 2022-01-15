@@ -31,7 +31,7 @@ class ZZRanksCell: ZZTableViewCell {
     
     lazy var seperateLine: UIView = {
         let view = UIView()
-        view.backgroundColor = rgbColor(237, 237, 237)
+        view.backgroundColor = UIColor.rgbColor(237, 237, 237)
         return view
     }()
     
@@ -112,7 +112,7 @@ class PlaceView: UIView {
     lazy var ranksLabel: UILabel = {
         let label = UILabel()
         label.text = "9999"
-        label.textColor = rgbColor(153, 153, 153)
+        label.textColor = UIColor.rgbColor(153, 153, 153)
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .center
         return label
@@ -128,7 +128,7 @@ class PlaceView: UIView {
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = rgbColor(63, 58, 58)
+        label.textColor = UIColor.rgbColor(63, 58, 58)
         label.text = "虚位以待"
         return label
     }()
@@ -152,7 +152,7 @@ class PlaceView: UIView {
     
     lazy var pointsLabel: UILabel = {
         let label = UILabel()
-        label.textColor = rgbColor(153, 153, 153)
+        label.textColor = UIColor.rgbColor(153, 153, 153)
         label.text = "壕力值"
         label.font = UIFont.systemFont(ofSize: 13.0)
         return label
@@ -161,10 +161,10 @@ class PlaceView: UIView {
     lazy var actionBtn: UIButton = {
         let btn = UIButton()
         btn.normalTitle = "私信"
-        btn.normalTitleColor = rgbColor(63, 58, 58)
+        btn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
         btn.layer.cornerRadius = 13
-        btn.layer.borderColor = rgbColor(102, 102, 102).cgColor
+        btn.layer.borderColor = UIColor.rgbColor(102, 102, 102).cgColor
         btn.layer.borderWidth = 1
         
         btn.addTarget(self, action: #selector(actions), for: .touchUpInside)
@@ -176,7 +176,7 @@ class PlaceView: UIView {
         label.text = "隐榜潜水中"
         label.font = font(13.0)
         label.textAlignment = .center
-        label.textColor = rgbColor(102, 102, 102)
+        label.textColor = UIColor.rgbColor(102, 102, 102)
         label.isHidden = true
         return label
     }()
@@ -399,12 +399,12 @@ extension PlaceView {
                 
                 if let show = rankModel.rank_show?.intValue, show == -1 {
                     actionBtn.normalTitle = "我要隐榜"
-                    actionBtn.backgroundColor = rgbColor(244, 203, 7)
+                    actionBtn.backgroundColor = UIColor.rgbColor(244, 203, 7)
                     actionBtn.layer.borderWidth = 0
                 }
                 else {
                     actionBtn.normalTitle = "取消隐榜"
-                    actionBtn.backgroundColor = rgbColor(244, 203, 7)
+                    actionBtn.backgroundColor = UIColor.rgbColor(244, 203, 7)
                     actionBtn.layer.borderWidth = 0
                 }
                 
@@ -416,7 +416,7 @@ extension PlaceView {
                 ranksLabel.text = "未上榜"
                 pointsLabel.text = "消费一元可上榜"
                 invisiableLabel.text = "冲榜小攻略"
-                invisiableLabel.textColor = rgbColor(63, 58, 58)
+                invisiableLabel.textColor = UIColor.rgbColor(63, 58, 58)
                 invisiableLabel.font = font(12)
                 
                 invisiableLabel.isHidden = false
@@ -425,7 +425,7 @@ extension PlaceView {
             }
             
             if shouldShowTips {
-                self.layer.shadowColor = rgbColor(170, 170, 170).cgColor
+                self.layer.shadowColor = UIColor.rgbColor(170, 170, 170).cgColor
                 self.layer.shadowOffset = CGSize(width: 0, height: -10)
                 self.layer.shadowRadius = 5
                 self.layer.shadowOpacity = 0.8;
@@ -454,10 +454,10 @@ extension PlaceView {
             let rankInt: Int = Int(rankModel.ranking ?? "0") ?? 0
             if rankInt > 0 && rankInt <= 10 {
                 ranksLabel.font = UIFont(name: "Alibaba-PuHuiTi-B", size: 21)
-                ranksLabel.textColor = hexColor("#A76EFA")
+                ranksLabel.textColor = UIColor.hexColor("#A76EFA")
             }
             else {
-                ranksLabel.textColor = rgbColor(153, 153, 153)
+                ranksLabel.textColor = UIColor.rgbColor(153, 153, 153)
                 ranksLabel.font = UIFont.boldSystemFont(ofSize: 16)
             }
             ranksLabel.text = String(format: "%02d", rankInt)

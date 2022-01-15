@@ -24,7 +24,7 @@ class ZZOrderEvaluationCell: ZZTableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(text: "微信评价",
                             font: UIFont(name: "PingFang-SC-Medium", size: 17.0) ?? UIFont.systemFont(ofSize: 17.0),
-                            textColor: zzBlackColor)
+                            textColor: .zzBlack)
         label.textAlignment = .center
         return label
     }()
@@ -114,10 +114,10 @@ class ZZOrderEvaluationCell: ZZTableViewCell {
             let string = button.title(for: .normal)
             button.isSelected = selectBadReviews.contains(string ?? "")
             if button.isSelected {
-                button.layer.borderColor = rgbColor(254, 66, 70).cgColor
+                button.layer.borderColor = UIColor.rgbColor(254, 66, 70).cgColor
             }
             else {
-                button.layer.borderColor = rgbColor(216, 216, 216).cgColor
+                button.layer.borderColor = UIColor.rgbColor(216, 216, 216).cgColor
             }
         }
     }
@@ -142,11 +142,11 @@ class ZZOrderEvaluationCell: ZZTableViewCell {
                 
                 if commentArray.contains(btn.title(for: .normal) ?? "") {
                     btn.isSelected = true
-                    btn.layer.borderColor = rgbColor(254, 66, 70).cgColor
+                    btn.layer.borderColor = UIColor.rgbColor(254, 66, 70).cgColor
                 }
                 else {
                     btn.isSelected = false
-                    btn.layer.borderColor = rgbColor(216, 216, 216).cgColor
+                    btn.layer.borderColor = UIColor.rgbColor(216, 216, 216).cgColor
                 }
                 
             }
@@ -192,15 +192,15 @@ extension ZZOrderEvaluationCell {
         for (index, badReview) in badReviewArray.enumerated() {
             let button = UIButton()
             button.setTitle(badReview, for: .normal)
-            button.setTitleColor(zzBlackColor, for: .normal)
-            button.setTitleColor(rgbColor(254, 66, 70), for: .selected)
+            button.setTitleColor(.zzBlack, for: .normal)
+            button.setTitleColor(UIColor.rgbColor(254, 66, 70), for: .selected)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13.0)
             button.tag = index
             button.addTarget(self, action: #selector(selectReview(btn:)), for: .touchUpInside)
             button.isHidden = true
             button.layer.borderWidth = 1.0
             button.layer.cornerRadius = 3.0
-            button.layer.borderColor = rgbColor(216, 216, 216).cgColor
+            button.layer.borderColor = UIColor.rgbColor(216, 216, 216).cgColor
             
             self.addSubview(button)
             

@@ -43,16 +43,16 @@ import Foundation
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
-        label.textColor = rgbColor(55, 55, 55);
+        label.textColor = UIColor.rgbColor(55, 55, 55);
         label.text = "请填写以下信息为您生成技能介绍"
         return label
     }()
     
     lazy var confirmBtn: UIButton = {
         let btn = UIButton()
-        btn.backgroundColor = rgbColor(244, 203, 7)
+        btn.backgroundColor = UIColor.rgbColor(244, 203, 7)
         btn.normalTitle = "确认生成";
-        btn.normalTitleColor = rgbColor(63, 58, 58)
+        btn.normalTitleColor = UIColor.rgbColor(63, 58, 58)
         btn.titleLabel?.font = font(15)
         btn.addTarget(self, action: #selector(confirm), for: .touchUpInside)
         return btn
@@ -61,7 +61,7 @@ import Foundation
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = Color.white
+        tableView.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableviewcell")
         tableView.register(ZZAutoCreateInputCell.self, forCellReuseIdentifier: ZZAutoCreateInputCell.cellIdentifier())
         tableView.register(ZZAutoCreateSelectCell.self, forCellReuseIdentifier: ZZAutoCreateSelectCell.cellIdentifier())

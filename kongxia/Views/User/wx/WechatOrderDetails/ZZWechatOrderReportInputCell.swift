@@ -18,7 +18,7 @@ class ZZWechatOrderReportInputCell: ZZTableViewCell {
     lazy var inputTextField: UITextField = {
         let textfield = UITextField()
         textfield.font = sysFont(16.0)
-        textfield.textColor = rgbColor(171, 171, 171)
+        textfield.textColor = UIColor.rgbColor(171, 171, 171)
         textfield.placeholder = "您的电话或微信号"
         textfield.delegate = self
         return textfield

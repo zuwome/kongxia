@@ -26,7 +26,7 @@ class ZZWXOrderDetailViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = hexColor("#f6f6f6")
+        tableView.backgroundColor = UIColor.hexColor("#f6f6f6")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ZZOrderDetailStatusCell.self,
@@ -286,7 +286,7 @@ extension ZZWXOrderDetailViewController {
                             self.createNaviRightBtn()
                             
                             if self.orderModel?.orderStatus != .buyer_commented {
-                                self.tableView.backgroundColor = rgbColor(247, 247, 247)
+                                self.tableView.backgroundColor = UIColor.rgbColor(247, 247, 247)
                             }
                             else {
                                 self.tableView.backgroundColor = .white
@@ -853,7 +853,7 @@ extension ZZWXOrderDetailViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = rgbColor(247, 247, 247)
+        view.backgroundColor = UIColor.rgbColor(247, 247, 247)
         if (section == cellTypesArray.count - 1) && !(self.orderModel?.orderStatus == .buyer_bought
             || self.orderModel?.orderStatus == .buyer_waitToBeEvaluated)  {
             view.backgroundColor = .white
@@ -917,7 +917,7 @@ extension ZZWXOrderDetailViewController {
     }
     
     func layout() {
-        self.view.backgroundColor = rgbColor(247, 247, 247)
+        self.view.backgroundColor = UIColor.rgbColor(247, 247, 247)
         self.view.addSubview(self.tableView)
         tableView.mas_makeConstraints { (make) in
             make?.edges.equalTo()(self.view)
