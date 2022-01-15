@@ -860,7 +860,7 @@
             [weakSelf gotoWXView];
         };
         cell.touchVideo = ^{
-            [weakSelf liveStreamConnect];
+            [weakSelf preLiveStream];
         };
         cell.touchWallet = ^{
             [weakSelf gotoWalletView];
@@ -997,7 +997,7 @@
 
 #pragma mark - ZZChatInviteVideoChatCellDelegate
 - (void)startVideoChatWithCell:(ZZChatInviteVideoChatCell *)cell {
-    [self liveStreamConnect];
+    [self preLiveStream];
 }
 
 #pragma mark - ZZChatKTVCellDelegate
@@ -1357,7 +1357,7 @@
         }
             break;
         case ChatBoxTypeVideo: {
-            [self liveStreamConnect];
+            [self preLiveStream];
             _isMessageBoxTo = NO;
             break;
         }
@@ -1543,34 +1543,76 @@
     [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
 }
 
-- (void)liveStreamConnect {
-    
+- (void)preLiveStream {
     if ([ZZUtils isConnecting]) {
         return;
     }
     
+    [self fetchTotalMebiAndMoneyWithComplete:^(NSDictionary *infoData) {
+        if (infoData == nil) {
+            return;
+        }
+        
+        NSInteger mebi = [infoData[@"mcoin_total"] integerValue];
+        NSInteger costPerMin = [ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue * [ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue;
+        
+//        if (mebi <=0) {
+//            [ZZActivityUrlNetManager loadH5ActiveWithViewController:self isHaveReceived:NO callBack:^{
+//              [self gotoChongZhiVCWhenUnderbalance];
+//            }];
+//            return;
+//        }
+        
+        if (mebi < costPerMin) {
+            [self showRechargeForLiveSteamView];
+        }
+        else {
+            [self againVideo];
+        }
+    }];
+}
+
+- (void)showRechargeForLiveSteamView {
+    [self fetchRechargeMebiForLiveStreamWithComplete:^(NSDictionary *infoData) {
+        if (infoData == nil) {
+            return;
+        }
+        
+        LiveStreamRechargeAlertView *view = [[LiveStreamRechargeAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [view setupDataWithContent:infoData[@"content"] subContent:infoData[@"tips"]];
+        [view setRechargeClousure:^{
+            [self showRechargeView];
+        }];
+        [[UIApplication sharedApplication].keyWindow addSubview:view];
+    }];
+}
+
+- (void)fetchTotalMebiAndMoneyWithComplete:(void (^)(NSDictionary *infoData))completeHandler {
     [ZZHUD show];
     [ZZUserHelper requestMeBiAndMoneynext:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [ZZHUD dismiss];
-        
-            NSInteger mebi = [data[@"mcoin_total"] integerValue];
-            if (mebi <=0) {
-                [ZZActivityUrlNetManager loadH5ActiveWithViewController:self isHaveReceived:NO callBack:^{
-                  [self gotoChongZhiVCWhenUnderbalance];
-                }];
-                return;
-            }
+        }
+        if (completeHandler) {
+            completeHandler(data);
+        }
+    }];
+}
 
-            NSInteger totalMoney = [ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue * [ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue;
-            
-            if (mebi< totalMoney) {
-                [self gotoChongZhiVCWhenUnderbalance];
-            }else{
-                [self againVideo];
-            }
+- (void)fetchRechargeMebiForLiveStreamWithComplete:(void (^)(NSDictionary *infoData))completeHandler {
+    [ZZHUD show];
+    [ZZRequest method:@"GET" path:@"/room/rule" params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        _wxSensitive = nil;
+        if (error) {
+            [ZZHUD showErrorWithStatus:error.message];
+        }
+        else {
+            [ZZHUD dismiss];
+        }
+        if (completeHandler) {
+            completeHandler(data);
         }
     }];
 }
@@ -1582,23 +1624,27 @@
     [UIAlertController presentAlertControllerWithTitle:kMsg_Mebi_NO message:nil doneTitle:@"充值" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
         if (!isCancelled) {
             [MobClick event:Event_click_OneToOneChat_TopUp];
-            ZZMeBiViewController *vc = [ZZMeBiViewController new];
-            WS(weakSelf);
-            [vc setPaySuccess:^(ZZUser *paySuccesUser) {
-            
-                if ([[ZZUserHelper shareInstance].loginer.mcoin integerValue] >=40) {
-                    NSMutableArray<ZZViewController *> *vcs = [weakSelf.navigationController.viewControllers mutableCopy];
-                    [vcs removeLastObject];
-                    [weakSelf.navigationController setViewControllers:vcs animated:NO];
-                    [weakSelf againVideo];
-                }else{
-                    //按照么币充值的最小单位,永远不会触发这个判断,文案就先这样写了
-                    [ZZHUD showWithStatus:@"么币不足40,依旧不足聊天哦"];
-                }
-            }];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            [self showRechargeView];
         }
     }];
+}
+
+- (void)showRechargeView {
+    ZZMeBiViewController *vc = [ZZMeBiViewController new];
+    WS(weakSelf);
+    [vc setPaySuccess:^(ZZUser *paySuccesUser) {
+    
+        if ([[ZZUserHelper shareInstance].loginer.mcoin integerValue] >=40) {
+            NSMutableArray<ZZViewController *> *vcs = [weakSelf.navigationController.viewControllers mutableCopy];
+            [vcs removeLastObject];
+            [weakSelf.navigationController setViewControllers:vcs animated:NO];
+            [weakSelf againVideo];
+        }else{
+            //按照么币充值的最小单位,永远不会触发这个判断,文案就先这样写了
+            [ZZHUD showWithStatus:@"么币不足40,依旧不足聊天哦"];
+        }
+    }];
+    [weakSelf.navigationController pushViewController:vc animated:YES];
 }
 
 // 再次视频

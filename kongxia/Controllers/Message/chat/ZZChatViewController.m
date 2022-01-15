@@ -410,15 +410,15 @@
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
+        [self sendInviteVideoChatMessage];
+    }
+    else {
         LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
         [alertView setStartVideoClousure:^{
             [self sendInviteVideoChatMessage];
         }];
         [[UIApplication sharedApplication].keyWindow addSubview:alertView];
-    }
-    else {
-        [self sendInviteVideoChatMessage];
     }
     
 }
