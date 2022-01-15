@@ -127,6 +127,14 @@ static id _instance = nil;
     }];
 }
 
+- (void)requestAPriceIncrease:(requestCallback)next {
+    NSString *path = @"/api/skills/apply";
+    [ZZRequest method:@"POST" path:path params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        if (error) [ZZHUD showTastInfoErrorWithString:error.message];
+        else next(error, data, task);
+    }];
+}
+
 /**
  *  出租技能添加
  *  @param  name
