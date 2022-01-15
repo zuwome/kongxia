@@ -32,6 +32,7 @@
 #import "ZZChatTaskFreeModel.h"
 #import "ZZChatGiftModel.h"
 #import "ZZChatKTVModel.h"
+#import "ZZVideoInviteModel.h"
 
 @implementation ZZAppDelegateConfig
 
@@ -80,6 +81,7 @@
     [[RCIM sharedRCIM] registerMessageType:[ZZGifMessageModel class]];//gif 图
     [[RCIM sharedRCIM] registerMessageType:[ZZChatGiftModel class]]; // 礼物
     [[RCIM sharedRCIM] registerMessageType:[ZZChatKTVModel class]]; // 点唱
+    [[RCIM sharedRCIM] registerMessageType:[ZZVideoInviteModel class]];
     
     // 智齿
     [ZCSobotApi initSobotSDK:@"bb85bc043cde4887be270e6d7792e572" host:@"https://api.sobot.com" result:^(id  _Nonnull object) {

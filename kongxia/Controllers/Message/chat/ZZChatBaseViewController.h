@@ -79,6 +79,9 @@
 - (void)gotoOrderDetail:(NSString *)orderId;
 - (void)sendPacket:(NSString *)content mid:(NSString *)mid;
 
+- (void)sendMySelfNotification:(NSString *)message;
+
+- (void)sendInviteVideoChatMessage;
 /**
  *  收到消息
  *
@@ -128,5 +131,7 @@
 - (void)calCurrentMessageCounts;
 
 - (void)updateStateIsFirstIntoRoom:(BOOL)isFirst;
+
+- (void)liveStreamConnect;
 
 @end

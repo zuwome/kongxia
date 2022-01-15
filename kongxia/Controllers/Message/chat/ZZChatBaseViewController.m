@@ -48,7 +48,7 @@
 #import "ZZKTVAudioPlayManager.h"
 
 #define MaxPhotoAlbum 9
-@interface ZZChatBaseViewController () <UITableViewDataSource,UITableViewDelegate,ZZChatBoxViewDelegate,ZZRecordManagerDelegate,HZPhotoBrowserDelegate, ZZTaskFreeActionCellDelegate, ZZTaskFreeCellDelegate, TZImagePickerControllerDelegate, ZZChatShotViewControllerDelegate, ZZGiftsViewDelegate, ZZChatGiftCellDelegate, ZZChatKTVCellDelegate, ZZKTVAudioPlayManagerDelegate>
+@interface ZZChatBaseViewController () <UITableViewDataSource,UITableViewDelegate,ZZChatBoxViewDelegate,ZZRecordManagerDelegate,HZPhotoBrowserDelegate, ZZTaskFreeActionCellDelegate, ZZTaskFreeCellDelegate, TZImagePickerControllerDelegate, ZZChatShotViewControllerDelegate, ZZGiftsViewDelegate, ZZChatGiftCellDelegate, ZZChatKTVCellDelegate, ZZKTVAudioPlayManagerDelegate, ZZChatInviteVideoChatCellDelegate>
 
 @property (nonatomic, assign) BOOL haveLoadData;//是否已经加载过数据了
 @property (nonatomic, assign) BOOL noMoreData;//没有更多数据~ 去除head loading
@@ -82,7 +82,6 @@
 
 @property (nonatomic, strong) NSMutableArray *deleteArray;//需要删除的数据
 @property (nonatomic, strong) NSMutableArray *countDownArray;//正在倒计时得数据
-@property (nonatomic, strong) ZZRequestLiveStreamAlert *requestAlertView;
 
 @property (nonatomic,assign) BOOL isEndAnimation;//动画是否结束了
 /**
@@ -893,6 +892,15 @@
         cell.delegate = self;
         return cell;
     }
+    else if ([identifier isEqualToString:ChatInviteVideoChatModelMessageCell]) {
+        ZZChatInviteVideoChatCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[ZZChatInviteVideoChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        cell.delegate = self;
+        [cell setUpWithUserIcon:self.portraitUrl];
+        return cell;
+    }
     else {
         ZZChatBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
@@ -980,6 +988,10 @@
     });
 }
 
+#pragma mark - ZZChatInviteVideoChatCellDelegate
+- (void)startVideoChatWithCell:(ZZChatInviteVideoChatCell *)cell {
+    [self liveStreamConnect];
+}
 
 #pragma mark - ZZChatKTVCellDelegate
 - (void)cell:(ZZChatKTVCell *)cell playSong:(ZZChatKTVModel *)ktvModel {
@@ -2351,6 +2363,13 @@
     model.message = message;
 }
 
+- (void)sendInviteVideoChatMessage {
+    ZZVideoInviteModel *model = [ZZVideoInviteModel messageWithContent:@"她邀请你视频聊天哦"];
+    [[RCIMClient sharedRCIMClient] sendMessage:ConversationType_PRIVATE targetId:self.uid content:model pushContent:nil pushData:nil success:^(long messageId) {
+    } error:^(RCErrorCode nErrorCode, long messageId) {
+    }];
+}
+
 - (void)deleteLocalMessage:(RCMessage *)message {
     NSLog(@"%@",[[RCIMClient sharedRCIMClient] deleteMessages:@[@(message.messageId)]] ? @"YES" : @"NO");
 }
@@ -2411,7 +2430,10 @@
     }
 }
 
-
+#pragma mark 发送邀请视频
+- (void)sendInviteVide {
+    
+}
 #pragma mark - 消息盒子
 - (void)sendMessageBox:(NSString *)string {
     NSString *wxSensitive = _wxSensitive;
@@ -2443,6 +2465,12 @@
 }
 
 #pragma mark - 消息处理
+- (void)sendMySelfNotification:(NSString *)message {
+    RCInformationNotificationMessage *warningMsg = [RCInformationNotificationMessage notificationWithMessage:message extra:nil];
+    RCMessage *notificationMessage = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:ConversationType_PRIVATE targetId:self.uid sentStatus:SentStatus_SENT content:warningMsg];
+    [self insertSendMessage:notificationMessage];
+}
+
 //发送消息插入本地
 - (void)insertSendMessage:(RCMessage *)message {
     ZZChatBaseModel *model = [[ZZChatBaseModel alloc] init];
@@ -3521,18 +3549,6 @@ static CGPoint delayOffset = {0.0};
         _countDownArray = [NSMutableArray array];
     }
     return _countDownArray;
-}
-
-- (ZZRequestLiveStreamAlert *)requestAlertView {
-    WeakSelf;
-    if (!_requestAlertView) {
-        _requestAlertView = [[ZZRequestLiveStreamAlert alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _requestAlertView.isPublish = YES;
-        _requestAlertView.touchSure = ^{
-            [weakSelf againVideo];
-        };
-    }
-    return _requestAlertView;
 }
 
 /**

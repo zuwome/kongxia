@@ -23,7 +23,7 @@
 #import "ZZNewOrderRefundOptionsViewController.h" //新的退款流程的优化界面
 #import <SobotKit/SobotKit.h>
 
-@interface ZZChatViewController () {
+@interface ZZChatViewController () <InviteVideoChatViewDelegate>{
     BOOL                        _isBan;
     BOOL                        _isFrom;
     BOOL                        _loadAnswer;
@@ -133,6 +133,11 @@
 
     [self createRightBtn];
     [self managerViewControllers];
+    
+    if ([ZZUserHelper shareInstance].loginer.gender == 2) {
+        [self showInviteView];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadOrder)
                                                  name:kMsg_UpdateOrder
@@ -150,6 +155,18 @@
     else if([[ZZUserHelper shareInstance].loginer.uid isEqualToString:self.lastMessageSendId]){
         [ ZZOpenNotificationGuide showShanChatPromptWhenUserFirstIntoViewController:nil heightProportion:0.46 showMessageTitle:@"及时收到TA回复你的消息" showImageName:@"open_Notification_ men"];
     }
+}
+
+- (void)showInviteView {
+    InviteVideoChatView *chatView = [[InviteVideoChatView alloc] init];
+    [chatView showPrice];
+    chatView.delegate = self;
+    [self.view addSubview:chatView];
+    [chatView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.payChatBoxView.mas_top).offset(-10);
+        make.right.equalTo(self.view).offset(-10);
+        make.size.mas_equalTo(CGSizeMake(150, 50));
+    }];
 }
 
 - (void)configureTaskFreeModel:(ZZTaskModel *)taskModel {
@@ -371,6 +388,17 @@
         }
         self.navigationController.viewControllers = array;
     }
+}
+
+#pragma mark - InviteVideoChatViewDelegate
+- (void)chatWithView:(InviteVideoChatView *)view {
+    [self sendMySelfNotification:@"已发送邀请，请等待回复"];
+    LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [alertView setupData];
+    [alertView setStartVideoClousure:^{
+        [self sendInviteVideoChatMessage];
+    }];
+    [[UIApplication sharedApplication].keyWindow addSubview:alertView];
 }
 
 #pragma mark - Navigation

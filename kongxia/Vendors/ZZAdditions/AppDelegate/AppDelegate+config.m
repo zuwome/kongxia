@@ -43,6 +43,7 @@
 #import "ZZBanStateModel.h"//用户被封禁
 #import "ZZChatTaskFreeModel.h"
 #import "ZZChatGiftModel.h"
+#import "ZZVideoInviteModel.h"
 
 @implementation AppDelegate (config)
 
@@ -55,6 +56,8 @@
     [self configSVProgressHUD];
     
     [self configSDWebImage];
+    
+    [self configureThirdParty];
     
     // 6S在调用相册的时候 3Dtouch会崩溃所以要预防
     MSDPreventImagePickerCrashOn3DTouch();
@@ -189,6 +192,7 @@
     [[RCIM sharedRCIM] registerMessageType:[ZZMessageChatWechatPayModel class]];//拨打电话的model
     [[RCIM sharedRCIM] registerMessageType:[ZZGifMessageModel class]];//gif 图
     [[RCIM sharedRCIM] registerMessageType:[ZZChatGiftModel class]]; // 礼物
+    [[RCIM sharedRCIM] registerMessageType:[ZZVideoInviteModel class]];
 }
 
 @end
