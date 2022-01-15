@@ -645,7 +645,6 @@
         int left = [[notification.userInfo objectForKey:@"left"] intValue];
         if (left == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"接受发过来的消息");
                 [ZZUserHelper shareInstance].updateMessageList = YES;
                 if ([message.targetId isEqualToString: kCustomerServiceId] || [message.targetId isEqualToString:kMmemejunUid]) {
                     //如果是系统客服的话就不要了,为了防止系统客服带来的bug

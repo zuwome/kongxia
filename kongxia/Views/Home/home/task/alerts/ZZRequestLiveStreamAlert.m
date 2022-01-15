@@ -38,12 +38,6 @@
 - (void)setIsPublish:(BOOL)isPublish
 {
     _isPublish = isPublish;
-//    NSInteger beginPrice = 5;
-//    NSInteger extraPrice = 2;
-//    if ([ZZUserHelper shareInstance].configModel.skill) {
-//        beginPrice = [ZZUserHelper shareInstance].configModel.skill.begin_price;
-//        extraPrice = [ZZUserHelper shareInstance].configModel.skill.extra_price;
-//    }
     if (isPublish) {
         _titleLabel.text = @"发起1V1视频";
         if (isNullString([ZZUserHelper shareInstance].configModel.skill.des)) {

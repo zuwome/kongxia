@@ -48,7 +48,7 @@
 #import "ZZKTVAudioPlayManager.h"
 
 #define MaxPhotoAlbum 9
-@interface ZZChatBaseViewController () <UITableViewDataSource,UITableViewDelegate,ZZChatBoxViewDelegate,ZZRecordManagerDelegate,HZPhotoBrowserDelegate, ZZTaskFreeActionCellDelegate, ZZTaskFreeCellDelegate, TZImagePickerControllerDelegate, ZZChatShotViewControllerDelegate, ZZGiftsViewDelegate, ZZChatGiftCellDelegate, ZZChatKTVCellDelegate, ZZKTVAudioPlayManagerDelegate>
+@interface ZZChatBaseViewController () <UITableViewDataSource,UITableViewDelegate,ZZChatBoxViewDelegate,ZZRecordManagerDelegate,HZPhotoBrowserDelegate, ZZTaskFreeActionCellDelegate, ZZTaskFreeCellDelegate, TZImagePickerControllerDelegate, ZZChatShotViewControllerDelegate, ZZGiftsViewDelegate, ZZChatGiftCellDelegate, ZZChatKTVCellDelegate, ZZKTVAudioPlayManagerDelegate, ZZChatInviteVideoChatCellDelegate>
 
 @property (nonatomic, assign) BOOL haveLoadData;//是否已经加载过数据了
 @property (nonatomic, assign) BOOL noMoreData;//没有更多数据~ 去除head loading
@@ -82,7 +82,6 @@
 
 @property (nonatomic, strong) NSMutableArray *deleteArray;//需要删除的数据
 @property (nonatomic, strong) NSMutableArray *countDownArray;//正在倒计时得数据
-@property (nonatomic, strong) ZZRequestLiveStreamAlert *requestAlertView;
 
 @property (nonatomic,assign) BOOL isEndAnimation;//动画是否结束了
 /**
@@ -224,7 +223,7 @@
     
     if (self.dataArray.count == 0 && ![ZZUserHelper shareInstance].isFirstRent) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            ZZChatOrderInfoModel *orderMessage = [ZZChatOrderInfoModel messageWithContent:@"感谢使用空虾，平台提示\n1、平台只视空虾APP聊天凭证为有效证据，请勿使用第三方工具约定邀约内容。\n2、若对方存在粗鲁、诱导平台外交易，诱导额外花费，信息不实等不良或非法行为，请立即匿名举报，核实后将严厉处罚对方。\n3、若对方有违法要求请及时举报并拒绝，如默许、要求第三方平台联系或者报价将视为违规，将会被严厉处罚。\n4、邀约地点务必在人流量大的公众场合，不要乘坐他人交通工具或进入私密场所。"];
+            ZZChatOrderInfoModel *orderMessage = [ZZChatOrderInfoModel messageWithContent:@"感谢使用空虾，平台提示\n1、平台只视空虾APP聊天凭证为有效证据，请勿使用第三方工具约定邀约内容。\n2、若对方存在粗鲁、诱导平台外交易，诱导额外花费，信息不实等不良或非法行为，请立即匿名举报，核实后将严厉处罚对方。\n3、若对方有违法要求请及时举报并拒绝，如默许、要求第三方平台联系或者报价将视为违规，将会被严厉处罚。\n4、邀约地点务必在人流量大的公众场合，不要乘坐他人交通工具或进入私密场所\n5、平台严禁达人私下加价或索要红包，若遇到此情况，请及时举报，或联系客服反馈"];
             orderMessage.title = @"温馨提示";
             orderMessage.order_id = @"0";
             RCMessage *message = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:ConversationType_PRIVATE targetId:self.uid sentStatus:SentStatus_SENT content:orderMessage];
@@ -678,24 +677,8 @@
                                   delay:0.0
                                 options:options
                              animations:^{
-                                 CGFloat keyboardY = [weakSelf.view convertRect:keyboardRect fromView:nil].origin.y;
-                                 CGFloat inputViewFrameY = keyboardY - weakSelf.boxView.topView.height;
-
-                                 if (!showKeyboard) {
-                                     inputViewFrameY = inputViewFrameY - SafeAreaBottomHeight;
-                                 }
-                                 weakSelf.boxView.top = inputViewFrameY;
-                                 if (weakSelf.payChatModel.isChange) {
-                                     weakSelf.payChatBoxView.top =  weakSelf.boxView.top - 30;
-                                     [weakSelf setTableViewInsetsWithBottomValue:weakSelf.view.frame.size.height
-                                      - inputViewFrameY+30];
-                                 }else{
-                                     [weakSelf setTableViewInsetsWithBottomValue:weakSelf.view.frame.size.height
-                                      - inputViewFrameY];
-                                 }
-                                 if (showKeyboard) {
-                                     [weakSelf scrollToBottom:YES finish:nil];//偶尔会执行两次
-                                 };
+                [weakSelf showViewsWithAnimationWithShowKeyboard:showKeyboard
+                                                       keyboardY:[weakSelf.view convertRect:keyboardRect fromView:nil].origin.y];
                              }
                              completion:nil];
         }
@@ -704,15 +687,7 @@
                                   delay:0.0
                                 options:options
                              animations:^{
-                                 weakSelf.boxView.top = SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 20;
-                                 if (weakSelf.payChatModel.isChange) {
-                                     weakSelf.payChatBoxView.top =  weakSelf.boxView.top-30;
-                                      [weakSelf setTableViewInsetsWithBottomValue:weakSelf.boxView.topView.height+30];
-                                 }else{
-                                       [weakSelf setTableViewInsetsWithBottomValue:weakSelf.boxView.topView.height];
-                                 }
-                                 
-                                 
+                [weakSelf hideViewsWithAnimation];
                              }
                              completion:nil];
         }
@@ -720,6 +695,37 @@
     self.tableView.keyboardDidHide = ^() {
         [weakSelf endEditing];
     };
+}
+
+- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY {
+    CGFloat inputViewFrameY = keyboardY - self.boxView.topView.height;
+
+    if (!showKeyboard) {
+        inputViewFrameY = inputViewFrameY - SafeAreaBottomHeight;
+    }
+    self.boxView.top = inputViewFrameY;
+    if (self.payChatModel.isChange) {
+        self.payChatBoxView.top =  self.boxView.top - 30;
+        [self setTableViewInsetsWithBottomValue:self.view.frame.size.height
+         - inputViewFrameY+30];
+    }
+    else{
+        [self setTableViewInsetsWithBottomValue:self.view.frame.size.height
+         - inputViewFrameY];
+    }
+    if (showKeyboard) {
+        [self scrollToBottom:YES finish:nil];//偶尔会执行两次
+    };
+}
+
+- (void)hideViewsWithAnimation {
+    self.boxView.top = SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 20;
+    if (self.payChatModel.isChange) {
+        self.payChatBoxView.top =  self.boxView.top - 30;
+         [self setTableViewInsetsWithBottomValue:self.boxView.topView.height+30];
+    }else {
+          [self setTableViewInsetsWithBottomValue:self.boxView.topView.height];
+    }
 }
 
 - (void)showGiftView {
@@ -893,6 +899,15 @@
         cell.delegate = self;
         return cell;
     }
+    else if ([identifier isEqualToString:ChatInviteVideoChatModelMessageCell]) {
+        ZZChatInviteVideoChatCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[ZZChatInviteVideoChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        cell.delegate = self;
+        [cell setUpWithUserIcon:self.portraitUrl];
+        return cell;
+    }
     else {
         ZZChatBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
@@ -980,6 +995,10 @@
     });
 }
 
+#pragma mark - ZZChatInviteVideoChatCellDelegate
+- (void)startVideoChatWithCell:(ZZChatInviteVideoChatCell *)cell {
+    [self liveStreamConnect];
+}
 
 #pragma mark - ZZChatKTVCellDelegate
 - (void)cell:(ZZChatKTVCell *)cell playSong:(ZZChatKTVModel *)ktvModel {
@@ -2351,6 +2370,13 @@
     model.message = message;
 }
 
+- (void)sendInviteVideoChatMessage {
+    ZZVideoInviteModel *model = [ZZVideoInviteModel messageWithContent:@"她邀请你视频聊天哦"];
+    [[RCIMClient sharedRCIMClient] sendMessage:ConversationType_PRIVATE targetId:self.uid content:model pushContent:nil pushData:nil success:^(long messageId) {
+    } error:^(RCErrorCode nErrorCode, long messageId) {
+    }];
+}
+
 - (void)deleteLocalMessage:(RCMessage *)message {
     NSLog(@"%@",[[RCIMClient sharedRCIMClient] deleteMessages:@[@(message.messageId)]] ? @"YES" : @"NO");
 }
@@ -2411,7 +2437,10 @@
     }
 }
 
-
+#pragma mark 发送邀请视频
+- (void)sendInviteVide {
+    
+}
 #pragma mark - 消息盒子
 - (void)sendMessageBox:(NSString *)string {
     NSString *wxSensitive = _wxSensitive;
@@ -2443,6 +2472,12 @@
 }
 
 #pragma mark - 消息处理
+- (void)sendMySelfNotification:(NSString *)message {
+    RCInformationNotificationMessage *warningMsg = [RCInformationNotificationMessage notificationWithMessage:message extra:nil];
+    RCMessage *notificationMessage = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:ConversationType_PRIVATE targetId:self.uid sentStatus:SentStatus_SENT content:warningMsg];
+    [self insertSendMessage:notificationMessage];
+}
+
 //发送消息插入本地
 - (void)insertSendMessage:(RCMessage *)message {
     ZZChatBaseModel *model = [[ZZChatBaseModel alloc] init];
@@ -3521,18 +3556,6 @@ static CGPoint delayOffset = {0.0};
         _countDownArray = [NSMutableArray array];
     }
     return _countDownArray;
-}
-
-- (ZZRequestLiveStreamAlert *)requestAlertView {
-    WeakSelf;
-    if (!_requestAlertView) {
-        _requestAlertView = [[ZZRequestLiveStreamAlert alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _requestAlertView.isPublish = YES;
-        _requestAlertView.touchSure = ^{
-            [weakSelf againVideo];
-        };
-    }
-    return _requestAlertView;
 }
 
 /**

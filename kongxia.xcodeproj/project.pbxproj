@@ -1205,9 +1205,6 @@
 		BDA42DDF22782B1300760DE7 /* ZZNewGuidView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA42DDE22782B1300760DE7 /* ZZNewGuidView.m */; };
 		BDA4B3B9235D58580034D553 /* ZZMyLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */; };
 		BDA4B3BC235D8CA50034D553 /* ZZMyLocationsSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */; };
-		BDA4E51F2789645700403344 /* MGFaceIDBaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */; };
-		BDA4E5202789645800403344 /* MGFaceIDLiveDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */; };
-		BDA4E5212789645800403344 /* MGFaceIDLiveCustomDetect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */; };
 		BDA4E5232789745000403344 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA4E5222789745000403344 /* UIViewExtension.swift */; };
 		BDA4E52527897EE600403344 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E52427897EE600403344 /* CoreServices.framework */; };
 		BDA5001022FA785A00BCB48E /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCA822FA785800BCB48E /* ZHPickView.m */; };
@@ -1477,6 +1474,13 @@
 		BDD88087278C650900C34C09 /* ZZSkillThemeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */; };
 		BDD880A1278CA1BE00C34C09 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = BDD8809E278CA1BE00C34C09 /* README.txt */; };
 		BDD880A2278CA1BE00C34C09 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD880A0278CA1BE00C34C09 /* libWeChatSDK.a */; };
+		BDD880AB2791655F00C34C09 /* MGFaceIDBaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD880A72791655E00C34C09 /* MGFaceIDBaseKit.framework */; };
+		BDD880AC2791655F00C34C09 /* MGFaceIDLiveDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD880A82791655E00C34C09 /* MGFaceIDLiveDetect.framework */; };
+		BDD880AD2791655F00C34C09 /* MGFaceIDLiveCustomDetect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BDD880AA2791655E00C34C09 /* MGFaceIDLiveCustomDetect.bundle */; };
+		BDD880AF279166BB00C34C09 /* inviteVideoChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD880AE279166BB00C34C09 /* inviteVideoChatView.swift */; };
+		BDD880B22791835200C34C09 /* ZZVideoInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD880B12791835100C34C09 /* ZZVideoInviteModel.m */; };
+		BDD880B427919DF900C34C09 /* ZZChatInviteVideoChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD880B327919DF900C34C09 /* ZZChatInviteVideoChatCell.swift */; };
+		BDD880B62792B2E600C34C09 /* LivestreamAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD880B52792B2E500C34C09 /* LivestreamAlertView.swift */; };
 		BDE200882297C52B00589E12 /* ZZRankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE200872297C52B00589E12 /* ZZRankModel.swift */; };
 		BDE34457234EDA06008290F0 /* ZZCommissionIndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE34456234EDA06008290F0 /* ZZCommissionIndexCell.m */; };
 		BDE3445A23506DAD008290F0 /* ZZCommissionPopulationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDE3445923506DAD008290F0 /* ZZCommissionPopulationCell.m */; };
@@ -3817,9 +3821,6 @@
 		BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationsViewController.m; sourceTree = "<group>"; };
 		BDA4B3BA235D8CA50034D553 /* ZZMyLocationsSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMyLocationsSelectViewController.h; sourceTree = "<group>"; };
 		BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationsSelectViewController.m; sourceTree = "<group>"; };
-		BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDBaseKit.framework; sourceTree = "<group>"; };
-		BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDLiveDetect.framework; sourceTree = "<group>"; };
-		BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MGFaceIDLiveCustomDetect.bundle; sourceTree = "<group>"; };
 		BDA4E5222789745000403344 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BDA4E52427897EE600403344 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		BDA5000222FA785A00BCB48E /* AdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdView.h; sourceTree = "<group>"; };
@@ -4328,6 +4329,14 @@
 		BDD8809E278CA1BE00C34C09 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		BDD8809F278CA1BE00C34C09 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		BDD880A0278CA1BE00C34C09 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		BDD880A72791655E00C34C09 /* MGFaceIDBaseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDBaseKit.framework; sourceTree = "<group>"; };
+		BDD880A82791655E00C34C09 /* MGFaceIDLiveDetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDLiveDetect.framework; sourceTree = "<group>"; };
+		BDD880AA2791655E00C34C09 /* MGFaceIDLiveCustomDetect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MGFaceIDLiveCustomDetect.bundle; sourceTree = "<group>"; };
+		BDD880AE279166BB00C34C09 /* inviteVideoChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inviteVideoChatView.swift; sourceTree = "<group>"; };
+		BDD880B02791835100C34C09 /* ZZVideoInviteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZVideoInviteModel.h; sourceTree = "<group>"; };
+		BDD880B12791835100C34C09 /* ZZVideoInviteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZVideoInviteModel.m; sourceTree = "<group>"; };
+		BDD880B327919DF900C34C09 /* ZZChatInviteVideoChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZChatInviteVideoChatCell.swift; sourceTree = "<group>"; };
+		BDD880B52792B2E500C34C09 /* LivestreamAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivestreamAlertView.swift; sourceTree = "<group>"; };
 		BDE200872297C52B00589E12 /* ZZRankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZRankModel.swift; sourceTree = "<group>"; };
 		BDE34455234EDA06008290F0 /* ZZCommissionIndexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZCommissionIndexCell.h; sourceTree = "<group>"; };
 		BDE34456234EDA06008290F0 /* ZZCommissionIndexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZCommissionIndexCell.m; sourceTree = "<group>"; };
@@ -4458,7 +4467,7 @@
 				BDFDC45922D431D100B92634 /* libiconv.tbd in Frameworks */,
 				BDA500FA22FA785B00BCB48E /* libWeiboSDK.a in Frameworks */,
 				9101AE1B1DB626050014F1CB /* WebKit.framework in Frameworks */,
-				BDA4E51F2789645700403344 /* MGFaceIDBaseKit.framework in Frameworks */,
+				BDD880AB2791655F00C34C09 /* MGFaceIDBaseKit.framework in Frameworks */,
 				91D376561D2F4A2C0002F63B /* AssetsLibrary.framework in Frameworks */,
 				BD17816A23CE0486005567BA /* libfaac.a in Frameworks */,
 				BDFDC45622D4315500B92634 /* AddressBookUI.framework in Frameworks */,
@@ -4484,7 +4493,7 @@
 				33EC7FCC1C5E6E75001D157F /* CoreMotion.framework in Frameworks */,
 				B76E8ABD1FBAEFD60081EB48 /* CoreMedia.framework in Frameworks */,
 				913841D31D36451500370348 /* AVFoundation.framework in Frameworks */,
-				BDA4E5202789645800403344 /* MGFaceIDLiveDetect.framework in Frameworks */,
+				BDD880AC2791655F00C34C09 /* MGFaceIDLiveDetect.framework in Frameworks */,
 				BDA500F822FA785B00BCB48E /* libSocialSina.a in Frameworks */,
 				BD52A8C6253C835F0099759E /* ATAuthSDK.framework in Frameworks */,
 				BD69E9E7243B1C9500AA2D8A /* AuthenticationServices.framework in Frameworks */,
@@ -5982,6 +5991,8 @@
 				BD1164322387760E009350BD /* ZZGiftsView.m */,
 				BD1164382387B39F009350BD /* ZZGiftItemsCell.h */,
 				BD1164372387B39F009350BD /* ZZGiftItemsCell.m */,
+				BDD880AE279166BB00C34C09 /* inviteVideoChatView.swift */,
+				BDD880B52792B2E500C34C09 /* LivestreamAlertView.swift */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -6070,6 +6081,7 @@
 				BD92F0EE238BB6EF00D61F08 /* ZZChatGiftCell.m */,
 				BD7F2E9E23D03D9400141DC3 /* ZZChatKTVCell.h */,
 				BD7F2E9F23D03D9400141DC3 /* ZZChatKTVCell.m */,
+				BDD880B327919DF900C34C09 /* ZZChatInviteVideoChatCell.swift */,
 			);
 			path = chatcell;
 			sourceTree = "<group>";
@@ -7388,6 +7400,8 @@
 				BD92F0E8238BB5FE00D61F08 /* ZZChatGiftModel.m */,
 				BD7F2E9B23D03A4900141DC3 /* ZZChatKTVModel.h */,
 				BD7F2E9C23D03A4900141DC3 /* ZZChatKTVModel.m */,
+				BDD880B02791835100C34C09 /* ZZVideoInviteModel.h */,
+				BDD880B12791835100C34C09 /* ZZVideoInviteModel.m */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -9092,32 +9106,6 @@
 			path = AgoraRtcTools;
 			sourceTree = "<group>";
 		};
-		BDA4E5192789645700403344 /* FaceID */ = {
-			isa = PBXGroup;
-			children = (
-				BDA4E51A2789645700403344 /* framework */,
-				BDA4E51D2789645700403344 /* resource */,
-			);
-			path = FaceID;
-			sourceTree = "<group>";
-		};
-		BDA4E51A2789645700403344 /* framework */ = {
-			isa = PBXGroup;
-			children = (
-				BDA4E51B2789645700403344 /* MGFaceIDBaseKit.framework */,
-				BDA4E51C2789645700403344 /* MGFaceIDLiveDetect.framework */,
-			);
-			path = framework;
-			sourceTree = "<group>";
-		};
-		BDA4E51D2789645700403344 /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				BDA4E51E2789645700403344 /* MGFaceIDLiveCustomDetect.bundle */,
-			);
-			path = resource;
-			sourceTree = "<group>";
-		};
 		BDA5000122FA785A00BCB48E /* AdView */ = {
 			isa = PBXGroup;
 			children = (
@@ -9152,6 +9140,7 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				BDD880A52791655E00C34C09 /* FaceID */,
 				BD7F2E8323CEE8F800141DC3 /* ACRCloudLibraies */,
 				BDA5000122FA785A00BCB48E /* AdView */,
 				BDA245EE2334BB990039704B /* AgoraRtcTools */,
@@ -9161,7 +9150,6 @@
 				BDA5000422FA785A00BCB48E /* ESAutoHeightImageScroll */,
 				BDA5FE3422FA785900BCB48E /* ESMaskBanner */,
 				BD17815523CE0485005567BA /* Faac */,
-				BDA4E5192789645700403344 /* FaceID */,
 				BDA5FD8C22FA785800BCB48E /* FaceSDK */,
 				BDA5FD6522FA785800BCB48E /* HttpDNS */,
 				BDA5FD6F22FA785800BCB48E /* InputView */,
@@ -10316,6 +10304,30 @@
 				BDD880A0278CA1BE00C34C09 /* libWeChatSDK.a */,
 			);
 			path = WechatSDK;
+		BDD880A52791655E00C34C09 /* FaceID */ = {
+			isa = PBXGroup;
+			children = (
+				BDD880A62791655E00C34C09 /* framework */,
+				BDD880A92791655E00C34C09 /* resource */,
+			);
+			path = FaceID;
+			sourceTree = "<group>";
+		};
+		BDD880A62791655E00C34C09 /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				BDD880A72791655E00C34C09 /* MGFaceIDBaseKit.framework */,
+				BDD880A82791655E00C34C09 /* MGFaceIDLiveDetect.framework */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		BDD880A92791655E00C34C09 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				BDD880AA2791655E00C34C09 /* MGFaceIDLiveCustomDetect.bundle */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		BDE200862297C46200589E12 /* Rank */ = {
@@ -10667,7 +10679,7 @@
 				BD48E9CE231F6CB7005FCBC6 /* PostTask.gif in Resources */,
 				ACBC30BB20E24C1F00480832 /* Futu_Bd.ttf in Resources */,
 				B73DFCDF1F9F290C00D02104 /* btn_bar_next_b@2x.png in Resources */,
-				BDA4E5212789645800403344 /* MGFaceIDLiveCustomDetect.bundle in Resources */,
+				BDD880AD2791655F00C34C09 /* MGFaceIDLiveCustomDetect.bundle in Resources */,
 				AC889586202AB15300497530 /* zz_callVideo.caf in Resources */,
 				B73DFD061F9F290C00D02104 /* cut_bar_right@2x.png in Resources */,
 				B73DFCFF1F9F290C00D02104 /* cut_bar_left.png in Resources */,
@@ -11378,6 +11390,7 @@
 				BD44276F252A53590018A84E /* TYViewStorage.m in Sources */,
 				047B8F6921103D8500E6C0E9 /* ZZSkillEditBaseCell.m in Sources */,
 				BD2C006823BB380900756D98 /* JXCategoryTitleCellModel.m in Sources */,
+				BDD880B427919DF900C34C09 /* ZZChatInviteVideoChatCell.swift in Sources */,
 				BDA5003622FA785A00BCB48E /* NSString+QuickHTML.m in Sources */,
 				0489EF3A2125308F00086FBE /* ZZNewHomeServiceCell.m in Sources */,
 				AC1E216B20219BD700F88E92 /* ZZWeiChatBaseEvaluation.m in Sources */,
@@ -11581,6 +11594,7 @@
 				BDA5002822FA785A00BCB48E /* Path+Extenstions.m in Sources */,
 				BDE4B6F522700DF5002EC5F2 /* ZZSignuperCell.m in Sources */,
 				91DBA4D91F613D3500013F4C /* ZZRentOrderPayCell.m in Sources */,
+				BDD880AF279166BB00C34C09 /* inviteVideoChatView.swift in Sources */,
 				91F4F9B81D3CFBB400997359 /* ZZHomeHelper.m in Sources */,
 				91DB9D931F6129E600013F4C /* ZZTabBarViewController.m in Sources */,
 				BDA5011E22FA785B00BCB48E /* JPVideoPlayerDownloader.m in Sources */,
@@ -11621,6 +11635,7 @@
 				91DBA4EC1F613D3500013F4C /* ZZRentLabelCell.m in Sources */,
 				912118881CE2CC9400CE6091 /* ZZRequest.m in Sources */,
 				B7BC2CA11FFB19E900B6D282 /* ZZCallRecordsCell.m in Sources */,
+				BDD880B22791835200C34C09 /* ZZVideoInviteModel.m in Sources */,
 				BDA5010522FA785B00BCB48E /* WBTokenTextView.m in Sources */,
 				B73DFD221F9F290C00D02104 /* PLSProgressBar.m in Sources */,
 				91DB9DF21F6129E600013F4C /* ZZChangePhoneViewController.m in Sources */,
@@ -12240,6 +12255,7 @@
 				91DBA2A31F613CF700013F4C /* ZZRecordBottomView.m in Sources */,
 				BDA500DF22FA785B00BCB48E /* compare_neon.cc in Sources */,
 				BDA500B522FA785B00BCB48E /* ESMaskBanner.m in Sources */,
+				BDD880B62792B2E600C34C09 /* LivestreamAlertView.swift in Sources */,
 				91DBA2FF1F613CF700013F4C /* ZZSettingSwitchCell.m in Sources */,
 				91DBA30B1F613CF700013F4C /* ZZUserVideoFailureCell.m in Sources */,
 				91DBA26A1F613CF700013F4C /* ZZChatBoxRecordView.m in Sources */,

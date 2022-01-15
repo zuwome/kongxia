@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger,ChatCellType) {
     ChatCellTypeSightVideo,
     ChatCellTypeGift,
     ChatCellTypeKTV,
+    ChatCellTypeInviteVideo,
 };
 
 typedef NS_ENUM(NSUInteger,ChatCellLongPressType) {
