@@ -46,4 +46,7 @@
 
 
 - (void)getSkillsCustomService:(requestCallback)next;
+
+- (void)requestAPriceIncrease:(requestCallback)next;
+
 @end
