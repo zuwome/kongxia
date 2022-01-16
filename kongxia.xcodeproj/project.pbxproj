@@ -1439,6 +1439,7 @@
 		BDB35F6C2793213300C69BB7 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB35F642793213300C69BB7 /* libSocialWeChat.a */; };
 		BDB35F6D2793213300C69BB7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = BDB35F692793213300C69BB7 /* README.txt */; };
 		BDB35F6E2793213300C69BB7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB35F6B2793213300C69BB7 /* libWeChatSDK.a */; };
+		BDB35F8B27944CD000C69BB7 /* ChangePriceSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB35F8A27944CCF00C69BB7 /* ChangePriceSuccessView.swift */; };
 		BDB8E89D22CF4B8800C11DEC /* ZZHomeNewRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB8E89C22CF4B8800C11DEC /* ZZHomeNewRecommendCell.m */; };
 		BDBB99E523065120008D27FA /* ZZSearchLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBB99E32306511F008D27FA /* ZZSearchLocationController.m */; };
 		BDBB99E82306523C008D27FA /* ZZLocationSearchedController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBB99E72306523C008D27FA /* ZZLocationSearchedController.m */; };
@@ -4264,6 +4265,7 @@
 		BDB35F692793213300C69BB7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		BDB35F6A2793213300C69BB7 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		BDB35F6B2793213300C69BB7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		BDB35F8A27944CCF00C69BB7 /* ChangePriceSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePriceSuccessView.swift; sourceTree = "<group>"; };
 		BDB8E89B22CF4B8800C11DEC /* ZZHomeNewRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZHomeNewRecommendCell.h; sourceTree = "<group>"; };
 		BDB8E89C22CF4B8800C11DEC /* ZZHomeNewRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZHomeNewRecommendCell.m; sourceTree = "<group>"; };
 		BDBB99E32306511F008D27FA /* ZZSearchLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZSearchLocationController.m; sourceTree = "<group>"; };
@@ -4746,6 +4748,7 @@
 				04DEB5A4214A383C00162A90 /* ZZPrivateLetterSwitchCell.h */,
 				04DEB5A5214A383C00162A90 /* ZZPrivateLetterSwitchCell.m */,
 				BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */,
+				BDB35F8A27944CCF00C69BB7 /* ChangePriceSuccessView.swift */,
 			);
 			name = "SkillThemeManage(主题管理)";
 			sourceTree = "<group>";
@@ -11413,6 +11416,7 @@
 				91DBA4AD1F613D3500013F4C /* ZZHomeNotificationInfoView.m in Sources */,
 				ACBC30A420DCAB9000480832 /* ZZfootIntegralExchangeView.m in Sources */,
 				91DBA4F31F613D3500013F4C /* ZZRentWXCell.m in Sources */,
+				BDB35F8B27944CD000C69BB7 /* ChangePriceSuccessView.swift in Sources */,
 				AC09DF30200453E40057AB44 /* ZZPayManager.m in Sources */,
 				91DBA4911F613D3400013F4C /* ZZLiveStreamConnectGuide.m in Sources */,
 				AC64EF522047D348008256C8 /* ZZWeiChatEvaluationHeaderCell.m in Sources */,
