@@ -406,10 +406,18 @@
 
 #pragma mark - InviteVideoChatViewDelegate
 - (void)chatWithView:(InviteVideoChatView *)view {
+    if (![self canInviteVideoChat:self.dataArray]) {
+        [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
+        return;
+    }
+    
     [self sendMySelfNotification:@"已发送邀请，请等待回复"];
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
+        [self sendInviteVideoChatMessage];
+    }
+    else {
         LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
         [alertView setStartVideoClousure:^{
@@ -417,10 +425,29 @@
         }];
         [[UIApplication sharedApplication].keyWindow addSubview:alertView];
     }
-    else {
-        [self sendInviteVideoChatMessage];
-    }
     
+}
+
+- (BOOL)canInviteVideoChat:(NSArray *)messages {
+    __block BOOL canInvite = NO;
+    __block BOOL fromMe = NO;
+    __block BOOL fromOther = NO;
+    [messages enumerateObjectsUsingBlock:^(__kindof ZZChatBaseModel *baseModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([baseModel.message.content isKindOfClass:[RCTextMessage class]]) {
+            if (baseModel.message.messageDirection == MessageDirection_SEND) {
+                fromMe = YES;
+            }
+            else if (baseModel.message.messageDirection == MessageDirection_RECEIVE) {
+                fromOther = YES;
+            }
+        }
+        
+        if (fromMe && fromOther) {
+            *stop = YES;
+            canInvite = YES;
+        }
+    }];
+    return canInvite;
 }
 
 #pragma mark - Navigation

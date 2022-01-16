@@ -132,8 +132,6 @@
 
 - (void)updateStateIsFirstIntoRoom:(BOOL)isFirst;
 
-- (void)liveStreamConnect;
-
 - (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY;
 
 - (void)hideViewsWithAnimation;
