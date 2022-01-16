@@ -233,7 +233,6 @@
 }
 
 - (void)showWechatView {
-    
     _shouldShowWeChat = NO;
     WEAK_SELF();
     self.wxCopyView = [ZZCheckWXView new];
@@ -1130,17 +1129,23 @@
     }
     if (_isFrom) {
         [MobClick event:Event_from_click_met_order];
-        [UIAlertView showWithTitle:@"提示" message:@"邀约是否已顺利完成，确定后款项将会支付给对方" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self metRequest];
-            }
+        [self showOKCancelAlertWithTitle:@"提示"
+                                 message:@"邀约是否已顺利完成，确定后款项将会支付给对方"
+                             cancelTitle:@"取消"
+                             cancelBlock:nil
+                                 okTitle:@"确认"
+                                 okBlock:^{
+            [self metRequest];
         }];
     } else {
         [MobClick event:Event_to_click_met_order];
-        [UIAlertView showWithTitle:@"提示" message:@"确认已到达见面地点？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self metRequest];
-            }
+        [self showOKCancelAlertWithTitle:@"提示"
+                                 message:@"确认已到达见面地点？"
+                             cancelTitle:@"取消"
+                             cancelBlock:nil
+                                 okTitle:@"确认"
+                                 okBlock:^{
+            [self metRequest];
         }];
     }
 }
