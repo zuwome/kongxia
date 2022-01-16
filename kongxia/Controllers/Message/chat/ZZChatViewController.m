@@ -406,6 +406,11 @@
 
 #pragma mark - InviteVideoChatViewDelegate
 - (void)chatWithView:(InviteVideoChatView *)view {
+    if (![self canInviteVideoChat:self.dataArray]) {
+        [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
+        return;
+    }
+    
     [self sendMySelfNotification:@"已发送邀请，请等待回复"];
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -421,6 +426,28 @@
         [[UIApplication sharedApplication].keyWindow addSubview:alertView];
     }
     
+}
+
+- (BOOL)canInviteVideoChat:(NSArray *)messages {
+    __block BOOL canInvite = NO;
+    __block BOOL fromMe = NO;
+    __block BOOL fromOther = NO;
+    [messages enumerateObjectsUsingBlock:^(__kindof ZZChatBaseModel *baseModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([baseModel.message.content isKindOfClass:[RCTextMessage class]]) {
+            if (baseModel.message.messageDirection == MessageDirection_SEND) {
+                fromMe = YES;
+            }
+            else if (baseModel.message.messageDirection == MessageDirection_RECEIVE) {
+                fromOther = YES;
+            }
+        }
+        
+        if (fromMe && fromOther) {
+            *stop = YES;
+            canInvite = YES;
+        }
+    }];
+    return canInvite;
 }
 
 #pragma mark - Navigation

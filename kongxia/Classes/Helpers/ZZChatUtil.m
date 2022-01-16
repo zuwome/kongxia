@@ -723,6 +723,15 @@
                 return message.message;
             }
         }
+        else if ([model.lastestMessage isKindOfClass:[ZZVideoInviteModel class]]) {
+            ZZVideoInviteModel *message = (ZZVideoInviteModel *)model.lastestMessage;
+            if (isNullString(message.message)) {
+                return @"他在线邀请您视频通话";
+            }
+            else {
+                return message.message;
+            }
+        }
         else {
             return @"";
         }
