@@ -33,11 +33,14 @@
 #import "ZZChatGiftModel.h"
 #import "ZZChatKTVModel.h"
 #import "ZZVideoInviteModel.h"
+#import "WXApi.h"
 
 @implementation ZZAppDelegateConfig
 
 + (void)config
 {
+//    [WXApi registerApp:WEIXIN_ID universalLink:UNIVERSAL_LINK];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
     // 高德

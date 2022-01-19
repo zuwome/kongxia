@@ -405,28 +405,28 @@
 
 #pragma mark - InviteVideoChatViewDelegate
 - (void)chatWithView:(InviteVideoChatView *)view {
-    ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [[UIApplication sharedApplication].keyWindow addSubview:sv];
-    return;
-    if (![self canInviteVideoChat:self.dataArray]) {
-        [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
-        return;
-    }
-    
-    [self sendMySelfNotification:@"已发送邀请，请等待回复"];
-    
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
-        [self sendInviteVideoChatMessage];
-    }
-    else {
+//    ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    [[UIApplication sharedApplication].keyWindow addSubview:sv];
+//    return;
+//    if (![self canInviteVideoChat:self.dataArray]) {
+//        [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
+//        return;
+//    }
+//
+//    [self sendMySelfNotification:@"已发送邀请，请等待回复"];
+//
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
+//        [self sendInviteVideoChatMessage];
+//    }
+//    else {
         LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
         [alertView setStartVideoClousure:^{
             [self sendInviteVideoChatMessage];
         }];
         [[UIApplication sharedApplication].keyWindow addSubview:alertView];
-    }
+//    }
     
 }
 

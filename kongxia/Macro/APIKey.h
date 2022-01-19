@@ -33,8 +33,8 @@
 #define WEIXIN_ID @"wxb712a8b40aed6d29"
 #define WEIXIN_SECRET @"fec73d5eaab29d326ecc735f9c5d76be"
 
-//#define EnterpriceWechatID = @"ww1066becb2c99e97b"
-//#define EnterpriceWechatID_URL @"https://work.weixin.qq.com/kfid/kfc43a09d510afeb4cf"
+#define EnterpriceWechatID = @"ww1066becb2c99e97b"
+#define EnterpriceWechatID_URL @"https://work.weixin.qq.com/kfid/kfc43a09d510afeb4cf"
 
 /*
  QQ:
