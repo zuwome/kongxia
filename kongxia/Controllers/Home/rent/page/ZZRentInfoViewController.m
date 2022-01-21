@@ -202,7 +202,7 @@
 
 #pragma mark - ZZRealPhotoCellDelegate
 - (void)showIDPhotoWithCell:(ZZRealPhotoCell *)cell {
-    if (![_user.uid isEqualToString:[ZZUserHelper shareInstance].loginer.uid]) {
+    if ([_user.uid isEqualToString:[ZZUserHelper shareInstance].loginer.uid]) {
         if (_gotoPhotoMangerView) {
             _gotoPhotoMangerView();
         }
