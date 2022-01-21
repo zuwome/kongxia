@@ -14,6 +14,7 @@
 @interface ZZRentPageHeadView ()
 
 @property (nonatomic, strong) UIView *frontView;
+@property (nonatomic, strong) UILabel *attentLabel;
 @property (nonatomic, strong) UILabel *fansLabel;
 @property (nonatomic, strong) UIImageView *faceImageView;
 @property (nonatomic, strong) UILabel *realFaceTipsLabel;//没有真实头像提示
@@ -57,6 +58,7 @@
 
 - (void)createSubviews
 {
+    self.attentLabel.text = @"0";
     self.fansLabel.text = @"0";
     
     self.realFaceTipsView = [[UIView alloc] init];
@@ -101,7 +103,7 @@
     
     [_locationImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(15);
-        make.bottom.mas_equalTo(_fansLabel.mas_top).offset(-8);
+        make.bottom.mas_equalTo(_attentLabel.mas_top).offset(-8);
         make.size.mas_equalTo(CGSizeMake(11, 14));
     }];
     
@@ -313,6 +315,7 @@
     }
     _pageControl.currentPage = 0;
     
+    self.attentLabel.text = [NSString stringWithFormat:@"%ld",(long)user.following_count];
     self.fansLabel.text = [NSString stringWithFormat:@"%ld",(long)user.follower_count];
     
     if (user.gender == 2) {
@@ -408,9 +411,10 @@
 
 #pragma mark - UIButtonMethod
 - (void)attentCountBtnClcik {
-    if (_touchAttentCount) {
-        _touchAttentCount();
-    }
+    [ZZHUD showInfoWithStatus:@"为保护用户隐私，关注列表不可见"];
+//    if (_touchAttentCount) {
+//        _touchAttentCount();
+//    }
 }
 
 - (void)fansCountBtnClick {
@@ -468,9 +472,57 @@
     return _collectionView;
 }
 
+- (UILabel *)attentLabel {
+    if (!_attentLabel) {
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.font = [UIFont systemFontOfSize:15];
+        titleLabel.text = @"关注";
+        [self addSubview:titleLabel];
+        
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.mas_left).offset(15);
+            make.bottom.mas_equalTo(-12);
+        }];
+        
+        _attentLabel = [[UILabel alloc] init];
+        _attentLabel.textColor = [UIColor whiteColor];
+        _attentLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
+        _attentLabel.text = @"0";
+        [self addSubview:_attentLabel];
+        
+        [_attentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(titleLabel.mas_right).offset(3);
+            make.centerY.mas_equalTo(titleLabel.mas_centerY);
+        }];
+        
+        UIButton *attenBtn = [[UIButton alloc] init];
+        [attenBtn addTarget:self action:@selector(attentCountBtnClcik) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:attenBtn];
+        
+        [attenBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(titleLabel.mas_left);
+            make.top.mas_equalTo(titleLabel.mas_top).offset(-8);
+            make.bottom.mas_equalTo(titleLabel.mas_bottom).offset(8);
+            make.right.mas_equalTo(_attentLabel.mas_right).offset(5);
+        }];
+    }
+    return _attentLabel;
+}
+
 - (UILabel *)fansLabel
 {
     if (!_fansLabel) {
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:lineView];
+        
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_attentLabel.mas_right).offset(10);
+            make.centerY.mas_equalTo(_attentLabel.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(1.5, 15.5));
+        }];
+        
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.font = [UIFont systemFontOfSize:15];
@@ -478,8 +530,8 @@
         [self addSubview:titleLabel];
         
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(15);
-            make.bottom.mas_equalTo(-12);
+            make.left.mas_equalTo(lineView.mas_right).offset(10);
+            make.centerY.mas_equalTo(lineView.mas_centerY);
         }];
         
         _fansLabel = [[UILabel alloc] init];
