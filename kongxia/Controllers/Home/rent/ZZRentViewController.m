@@ -91,10 +91,6 @@
     [super viewDidAppear:animated];
     self.navigationController.delegate = nil;
     [self getBanStatus];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createOrderReload) name:KMsg_CreateOrderNotification object:nil];
-    
-    [self showClosefollowerWarning];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -105,10 +101,12 @@
     } else {
         //        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:KMsg_CreateOrderNotification object:nil];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KMsg_CreateOrderNotification object:nil];
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -119,10 +117,8 @@
     [self createView];
     [self addObserver];
     [self reloadWithUid];   //获取最新的用户数据
-}
-
-- (void)showClosefollowerWarning {
-    [ZZHUD showInfoWithStatus:@"为保护用户隐私，关注列表不可见"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createOrderReload) name:KMsg_CreateOrderNotification object:nil];
 }
 
 - (void)createOrderReload {
