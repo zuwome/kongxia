@@ -60,6 +60,37 @@
         }
     }];
 
+//    if (indexPath.row == 0 && user.base_video.status == 1 && photo.face_detect_status == 3) {
+//        _playButton.hidden = NO;
+//
+//        NSString *time = [NSString stringWithFormat:@"%.0f'", user.base_video.sk.video.time];
+//        _playButton.normalTitle = time;
+//
+//        [_playButton setImagePosition:LXMImagePositionLeft spacing:6];
+//    }
+//    else {
+//        _playButton.hidden = YES;
+//    }
 }
+
+//- (UIButton *)playButton {
+//    if (!_playButton) {
+//        _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _playButton.normalImage = [UIImage imageNamed:@"icdarenShipin"];
+//        _playButton.normalTitle = @"10'";
+//        _playButton.normalTitleColor = RGBCOLOR(63, 58, 58);
+//        _playButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+//        [_playButton addTarget:self action:@selector(playVideoClick:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        _playButton.layer.cornerRadius = 14.5;
+//        _playButton.layer.masksToBounds = YES;
+//        
+//    }
+//    return _playButton;
+//}
+//
+//- (IBAction)playVideoClick:(id)sender {
+//    BLOCK_SAFE_CALLS(self.playVideo);
+//}
 
 @end
