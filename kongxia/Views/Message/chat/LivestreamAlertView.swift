@@ -126,7 +126,7 @@ extension LiveStreamAlertView {
     }
     
     func setRemindStatus() {
-        guard !remindBtn.isSelected  else {
+        guard remindBtn.isSelected  else {
             return
         }
         let userDefault = UserDefaults.standard
@@ -225,10 +225,9 @@ class LiveStreamRechargeAlertView: UIView {
         return view
     }()
     
-    lazy var contentbgView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.alpha = 0.4
+    lazy var contentbgView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "qietu2")
         return view
     }()
     

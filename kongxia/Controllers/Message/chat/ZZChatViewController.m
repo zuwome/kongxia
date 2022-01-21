@@ -92,6 +92,10 @@
     _haveLoadViews = YES;
     self.notUpdateOrder = NO;
     self.viewDisappear = NO;
+    
+    if ([ZZUserHelper shareInstance].loginer.gender == 2) {
+        [self showInviteView];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -136,10 +140,6 @@
     [self createRightBtn];
     [self managerViewControllers];
     
-    if ([ZZUserHelper shareInstance].loginer.gender == 2) {
-        [self showInviteView];
-    }
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadOrder)
                                                  name:kMsg_UpdateOrder
@@ -165,19 +165,19 @@
     if (_inviteChatView == nil) {
         return;
     }
-    _inviteChatView.bottom = self.boxView.top - 10;
+    _inviteChatView.bottom = self.payChatBoxView.hidden ? self.boxView.top - 10 : self.payChatBoxView.top - 10;
 }
 
 - (void)hideViewsWithAnimation {
     if (_inviteChatView == nil) {
         return;
     }
-    _inviteChatView.bottom = self.boxView.top - 10;
+    _inviteChatView.bottom = self.payChatBoxView.hidden ? self.boxView.top - 10 : self.payChatBoxView.top - 10;
 }
 
 - (void)showInviteView {
     _inviteChatView = [[InviteVideoChatView alloc] init];
-    _inviteChatView.frame = CGRectMake(self.view.width - 150 - 10, self.boxView.top - 50 - 10, 150, 50);
+    _inviteChatView.frame = CGRectMake(self.view.width - 150 - 10, self.payChatBoxView.hidden ? self.boxView.top - 50 - 10 : self.payChatBoxView.top - 50 - 10, 150, 50);
     [_inviteChatView showPriceWithPrice:[[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_get_money floatValue]];
     _inviteChatView.delegate = self;
     [self.view addSubview:_inviteChatView];
@@ -408,26 +408,13 @@
 //    ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 //    [[UIApplication sharedApplication].keyWindow addSubview:sv];
 //    return;
-//    if (![self canInviteVideoChat:self.dataArray]) {
-//        [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
-//        return;
-//    }
-//
-//    [self sendMySelfNotification:@"已发送邀请，请等待回复"];
-//
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
-//        [self sendInviteVideoChatMessage];
-//    }
-//    else {
-        LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
-        [alertView setStartVideoClousure:^{
-            [self sendInviteVideoChatMessage];
-        }];
-        [[UIApplication sharedApplication].keyWindow addSubview:alertView];
-//    }
-    
+    if (![self canInviteVideoChat:self.dataArray]) {
+        [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
+        return;
+    }
+
+    [self sendMySelfNotification:@"已发送邀请，请等待回复"];
+    [self sendInviteVideoChatMessage];    
 }
 
 - (BOOL)canInviteVideoChat:(NSArray *)messages {
