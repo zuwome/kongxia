@@ -411,9 +411,10 @@
 
 #pragma mark - UIButtonMethod
 - (void)attentCountBtnClcik {
-    if (_touchAttentCount) {
-        _touchAttentCount();
-    }
+    [ZZHUD showInfoWithStatus:@"为保护用户隐私，关注列表不可见"];
+//    if (_touchAttentCount) {
+//        _touchAttentCount();
+//    }
 }
 
 - (void)fansCountBtnClick {
