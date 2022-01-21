@@ -20,6 +20,7 @@ default_platform(:ios)
 team_id = 'GTQV48M3S3'
 
 scheme = 'kongxia'
+scheme_release = 'kongxia_release'
 info_path = "./kongxia/Info.plist"
 build_number_key = "CFBundleVersion"
 veriosn_key = "CFBundleShortVersionString"
@@ -47,13 +48,13 @@ platform :ios do
   end
 
   lane :to_fir_debug do 
-    build(export_method: 'development', configuration:'Debug')
+    build(export_method: 'development', configuration:'Debug', schemes: scheme)
     fir(changelog: "测试")
   end
 
   lane :to_fir_debug_full do 
     increment_build_num
-    build(export_method: 'development', configuration:'Debug')
+    build(export_method: 'development', configuration:'Debug', schemes: scheme)
     notifyMessage(title: "Build", subtitle: "method: debug", message: "build success, ready to upload")
     fir(changelog: "测试")
     notifyMessage(title: "Upload", subtitle: "method: debug", message: "upload to fir success")
@@ -61,13 +62,13 @@ platform :ios do
   end
 
   lane :to_fir_release do 
-    build(export_method: 'ad-hoc', configuration:'Release')
+    build(export_method: 'ad-hoc', configuration:'Release', schemes: scheme_release)
     fir(changelog: "正式")
   end
 
   lane :to_fir_release_full do 
     increment_build_num
-    build(export_method: 'ad-hoc', configuration:'Release')
+    build(export_method: 'ad-hoc', configuration:'Release', schemes: scheme_release)
     notifyMessage(title: "Build", subtitle: "method: release", message: "build success, ready to upload")
     fir(changelog: "正式")
     notifyMessage(title: "Upload", subtitle: "method: release", message: "upload to fir success")
@@ -77,9 +78,10 @@ platform :ios do
   lane :build do |values|
     export_method = values[:export_method]
     configuration = values[:configuration]
+    schemes = values[:schemes]
     build_number = get_info_plist_value(path: info_path, key: build_number_key)
     gym(
-        scheme: scheme,
+        scheme: schemes,
         export_options: {
 	        method: export_method, # 定打包方式 ["app-store", "ad-hoc", "package", "enterprise", "development", "developer-id"]
 	        teamID: team_id
@@ -87,7 +89,7 @@ platform :ios do
         clean: true,
         xcargs: "-allowProvisioningUpdates",
         output_directory: output_directory,
-        output_name: "#{output_app_name}_#{build_number}_#{export_method}.ipa"
+        output_name: "#{output_app_name}_#{build_number}_#{export_method}.ipa",
     )
   end
 
@@ -136,7 +138,7 @@ platform :ios do
     build_number = get_info_plist_value(path: info_path, key: build_number_key)
     
     build_number = (build_number.to_i + 1).to_s
-    puts "ssss: #{build_number}"
+    puts "ssss: #{scheme_release}"
   end
 
 end

@@ -13065,7 +13065,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "/Users/qimingxiao/Desktop/Projects/zumome/zwmkongxia-ios/kongxia";
+				CODE_SIGN_ENTITLEMENTS = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
