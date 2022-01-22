@@ -119,7 +119,7 @@
     
     _codeView.sendBtn.enabled = NO;
     NSDictionary *aDict = @{@"phone":_phoneView.textField.text,
-                            @"country_code":_phoneView.codeLabel.text};
+                            @"country_code":[ZZUserHelper shareInstance].countryCode};
     [ZZSMS sendCodeByPhone:aDict next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             _codeView.sendBtn.enabled = YES;
