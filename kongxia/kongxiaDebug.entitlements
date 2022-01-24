@@ -10,8 +10,9 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>"appID": "GTQV48M3S3.com.zuwome.zuwomekongxia.kongxia"</string>
-		<string>"paths": ["/kongxia/*"]</string>
+		<string>applinks:GTQV48M3S3.com.zuwome.zuwomekongxia</string>
+		<string>applinks:szosxe.openinstall.io</string>
+		<string>applinks:r4naxi.openinstall.io</string>
 	</array>
 </dict>
 </plist>

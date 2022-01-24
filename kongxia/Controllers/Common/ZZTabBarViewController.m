@@ -804,6 +804,13 @@
                     }
                     break;
                 }
+                case 1000: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+                        [[UIApplication sharedApplication].keyWindow addSubview:sv];
+                    });   
+                    break;
+                }
                 case 4008:
                 case 4009: {
                     // 申请达人
@@ -1110,7 +1117,6 @@
                     [ZZLiveStreamHelper sharedInstance].isTryingConnecting = NO;
                     // 挂断
                     [weakSelf recyclingAnimateView:weakVideoConnectTopView completed:^{
-//                        [weakSelf refuseToAcceptWithUser:user];
                         [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/room/%@/user/notify", [ZZLiveStreamHelper sharedInstance].room_id] params:@{@"type" : Refuse_Type} next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
                             [ZZLiveStreamHelper sharedInstance].isBusy = NO;
                         }];

@@ -305,6 +305,10 @@
         controller.hidesBottomBarWhenPushed = YES;
         [weakNavCtl pushViewController:controller animated:YES];
     }
+    else if ([typeStr integerValue] == 1000) {
+        ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [[UIApplication sharedApplication].keyWindow addSubview:sv];
+   }
     else if ([typeStr integerValue] == 4003) {
         // 跳转到活动
         UITabBarController *tabs = (UITabBarController*)self.window.rootViewController;

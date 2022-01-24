@@ -405,9 +405,6 @@
 
 #pragma mark - InviteVideoChatViewDelegate
 - (void)chatWithView:(InviteVideoChatView *)view {
-//    ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    [[UIApplication sharedApplication].keyWindow addSubview:sv];
-//    return;
     if (![self canInviteVideoChat:self.dataArray]) {
         [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
         return;
