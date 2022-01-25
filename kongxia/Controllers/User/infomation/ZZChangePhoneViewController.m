@@ -117,9 +117,14 @@
         return;
     }
     
+    NSString *countryCoud = @"+86";
+    if ([ZZUserHelper shareInstance].countryCode != NULL && [ZZUserHelper shareInstance].countryCode.length != 0) {
+        countryCoud = [ZZUserHelper shareInstance].countryCode;
+    }
+
     _codeView.sendBtn.enabled = NO;
     NSDictionary *aDict = @{@"phone":_phoneView.textField.text,
-                            @"country_code":[ZZUserHelper shareInstance].countryCode};
+                            @"country_code": countryCoud};
     [ZZSMS sendCodeByPhone:aDict next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             _codeView.sendBtn.enabled = YES;
