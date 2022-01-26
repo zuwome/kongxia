@@ -124,6 +124,7 @@ class ZZSkillThemeFooterView: UIView {
         lazy var titleLabel: UILabel = {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            label.textColor = .rgbColor(153, 153, 153)
             label.numberOfLines = 2
             return label
         }()

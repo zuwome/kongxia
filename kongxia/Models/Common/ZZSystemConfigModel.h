@@ -316,6 +316,9 @@
 // 消息盒子里面回复打招呼的次数
 @property (nonatomic, strong) SayhiConfigModel *sayhi_config;
 
+// 视频邀请开关
+@property (nonatomic, assign) BOOL invite_switch;
+
 // 通过技能标识，获取技能名称
 - (NSString *)getNameOfSkillByClassify:(NSInteger)classify;
 

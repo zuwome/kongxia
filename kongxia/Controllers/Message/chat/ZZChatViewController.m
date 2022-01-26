@@ -418,6 +418,10 @@
 }
 
 - (BOOL)canInviteVideoChat:(NSArray *)messages {
+    if (![ZZUserHelper shareInstance].configModel.invite_switch) {
+        return NO;
+    }
+    
     __block BOOL canInvite = NO;
     [messages enumerateObjectsUsingBlock:^(__kindof ZZChatBaseModel *baseModel, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([baseModel.message.content isKindOfClass:[RCTextMessage class]]) {

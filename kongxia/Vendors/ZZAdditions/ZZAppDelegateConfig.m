@@ -39,9 +39,6 @@
 
 + (void)config
 {
-    [WXApi startLogByLevel:WXLogLevelDetail logBlock:^(NSString * _Nonnull log) {
-        NSLog(@"#####:%@", log);
-    }];
     [WXApi registerApp:WEIXIN_ID universalLink:@"https://active.zuwome.com/app/"];
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
