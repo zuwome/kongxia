@@ -3370,8 +3370,6 @@
 		BD1673B72283B54B00F0CD8B /* ZZAutoCreateDesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZAutoCreateDesModel.m; sourceTree = "<group>"; };
 		BD1673B92283C15600F0CD8B /* ZZAutoCreateInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZAutoCreateInputCell.swift; sourceTree = "<group>"; };
 		BD1673BB2283CB5500F0CD8B /* ZZAutoCreateSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZAutoCreateSelectCell.swift; sourceTree = "<group>"; };
-		BD16E24E26FCDA5800C57EA2 /* kongxiaApp Store.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "kongxiaApp Store.entitlements"; sourceTree = "<group>"; };
-		BD16E24F26FCDA8E00C57EA2 /* kongxiaDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kongxiaDebug.entitlements; sourceTree = "<group>"; };
 		BD16E25226FE4DCD00C57EA2 /* ZZBaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBaseTableView.h; sourceTree = "<group>"; };
 		BD16E25326FE4DCD00C57EA2 /* ZZBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBaseTableView.m; sourceTree = "<group>"; };
 		BD17814723CDA0F4005567BA /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
@@ -3576,7 +3574,6 @@
 		BD37E1482234DAEB0043234E /* ZZWxCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZWxCouponModel.swift; sourceTree = "<group>"; };
 		BD37E14F223521480043234E /* ZZCustomServiceWechatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZCustomServiceWechatCell.h; sourceTree = "<group>"; };
 		BD37E150223521480043234E /* ZZCustomServiceWechatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZCustomServiceWechatCell.m; sourceTree = "<group>"; };
-		BD3AA9462407B87B008F1A02 /* kongxia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kongxia.entitlements; sourceTree = "<group>"; };
 		BD3B936823CC550A0018A26B /* ZZKTVAudioPlayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVAudioPlayManager.h; sourceTree = "<group>"; };
 		BD3B936923CC550A0018A26B /* ZZKTVAudioPlayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZKTVAudioPlayManager.m; sourceTree = "<group>"; };
 		BD3B937023CCC0D20018A26B /* ZZKTVLeadSongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVLeadSongModel.h; sourceTree = "<group>"; };
@@ -3652,6 +3649,7 @@
 		BD522800226023C400340A6A /* ZZSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZSlider.h; sourceTree = "<group>"; };
 		BD52A8C5253C835F0099759E /* ATAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATAuthSDK.framework; sourceTree = "<group>"; };
 		BD52A8C7253C83AD0099759E /* ATAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATAuthSDK.bundle; sourceTree = "<group>"; };
+		BD56589727A047150068CACF /* kongxia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kongxia.entitlements; sourceTree = "<group>"; };
 		BD58097522126406007CC77A /* ZZUUIDManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZUUIDManager.h; sourceTree = "<group>"; };
 		BD58097622126406007CC77A /* ZZUUIDManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZUUIDManager.m; sourceTree = "<group>"; };
 		BD580978221266DB007CC77A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -4791,9 +4789,7 @@
 		332759FA1C478137002ABF2B /* kongxia */ = {
 			isa = PBXGroup;
 			children = (
-				BD3AA9462407B87B008F1A02 /* kongxia.entitlements */,
-				BD16E24E26FCDA5800C57EA2 /* kongxiaApp Store.entitlements */,
-				BD16E24F26FCDA8E00C57EA2 /* kongxiaDebug.entitlements */,
+				BD56589727A047150068CACF /* kongxia.entitlements */,
 				33275A181C478137002ABF2B /* Classes */,
 				33275A171C478137002ABF2B /* Controllers */,
 				911431B91DCC603B00EB85CE /* Images */,
@@ -12518,7 +12514,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "kongxia/kongxiaApp Store.entitlements";
+				CODE_SIGN_ENTITLEMENTS = kongxia/kongxia.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -12792,7 +12788,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia;
+				CODE_SIGN_ENTITLEMENTS = kongxia/kongxia.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -13065,7 +13061,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia;
+				CODE_SIGN_ENTITLEMENTS = kongxia/kongxia.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -13339,7 +13335,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = kongxia/kongxiaDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = kongxia/kongxia.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

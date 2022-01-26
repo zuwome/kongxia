@@ -60,7 +60,7 @@
 #import "ZZCommossionManager.h"
 #import <XHLaunchAd.h>
 
-@interface AppDelegate () <CLLocationManagerDelegate,ZZNewGuidViewDelegate, XHLaunchAdDelegate, MiPushSDKDelegate, UNUserNotificationCenterDelegate, OpenInstallDelegate>
+@interface AppDelegate () <CLLocationManagerDelegate,ZZNewGuidViewDelegate, XHLaunchAdDelegate, MiPushSDKDelegate, UNUserNotificationCenterDelegate, OpenInstallDelegate, WXApiDelegate>
 {
     CLLocationManager *_LocationManager;
 }
@@ -187,7 +187,15 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    if ([WXApi handleOpenURL:url delegate:self]) {
+        return YES;
+    }
     
     if ([OpenInstallSDK handLinkURL:url]) {
         return YES;
@@ -989,8 +997,14 @@
     }
 }
 
+
+
 // Universal Links 通用链接
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+    
+    if ([WXApi handleOpenUniversalLink:userActivity delegate:self]) {
+        return YES;
+    }
     
     //判断是否通过OpenInstall Universal Links 唤起App
     if ([OpenInstallSDK continueUserActivity:userActivity]) {
@@ -998,6 +1012,14 @@
     }
     //其他代码
     return YES;
+}
+
+- (void)onReq:(BaseReq *)req {
+    NSLog(@"eqwe");
+}
+
+- (void)onResp:(BaseResp *)resp {
+    NSLog(@"12312");
 }
 
 #pragma mark - OpenInstall

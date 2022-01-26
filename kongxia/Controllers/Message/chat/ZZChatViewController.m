@@ -22,6 +22,7 @@
 #import "ZZOrderTalentShowViewController.h"
 #import "ZZNewOrderRefundOptionsViewController.h" //新的退款流程的优化界面
 #import <SobotKit/SobotKit.h>
+#import "ZZMessageBoxModel.h"
 
 @interface ZZChatViewController () <InviteVideoChatViewDelegate>{
     BOOL                        _isBan;

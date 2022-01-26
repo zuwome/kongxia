@@ -26,7 +26,7 @@
 
 #import "WXApi.h"
 
-@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource, ZZSkillThemeFooterViewDelegate>
+@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource, ZZSkillThemeFooterViewDelegate, WXApiDelegate>
 
 @property (nonatomic, strong) ZZTableView *tableview;
 
@@ -203,15 +203,20 @@
 
 #pragma mark - ZZSkillThemeFooterViewDelegate
 - (void)callCustomerServiceWithCell:(ZZSkillThemeFooterView *)cell wechat:(NSString *)wechat {
-    [self requestAPriceIncrease];
-//    WXOpenCustomerServiceReq *req = [[WXOpenCustomerServiceReq alloc] init];
-//        req.corpid = @"ww1066becb2c99e97b";    //企业ID
-//        req.url = @"https://work.weixin.qq.com/kfid/kfc43a09d510afeb4cf";            //客服URL
-//
+    WXOpenCustomerServiceReq *req = [[WXOpenCustomerServiceReq alloc] init];
+        req.corpid = @"ww1066becb2c99e97b";    //企业ID
+        req.url = @"https://work.weixin.qq.com/kfid/kfc934ce09454760ab7";            //客服URL
 //    [WXApi sendReq:req completion:^(BOOL success) {
 //        NSLog(@"success");
 //    }];
 
+    [WXApi sendAuthReq:req viewController:self delegate:self completion:^(BOOL success) {
+        NSLog(@"success");
+    }];
+}
+
+- (void)onResp:(BaseResp *)resp {
+        NSLog(@"asdas");
 }
 
 #pragma mark -- tableviewDelegate
