@@ -419,21 +419,12 @@
 
 - (BOOL)canInviteVideoChat:(NSArray *)messages {
     __block BOOL canInvite = NO;
-    __block BOOL fromMe = NO;
-    __block BOOL fromOther = NO;
     [messages enumerateObjectsUsingBlock:^(__kindof ZZChatBaseModel *baseModel, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([baseModel.message.content isKindOfClass:[RCTextMessage class]]) {
-            if (baseModel.message.messageDirection == MessageDirection_SEND) {
-                fromMe = YES;
+            if (baseModel.message.messageDirection == MessageDirection_RECEIVE) {
+                canInvite = YES;
+                *stop = YES;
             }
-            else if (baseModel.message.messageDirection == MessageDirection_RECEIVE) {
-                fromOther = YES;
-            }
-        }
-        
-        if (fromMe && fromOther) {
-            *stop = YES;
-            canInvite = YES;
         }
     }];
     return canInvite;
