@@ -10,8 +10,9 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:r4naxi.openinstall.io</string>
+		<string>applinks:active.zuwome.com</string>
 		<string>applinks:szosxe.openinstall.io</string>
+		<string>applinks:r4naxi.openinstall.io</string>
 	</array>
 </dict>
 </plist>

@@ -878,7 +878,7 @@
         return cell;
     }
     else if ([identifier isEqualToString:ChatGiftCell]) {
-        // 红包
+        // Gif
         ZZChatGiftCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
             cell = [[ZZChatGiftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
@@ -900,13 +900,22 @@
         return cell;
     }
     else if ([identifier isEqualToString:ChatInviteVideoChatModelMessageCell]) {
-        ZZChatInviteVideoChatCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell) {
-            cell = [[ZZChatInviteVideoChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        if ([model.message.senderUserId isEqualToString: [ZZUserHelper shareInstance].loginer.uid]) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatInviteVideoChatModelMessageEmptyCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ChatInviteVideoChatModelMessageEmptyCell"];
+            }
+            return cell;
         }
-        cell.delegate = self;
-        [cell setUpWithUserIcon:self.portraitUrl];
-        return cell;
+        else {
+            ZZChatInviteVideoChatCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            if (!cell) {
+                cell = [[ZZChatInviteVideoChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            }
+            cell.delegate = self;
+            [cell setUpWithUserIcon:self.portraitUrl];
+            return cell;
+        }
     }
     else {
         ZZChatBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -942,6 +951,10 @@
     else {
         return [ZZChatUtil getCellHeightWithModel:model];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - ZZGiftsViewDelegate

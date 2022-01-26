@@ -22,6 +22,7 @@
 #import "ZZOrderTalentShowViewController.h"
 #import "ZZNewOrderRefundOptionsViewController.h" //新的退款流程的优化界面
 #import <SobotKit/SobotKit.h>
+#import "ZZMessageBoxModel.h"
 
 @interface ZZChatViewController () <InviteVideoChatViewDelegate>{
     BOOL                        _isBan;
@@ -176,10 +177,12 @@
 }
 
 - (void)showInviteView {
-    _inviteChatView = [[InviteVideoChatView alloc] init];
-    _inviteChatView.frame = CGRectMake(self.view.width - 150 - 10, self.payChatBoxView.hidden ? self.boxView.top - 50 - 10 : self.payChatBoxView.top - 50 - 10, 150, 50);
-    [_inviteChatView showPriceWithPrice:[[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_get_money floatValue]];
-    _inviteChatView.delegate = self;
+    if (_inviteChatView == nil) {
+        _inviteChatView = [[InviteVideoChatView alloc] init];
+        _inviteChatView.frame = CGRectMake(self.view.width - 150 - 10, self.payChatBoxView.hidden ? self.boxView.top - 50 - 10 : self.payChatBoxView.top - 50 - 10, 150, 50);
+        [_inviteChatView showPriceWithPrice:[[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_get_money floatValue]];
+        _inviteChatView.delegate = self;
+    }
     [self.view addSubview:_inviteChatView];
 }
 
@@ -405,9 +408,6 @@
 
 #pragma mark - InviteVideoChatViewDelegate
 - (void)chatWithView:(InviteVideoChatView *)view {
-//    ChangePriceSuccessView *sv = [[ChangePriceSuccessView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    [[UIApplication sharedApplication].keyWindow addSubview:sv];
-//    return;
     if (![self canInviteVideoChat:self.dataArray]) {
         [ZZHUD showInfoWithStatus:@"双方聊天后才能邀请视频哦"];
         return;

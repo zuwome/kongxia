@@ -524,7 +524,12 @@
         }
         case ChatCellTypeInviteVideo: {
             height = 0;
-            currentHeight = 42;
+            if ([model.message.senderUserId isEqualToString: [ZZUserHelper shareInstance].loginer.uid]) {
+                currentHeight = 0;
+            }
+            else {
+                currentHeight = 42;
+            }
             break;
         }
         default:
