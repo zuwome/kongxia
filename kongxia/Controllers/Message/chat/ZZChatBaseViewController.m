@@ -860,7 +860,7 @@
             [weakSelf gotoWXView];
         };
         cell.touchVideo = ^{
-            [weakSelf preLiveStream];
+            [weakSelf showLiveStreamAlertView];
         };
         cell.touchWallet = ^{
             [weakSelf gotoWalletView];
@@ -978,11 +978,8 @@
 #pragma mark - ZZChatShotViewControllerDelegate
 - (void)controller:(ZZChatShotViewController *)controller didTakeVideo:(NSURL *)videoURL thumbnail:(UIImage *)thumbnail {
     AVURLAsset *avUrl = [AVURLAsset assetWithURL:videoURL];
-
     CMTime time = [avUrl duration];
-
     int seconds = ceil(time.value/time.timescale);
-
     [self sendVideo:videoURL thumbnail:thumbnail duration:seconds];
 }
 
@@ -1010,18 +1007,7 @@
 
 #pragma mark - ZZChatInviteVideoChatCellDelegate
 - (void)startVideoChatWithCell:(ZZChatInviteVideoChatCell *)cell {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
-        [self preLiveStream];
-    }
-    else {
-        LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
-        [alertView setStartVideoClousure:^{
-            [self preLiveStream];
-        }];
-        [[UIApplication sharedApplication].keyWindow addSubview:alertView];
-    }
+    [self showLiveStreamAlertView];
 }
 
 #pragma mark - ZZChatKTVCellDelegate
@@ -1381,7 +1367,7 @@
         }
             break;
         case ChatBoxTypeVideo: {
-            [self preLiveStream];
+            [self showLiveStreamAlertView];
             _isMessageBoxTo = NO;
             break;
         }
@@ -1565,6 +1551,21 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
     };
     [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+}
+
+- (void)showLiveStreamAlertView {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    if ([userDefault boolForKey:@"DonotShowInviteVideoChatAlertStat"]) {
+        [self preLiveStream];
+    }
+    else {
+        LiveStreamAlertView *alertView = [[LiveStreamAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [alertView setupDataWithCards:[ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue mcoinperCard:[ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue];
+        [alertView setStartVideoClousure:^{
+            [self preLiveStream];
+        }];
+        [[UIApplication sharedApplication].keyWindow addSubview:alertView];
+    }
 }
 
 - (void)preLiveStream {
