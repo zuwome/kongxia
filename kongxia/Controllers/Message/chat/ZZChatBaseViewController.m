@@ -1598,18 +1598,14 @@
 }
 
 - (void)showRechargeForLiveSteamView {
-    [self fetchRechargeMebiForLiveStreamWithComplete:^(NSDictionary *infoData) {
-        if (infoData == nil) {
-            return;
-        }
-        
-        LiveStreamRechargeAlertView *view = [[LiveStreamRechargeAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        [view setupDataWithContent:infoData[@"content"] subContent:infoData[@"tips"]];
-        [view setRechargeClousure:^{
-            [self showRechargeView];
-        }];
-        [[UIApplication sharedApplication].keyWindow addSubview:view];
+    NSString *message = [NSString stringWithFormat:@"视频通话每分钟需赠送%@张咨询卡，您的么币不足，先充值后再打给她吧", [ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card];
+    NSString *subMessage = [NSString stringWithFormat:@"1张咨询卡=%@么币", [ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin];
+    LiveStreamRechargeAlertView *view = [[LiveStreamRechargeAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [view setupDataWithContent:message subContent:subMessage];
+    [view setRechargeClousure:^{
+        [self showRechargeView];
     }];
+    [[UIApplication sharedApplication].keyWindow addSubview:view];
 }
 
 - (void)fetchTotalMebiAndMoneyWithComplete:(void (^)(NSDictionary *infoData))completeHandler {
@@ -1618,22 +1614,6 @@
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else {
-            [ZZHUD dismiss];
-        }
-        if (completeHandler) {
-            completeHandler(data);
-        }
-    }];
-}
-
-- (void)fetchRechargeMebiForLiveStreamWithComplete:(void (^)(NSDictionary *infoData))completeHandler {
-    [ZZHUD show];
-    [ZZRequest method:@"GET" path:@"/room/rule" params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-        _wxSensitive = nil;
-        if (error) {
-            [ZZHUD showErrorWithStatus:error.message];
-        }
-        else {
             [ZZHUD dismiss];
         }
         if (completeHandler) {
