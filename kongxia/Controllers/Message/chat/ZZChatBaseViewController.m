@@ -703,29 +703,29 @@
     if (!showKeyboard) {
         inputViewFrameY = inputViewFrameY - SafeAreaBottomHeight;
     }
-    self.boxView.top = inputViewFrameY;
-    if (self.payChatModel.isChange) {
-        self.payChatBoxView.top =  self.boxView.top - 30;
-        [self setTableViewInsetsWithBottomValue:self.view.frame.size.height
-         - inputViewFrameY+30];
-    }
-    else{
-        [self setTableViewInsetsWithBottomValue:self.view.frame.size.height
-         - inputViewFrameY];
-    }
+    
+    [self changeBoxViewHeight:inputViewFrameY shouldChangePayChatBoxView:YES];
+    [self setTableViewInsetsWithBottomValue:(self.payChatModel.isChange ? self.view.frame.size.height - inputViewFrameY+30 : self.view.frame.size.height - inputViewFrameY)];
     if (showKeyboard) {
         [self scrollToBottom:YES finish:nil];//偶尔会执行两次
     };
 }
 
 - (void)hideViewsWithAnimation {
-    self.boxView.top = SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 20;
+    [self changeBoxViewHeight:SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 20 shouldChangePayChatBoxView:YES];
+    [self setTableViewInsetsWithBottomValue:(self.payChatModel.isChange ? self.boxView.topView.height + 30 : self.boxView.topView.height)];
+}
+
+- (void)changeBoxViewHeight:(CGFloat)toTop shouldChangePayChatBoxView:(BOOL)shouldChange {
+    self.boxView.top = toTop;
     if (self.payChatModel.isChange) {
         self.payChatBoxView.top =  self.boxView.top - 30;
-         [self setTableViewInsetsWithBottomValue:self.boxView.topView.height+30];
-    }else {
-          [self setTableViewInsetsWithBottomValue:self.boxView.topView.height];
     }
+    
+    [self boxViewTopDidChange];
+}
+
+- (void)boxViewTopDidChange {
 }
 
 - (void)showGiftView {
@@ -752,7 +752,7 @@
     [[RCRealTimeLocationManager sharedManager] getRealTimeLocationProxy:ConversationType_PRIVATE targetId:self.uid success:^(id<RCRealTimeLocationProxy> realTimeLocation) {
         weakSelf.realTimeLocation = realTimeLocation;
     } error:^(RCRealTimeLocationErrorCode status) {
-        NSLog(@"get location share failure with code %d", (int)status);
+//        NSLog(@"get location share failure with code %d", (int)status);
     }];
 }
 
@@ -1177,7 +1177,7 @@
         height -= 30;
         self.payChatBoxView.top = _boxView.top - 30.0;
     }
-    
+    [self boxViewTopDidChange];
     [self setTableViewInsetsWithBottomValue:SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - height - SafeAreaBottomHeight];
     
     if (toBottom) {

@@ -132,8 +132,6 @@
 
 - (void)updateStateIsFirstIntoRoom:(BOOL)isFirst;
 
-- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY;
-
-- (void)hideViewsWithAnimation;
+- (void)boxViewTopDidChange;
 
 @end

@@ -160,16 +160,9 @@
     }
 }
 
-- (void)showViewsWithAnimationWithShowKeyboard:(BOOL)showKeyboard keyboardY:(CGFloat)keyboardY {
-    [super showViewsWithAnimationWithShowKeyboard:showKeyboard keyboardY:keyboardY];
+- (void)boxViewTopDidChange {
+    [super boxViewTopDidChange];
     
-    if (_inviteChatView == nil) {
-        return;
-    }
-    _inviteChatView.bottom = self.payChatBoxView.hidden ? self.boxView.top - 10 : self.payChatBoxView.top - 10;
-}
-
-- (void)hideViewsWithAnimation {
     if (_inviteChatView == nil) {
         return;
     }
