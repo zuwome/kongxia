@@ -89,9 +89,15 @@
     }];
 }
 
-- (void)requestAPriceIncrease {
+- (void)requestAPriceIncrease:(void(^)(void))completeHandler {
     [[ZZSkillThemesHelper shareInstance] requestAPriceIncrease:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-        NSLog(@"asd");
+        if (error != nil) {
+            [ZZHUD showErrorWithStatus: error.message];
+            return;
+        }
+        if (completeHandler) {
+            completeHandler();
+        }
     }];
 }
 
@@ -201,12 +207,18 @@
     cell.promptLable.text = cell.openSwitch.on ? OpenString : CloseString;
 }
 
-#pragma mark - ZZSkillThemeFooterViewDelegate
-- (void)callCustomerServiceWithCell:(ZZSkillThemeFooterView *)cell wechat:(NSString *)wechat {
+- (void)goToWechat {
     WXOpenCustomerServiceReq *req = [[WXOpenCustomerServiceReq alloc] init];
     req.corpid = @"ww1066becb2c99e97b";    //企业ID
     req.url = @"https://work.weixin.qq.com/kfid/kfc934ce09454760ab7";            //客服URL
     [WXApi sendReq:req completion:^(BOOL success) {}];
+}
+
+#pragma mark - ZZSkillThemeFooterViewDelegate
+- (void)callCustomerServiceWithCell:(ZZSkillThemeFooterView *)cell wechat:(NSString *)wechat {
+    [self requestAPriceIncrease:^{
+        [self goToWechat];
+    }];
 }
 
 #pragma mark -- tableviewDelegate
