@@ -718,11 +718,16 @@
 
 - (void)changeBoxViewHeight:(CGFloat)toTop shouldChangePayChatBoxView:(BOOL)shouldChange {
     self.boxView.top = toTop;
-    if (self.payChatModel.isChange) {
-        self.payChatBoxView.top =  self.boxView.top - 30;
+    if (shouldChange) {
+        [self changePayChatBoxViewTop:self.boxView.top - 30];
     }
-    
     [self boxViewTopDidChange];
+}
+
+- (void)changePayChatBoxViewTop:(CGFloat)top {
+    if (self.payChatModel.isChange) {
+        self.payChatBoxView.top = self.boxView.top - 30;
+    }
 }
 
 - (void)boxViewTopDidChange {
@@ -1160,23 +1165,16 @@
 
 #pragma mark - ZZChatBoxViewDelegate
 - (void)startRecordVoiceShouldChangeHeight:(ZZChatBoxView *)boxView {
-    if (self.payChatBoxView) {
-        self.payChatBoxView.top =  self.boxView.top-30;
-    }
+    [self changePayChatBoxViewTop:self.boxView.top - 30];
 }
 
 - (void)endRecordVoiceShouldChangeHeight:(ZZChatBoxView *)boxView {
-    if (self.payChatBoxView) {
-        self.payChatBoxView.top =  self.boxView.top-30;
-    }
+    [self changePayChatBoxViewTop:self.boxView.top - 30];
 }
 
 - (void)chatView:(ZZChatBoxView *)boxView heightChanged:(CGFloat)height toBottom:(BOOL)toBottom {
     self.tableView.top = _orderStatusHeight;
-    if (self.payChatModel.isChange) {
-        height -= 30;
-        self.payChatBoxView.top = _boxView.top - 30.0;
-    }
+    [self changePayChatBoxViewTop:self.boxView.top - 30];
     [self boxViewTopDidChange];
     [self setTableViewInsetsWithBottomValue:SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - height - SafeAreaBottomHeight];
     
@@ -1989,9 +1987,7 @@
 
 - (void)endEditing {
     [self.boxView endEditing];
-    if (self.payChatModel.isChange) {
-        self.payChatBoxView.top =  self.boxView.top-30;
-    }
+    [self changePayChatBoxViewTop:self.boxView.top - 30];
 }
 
 - (void)didReceiveMessage:(RCMessage *)message {
