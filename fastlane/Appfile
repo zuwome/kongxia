@@ -1,7 +1,8 @@
-# app_identifier() # The bundle identifier of your app
-# apple_id("qming.xiao@gmail.com") # Your Apple email address
+
 app_identifier("com.zuwome.zuwomekongxia")
 apple_id("qming.xiao@gmail.com")
-team_id('GTQV48M3S3')
+team_id("GTQV48M3S3")
+itc_team_id("118061497")
+
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile

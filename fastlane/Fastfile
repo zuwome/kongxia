@@ -33,6 +33,19 @@ firim_api_token = "ac88d6e0519356744c6fd4539c9074e2"
 
 platform :ios do
 
+  lane :to_itunes do 
+    increment_build_num
+
+    build(export_method: 'app-store', configuration:'Release', schemes: scheme_release)
+
+    deliver(submit_for_review: false) # 提交审核
+    
+    comit_git
+
+    notifyMessage(title: "iTunes connect", message: "upload to iTunes connect")
+    
+  end 
+
   lane :to_fir do 
 
     increment_build_num
