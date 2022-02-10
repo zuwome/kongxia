@@ -158,14 +158,14 @@
 
 - (void)reachabilityChanged:(NSNotification *)sender {
     NetworkStatus internetStatus = [self.reach currentReachabilityStatus];
-    if (internetStatus) {
-        // 可以访问网络
-        NSLog(@"可以访问网络");
-    }
-    else {
-        NSLog(@"没有可以访问的网络");
-        // 没有可以访问的网络
-    }
+//    if (internetStatus) {
+//        // 可以访问网络
+//        NSLog(@"可以访问网络");
+//    }
+//    else {
+//        NSLog(@"没有可以访问的网络");
+//        // 没有可以访问的网络
+//    }
 }
 
 //启动内购,检测是否有漏单情况
@@ -193,9 +193,9 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-    if ([WXApi handleOpenURL:url delegate:self]) {
-        return YES;
-    }
+//    if ([WXApi handleOpenURL:url delegate:self]) {
+//        return YES;
+//    }
     
     if ([OpenInstallSDK handLinkURL:url]) {
         return YES;
