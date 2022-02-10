@@ -1111,6 +1111,9 @@
 		BD580979221266DB007CC77A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BD580978221266DB007CC77A /* libsqlite3.0.tbd */; };
 		BD594D3C21E0628900259D20 /* ZZChatIDPhotoPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD594D3B21E0628900259D20 /* ZZChatIDPhotoPayCell.m */; };
 		BD5B189D2249DA45002239F4 /* ZZChatTaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5B189C2249DA45002239F4 /* ZZChatTaskView.m */; };
+		BD5DB5BA27B53ABC00BBBDEA /* MGFaceIDBaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5DB5B627B53ABC00BBBDEA /* MGFaceIDBaseKit.framework */; };
+		BD5DB5BB27B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5DB5B727B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework */; };
+		BD5DB5BC27B53ABC00BBBDEA /* MGFaceIDLiveCustomDetect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD5DB5B927B53ABC00BBBDEA /* MGFaceIDLiveCustomDetect.bundle */; };
 		BD5DF13422B9C34C0075E6A8 /* ZZEarnedCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5DF13322B9C34C0075E6A8 /* ZZEarnedCoinView.m */; };
 		BD6691A72276E0260005D7C8 /* ZZSignupFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6691A62276E0260005D7C8 /* ZZSignupFooterView.m */; };
 		BD6691AB2276F10F0005D7C8 /* ZZPostNormalTaskAnonymousGuid.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6691AA2276F10E0005D7C8 /* ZZPostNormalTaskAnonymousGuid.m */; };
@@ -1475,9 +1478,6 @@
 		BDD7A128233DF33C002863D0 /* MSDPreventImagePickerCrashOn3DTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD7A126233DF33B002863D0 /* MSDPreventImagePickerCrashOn3DTouch.m */; };
 		BDD80A2822291ECE004C78F2 /* ZZOrderDetailActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD80A2722291ECE004C78F2 /* ZZOrderDetailActionsCell.swift */; };
 		BDD88087278C650900C34C09 /* ZZSkillThemeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */; };
-		BDD880AB2791655F00C34C09 /* MGFaceIDBaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD880A72791655E00C34C09 /* MGFaceIDBaseKit.framework */; };
-		BDD880AC2791655F00C34C09 /* MGFaceIDLiveDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD880A82791655E00C34C09 /* MGFaceIDLiveDetect.framework */; };
-		BDD880AD2791655F00C34C09 /* MGFaceIDLiveCustomDetect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BDD880AA2791655E00C34C09 /* MGFaceIDLiveCustomDetect.bundle */; };
 		BDD880AF279166BB00C34C09 /* inviteVideoChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD880AE279166BB00C34C09 /* inviteVideoChatView.swift */; };
 		BDD880B22791835200C34C09 /* ZZVideoInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD880B12791835100C34C09 /* ZZVideoInviteModel.m */; };
 		BDD880B427919DF900C34C09 /* ZZChatInviteVideoChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD880B327919DF900C34C09 /* ZZChatInviteVideoChatCell.swift */; };
@@ -3657,6 +3657,9 @@
 		BD594D3B21E0628900259D20 /* ZZChatIDPhotoPayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZChatIDPhotoPayCell.m; sourceTree = "<group>"; };
 		BD5B189B2249DA45002239F4 /* ZZChatTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZChatTaskView.h; sourceTree = "<group>"; };
 		BD5B189C2249DA45002239F4 /* ZZChatTaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZChatTaskView.m; sourceTree = "<group>"; };
+		BD5DB5B627B53ABC00BBBDEA /* MGFaceIDBaseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDBaseKit.framework; sourceTree = "<group>"; };
+		BD5DB5B727B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDLiveDetect.framework; sourceTree = "<group>"; };
+		BD5DB5B927B53ABC00BBBDEA /* MGFaceIDLiveCustomDetect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MGFaceIDLiveCustomDetect.bundle; sourceTree = "<group>"; };
 		BD5DF13222B9C34C0075E6A8 /* ZZEarnedCoinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZEarnedCoinView.h; sourceTree = "<group>"; };
 		BD5DF13322B9C34C0075E6A8 /* ZZEarnedCoinView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZEarnedCoinView.m; sourceTree = "<group>"; };
 		BD6691A52276E0260005D7C8 /* ZZSignupFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZSignupFooterView.h; sourceTree = "<group>"; };
@@ -4329,9 +4332,6 @@
 		BDD7A127233DF33C002863D0 /* MSDPreventImagePickerCrashOn3DTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDPreventImagePickerCrashOn3DTouch.h; sourceTree = "<group>"; };
 		BDD80A2722291ECE004C78F2 /* ZZOrderDetailActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZOrderDetailActionsCell.swift; sourceTree = "<group>"; };
 		BDD88086278C650900C34C09 /* ZZSkillThemeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSkillThemeFooterCell.swift; sourceTree = "<group>"; };
-		BDD880A72791655E00C34C09 /* MGFaceIDBaseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDBaseKit.framework; sourceTree = "<group>"; };
-		BDD880A82791655E00C34C09 /* MGFaceIDLiveDetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MGFaceIDLiveDetect.framework; sourceTree = "<group>"; };
-		BDD880AA2791655E00C34C09 /* MGFaceIDLiveCustomDetect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MGFaceIDLiveCustomDetect.bundle; sourceTree = "<group>"; };
 		BDD880AE279166BB00C34C09 /* inviteVideoChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inviteVideoChatView.swift; sourceTree = "<group>"; };
 		BDD880B02791835100C34C09 /* ZZVideoInviteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZVideoInviteModel.h; sourceTree = "<group>"; };
 		BDD880B12791835100C34C09 /* ZZVideoInviteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZVideoInviteModel.m; sourceTree = "<group>"; };
@@ -4466,8 +4466,8 @@
 				BDEF623E22E1A3550095ACFB /* UserNotifications.framework in Frameworks */,
 				BDFDC45922D431D100B92634 /* libiconv.tbd in Frameworks */,
 				BDA500FA22FA785B00BCB48E /* libWeiboSDK.a in Frameworks */,
+				BD5DB5BA27B53ABC00BBBDEA /* MGFaceIDBaseKit.framework in Frameworks */,
 				9101AE1B1DB626050014F1CB /* WebKit.framework in Frameworks */,
-				BDD880AB2791655F00C34C09 /* MGFaceIDBaseKit.framework in Frameworks */,
 				91D376561D2F4A2C0002F63B /* AssetsLibrary.framework in Frameworks */,
 				BD17816A23CE0486005567BA /* libfaac.a in Frameworks */,
 				BDFDC45622D4315500B92634 /* AddressBookUI.framework in Frameworks */,
@@ -4492,8 +4492,8 @@
 				911160B91F6689FE00752532 /* VideoToolbox.framework in Frameworks */,
 				33EC7FCC1C5E6E75001D157F /* CoreMotion.framework in Frameworks */,
 				B76E8ABD1FBAEFD60081EB48 /* CoreMedia.framework in Frameworks */,
+				BD5DB5BB27B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework in Frameworks */,
 				913841D31D36451500370348 /* AVFoundation.framework in Frameworks */,
-				BDD880AC2791655F00C34C09 /* MGFaceIDLiveDetect.framework in Frameworks */,
 				BDA500F822FA785B00BCB48E /* libSocialSina.a in Frameworks */,
 				BD52A8C6253C835F0099759E /* ATAuthSDK.framework in Frameworks */,
 				BD69E9E7243B1C9500AA2D8A /* AuthenticationServices.framework in Frameworks */,
@@ -8855,6 +8855,32 @@
 			path = kongxia/Views/meiyan;
 			sourceTree = SOURCE_ROOT;
 		};
+		BD5DB5B427B53ABC00BBBDEA /* FaceID */ = {
+			isa = PBXGroup;
+			children = (
+				BD5DB5B527B53ABC00BBBDEA /* framework */,
+				BD5DB5B827B53ABC00BBBDEA /* resource */,
+			);
+			path = FaceID;
+			sourceTree = "<group>";
+		};
+		BD5DB5B527B53ABC00BBBDEA /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				BD5DB5B627B53ABC00BBBDEA /* MGFaceIDBaseKit.framework */,
+				BD5DB5B727B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		BD5DB5B827B53ABC00BBBDEA /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				BD5DB5B927B53ABC00BBBDEA /* MGFaceIDLiveCustomDetect.bundle */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		BD6691A82276F0CB0005D7C8 /* TasksGuid */ = {
 			isa = PBXGroup;
 			children = (
@@ -9139,7 +9165,7 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				BDD880A52791655E00C34C09 /* FaceID */,
+				BD5DB5B427B53ABC00BBBDEA /* FaceID */,
 				BD7F2E8323CEE8F800141DC3 /* ACRCloudLibraies */,
 				BDA5000122FA785A00BCB48E /* AdView */,
 				BDA245EE2334BB990039704B /* AgoraRtcTools */,
@@ -10305,32 +10331,6 @@
 			path = KTV;
 			sourceTree = "<group>";
 		};
-		BDD880A52791655E00C34C09 /* FaceID */ = {
-			isa = PBXGroup;
-			children = (
-				BDD880A62791655E00C34C09 /* framework */,
-				BDD880A92791655E00C34C09 /* resource */,
-			);
-			path = FaceID;
-			sourceTree = "<group>";
-		};
-		BDD880A62791655E00C34C09 /* framework */ = {
-			isa = PBXGroup;
-			children = (
-				BDD880A72791655E00C34C09 /* MGFaceIDBaseKit.framework */,
-				BDD880A82791655E00C34C09 /* MGFaceIDLiveDetect.framework */,
-			);
-			path = framework;
-			sourceTree = "<group>";
-		};
-		BDD880A92791655E00C34C09 /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				BDD880AA2791655E00C34C09 /* MGFaceIDLiveCustomDetect.bundle */,
-			);
-			path = resource;
-			sourceTree = "<group>";
-		};
 		BDE200862297C46200589E12 /* Rank */ = {
 			isa = PBXGroup;
 			children = (
@@ -10680,7 +10680,7 @@
 				BD48E9CE231F6CB7005FCBC6 /* PostTask.gif in Resources */,
 				ACBC30BB20E24C1F00480832 /* Futu_Bd.ttf in Resources */,
 				B73DFCDF1F9F290C00D02104 /* btn_bar_next_b@2x.png in Resources */,
-				BDD880AD2791655F00C34C09 /* MGFaceIDLiveCustomDetect.bundle in Resources */,
+				BD5DB5BC27B53ABC00BBBDEA /* MGFaceIDLiveCustomDetect.bundle in Resources */,
 				AC889586202AB15300497530 /* zz_callVideo.caf in Resources */,
 				B73DFD061F9F290C00D02104 /* cut_bar_right@2x.png in Resources */,
 				B73DFCFF1F9F290C00D02104 /* cut_bar_left.png in Resources */,
