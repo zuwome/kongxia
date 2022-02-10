@@ -114,9 +114,15 @@ class ZZRealPhotoCell: ZZTableViewCell {
                 titleLabel.text = "Ta已认证真实头像， 证件照与头像确认为本人"
             }
             if user.id_photo?.status == 2 {
-                if let avatar = user.id_photo.pic, avatar.hasSuffix("/blur/70x70") {
-                    let pic = avatar.replacingOccurrences(of: "/blur/70x70", with: "", options: .caseInsensitive, range: Range(NSRange(location: 0, length: avatar.count), in: avatar))
-                    userIconImageView.sd_setImage(with: URL(string: pic), completed: nil)
+                if let avatar = user.id_photo.pic {
+                    var userAvatar: String
+                    if avatar.hasSuffix("/blur/70x70") {
+                        userAvatar = avatar.replacingOccurrences(of: "/blur/70x70", with: "", options: .caseInsensitive, range: Range(NSRange(location: 0, length: avatar.count), in: avatar))
+                    }
+                    else {
+                        userAvatar = avatar
+                    }
+                    userIconImageView.sd_setImage(with: URL(string: userAvatar), completed: nil)
                 }
             }
         }
