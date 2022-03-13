@@ -12652,7 +12652,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/OpenSDK",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.1;
+				MARKETING_VERSION = 4.7.2;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12925,7 +12925,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/OpenSDK",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.1;
+				MARKETING_VERSION = 4.7.2;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13199,7 +13199,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/OpenSDK",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.1;
+				MARKETING_VERSION = 4.7.2;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13469,7 +13469,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/OpenSDK",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.1;
+				MARKETING_VERSION = 4.7.2;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
