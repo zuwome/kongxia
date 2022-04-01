@@ -1015,16 +1015,16 @@
 }
 
 - (void)onReq:(BaseReq *)req {
-    NSLog(@"eqwe");
+
 }
 
 - (void)onResp:(BaseResp *)resp {
-    NSLog(@"12312");
 }
 
 #pragma mark - OpenInstall
 - (void)configureOpenInstall {
     [OpenInstallSDK initWithDelegate:self];
+    [OpenInstallSDK version];
     [self fetchInvitedInfo];
 }
 

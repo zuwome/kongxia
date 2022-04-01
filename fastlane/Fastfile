@@ -15,8 +15,6 @@
 
 default_platform(:ios)
  
-# app_identifier  "com.zuwome.zuwomekongxia"
-# apple_id  "qming.xiao@gmail.com"
 team_id = 'GTQV48M3S3'
 
 scheme = 'kongxia'

@@ -30,7 +30,7 @@ target 'kongxia' do
     pod 'PLPlayerKit'
     
 #   美颜
-    pod 'AgoraRtcEngine_iOS'
+    pod 'AgoraRtcEngine_iOS' , '~> 3.6.1.1'
     pod 'GPUImage', '~> 0.1.7'
     
 #   openInstall
