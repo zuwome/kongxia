@@ -439,14 +439,6 @@
     } messageLinkClick:^BOOL(NSString * _Nonnull link) {
         return YES;
     }];
-//    ZZChatServerViewController *chatService = [[ZZChatServerViewController alloc] init];
-//    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-//    chatService.targetId = kCustomerServiceId;
-//    chatService.title = @"客服";
-//    chatService.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController :chatService animated:YES];
-//    //以防融云一更新客服聊天中 用户自己的头像又没了
-//    [RCIMClient sharedRCIMClient].currentUserInfo.portraitUri = [ZZUserHelper shareInstance].loginer.avatar;
 }
 
 - (void)addWeChat {

@@ -375,6 +375,8 @@ commonInitImplementationSafe(ZZVideoConnectTopView) {
                 
             }];
         });
+        
+        BLOCK_SAFE_CALLS(weakSelf.TimeoutBlock);
     }
 }
 

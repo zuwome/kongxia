@@ -17,7 +17,7 @@
 @implementation ZZChatManagerNetwork
 +(void)sendVideoMessageWithDestinationUidString:(NSString *)uidString withType:(NSString *)type sendType:(NSString *)sendType chatContent:(NSString *)chatContent {
     
-    [ZZChatManagerNetwork  judgeWhetherOrNotToSayHelloWithDestinationUidString:uidString withType:type sendType:sendType chatContent:chatContent];
+    [ZZChatManagerNetwork judgeWhetherOrNotToSayHelloWithDestinationUidString:uidString withType:type sendType:sendType chatContent:chatContent];
 }
 
 

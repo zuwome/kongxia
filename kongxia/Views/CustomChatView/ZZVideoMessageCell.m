@@ -41,7 +41,7 @@
         //超时
         if ([text.videoType isEqualToString:@"1"]) {
             message.messageDirection  = MessageDirection_RECEIVE;//左侧
-            text.content = @"暂不方便接通你的视频咨询邀请";
+//            text.content = @"暂不方便接通你的视频咨询邀请";
             text.videoType = @"4";
             //取消
         }else if([text.videoType isEqualToString:@"2"])
@@ -51,10 +51,11 @@
              text.videoType = @"4";
              message.messageDirection  = MessageDirection_RECEIVE;//左侧
 //拒绝
-         }else if([text.videoType isEqualToString:@"3"]) {
+         }
+        else if([text.videoType isEqualToString:@"3"]) {
              //左侧
              message.messageDirection  = MessageDirection_RECEIVE;
-             text.content = @"暂不方便接通你的视频咨询邀请";
+//             text.content = @"暂不方便接通你的视频咨询邀请";
              text.videoType = @"4";
          }
        
@@ -63,10 +64,11 @@
         if([text.videoType isEqualToString:@"3"]) {
             //右侧
             message.messageDirection  = MessageDirection_RECEIVE;
-            text.content = @"视频咨询邀请已拒绝";
-            text.videoType = @"4";
+//            text.content = @"视频咨询邀请已拒绝";
+            text.videoType = @"3";
         }else if([text.videoType isEqualToString:@"4"]){
-            
+            message.messageDirection  = MessageDirection_RECEIVE;
+            text.videoType = @"4";
         }
          else if ([text.videoType isEqualToString:@"1"]) {
              //超时右侧
@@ -82,6 +84,7 @@
              text.videoType = @"4";
          }
         else{
+            message.messageDirection  = MessageDirection_RECEIVE;
               _titleLabel.text = text.content;
         }
     }

@@ -1694,6 +1694,12 @@
             [weakSelf addMessage:model];
         }];
         
+        [_connectingVC setTimeOut:^{
+            NSString *content = @"你好！我拨打了视频聊天给你无人接听，期待你的私信回复！";
+            RCTextMessage *message= [RCTextMessage messageWithContent:content];
+            [weakSelf sendMessageContent:message pushContent:content];
+        }];
+        
         [weakSelf.navigationController pushViewController:_connectingVC animated:NO];
         [_connectingVC show];
         [weakSelf conncetAuthorized];

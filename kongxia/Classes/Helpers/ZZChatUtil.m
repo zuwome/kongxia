@@ -506,6 +506,17 @@
         case ChatCellTypeCallVideo: {   //暂时用自适应解决显示问题，内容多了可能会卡顿，后期如有需要再排查（原因在于融云返回的数据文本与界面显示文本不一致，计算高度有误导致的）
             CGFloat maxWidth = SCREEN_WIDTH - 40 - 10 - 20 - 50;
             RCTextMessage *text = (RCTextMessage *)message.content;
+            if ([text isKindOfClass: [ZZVideoMessage class]]) {
+                ZZVideoMessage *video = (ZZVideoMessage *)message.content;
+                if (message.messageDirection == MessageDirection_RECEIVE) {
+                    if ([video.videoType isEqualToString:@"3"]) {
+                        video.content = @"视频咨询邀请已拒绝";
+                    }
+                    else if ([video.videoType isEqualToString:@"1"]) {
+                        video.content = @"视频咨询邀请超时无应答已取消";
+                    }
+                }         
+            }
             currentHeight = [ZZUtils heightForCellWithText:text.content fontSize:15 labelWidth:maxWidth] + 24 ;
             break;
         }

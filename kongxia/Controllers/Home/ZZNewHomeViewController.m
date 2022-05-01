@@ -315,7 +315,9 @@
         [weakSelf gotoShanZu];
     }];
     [self.viewModel setGotoRanks:^{
-        [weakSelf gotoRanks];
+        // 这东西目前用作闪聊
+//        [weakSelf gotoRanks];
+        [weakSelf gotoFastChatVC];
     }];
     [self.viewModel setGotoTopicClassify:^(ZZHomeCatalogModel *topic) {
         [weakSelf gotoTopicClassify:topic];

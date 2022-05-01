@@ -1093,6 +1093,9 @@
                 videoConnectTopView.alpha = 1.0f;
                 videoConnectTopView.user = user;
                 WEAK_OBJECT(videoConnectTopView, weakVideoConnectTopView);
+                [videoConnectTopView setTimeoutBlock:^{
+                                    
+                }];
                 [videoConnectTopView setGotoWaitingBlock:^{// 进入录制等待页面
                     [ZZLiveStreamHelper sharedInstance].isTryingConnecting = NO;
                     [[ZZLiveStreamHelper sharedInstance] checkAuthority:^(BOOL authorized) {

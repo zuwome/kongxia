@@ -125,7 +125,7 @@
 #pragma mark - Getter
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -646,49 +646,49 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *view = [UIView new];
-    view.frame = CGRectMake(0, 0, SCREEN_WIDTH - 30, (SCREEN_WIDTH - 30) / HEADER_IMAGE_SCALE + 25);
-    view.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *introduceImageView = [UIImageView new];
-    
-    if ([ZZUserHelper shareInstance].isLogin) {
-        if ([ZZUserHelper shareInstance].loginer.open_qchat) {
-            if ([ZZUserHelper shareInstance].loginer.base_video.status == 2) {
-                [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_UNLOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
-            } else {
-                [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_LOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
-            }
-        } else {
-            [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_UNLOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
-        }
-    } else {
-        [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_UNLOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
-    }
-    introduceImageView.layer.masksToBounds = YES;
-    introduceImageView.layer.cornerRadius = 4.0f;
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = [UIColor clearColor];
-    [btn addTarget:self action:@selector(topImageClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [view addSubview:introduceImageView];
-    [view addSubview:btn];
-    
-    [introduceImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@15);
-        make.bottom.equalTo(view.mas_bottom).offset(-5);
-        make.leading.trailing.equalTo(view);
-    }];
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@10);
-        make.leading.trailing.bottom.equalTo(view);
-    }];
+//    view.frame = CGRectMake(0, 0, SCREEN_WIDTH - 30, (SCREEN_WIDTH - 30) / HEADER_IMAGE_SCALE + 25);
+//    view.backgroundColor = [UIColor whiteColor];
+//
+//    UIImageView *introduceImageView = [UIImageView new];
+//
+//    if ([ZZUserHelper shareInstance].isLogin) {
+//        if ([ZZUserHelper shareInstance].loginer.open_qchat) {
+//            if ([ZZUserHelper shareInstance].loginer.base_video.status == 2) {
+//                [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_UNLOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
+//            } else {
+//                [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_LOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
+//            }
+//        } else {
+//            [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_UNLOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
+//        }
+//    } else {
+//        [introduceImageView sd_setImageWithURL:[NSURL URLWithString:HEADER_IMAGEURL_UNLOGIN] placeholderImage:nil options:(SDWebImageRetryFailed)];
+//    }
+//    introduceImageView.layer.masksToBounds = YES;
+//    introduceImageView.layer.cornerRadius = 4.0f;
+//
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.backgroundColor = [UIColor clearColor];
+//    [btn addTarget:self action:@selector(topImageClick:) forControlEvents:UIControlEventTouchUpInside];
+//
+//    [view addSubview:introduceImageView];
+//    [view addSubview:btn];
+//
+//    [introduceImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(@15);
+//        make.bottom.equalTo(view.mas_bottom).offset(-5);
+//        make.leading.trailing.equalTo(view);
+//    }];
+//
+//    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(@10);
+//        make.leading.trailing.bottom.equalTo(view);
+//    }];
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return (SCREEN_WIDTH - 30) / HEADER_IMAGE_SCALE + 10;
+    return 0;// (SCREEN_WIDTH - 30) / HEADER_IMAGE_SCALE + 10;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

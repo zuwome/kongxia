@@ -12,7 +12,7 @@
 
 @interface ZZHomeCollectionsNewCell ()
 
-@property (nonatomic, strong) UIView *rankingView;
+@property (nonatomic, strong) UIView *rankingView; // 这东西目前用作闪聊
 
 @property (nonatomic, strong) FLAnimatedImageView *rankingIconImageView;
 
@@ -77,35 +77,35 @@
         CGFloat taskWidth = (SCREEN_WIDTH - 177 - 7 * 3);
         CGFloat taskHeight = 80.0;
         
-        if (rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
+//        if (rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
             _rankingView.hidden = NO;
             _ranksView.hidden = NO;
             
             _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, taskHeight);
             _rankingView.frame = CGRectMake(7.0, _taskView.bottom + 7, taskWidth, taskHeight);
             _ranksView.frame = CGRectMake(_taskView.right + 7, 0.0, 177, 167);
-        }
-        else if (rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
-            _rankingView.hidden = YES;
-            _ranksView.hidden = NO;
-            
-            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, 167);
-            _ranksView.frame = CGRectMake(_taskView.right + 7, 0.0, 177, 167);
-            _rankingView.frame = CGRectMake(7.0, _taskView.bottom + 7, taskWidth, taskHeight);
-        }
-        else if (!rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
-            _rankingView.hidden = NO;
-            _ranksView.hidden = YES;
-            
-            CGFloat taskWidth = (SCREEN_WIDTH - 7 * 3) / 2;
-            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, taskHeight);
-            _rankingView.frame = CGRectMake(_taskView.right + 7, 0.0, taskWidth, taskHeight);
-        }
-        else if (!rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
-            _rankingView.hidden = YES;
-            _ranksView.hidden = YES;
-            _taskView.frame = CGRectMake(7.0, 0.0, SCREEN_WIDTH - 14.0, 80.0);
-        }
+//        }
+//        else if (rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
+//            _rankingView.hidden = YES;
+//            _ranksView.hidden = NO;
+//
+//            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, 167);
+//            _ranksView.frame = CGRectMake(_taskView.right + 7, 0.0, 177, 167);
+//            _rankingView.frame = CGRectMake(7.0, _taskView.bottom + 7, taskWidth, taskHeight);
+//        }
+//        else if (!rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
+//            _rankingView.hidden = NO;
+//            _ranksView.hidden = YES;
+//
+//            CGFloat taskWidth = (SCREEN_WIDTH - 7 * 3) / 2;
+//            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, taskHeight);
+//            _rankingView.frame = CGRectMake(_taskView.right + 7, 0.0, taskWidth, taskHeight);
+//        }
+//        else if (!rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
+//            _rankingView.hidden = YES;
+//            _ranksView.hidden = YES;
+//            _taskView.frame = CGRectMake(7.0, 0.0, SCREEN_WIDTH - 14.0, 80.0);
+//        }
     }
     
     [self configurepopularityRanks:rankResponeMode];
@@ -113,19 +113,19 @@
 }
 
 - (void)configurepopularityRanks:(ZZRankResponeModel *)rankResponeMode {
-    if (!isNullString(rankResponeMode.pdSongTip[@"title"])) {
-        _rankingTitleLabel.text = rankResponeMode.pdSongTip[@"title"];
-    }
-    else {
-        _rankingTitleLabel.text = @"点唱Party";
-    }
-    
-    if (!isNullString(rankResponeMode.pdSongTip[@"content"])) {
-        _rankingSubTitleLabel.text = rankResponeMode.pdSongTip[@"content"];
-    }
-    else {
-        _rankingSubTitleLabel.text = @"唱歌成功就能领礼物";
-    }
+//    if (!isNullString(rankResponeMode.pdSongTip[@"title"])) {
+//        _rankingTitleLabel.text = rankResponeMode.pdSongTip[@"title"];
+//    }
+//    else {
+//        _rankingTitleLabel.text = @"点唱Party";
+//    }
+//
+//    if (!isNullString(rankResponeMode.pdSongTip[@"content"])) {
+//        _rankingSubTitleLabel.text = rankResponeMode.pdSongTip[@"content"];
+//    }
+//    else {
+//        _rankingSubTitleLabel.text = @"唱歌成功就能领礼物";
+//    }
 
     _ranksSubtitleLabel.text = rankResponeMode.charisma_title;
     _ranksTitleLabel.text = rankResponeMode.charisma_b;
@@ -250,9 +250,10 @@
     }];
     
     [self.rankingIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_rankingTitleLabel.mas_left);
-        make.centerY.equalTo(_rankingTitleLabel).offset(-SCALE_SET(2));
-        make.size.mas_equalTo(CGSizeMake(SCALE_SET(50), SCALE_SET(50)));
+        make.right.equalTo(_rankingTitleLabel.mas_left).offset(-2);
+        make.centerY.equalTo(_rankingTitleLabel).offset(-1);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
+        //make.size.mas_equalTo(CGSizeMake(SCALE_SET(50), SCALE_SET(50)));
     }];
     
     [self.rankingSubTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -391,10 +392,11 @@
 - (FLAnimatedImageView *)rankingIconImageView {
     if (!_rankingIconImageView) {
         _rankingIconImageView = [[FLAnimatedImageView alloc] init];
-        NSURL *gifLocalUrl = [[NSBundle mainBundle] URLForResource:@"KTV_index" withExtension:@"gif"];
-        NSData *gifData = [NSData dataWithContentsOfURL:gifLocalUrl];
-        FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:gifData];
-        _rankingIconImageView.animatedImage = image;
+        _rankingIconImageView.image = [UIImage imageNamed:@"icSpzxSy"];
+//        NSURL *gifLocalUrl = [[NSBundle mainBundle] URLForResource:@"KTV_index" withExtension:@"gif"];
+//        NSData *gifData = [NSData dataWithContentsOfURL:gifLocalUrl];
+//        FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:gifData];
+//        _rankingIconImageView.animatedImage = image;
     }
     return _rankingIconImageView;
 }
@@ -411,7 +413,7 @@
     if (!_rankingTitleLabel) {
         _rankingTitleLabel = [[UILabel alloc] init];
         _rankingTitleLabel.font = ADaptedFontMediumSize(16);
-        _rankingTitleLabel.text = @"点唱机Party";
+        _rankingTitleLabel.text = @"视频咨询";//@"点唱机Party";
         _rankingTitleLabel.textColor = RGBCOLOR(63, 58, 58);
         _rankingTitleLabel.textAlignment = NSTextAlignmentLeft;
     }
@@ -433,7 +435,7 @@
     if (!_rankingSubTitleLabel) {
         _rankingSubTitleLabel = [[UILabel alloc] init];
         _rankingSubTitleLabel.font = [UIFont systemFontOfSize:13.0];
-        _rankingSubTitleLabel.text = @"唱歌成功就能领礼物";
+        _rankingSubTitleLabel.text = @"在线1对1视频互动";//@"唱歌成功就能领礼物";
         _rankingSubTitleLabel.textColor = RGBCOLOR(153, 153, 153);
         _rankingSubTitleLabel.textAlignment = NSTextAlignmentCenter;
     }

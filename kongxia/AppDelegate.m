@@ -1024,7 +1024,6 @@
 #pragma mark - OpenInstall
 - (void)configureOpenInstall {
     [OpenInstallSDK initWithDelegate:self];
-    [OpenInstallSDK version];
     [self fetchInvitedInfo];
 }
 

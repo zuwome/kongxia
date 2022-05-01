@@ -377,14 +377,14 @@
  不是直接拒绝接受视频的挂断
  */
 - (void)userRefuseWithType:(NSString *)type {
-     [ZZChatManagerNetwork sendVideoMessageWithDestinationUidString:self.user.uid withType:type sendType:nil chatContent:@"hi，暂不方便接通你的闪聊视频通话"];
+     [ZZChatManagerNetwork sendVideoMessageWithDestinationUidString:self.user.uid withType:type sendType:nil chatContent:@"我暂时无法接通你的视频邀请，留言给我吧！看到后第一时间回复你哦！"];
 }
 
 /**
  女方拒绝接受视屏
  */
 - (void)userSendVideoMessageWhenDaRenRefuse {
-    [ZZChatManagerNetwork sendVideoMessageWithDestinationUidString:self.user.uid withType:@"3" sendType:@"男方代替女方发消息" chatContent:@"hi，暂不方便接通你的闪聊视频通话"];
+    [ZZChatManagerNetwork sendVideoMessageWithDestinationUidString:self.user.uid withType:@"3" sendType:@"男方代替女方发消息" chatContent:@"我暂时不方便接通你的视频邀请，留言给我吧！空闲时我第一时间回复你哦！"];
 }
 
 - (void)beginAnimation {
