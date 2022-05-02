@@ -1694,12 +1694,6 @@
             [weakSelf addMessage:model];
         }];
         
-        [_connectingVC setTimeOut:^{
-            NSString *content = @"你好！我拨打了视频聊天给你无人接听，期待你的私信回复！";
-            RCTextMessage *message= [RCTextMessage messageWithContent:content];
-            [weakSelf sendMessageContent:message pushContent:content];
-        }];
-        
         [weakSelf.navigationController pushViewController:_connectingVC animated:NO];
         [_connectingVC show];
         [weakSelf conncetAuthorized];
@@ -1821,6 +1815,11 @@
 //收到消息通知
 - (void)receiveMessageNofitication:(NSNotification *)notification {
     RCMessage *message = [notification.userInfo objectForKey:@"message"];
+    
+    if ([message.content isKindOfClass:[ZZVideoMessage class]]) {
+        [self updateVideoMessage:message];
+    }
+    
     if (message.conversationType == ConversationType_PRIVATE) {
         [self addMessageCount];
     }
@@ -3284,6 +3283,7 @@
     
     //获取消息最新的10条数据
     NSArray *array = [[RCIMClient sharedRCIMClient] getLatestMessages:ConversationType_PRIVATE targetId:_uid count:10];
+    [self UpdateVideoMessages:array];
     
     [self.dataArray addObjectsFromArray:[self managerTimeWithArray:array isFirst:YES]];
      dispatch_async(dispatch_get_main_queue(), ^{
@@ -3358,6 +3358,7 @@ static CGPoint delayOffset = {0.0};
     for (int i = count - 1; i >= 0; i--) {
         ZZChatBaseModel *model = [[ZZChatBaseModel alloc] init];
         model.message = array[i];
+
         if (i == count - 1) {
             model.showTime = YES;
             _firstShowTime = model.message.sentTime;
@@ -3385,6 +3386,26 @@ static CGPoint delayOffset = {0.0};
     }
     
     return tempArray;
+}
+
+- (void)UpdateVideoMessages:(NSArray *)messages {
+    for (RCMessage *message in messages) {
+        if ([message.content isKindOfClass:[ZZVideoMessage class]]) {
+            [self updateVideoMessage:message];
+        }
+    }
+}
+
+- (void)updateVideoMessage:(RCMessage *)message {
+    ZZVideoMessage *video = (ZZVideoMessage *)message.content;
+    if (message.messageDirection == MessageDirection_RECEIVE) {
+        if ([video.videoType isEqualToString:@"3"]) {
+            video.content = @"视频咨询邀请已拒绝";
+        }
+        else if ([video.videoType isEqualToString:@"1"]) {
+            video.content = @"你好！我拨打了视频聊天给你无人接听，期待你的私信回复！";
+        }
+    }
 }
 
 //是否显示时间

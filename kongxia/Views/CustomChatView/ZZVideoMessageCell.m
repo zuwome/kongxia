@@ -72,7 +72,7 @@
         }
          else if ([text.videoType isEqualToString:@"1"]) {
              //超时右侧
-             text.content = @"视频咨询邀请超时无应答已取消";
+//             text.content = @"视频咨询邀请超时无应答已取消";
              message.messageDirection  = MessageDirection_RECEIVE;
              text.videoType = @"4";
 
