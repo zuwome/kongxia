@@ -61,6 +61,11 @@
         [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [ZZLiveStreamHelper sharedInstance].isBusy = NO;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

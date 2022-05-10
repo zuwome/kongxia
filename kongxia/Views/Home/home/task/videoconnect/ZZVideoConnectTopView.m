@@ -360,7 +360,6 @@ commonInitImplementationSafe(ZZVideoConnectTopView) {
     _count++;
     // 600 = 60秒 = 1分钟 等待超时时间
     WEAK_SELF();
-    NSLog(@"%ld", _count);
     if (_count > 600) {
         _count = 600;
         if ([ZZLocalPushManager runningInBackground]) { //如果处于后台，存储本地一个标志，告知对方已经取消
