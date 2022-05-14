@@ -668,15 +668,15 @@
 - (void)gotoChatServerView {
     [MobClick event:Event_click_zhichikefu];
 
-    //配置UI
-    ZCKitInfo *uiInfo = [ZCKitInfo new];
-    uiInfo.topViewBgColor = kGoldenRod;
-    
-    [ZCSobotApi openZCChat:uiInfo with:self target:nil pageBlock:^(id  _Nonnull object, ZCPageBlockType type) {
-    } messageLinkClick:^BOOL(NSString * _Nonnull link) {
-        return YES;
-    }];
-    
+//    //配置UI
+//    ZCKitInfo *uiInfo = [ZCKitInfo new];
+//    uiInfo.topViewBgColor = kGoldenRod;
+//
+//    [ZCSobotApi openZCChat:uiInfo with:self target:nil pageBlock:^(id  _Nonnull object, ZCPageBlockType type) {
+//    } messageLinkClick:^BOOL(NSString * _Nonnull link) {
+//        return YES;
+//    }];
+    [ZZServerHelper showServer];
 }
 
 /**

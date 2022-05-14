@@ -1119,6 +1119,7 @@
 		BD6691AB2276F10F0005D7C8 /* ZZPostNormalTaskAnonymousGuid.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6691AA2276F10E0005D7C8 /* ZZPostNormalTaskAnonymousGuid.m */; };
 		BD684FC422AE4F6700F95E8C /* ZZSayHiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD684FC322AE4F6600F95E8C /* ZZSayHiHelper.swift */; };
 		BD684FC622AE503C00F95E8C /* ZZSayHiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD684FC522AE503C00F95E8C /* ZZSayHiView.swift */; };
+		BD698B4C2830140300EF83F1 /* ZZServerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD698B4B2830140300EF83F1 /* ZZServerHelper.swift */; };
 		BD69E9E7243B1C9500AA2D8A /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD69E9E5243B1C8A00AA2D8A /* AuthenticationServices.framework */; };
 		BD6B5629243B6025000633BB /* AppleIDSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6B5628243B6025000633BB /* AppleIDSignInHelper.m */; };
 		BD6BF6AE229E7FC8002C3320 /* Alibaba-PuHuiTi-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD6BF6A9229E7FC8002C3320 /* Alibaba-PuHuiTi-Heavy.ttf */; };
@@ -3668,6 +3669,7 @@
 		BD6691AA2276F10E0005D7C8 /* ZZPostNormalTaskAnonymousGuid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZPostNormalTaskAnonymousGuid.m; sourceTree = "<group>"; };
 		BD684FC322AE4F6600F95E8C /* ZZSayHiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSayHiHelper.swift; sourceTree = "<group>"; };
 		BD684FC522AE503C00F95E8C /* ZZSayHiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZSayHiView.swift; sourceTree = "<group>"; };
+		BD698B4B2830140300EF83F1 /* ZZServerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZServerHelper.swift; sourceTree = "<group>"; };
 		BD69E9E5243B1C8A00AA2D8A /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		BD6B5627243B6025000633BB /* AppleIDSignInHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleIDSignInHelper.h; sourceTree = "<group>"; };
 		BD6B5628243B6025000633BB /* AppleIDSignInHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleIDSignInHelper.m; sourceTree = "<group>"; };
@@ -4962,6 +4964,7 @@
 				BDFFB4942535E29D0062CC2C /* LoginHelper.m */,
 				BD20A8152541CEE7007B2800 /* ZZLivenessHelper.h */,
 				BD20A8162541CEE7007B2800 /* ZZLivenessHelper.m */,
+				BD698B4B2830140300EF83F1 /* ZZServerHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -11058,6 +11061,7 @@
 				91DBA27E1F613CF700013F4C /* ZZChatStatusCountDownView.m in Sources */,
 				91DBA4B31F613D3500013F4C /* ZZHomeNearbyCell.m in Sources */,
 				BDA1A8FD2252033700748242 /* ZZTimeSelectorModel.m in Sources */,
+				BD698B4C2830140300EF83F1 /* ZZServerHelper.swift in Sources */,
 				ACFF24EB206B439E00F29F11 /* ZZGeneralOpenSanChatGuide.m in Sources */,
 				91DB9DFB1F6129E600013F4C /* ZZOrderCommentViewController.m in Sources */,
 				91DBA26D1F613CF700013F4C /* ZZChatBoxView.m in Sources */,

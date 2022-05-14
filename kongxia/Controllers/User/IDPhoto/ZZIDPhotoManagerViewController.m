@@ -140,31 +140,12 @@
  */
 - (void)checkIDPhotoIsOK {
     WEAK_SELF();
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    if ([[ZZUserHelper shareInstance] isMale]) {
-        [ZZHUD showWithStatus:@"正在保存用户信息"];
-        if (!_loginer.id_photo) {
-            _loginer.id_photo = [[ZZIDPhoto alloc] init];
-        }
-        _loginer.id_photo.pic = _selectedPhoto.url;
-        [weakSelf saveUserInfos:NO isSame:NO];
-//    }
-//    else {
-//        [_loginer checkPhotoIsSamePersonNeedLogin:_selectedPhoto.id photoUrl:_selectedPhoto.url faces:_loginer.faces next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-//            if (error) {
-//                [ZZHUD showErrorWithStatus:error.message];
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            } else {
-//                BOOL isSame = [data[@"isSame"] boolValue];
-//                [ZZHUD showWithStatus:@"正在保存用户信息"];
-//                if (!_loginer.id_photo) {
-//                    _loginer.id_photo = [[ZZIDPhoto alloc] init];
-//                }
-//                _loginer.id_photo.pic = _selectedPhoto.url;
-//                [weakSelf saveUserInfos:NO isSame:isSame];
-//            }
-//        }];
-//    }
+    [ZZHUD showWithStatus:@"正在保存用户信息"];
+    if (!_loginer.id_photo) {
+        _loginer.id_photo = [[ZZIDPhoto alloc] init];
+    }
+    _loginer.id_photo.pic = _selectedPhoto.url;
+    [weakSelf saveUserInfos:NO isSame:NO];
 }
 
 /**

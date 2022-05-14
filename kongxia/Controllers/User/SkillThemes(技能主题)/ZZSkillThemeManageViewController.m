@@ -208,10 +208,7 @@
 }
 
 - (void)goToWechat {
-    WXOpenCustomerServiceReq *req = [[WXOpenCustomerServiceReq alloc] init];
-    req.corpid = @"ww1066becb2c99e97b";    //企业ID
-    req.url = @"https://work.weixin.qq.com/kfid/kfc934ce09454760ab7";            //客服URL
-    [WXApi sendReq:req completion:^(BOOL success) {}];
+    [ZZServerHelper showServer];
 }
 
 #pragma mark - ZZSkillThemeFooterViewDelegate

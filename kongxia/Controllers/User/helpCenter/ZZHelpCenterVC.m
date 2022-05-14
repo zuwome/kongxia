@@ -238,6 +238,11 @@
         [self gotoLoginView];
         return;
     }
+    
+    if ([vcName isEqualToString: @"ZZChatServerViewController"]) {
+        [ZZServerHelper showServer];
+        return;
+    }
     //类名(对象名)
     NSString *class = vcName;
     const char *className = [class cStringUsingEncoding:NSASCIIStringEncoding];
