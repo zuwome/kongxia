@@ -12523,7 +12523,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12600,7 +12600,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YTKKeyValueStore\"",
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/kongxia/Info.plist";
+				INFOPLIST_FILE = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -12796,7 +12796,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12873,7 +12873,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YTKKeyValueStore\"",
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/kongxia/Info.plist";
+				INFOPLIST_FILE = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -13070,7 +13070,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13147,7 +13147,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YTKKeyValueStore\"",
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/kongxia/Info.plist";
+				INFOPLIST_FILE = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -13343,7 +13343,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13418,7 +13418,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YTKKeyValueStore\"",
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/kongxia/Info.plist";
+				INFOPLIST_FILE = /Users/qimingxiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
