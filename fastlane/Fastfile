@@ -125,7 +125,7 @@ platform :ios do
   lane :comit_git do 
     build_number = get_build_number()
     git_commit(path: '.', message: "Change build #{build_number}")
-    git_add()
+    # git_add(path: '.')
   end
 
   desc "推送分支到远程"
