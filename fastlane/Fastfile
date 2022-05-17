@@ -128,6 +128,13 @@ platform :ios do
     # git_add(path: '.')
   end
 
+  desc "Push to remote branch"
+  lane :push_to_remove do |values|
+    branchName = values[:branchName]
+    # git_remote_
+
+  end
+
   desc "推送分支到远程"
   lane :push_git do
     push_to_git_remote(tags: false)
@@ -144,6 +151,14 @@ platform :ios do
   lane :test do 
     increment_build_number
     comit_git
+    branchName = git_branch()
+    puts "branch name is " + branchName
+
+    push_to_git_remote(
+      remote: "origin",
+      local_branch: branchName,
+      remote_branch: branchName
+    )
   end
 
 end

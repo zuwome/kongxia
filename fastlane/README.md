@@ -95,6 +95,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 添加git commit
 
+### ios push_to_remove
+
+```sh
+[bundle exec] fastlane ios push_to_remove
+```
+
+Push to remote branch
+
 ### ios push_git
 
 ```sh
