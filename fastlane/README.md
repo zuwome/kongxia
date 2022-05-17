@@ -39,26 +39,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### ios to_fir_debug_full
-
-```sh
-[bundle exec] fastlane ios to_fir_debug_full
-```
-
-
-
 ### ios to_fir_release
 
 ```sh
 [bundle exec] fastlane ios to_fir_release
-```
-
-
-
-### ios to_fir_release_full
-
-```sh
-[bundle exec] fastlane ios to_fir_release_full
 ```
 
 
@@ -69,7 +53,15 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios build
 ```
 
+打包
 
+### ios upload
+
+```sh
+[bundle exec] fastlane ios upload
+```
+
+上传到iTunes
 
 ### ios fir
 
@@ -87,26 +79,26 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 更新build版本号
 
-### ios comit_git
+### ios git_commit_local
 
 ```sh
-[bundle exec] fastlane ios comit_git
+[bundle exec] fastlane ios git_commit_local
 ```
 
 添加git commit
 
-### ios push_to_remove
+### ios git_push_to_current
 
 ```sh
-[bundle exec] fastlane ios push_to_remove
+[bundle exec] fastlane ios git_push_to_current
 ```
 
-Push to remote branch
+推送到当前分支
 
-### ios push_git
+### ios git_push_to_remote
 
 ```sh
-[bundle exec] fastlane ios push_git
+[bundle exec] fastlane ios git_push_to_remote
 ```
 
 推送分支到远程

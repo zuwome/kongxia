@@ -19,10 +19,6 @@ team_id = 'GTQV48M3S3'
 
 scheme = 'kongxia'
 scheme_release = 'kongxia_release'
-info_path = "./kongxia/Info.plist"
-build_number_key = "CFBundleVersion"
-veriosn_key = "CFBundleShortVersionString"
-identifier_key = "CFBundleIdentifier"
 
 output_directory = '../firim'
 output_app_name = 'kongxia'
@@ -32,13 +28,16 @@ firim_api_token = "ac88d6e0519356744c6fd4539c9074e2"
 platform :ios do
 
   lane :to_itunes do 
+    
     increment_build_num
 
     build(export_method: 'app-store', configuration:'Release', schemes: scheme_release)
 
-    deliver(submit_for_review: false) # 提交审核
+    upload
     
-    comit_git
+    git_commit_local
+
+    git_push_to_current
 
     notifyMessage(title: "iTunes connect", message: "upload to iTunes connect")
     
@@ -52,45 +51,36 @@ platform :ios do
 
     to_fir_release
 
-    comit_git
+    git_commit_local
+
+    git_push_to_current
 
     notifyMessage(title: "Fir", subtitle: "debug / release", message: "upload to fir success")
 
   end
 
   lane :to_fir_debug do 
-    build(export_method: 'development', configuration:'Debug', schemes: scheme)
-    fir(changelog: "测试")
-  end
 
-  lane :to_fir_debug_full do 
-    increment_build_num
     build(export_method: 'development', configuration:'Debug', schemes: scheme)
-    notifyMessage(title: "Build", subtitle: "method: debug", message: "build success, ready to upload")
+
     fir(changelog: "测试")
-    notifyMessage(title: "Upload", subtitle: "method: debug", message: "upload to fir success")
-    comit_git
+
   end
 
   lane :to_fir_release do 
+
     build(export_method: 'ad-hoc', configuration:'Release', schemes: scheme_release)
+
     fir(changelog: "正式")
+
   end
 
-  lane :to_fir_release_full do 
-    increment_build_num
-    build(export_method: 'ad-hoc', configuration:'Release', schemes: scheme_release)
-    notifyMessage(title: "Build", subtitle: "method: release", message: "build success, ready to upload")
-    fir(changelog: "正式")
-    notifyMessage(title: "Upload", subtitle: "method: release", message: "upload to fir success")
-    comit_git
-  end
-
+  desc "打包"
   lane :build do |values|
     export_method = values[:export_method]
     configuration = values[:configuration]
     schemes = values[:schemes]
-    build_number = get_info_plist_value(path: info_path, key: build_number_key)
+    build_number = get_build_number()
     gym(
         scheme: schemes,
         export_options: {
@@ -102,6 +92,11 @@ platform :ios do
         output_directory: output_directory,
         output_name: "#{output_app_name}_#{build_number}_#{export_method}.ipa",
     )
+  end
+
+  desc "上传到iTunes"
+  lane :upload do 
+    deliver(submit_for_review: false) # 提交审核
   end
 
   desc "上传ipa到fir.im服务器"
@@ -122,22 +117,26 @@ platform :ios do
   end
 
   desc "添加git commit"
-  lane :comit_git do 
+  lane :git_commit_local do 
     build_number = get_build_number()
     git_commit(path: '.', message: "Change build #{build_number}")
-    # git_add(path: '.')
   end
 
-  desc "Push to remote branch"
-  lane :push_to_remove do |values|
-    branchName = values[:branchName]
-    # git_remote_
-
+  desc "推送到当前分支"
+  lane :git_push_to_current do 
+    branchName = git_branch()
+    puts "branch name is " + branchName
+    git_push_to_remote(branchName: branchName)      
   end
 
   desc "推送分支到远程"
-  lane :push_git do
-    push_to_git_remote(tags: false)
+  lane :git_push_to_remote do |values|
+    branchName = values[:branchName]
+    push_to_git_remote(
+      remote: "origin",
+      local_branch: branchName,
+      remote_branch: branchName
+    )
   end
 
   desc "mac 推送消息"
@@ -150,15 +149,10 @@ platform :ios do
 
   lane :test do 
     increment_build_number
-    comit_git
+    # git_commit
     branchName = git_branch()
-    puts "branch name is " + branchName
-
-    push_to_git_remote(
-      remote: "origin",
-      local_branch: branchName,
-      remote_branch: branchName
-    )
+    # puts "branch name is " + branchName
+    # git_push_to_remote(branchName: branchName)
   end
 
 end
