@@ -1,8 +1,5 @@
 
-app_identifier("com.zuwome.zuwomekongxia")
-apple_id("qming.xiao@gmail.com")
-team_id("GTQV48M3S3")
-itc_team_id("118061497")
-
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
+app_identifier(ENV["APP_IDENTIFIER"])
+apple_id(ENV["APPLE_ID"])
+team_id(ENV["TEAM_ID"])
+itc_team_id(ENV["ITC_TEAM_ID"])
