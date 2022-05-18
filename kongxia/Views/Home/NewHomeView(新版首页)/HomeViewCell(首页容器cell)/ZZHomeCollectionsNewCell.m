@@ -77,35 +77,35 @@
         CGFloat taskWidth = (SCREEN_WIDTH - 177 - 7 * 3);
         CGFloat taskHeight = 80.0;
         
-//        if (rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
+        if (rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
             _rankingView.hidden = NO;
             _ranksView.hidden = NO;
             
             _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, taskHeight);
             _rankingView.frame = CGRectMake(7.0, _taskView.bottom + 7, taskWidth, taskHeight);
             _ranksView.frame = CGRectMake(_taskView.right + 7, 0.0, 177, 167);
-//        }
-//        else if (rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
-//            _rankingView.hidden = YES;
-//            _ranksView.hidden = NO;
-//
-//            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, 167);
-//            _ranksView.frame = CGRectMake(_taskView.right + 7, 0.0, 177, 167);
-//            _rankingView.frame = CGRectMake(7.0, _taskView.bottom + 7, taskWidth, taskHeight);
-//        }
-//        else if (!rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
-//            _rankingView.hidden = NO;
-//            _ranksView.hidden = YES;
-//
-//            CGFloat taskWidth = (SCREEN_WIDTH - 7 * 3) / 2;
-//            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, taskHeight);
-//            _rankingView.frame = CGRectMake(_taskView.right + 7, 0.0, taskWidth, taskHeight);
-//        }
-//        else if (!rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
-//            _rankingView.hidden = YES;
-//            _ranksView.hidden = YES;
-//            _taskView.frame = CGRectMake(7.0, 0.0, SCREEN_WIDTH - 14.0, 80.0);
-//        }
+        }
+        else if (rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
+            _rankingView.hidden = YES;
+            _ranksView.hidden = NO;
+
+            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, 167);
+            _ranksView.frame = CGRectMake(_taskView.right + 7, 0.0, 177, 167);
+            _rankingView.frame = CGRectMake(7.0, _taskView.bottom + 7, taskWidth, taskHeight);
+        }
+        else if (!rankResponeMode.charisma_show && rankResponeMode.rankWgShow) {
+            _rankingView.hidden = NO;
+            _ranksView.hidden = YES;
+
+            CGFloat taskWidth = (SCREEN_WIDTH - 7 * 3) / 2;
+            _taskView.frame = CGRectMake(7.0, 0.0, taskWidth, taskHeight);
+            _rankingView.frame = CGRectMake(_taskView.right + 7, 0.0, taskWidth, taskHeight);
+        }
+        else if (!rankResponeMode.charisma_show && !rankResponeMode.rankWgShow) {
+            _rankingView.hidden = YES;
+            _ranksView.hidden = YES;
+            _taskView.frame = CGRectMake(7.0, 0.0, SCREEN_WIDTH - 14.0, 80.0);
+        }
     }
     
     [self configurepopularityRanks:rankResponeMode];
