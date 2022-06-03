@@ -127,7 +127,7 @@
         _wkWebView.navigationDelegate = self;
         _wkWebView.allowsBackForwardNavigationGestures = YES;
         _wkWebView.scrollView.delegate = self;
-        if (IOS11_OR_LATER) {
+        if (@available(iOS 11.0, *)) {
             _wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         [_wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]]];
@@ -205,7 +205,7 @@
 //}
 
 - (BOOL)isContainStingWithSumString:(NSString *)string {
-    string = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    string = [string stringByRemovingPercentEncoding];
     
     NSRange range = [string rangeOfString:@"zwmscheme://"];
     if (range.location == NSNotFound) {

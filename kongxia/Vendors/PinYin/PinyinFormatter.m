@@ -88,35 +88,35 @@ static unichar numericValues[] = {
     NSString *allUnmarkedVowelStr = @"aeiouv";
     NSString *allMarkedVowelStr = @"āáăàaēéĕèeīíĭìiōóŏòoūúŭùuǖǘǚǜü";
     if ([lowerCasePinyinStr matchesPatternRegexPattern:@"[a-z]*[1-5]"]) {
-        int tuneNumber = [PinyinFormatter getNumericValue:[lowerCasePinyinStr characterAtIndex:lowerCasePinyinStr.length -1]];
-      int indexOfA = [lowerCasePinyinStr indexOf:charA];
-      int indexOfE = [lowerCasePinyinStr indexOf:charE];
-      int ouIndex = [lowerCasePinyinStr indexOfString:ouStr];
+        NSInteger tuneNumber = [PinyinFormatter getNumericValue:[lowerCasePinyinStr characterAtIndex:lowerCasePinyinStr.length -1]];
+        NSInteger indexOfA = [lowerCasePinyinStr indexOf:charA];
+        NSInteger indexOfE = [lowerCasePinyinStr indexOf:charE];
+        NSInteger ouIndex = [lowerCasePinyinStr indexOfString:ouStr];
       if (-1 != indexOfA) {
-        indexOfUnmarkedVowel = indexOfA;
+        indexOfUnmarkedVowel = (int)indexOfA;
         unmarkedVowel = charA;
       }
       else if (-1 != indexOfE) {
-        indexOfUnmarkedVowel = indexOfE;
+        indexOfUnmarkedVowel = (int)indexOfE;
         unmarkedVowel = charE;
       }
       else if (-1 != ouIndex) {
-        indexOfUnmarkedVowel = ouIndex;
+        indexOfUnmarkedVowel = (int)ouIndex;
         unmarkedVowel = [ouStr characterAtIndex:0];
       }
       else {
-        for (int i = [lowerCasePinyinStr length] - 1; i >= 0; i--) {
+        for (NSInteger i = [lowerCasePinyinStr length] - 1; i >= 0; i--) {
           if ([[NSString valueOfChar:[lowerCasePinyinStr characterAtIndex:i]] matchesPatternRegexPattern:@"[aeiouv]"]) {
-            indexOfUnmarkedVowel = i;
+            indexOfUnmarkedVowel = (int)i;
             unmarkedVowel = [lowerCasePinyinStr characterAtIndex:i];
             break;
           }
         }
       }
       if ((defautlCharValue != unmarkedVowel) && (defautlIndexValue != indexOfUnmarkedVowel)) {
-        int rowIndex = [allUnmarkedVowelStr indexOf:unmarkedVowel];
-        int columnIndex = tuneNumber - 1;
-        int vowelLocation = rowIndex * 5 + columnIndex;
+          NSInteger rowIndex = [allUnmarkedVowelStr indexOf:unmarkedVowel];
+          NSInteger columnIndex = tuneNumber - 1;
+          NSInteger vowelLocation = rowIndex * 5 + columnIndex;
         unichar markedVowel = [allMarkedVowelStr characterAtIndex:vowelLocation];
         NSMutableString *resultBuffer = [[NSMutableString alloc] init];
           [resultBuffer appendString:[[lowerCasePinyinStr substringToIndex:indexOfUnmarkedVowel+1] stringByReplacingOccurrencesOfString:@"v" withString:@"ü"]];

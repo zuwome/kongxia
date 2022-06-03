@@ -390,6 +390,11 @@
     [self gotoEditController];
 }
 
+- (void)goDateWithView:(RealIDPresentView * _Nonnull)view {
+    
+}
+
+
 - (void)showRealView:(BOOL)isSignUpRent {
     RealIDPresentView *view = [RealIDPresentView showWithUser:[ZZUserHelper shareInstance].loginer isFromSignUpRent:isSignUpRent];
     view.delegate = self;
@@ -456,29 +461,29 @@
         }
     }
     else {
-       if (indexPath.section == 3 && indexPath.row == 0 && _loginer.rent.status == 0) { // 没有出租信息不显示人气值
-           return [UITableViewCell new];
-       }
-       else if (indexPath.section == 3 && indexPath.row == 6 && [ZZUtils isIdentifierAuthority:_loginer]) {
-           return [UITableViewCell new];
-       }
-       else {
-           ZZUserCenterBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basecell"];
-           [cell setData:_loginer indexPath:indexPath hideRedPoint:_hideChuzuRedPoint];
-           if (UserHelper.configModel.wechat_new) {
-               if (indexPath.section == 3 && indexPath.row == 3) {
-                   [cell setRedDot:_unfinishedWechatOrderNum];
-               }
-               else {
-                   [cell setRedDot:-1];
-               }
-           }
-           else {
+        if (indexPath.section == 3 && indexPath.row == 0 && _loginer.rent.status == 0) { // 没有出租信息不显示人气值
+            return [UITableViewCell new];
+        }
+        else if (indexPath.section == 3 && indexPath.row == 6 && [ZZUtils isIdentifierAuthority:_loginer]) {
+            return [UITableViewCell new];
+        }
+        else {
+            ZZUserCenterBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basecell"];
+            [cell setData:_loginer indexPath:indexPath hideRedPoint:_hideChuzuRedPoint];
+            if (UserHelper.configModel.wechat_new) {
+                if (indexPath.section == 3 && indexPath.row == 3) {
+                    [cell setRedDot:_unfinishedWechatOrderNum];
+                }
+                else {
+                    [cell setRedDot:-1];
+                }
+            }
+            else {
                 [cell setRedDot:-1];
-           }
-           
-           return cell;
-       }
+            }
+            
+            return cell;
+        }
     }
 }
 
@@ -627,7 +632,7 @@
                 case 5: {
                     [self gotoMemeda];
                 } break;
-                
+                    
                 case 6: {
                     [self gotoRealName];
                 } break;
@@ -640,7 +645,7 @@
                 case 9: {
                     [self gotoHelpCenter];
                 } break;
-                
+                    
                 default: break;
             }
         } break;
@@ -667,15 +672,15 @@
  */
 - (void)gotoChatServerView {
     [MobClick event:Event_click_zhichikefu];
-
-//    //配置UI
-//    ZCKitInfo *uiInfo = [ZCKitInfo new];
-//    uiInfo.topViewBgColor = kGoldenRod;
-//
-//    [ZCSobotApi openZCChat:uiInfo with:self target:nil pageBlock:^(id  _Nonnull object, ZCPageBlockType type) {
-//    } messageLinkClick:^BOOL(NSString * _Nonnull link) {
-//        return YES;
-//    }];
+    
+    //    //配置UI
+    //    ZCKitInfo *uiInfo = [ZCKitInfo new];
+    //    uiInfo.topViewBgColor = kGoldenRod;
+    //
+    //    [ZCSobotApi openZCChat:uiInfo with:self target:nil pageBlock:^(id  _Nonnull object, ZCPageBlockType type) {
+    //    } messageLinkClick:^BOOL(NSString * _Nonnull link) {
+    //        return YES;
+    //    }];
     [ZZServerHelper showServer];
 }
 
@@ -795,7 +800,7 @@
     if (!canProceed) {
         return;
     }
-
+    
     [MobClick event:Event_click_usercenter_wx];
     ZZWXViewController *controller = [[ZZWXViewController alloc] init];
     controller.user = _loginer;
@@ -969,7 +974,7 @@
 }
 
 /**
-我的档期
+ 我的档期
  */
 - (void)gotoOrderWithIndex:(NSInteger)index {
     OrderListType _type = OrderListTypeAll;

@@ -124,16 +124,16 @@
     [self configureOpenInstall];
     
     [[RCIMClient sharedRCIMClient] recordLaunchOptionsEvent:launchOptions];
-    NSDictionary *pushDic = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
-    if (pushDic) {
-        NSLog(@"该启动事件包含来自融云的推送服务");
-        for (id key in [pushDic allKeys]) {
-            NSLog(@"%@", pushDic[key]);
-        }
-    }
-    else {
-        NSLog(@"该启动事件不包含来自融云的推送服务");
-    }
+//    NSDictionary *pushDic = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
+//    if (pushDic) {
+//        NSLog(@"该启动事件包含来自融云的推送服务");
+//        for (id key in [pushDic allKeys]) {
+//            NSLog(@"%@", pushDic[key]);
+//        }
+//    }
+//    else {
+//        NSLog(@"该启动事件不包含来自融云的推送服务");
+//    }
     
     // 6S在调用相册的时候 3Dtouch会崩溃所以要预防
     MSDPreventImagePickerCrashOn3DTouch();
@@ -157,7 +157,7 @@
 }
 
 - (void)reachabilityChanged:(NSNotification *)sender {
-    NetworkStatus internetStatus = [self.reach currentReachabilityStatus];
+//    NetworkStatus internetStatus = [self.reach currentReachabilityStatus];
 //    if (internetStatus) {
 //        // 可以访问网络
 //        NSLog(@"可以访问网络");
@@ -202,7 +202,9 @@
     }
     
     WEAK_SELF();
-    NSString *urlString = [url.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+//    NSString *urlString = [url.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [url.absoluteString stringByRemovingPercentEncoding];
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
     [Pingpp handleOpenURL:url withCompletion:nil];
     if (result == NO) {

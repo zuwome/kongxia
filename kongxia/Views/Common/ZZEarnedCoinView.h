@@ -11,8 +11,6 @@
 
 @interface ZZEarnedCoinView : UIView
 
-+ (ZZEarnedCoinView *)createView;
-
 + (ZZEarnedCoinView *)createViewWithTotalIncome:(NSString *)income;
 
 - (instancetype)initWithFrame:(CGRect)frame textWidth:(CGFloat)textWidth income:(NSString *)income;

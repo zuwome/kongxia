@@ -176,7 +176,7 @@
     
     if (self.mediaType == PHAssetMediaTypeVideo) {
         PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
-        options.version = PHImageRequestOptionsVersionCurrent;
+        options.version = PHVideoRequestOptionsVersionCurrent;
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
         options.networkAccessAllowed = YES;
         
@@ -244,10 +244,10 @@
     self.imageView.bounds = self.bounds;
 }
 
-- (void)prepareForReuse {
-//    [self cancelImageRequest];
-//    self.imageView.image = nil;
-}
+//- (void)prepareForReuse {
+////    [self cancelImageRequest];
+////    self.imageView.image = nil;
+//}
 
 - (void)cancelImageRequest {
     if (self.imageRequestID != PHInvalidImageRequestID) {

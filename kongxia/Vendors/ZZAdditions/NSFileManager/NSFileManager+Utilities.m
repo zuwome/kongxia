@@ -26,10 +26,10 @@ NSString *NSBundleFolder()
 	return [[NSBundle mainBundle] bundlePath];
 }
 
-NSString *NSDCIMFolder()
-{
-	return @"/var/mobile/Media/DCIM";
-}
+//NSString *NSDCIMFolder()
+//{
+//	return @"/var/mobile/Media/DCIM";
+//}
 
 @implementation NSFileManager (Utilities)
 ///////////////////////////////////////////////////////////////////////////////////////////////////

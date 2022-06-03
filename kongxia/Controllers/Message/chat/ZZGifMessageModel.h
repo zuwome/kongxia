@@ -45,10 +45,6 @@
  文件的高
  */
 @property(nonatomic, assign) int gifHeight;
-/*!
- 附加信息
- */
-@property(nonatomic, strong) NSString *extra;
 
 @property(nonatomic, strong) NSIndexPath *indexPath;
 

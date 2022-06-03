@@ -78,8 +78,6 @@ typedef NS_ENUM(NSInteger, GiftEntry) {
  */
 + (void)clearUserMessageDataWith:(NSString *)userID;
 
-+ (void)testSengGift;
-
 
 #pragma mark - Request
 /*

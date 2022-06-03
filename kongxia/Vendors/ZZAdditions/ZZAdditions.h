@@ -43,8 +43,6 @@
 #import "NSString+Extensions.h"
 
 // NSURL
-#import "NSURL+ImageURL.h"
-#import "NSURL+PercentageEscapes.h"
 #import "NSURL+PathParameters.h"
 
 // UIColor

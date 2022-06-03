@@ -198,7 +198,7 @@
             return footer;
         }
     }
-    return [UIView new];
+    return [UICollectionReusableView new];
 }
 
 #pragma mark -- lazy load

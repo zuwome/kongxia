@@ -187,9 +187,9 @@
     
     //获取date所在星期几
     NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
     NSInteger index = [comps weekday];
@@ -197,8 +197,8 @@
     NSInteger todayIndex = [comps weekday];
     NSString *showString;
     
-    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&todayDate interval:NULL forDate:[NSDate date]];
-    NSDateComponents *dayComponents = [calendar components:NSDayCalendarUnit fromDate:todayDate toDate:date options:0];
+    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&todayDate interval:NULL forDate:[NSDate date]];
+    NSDateComponents *dayComponents = [calendar components:NSCalendarUnitDay fromDate:todayDate toDate:date options:0];
     
     if (dayComponents.day < 1) {
         showString = [NSString stringWithFormat:@"今天"];
@@ -241,9 +241,9 @@
     
     //获取date所在星期几
     NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
     NSInteger index = [comps weekday];
@@ -251,8 +251,8 @@
     NSInteger todayIndex = [comps weekday];
     NSString *showString;
     
-    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&todayDate interval:NULL forDate:[NSDate date]];
-    NSDateComponents *dayComponents = [calendar components:NSDayCalendarUnit fromDate:todayDate toDate:date options:0];
+    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&todayDate interval:NULL forDate:[NSDate date]];
+    NSDateComponents *dayComponents = [calendar components:NSCalendarUnitDay fromDate:todayDate toDate:date options:0];
     
     if (dayComponents.day < 1) {
         showString = [NSString stringWithFormat:@"今天 %@",timeString];
@@ -272,7 +272,7 @@
 
 - (NSDate *)getNextDays:(NSInteger)days date:(NSDate *)date
 {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
     NSDateComponents *adcomps = [[NSDateComponents alloc] init];
     
@@ -285,7 +285,7 @@
 
 - (NSDate *)getNextDays:(NSInteger)days
 {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     NSDateComponents *adcomps = [[NSDateComponents alloc] init];
     
@@ -298,7 +298,7 @@
 
 - (NSDate *)getNextHours:(NSInteger)hours
 {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     NSDateComponents *adcomps = [[NSDateComponents alloc] init];
     
@@ -319,7 +319,7 @@
 
 - (ZZDateModel *)getDateModelWithDays:(NSInteger)days
 {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     NSDateComponents *adcomps = [[NSDateComponents alloc] init];
     
@@ -447,12 +447,12 @@
     [self.formatter setDateFormat:@"YYYY年MM月dd日 HH:mm"];
     
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit fromDate:messageDate];
+    NSDateComponents *components = [cal components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday fromDate:messageDate];
     NSDate *msgDate = [cal dateFromComponents:components];
     
     NSString *weekday = [self getWeekdayWithNumber:components.weekday];
     
-    components = [cal components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit fromDate:[NSDate date]];
+    components = [cal components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
     NSDate *today = [cal dateFromComponents:components];
     
     NSInteger hour = [[self getDateHourStringWithDate:messageDate] integerValue];

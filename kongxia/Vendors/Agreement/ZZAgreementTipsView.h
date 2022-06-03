@@ -14,6 +14,6 @@
 
 - (void)dismiss;
 
-@property (nonatomic, copy) void (^doneBlock)();
+@property (nonatomic, copy) void (^doneBlock)(void);
 
 @end

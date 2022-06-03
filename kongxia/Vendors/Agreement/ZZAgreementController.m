@@ -14,7 +14,7 @@
 
 @interface ZZAgreementController ()
 
-@property (nonatomic, copy) void (^agreeBlock)();
+@property (nonatomic, copy) void (^agreeBlock)(void);
 @property (nonatomic, strong) ZZPrivacyAgreementView *agreementView;
 @property (nonatomic, strong) ZZAgreementTipsView *tipsView;
 
@@ -63,7 +63,7 @@
 
 #pragma mark - Publick methods
 
-- (void)showPrivacyAgreementAgreeBlock:(void (^)())completed {
+- (void)showPrivacyAgreementAgreeBlock:(void (^)(void))completed {
     self.agreeBlock = completed;
     
     if (!isNullString([[NSUserDefaults standardUserDefaults] objectForKey:PrivacyAgreementIfNeeded])) {

@@ -1241,9 +1241,7 @@
 		BDA5002C22FA785A00BCB48E /* NSData+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCF222FA785800BCB48E /* NSData+Hex.m */; };
 		BDA5002D22FA785A00BCB48E /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCF422FA785800BCB48E /* UITextView+Placeholder.m */; };
 		BDA5002E22FA785A00BCB48E /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCF722FA785800BCB48E /* UIDevice+Hardware.m */; };
-		BDA5002F22FA785A00BCB48E /* NSURL+PercentageEscapes.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCFB22FA785800BCB48E /* NSURL+PercentageEscapes.m */; };
 		BDA5003022FA785A00BCB48E /* NSURL+PathParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCFD22FA785800BCB48E /* NSURL+PathParameters.m */; };
-		BDA5003122FA785A00BCB48E /* NSURL+ImageURL.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCFF22FA785800BCB48E /* NSURL+ImageURL.m */; };
 		BDA5003222FA785A00BCB48E /* UIBarButtonItem+CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD0222FA785800BCB48E /* UIBarButtonItem+CustomButton.m */; };
 		BDA5003322FA785A00BCB48E /* NSString+Trimming.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD0622FA785800BCB48E /* NSString+Trimming.m */; };
 		BDA5003422FA785A00BCB48E /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD0822FA785800BCB48E /* NSString+Utilities.m */; };
@@ -3899,12 +3897,8 @@
 		BDA5FCF722FA785800BCB48E /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		BDA5FCF822FA785800BCB48E /* UIDevice+OS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+OS.h"; sourceTree = "<group>"; };
 		BDA5FCF922FA785800BCB48E /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
-		BDA5FCFB22FA785800BCB48E /* NSURL+PercentageEscapes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PercentageEscapes.m"; sourceTree = "<group>"; };
-		BDA5FCFC22FA785800BCB48E /* NSURL+ImageURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ImageURL.h"; sourceTree = "<group>"; };
 		BDA5FCFD22FA785800BCB48E /* NSURL+PathParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PathParameters.m"; sourceTree = "<group>"; };
 		BDA5FCFE22FA785800BCB48E /* NSURL+PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PathParameters.h"; sourceTree = "<group>"; };
-		BDA5FCFF22FA785800BCB48E /* NSURL+ImageURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ImageURL.m"; sourceTree = "<group>"; };
-		BDA5FD0022FA785800BCB48E /* NSURL+PercentageEscapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PercentageEscapes.h"; sourceTree = "<group>"; };
 		BDA5FD0222FA785800BCB48E /* UIBarButtonItem+CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+CustomButton.m"; sourceTree = "<group>"; };
 		BDA5FD0322FA785800BCB48E /* UIBarButtonItem+CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+CustomButton.h"; sourceTree = "<group>"; };
 		BDA5FD0522FA785800BCB48E /* NSString+Qiniu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Qiniu.h"; sourceTree = "<group>"; };
@@ -9469,12 +9463,8 @@
 		BDA5FCFA22FA785800BCB48E /* NSURL */ = {
 			isa = PBXGroup;
 			children = (
-				BDA5FCFC22FA785800BCB48E /* NSURL+ImageURL.h */,
-				BDA5FCFF22FA785800BCB48E /* NSURL+ImageURL.m */,
 				BDA5FCFE22FA785800BCB48E /* NSURL+PathParameters.h */,
 				BDA5FCFD22FA785800BCB48E /* NSURL+PathParameters.m */,
-				BDA5FD0022FA785800BCB48E /* NSURL+PercentageEscapes.h */,
-				BDA5FCFB22FA785800BCB48E /* NSURL+PercentageEscapes.m */,
 			);
 			path = NSURL;
 			sourceTree = "<group>";
@@ -11018,7 +11008,6 @@
 				BD2C006F23BB380900756D98 /* JXCategoryNumberCell.m in Sources */,
 				BDA500E322FA785B00BCB48E /* scale_win.cc in Sources */,
 				BDCD2D2E23B9A23400F15FEF /* ZZKTVChooseGiftCell.m in Sources */,
-				BDA5003122FA785A00BCB48E /* NSURL+ImageURL.m in Sources */,
 				91DB9E041F6129E600013F4C /* ZZRealNameZMBindViewController.mm in Sources */,
 				BDEB0F5921F2324E004846D6 /* ZZWechatReviewToast.m in Sources */,
 				BDA5011C22FA785B00BCB48E /* WXSTransitionProperty.m in Sources */,
@@ -11345,7 +11334,6 @@
 				BDA5005622FA785A00BCB48E /* PEResizeControl.m in Sources */,
 				BDCD2D2823B99B5800F15FEF /* ZZKTVModel.m in Sources */,
 				AC1255051FF201930096AA7F /* ZZPayHelper.m in Sources */,
-				BDA5002F22FA785A00BCB48E /* NSURL+PercentageEscapes.m in Sources */,
 				91DBA1C51F613CF600013F4C /* ZZPhoneInputView.m in Sources */,
 				040C94CF21118F6900FD4E94 /* ZZSchduleEditCell.m in Sources */,
 				91DBA4BD1F613D3500013F4C /* ZZPlayerCommentBottomView.m in Sources */,
@@ -12531,30 +12519,14 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/kongxia/Vendors/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/kongxia/Vendors",
-					"$(PROJECT_DIR)/kongxia/Vendors/ZhiMa",
-					"$(PROJECT_DIR)/kongxia/Vendors/QuPai",
 					"$(PROJECT_DIR)/kongxia/Vendors/UMSocialSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/kongxia/Vendors/facerecord",
-					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK/Frameworks",
-					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtc",
 					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CcbPay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CmbWallet",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/Alipay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PlayerKit",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/kongxia/Vendors/Bugly",
 					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtcTools",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceSDK",
-					"$(PROJECT_DIR)/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK-Collect-WithLiveness-iOS/FaceSDK-Collect-WithLiveness-iOS/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/Ali",
-					"$(PROJECT_DIR)/kongxia/Vendors/RongSight",
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
@@ -12770,30 +12742,14 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/kongxia/Vendors/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/kongxia/Vendors",
-					"$(PROJECT_DIR)/kongxia/Vendors/ZhiMa",
-					"$(PROJECT_DIR)/kongxia/Vendors/QuPai",
 					"$(PROJECT_DIR)/kongxia/Vendors/UMSocialSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/kongxia/Vendors/facerecord",
-					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK/Frameworks",
-					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtc",
 					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CcbPay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CmbWallet",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/Alipay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PlayerKit",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/kongxia/Vendors/Bugly",
 					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtcTools",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceSDK",
-					"$(PROJECT_DIR)/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK-Collect-WithLiveness-iOS/FaceSDK-Collect-WithLiveness-iOS/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/Ali",
-					"$(PROJECT_DIR)/kongxia/Vendors/RongSight",
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
@@ -13010,30 +12966,14 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/kongxia/Vendors/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/kongxia/Vendors",
-					"$(PROJECT_DIR)/kongxia/Vendors/ZhiMa",
-					"$(PROJECT_DIR)/kongxia/Vendors/QuPai",
 					"$(PROJECT_DIR)/kongxia/Vendors/UMSocialSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/kongxia/Vendors/facerecord",
-					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK/Frameworks",
-					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtc",
 					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CcbPay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CmbWallet",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/Alipay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PlayerKit",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/kongxia/Vendors/Bugly",
 					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtcTools",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceSDK",
-					"$(PROJECT_DIR)/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK-Collect-WithLiveness-iOS/FaceSDK-Collect-WithLiveness-iOS/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/Ali",
-					"$(PROJECT_DIR)/kongxia/Vendors/RongSight",
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
@@ -13248,30 +13188,14 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/kongxia/Vendors/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/kongxia/Vendors",
-					"$(PROJECT_DIR)/kongxia/Vendors/ZhiMa",
-					"$(PROJECT_DIR)/kongxia/Vendors/QuPai",
 					"$(PROJECT_DIR)/kongxia/Vendors/UMSocialSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/kongxia/Vendors/facerecord",
-					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK/Frameworks",
-					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtc",
 					"$(PROJECT_DIR)/kongxia/Vendors/KiwiFaceSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CcbPay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/CmbWallet",
-					"$(PROJECT_DIR)/kongxia/Vendors/PingPP/Channels/Alipay",
-					"$(PROJECT_DIR)/kongxia/Vendors/PlayerKit",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/kongxia/Vendors/Bugly",
 					"$(PROJECT_DIR)/kongxia/Vendors/AgoraRtcTools",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceSDK",
-					"$(PROJECT_DIR)/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK",
-					"$(PROJECT_DIR)/FaceSDK-Collect-WithLiveness-iOS/FaceSDK-Collect-WithLiveness-iOS/Frameworks/FaceSDK",
-					"$(PROJECT_DIR)/kongxia/Vendors/Ali",
-					"$(PROJECT_DIR)/kongxia/Vendors/RongSight",
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",

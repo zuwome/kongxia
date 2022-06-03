@@ -49,7 +49,7 @@
         _wkWebView.scrollView.scrollEnabled = YES;
         [_wkWebView setOpaque:NO];
         _wkWebView.backgroundColor = [UIColor clearColor];
-        if (IOS11_OR_LATER) {
+        if (@available(iOS 11.0, *)) {
             _wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
@@ -106,7 +106,7 @@
 }
 - (BOOL)isContainStingWithSumString:(NSString *)string
 {
-    string = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    string = [string stringByRemovingPercentEncoding];
     NSRange range = [string rangeOfString:@"zwmscheme://"];
     if (range.location == NSNotFound) {
         return NO;

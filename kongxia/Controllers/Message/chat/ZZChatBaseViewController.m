@@ -2395,7 +2395,8 @@
     }
     else if (self.statusModel.chat_status == 2) {
         RCInformationNotificationMessage *warningMsg = [RCInformationNotificationMessage notificationWithMessage:@"对方还没有回复你的留言，请等待对方回复" extra:nil];
-        RCMessage *message = [[RCMessage alloc] initWithType:ConversationType_PRIVATE targetId:self.uid direction:MessageDirection_SEND messageId:-1 content:warningMsg];
+//        RCMessage *message = [[RCMessage alloc] initWithType:ConversationType_PRIVATE targetId:self.uid direction:MessageDirection_SEND messageId:-1 content:warningMsg];
+        RCMessage *message = [[RCMessage alloc] initWithType:ConversationType_PRIVATE targetId:self.uid direction:MessageDirection_SEND content:warningMsg];
         [self insertSendMessage:message];
         return NO;
     }
@@ -2919,6 +2920,10 @@
     }
 }
 
+- (void)gotoChatServerView {
+    
+}
+
 - (void)tapHeadImgView {
     [self gotoUserPage:NO];
 }
@@ -3184,7 +3189,8 @@
 
 - (void)replaceModelWithMessageId:(long)messageId model:(ZZChatBaseModel *)model index:(NSUInteger)index direction:(RCMessageDirection)messageDirection {
     RCRecallNotificationMessage *recallContent = [[RCRecallNotificationMessage alloc] init];
-    RCMessage *recallMessage = [[RCMessage alloc] initWithType:ConversationType_PRIVATE targetId:self.uid direction:messageDirection messageId:messageId content:recallContent];
+    RCMessage *recallMessage = [[RCMessage alloc] initWithType:ConversationType_PRIVATE targetId:self.uid direction:messageDirection content:recallContent];
+//    RCMessage *recallMessage = [[RCMessage alloc] initWithType:ConversationType_PRIVATE targetId:self.uid direction:messageDirection messageId:messageId content:recallContent];
     ZZChatBaseModel *recallModel = [[ZZChatBaseModel alloc] init];
     recallModel.message = recallMessage;
     recallModel.showTime = model.showTime;

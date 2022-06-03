@@ -85,9 +85,6 @@ typedef NS_ENUM(NSInteger, AudioState) {
 
 - (void)deleteAudio:(NSString *)filePath;
 
-#pragma mark - convert
-+ (void)convertWAV:(NSString *)wavFilePath completeHandler:(void(^)(BOOL isSuccess, NSString *amrFilePath))completeHandler;
-
 @end
 
 @protocol AudioManagerDelegate <NSObject>

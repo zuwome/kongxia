@@ -106,9 +106,6 @@
 //获取常出没地点高度（个人页）
 + (CGFloat)getMyLocationLabelHeight:(NSArray *)labelArray;
 
-// 获取t通告主题标签的高度
-+ (CGFloat)getThemeTagsHeight:(NSArray *)labelArray;
-
 //获取标签高度 (么么答)
 + (CGFloat)getTagViewHeight:(NSArray *)tagArray fontSize:(CGFloat)fontSize padding:(UIEdgeInsets)padding lineSpacing:(CGFloat)lineSpacing interitemSpacing:(CGFloat)interitemSpacing maxWidth:(CGFloat)maxWidth;
 

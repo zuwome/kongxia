@@ -13,7 +13,6 @@
 
 @interface LSPaoMaView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString*)title;
 //增加新的跑马的判断
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString*)title font:(CGFloat )fontsize;
 - (void)start;//开始跑马

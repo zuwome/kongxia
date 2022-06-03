@@ -18,8 +18,5 @@
 @property (nonatomic, strong) UIImageView *imgGifView;
 
 @property (nonatomic, strong) ZZChatBaseModel *imgChatModel;
-/**
- 定时器结束刷新最后的结果
- */
-- (void)updateGifGame:(ZZChatBaseModel *)updateModel;
+
 @end

@@ -625,6 +625,11 @@
     }
 }
 
+- (void)cellTaskFree:(ZZNewHomeTaskFreeCell *)cell {
+    
+}
+
+
 #pragma mark -- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataArray.count;
@@ -652,15 +657,15 @@
     else {
         ZZHomeNewRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:[ZZHomeNewRecommendCell cellIdentifier] forIndexPath:indexPath];
         cell.delegate = self;
-           [cell setModel:_dataArray[index]];
-           if (model.user.have_wechat_no && ![ZZKeyValueStore getValueWithKey:[ZZStoreKey sharedInstance].firstHomeWxGuide]) {
-               cell.firstWxGuideView.hidden = NO;
-               [ZZKeyValueStore saveValue:@"firstHomeWxGuide" key:[ZZStoreKey sharedInstance].firstHomeWxGuide];
-               _isShowGuide = YES;
-           } else {
-               cell.firstWxGuideView.hidden = YES;
-           }
-           cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setModel:_dataArray[index]];
+        if (model.user.have_wechat_no && ![ZZKeyValueStore getValueWithKey:[ZZStoreKey sharedInstance].firstHomeWxGuide]) {
+            cell.firstWxGuideView.hidden = NO;
+            [ZZKeyValueStore saveValue:@"firstHomeWxGuide" key:[ZZStoreKey sharedInstance].firstHomeWxGuide];
+            _isShowGuide = YES;
+        } else {
+            cell.firstWxGuideView.hidden = YES;
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -693,7 +698,7 @@
         }
         
     }
-
+    
 }
 
 - (void)managerScheme:(NSString *)url { //TODO -- banner点击逻辑，猜的
@@ -746,10 +751,10 @@
         }];
     }
     else if ([instance isKindOfClass:[ZZUserChuzuViewController class]]) {    //旧版出租类名，后台未做调整，延用
-//        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        ZZUserChuzuViewController *controller = [sb instantiateViewControllerWithIdentifier:@"rentStart"];
-//        controller.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:controller animated:YES];
+        //        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //        ZZUserChuzuViewController *controller = [sb instantiateViewControllerWithIdentifier:@"rentStart"];
+        //        controller.hidesBottomBarWhenPushed = YES;
+        //        [self.navigationController pushViewController:controller animated:YES];
         //未出租状态前往申请达人，其余状态进入主题管理
         if ([ZZUserHelper shareInstance].loginer.rent.status == 0) {
             WeakSelf
@@ -813,7 +818,7 @@
     if (!_tableview) {
         _tableview = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableview.tableFooterView = [UIView new];
-//        _tableview.rowHeight = 135;
+        //        _tableview.rowHeight = 135;
         _tableview.estimatedRowHeight = 100;
         _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableview.backgroundColor = RGBCOLOR(245, 245, 245);
@@ -825,11 +830,11 @@
         [_tableview registerClass:[ZZNewHomeTaskFreeCell class] forCellReuseIdentifier:[ZZNewHomeTaskFreeCell cellIdentifier]];
         [_tableview registerClass:[ZZNewHomeRentEntryCell class] forCellReuseIdentifier:[ZZNewHomeRentEntryCell cellIdentifier]];
         
-//        _tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 0.01f)];
+        //        _tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, SCREEN_WIDTH, 0.01f)];
         
-//        if (SCREEN_HEIGHT >= 812.0) {
-//            _tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 34.0)];
-//        }
+        //        if (SCREEN_HEIGHT >= 812.0) {
+        //            _tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 34.0)];
+        //        }
     }
     return _tableview;
 }
@@ -859,5 +864,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 
 @end

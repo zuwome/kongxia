@@ -14,8 +14,6 @@
 @property(nonatomic, strong) NSString *title;
 /** 文本消息内容 */
 @property(nonatomic, strong) NSString *content;
-/** 附加信息 */
-@property(nonatomic, copy) NSString *extra;
 
 /** 订单的附加信息 */
 @property(nonatomic, strong) NSString *typeContent;

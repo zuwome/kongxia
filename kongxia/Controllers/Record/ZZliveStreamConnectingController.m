@@ -106,7 +106,6 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
-
     [self closeRightHandGestures];
     
 }
@@ -506,6 +505,10 @@
 #pragma mark - ZZCameraFilterViewDelegate
 - (void)view:(ZZCameraFilterView *)view filterOptions:(AgoraBeautyOptions *)options {
     [_agoraKit setBeautyEffectOptions:YES options:options];
+}
+
+- (void)view:(ZZCameraFilterView *)view fileterType:(FilterType)type value:(CGFloat)value {
+    
 }
 
 #pragma mark - UIButtonMethod
