@@ -187,8 +187,10 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else if (data) {
                 _user = [[ZZUser alloc] initWithDictionary:data error:nil];
-                if ([data[@"rent"] isKindOfClass: [NSDictionary class]] && [data[@"rent"][@"city"] isKindOfClass: [NSDictionary class]]) {
-                    _user.rent.city.cityId = data[@"rent"][@"city"][@"id"];
+                if ([ZZUtils isEmpty:_user.rent.city.cityId]) {
+                    if ( [data[@"rent"] isKindOfClass: [NSDictionary class]] && [data[@"rent"][@"city"] isKindOfClass: [NSDictionary class]]) {
+                        _user.rent.city.cityId = data[@"rent"][@"city"][@"id"];
+                    }
                 }
                 [self fetchTask];
                 [self getUserStatus];

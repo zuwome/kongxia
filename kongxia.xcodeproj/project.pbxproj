@@ -12594,7 +12594,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 4.7.3;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12817,7 +12817,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 4.7.3;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13041,7 +13041,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 4.7.3;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13262,7 +13262,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 4.7.3;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

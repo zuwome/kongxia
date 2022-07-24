@@ -168,7 +168,7 @@
         [dic removeObjectForKey:@"xdf_price"];
     }
     
-    if (![ZZUtils isEmpty:self.city.cityId]) {
+    if (![ZZUtils isEmpty:self.city.cityId] && [ZZUtils isEmpty:dic[@"city"][@"id"]]) {
         NSMutableDictionary *citym = [dic[@"city"] mutableCopy];
         citym[@"id"] = self.city.cityId;
         dic[@"city"] = citym.copy;

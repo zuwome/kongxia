@@ -248,8 +248,10 @@
         }
         else {
             ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
-            if ([data[@"rent"] isKindOfClass: [NSDictionary class]] && [data[@"rent"][@"city"] isKindOfClass: [NSDictionary class]]) {
-                user.rent.city.cityId = data[@"rent"][@"city"][@"id"];
+            if ([ZZUtils isEmpty:user.rent.city.cityId]) {
+                if ( [data[@"rent"] isKindOfClass: [NSDictionary class]] && [data[@"rent"][@"city"] isKindOfClass: [NSDictionary class]]) {
+                    user.rent.city.cityId = data[@"rent"][@"city"][@"id"];
+                }
             }
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             _loginer = user;

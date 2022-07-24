@@ -791,7 +791,10 @@
         [_agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
         [_agoraKit setClientRole:AgoraClientRoleBroadcaster];
         [_agoraKit enableVideo];
-        AgoraVideoEncoderConfiguration *encoderConfig = [[AgoraVideoEncoderConfiguration alloc] initWithSize:CGSizeMake(640, 320) frameRate:AgoraVideoFrameRateFps24 bitrate:AgoraVideoBitrateStandard orientationMode:AgoraVideoOutputOrientationModeAdaptative];
+        AgoraVideoEncoderConfiguration *encoderConfig = [[AgoraVideoEncoderConfiguration alloc] initWithSize:CGSizeMake(640, 320)
+                                                                                                   frameRate:AgoraVideoFrameRateFps24
+                                                                                                     bitrate:AgoraVideoBitrateStandard
+                                                                                             orientationMode:AgoraVideoOutputOrientationModeFixedPortrait];
         encoderConfig.mirrorMode = AgoraVideoMirrorModeDisabled;
         [_agoraKit setVideoEncoderConfiguration:encoderConfig];
         
