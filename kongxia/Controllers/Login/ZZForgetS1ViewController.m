@@ -23,6 +23,18 @@
 
 @implementation ZZForgetS1ViewController
 
+- (instancetype)initWithShouldVerifyFace:(BOOL)shouldVerifyFace {
+    self = [super init];
+    if (self) {
+        _shouldVerifyFace = shouldVerifyFace;
+    }
+    return self;
+}
+
+- (instancetype)init {
+    return [self initWithShouldVerifyFace:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -56,7 +68,7 @@
         }
     }
     [self.view endEditing:YES];
-    ZZForgetS2ViewController *controller = [[ZZForgetS2ViewController alloc] init];
+    ZZForgetS2ViewController *controller = [[ZZForgetS2ViewController alloc] initWithShouldVerifyFace:_shouldVerifyFace];
     controller.phone = _phoneView.textField.text;
     controller.codeString = _phoneView.codeLabel.text;
     [self.navigationController pushViewController:controller animated:YES];

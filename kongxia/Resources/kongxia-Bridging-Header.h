@@ -108,3 +108,4 @@
 #import "ZZChatBaseModel.h"
 #import "ZZVideoInviteModel.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import "ZZDeleteAccountViewController.h"

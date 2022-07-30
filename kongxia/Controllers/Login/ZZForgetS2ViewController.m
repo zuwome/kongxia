@@ -26,13 +26,24 @@
 
 @implementation ZZForgetS2ViewController
 
+- (instancetype)initWithShouldVerifyFace:(BOOL)shouldVerifyFace {
+    self = [super init];
+    if (self) {
+        _shouldVerifyFace = shouldVerifyFace;
+    }
+    return self;
+}
+
+- (instancetype)init {
+    return [self initWithShouldVerifyFace:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     self.navigationItem.title = @"重置密码";
     self.view.backgroundColor = kBGColor;
-    
     [self createViews];
 }
 
@@ -102,31 +113,40 @@
         return ;
     }
     
-    NSLog(@"PY_ 启用人脸识别");
-    WeakSelf
-    ZZLivenessHelper *helper = [[ZZLivenessHelper alloc] initWithType:NavigationTypeChangePwd inController:self];
-    helper.checkSuccessBlock = ^(NSString *photo) {
+    if (_shouldVerifyFace) {
+        NSLog(@"PY_ 启用人脸识别");
+        WeakSelf
+        ZZLivenessHelper *helper = [[ZZLivenessHelper alloc] initWithType:NavigationTypeChangePwd inController:self];
+        helper.checkSuccessBlock = ^(NSString *photo) {
 
-        if (!isNullString(photo)) {
-            [weakSelf confirmWithFace:photo user:user];
-        }
-        else {
-            [ZZHUD showErrorWithStatus:@"人脸识别失败请重试"];
-        }
-    };
-    [helper start];
+            if (!isNullString(photo)) {
+                [weakSelf confirmWithFace:photo user:user];
+            }
+            else {
+                [ZZHUD showErrorWithStatus:@"人脸识别失败请重试"];
+            }
+        };
+        [helper start];
+    }
+    else {
+        [self confirmWithFace:nil user:user];
+    }
 }
 
 - (void)confirmWithFace:(NSString *)face user:(ZZUser *)user {
     _sureBtn.enabled = NO;
     [self.view endEditing:YES];
-    NSDictionary *aDict = @{@"phone":_phone,
+    NSMutableDictionary *aDict = [@{@"phone":_phone,
                             @"password":_pwdView.textField.text,
                             @"code":_codeView.textField.text,
                             @"country_code":_codeString,
-                            @"pic": face,
-                            };
-    [user resetPassword:aDict next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                            } mutableCopy];
+    
+    if (!isNullString(face)) {
+        aDict[@"pic"] = face;
+    }
+    
+    [user resetPassword:aDict.copy next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         [ZZHUD dismiss];
         _sureBtn.enabled = YES;
         if (error) {

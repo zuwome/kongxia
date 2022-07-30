@@ -107,5 +107,7 @@ import Foundation
     // 分享app
     @objc static let shareApp_debug = "http://7xwsly.com1.z0.glb.clouddn.com/rent/gonglvjieshao_test.html?channelCode=allChannel"
     @objc static let shareApp = "http://7xwsly.com1.z0.glb.clouddn.com/rent/gonglvjieshao.html?channelCode=allChannel"
+    
+    static let DeleAccount = "http://7xwsly.com1.z0.glb.clouddn.com/logoutRule.html"
 }
 

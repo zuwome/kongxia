@@ -1449,6 +1449,7 @@
 		BDBE2A26252ABD64000B78ED /* UserPrivateTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE2A25252ABD64000B78ED /* UserPrivateTermsController.swift */; };
 		BDBE2A28252B0D3E000B78ED /* UserPrivateTermsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE2A27252B0D3E000B78ED /* UserPrivateTermsHelper.swift */; };
 		BDBEC9AD25B2CBB500CDF49B /* ZZRentOrderPayCompleteWeChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEC9AC25B2CBB500CDF49B /* ZZRentOrderPayCompleteWeChatCell.swift */; };
+		BDC243122894222F00E36494 /* ZZDeleteAccountConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC243112894222F00E36494 /* ZZDeleteAccountConfirmViewController.swift */; };
 		BDCCC52823C6B5F800718F42 /* ZZKTVSongsSelectedVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCCC52723C6B5F800718F42 /* ZZKTVSongsSelectedVIew.m */; };
 		BDCCC52B23C6BE1000718F42 /* ZZKTVSongListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCCC52A23C6BE1000718F42 /* ZZKTVSongListView.m */; };
 		BDCCC52E23C6FA0700718F42 /* ZZKTVChoosenSongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCCC52D23C6FA0700718F42 /* ZZKTVChoosenSongCell.m */; };
@@ -4273,6 +4274,7 @@
 		BDBE2A25252ABD64000B78ED /* UserPrivateTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateTermsController.swift; sourceTree = "<group>"; };
 		BDBE2A27252B0D3E000B78ED /* UserPrivateTermsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateTermsHelper.swift; sourceTree = "<group>"; };
 		BDBEC9AC25B2CBB500CDF49B /* ZZRentOrderPayCompleteWeChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZRentOrderPayCompleteWeChatCell.swift; sourceTree = "<group>"; };
+		BDC243112894222F00E36494 /* ZZDeleteAccountConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZDeleteAccountConfirmViewController.swift; sourceTree = "<group>"; };
 		BDCCC52623C6B5F800718F42 /* ZZKTVSongsSelectedVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVSongsSelectedVIew.h; sourceTree = "<group>"; };
 		BDCCC52723C6B5F800718F42 /* ZZKTVSongsSelectedVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZKTVSongsSelectedVIew.m; sourceTree = "<group>"; };
 		BDCCC52923C6BE1000718F42 /* ZZKTVSongListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVSongListView.h; sourceTree = "<group>"; };
@@ -5699,6 +5701,7 @@
 				BD188172252CC75000BE3482 /* ZZDeleteAccountViewController.m */,
 				91DB9D591F6129E600013F4C /* ZZChangePwdViewController.h */,
 				91DB9D5A1F6129E600013F4C /* ZZChangePwdViewController.m */,
+				BDC243112894222F00E36494 /* ZZDeleteAccountConfirmViewController.swift */,
 			);
 			path = secure;
 			sourceTree = "<group>";
@@ -10975,6 +10978,7 @@
 				BD2C005C23BB380900756D98 /* JXCategoryIndicatorComponentView.m in Sources */,
 				BD358A6726FF044D00CE843B /* TZPhotoPreviewCell.m in Sources */,
 				91DBA2FB1F613CF700013F4C /* ZZDisturbTimeCell.m in Sources */,
+				BDC243122894222F00E36494 /* ZZDeleteAccountConfirmViewController.swift in Sources */,
 				AC1DC6E420CF678C00D1D9F0 /* ZZOptionTiXianCell.m in Sources */,
 				BD3F027A2372A43E004DA37D /* ZZChatShotViewController.m in Sources */,
 				91DBA5C91F6151F500013F4C /* ZZPublishListModel.m in Sources */,

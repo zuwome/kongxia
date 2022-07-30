@@ -13,4 +13,8 @@
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSString *codeString;
 
+@property (nonatomic, assign) BOOL shouldVerifyFace;
+
+- (instancetype)initWithShouldVerifyFace:(BOOL)shouldVerifyFace;
+
 @end

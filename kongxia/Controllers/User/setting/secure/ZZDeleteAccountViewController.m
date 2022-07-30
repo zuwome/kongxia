@@ -33,7 +33,7 @@
 
 - (void)forgotPassword {
     [self.view endEditing:YES];
-    ZZForgetS1ViewController *controller = [[ZZForgetS1ViewController alloc] init];
+    ZZForgetS1ViewController *controller = [[ZZForgetS1ViewController alloc] initWithShouldVerifyFace:NO];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

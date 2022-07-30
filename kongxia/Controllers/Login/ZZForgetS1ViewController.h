@@ -12,4 +12,8 @@
 
 @property (nonatomic, copy) NSString *mobile;
 
+@property (nonatomic, assign) BOOL shouldVerifyFace;
+
+- (instancetype)initWithShouldVerifyFace:(BOOL)shouldVerifyFace;
+
 @end
