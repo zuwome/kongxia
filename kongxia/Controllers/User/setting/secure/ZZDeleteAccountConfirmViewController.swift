@@ -27,7 +27,7 @@ import UIKit
         label.textColor = .gray
         label.numberOfLines = 0
         
-        var titles = "如您注销空虾App账号，您在空虾App，留存的信息将被处理（删除或匿名化）且无法找回，具体包括注销空虾App账号服务\n"
+        var titles = "如您注销空虾App账号，您在空虾App，留存的信息将被处理（删除或匿名化）且无法找回。\n"
         var titlesattriStr = NSMutableAttributedString(string: titles)
         
         var contents = """
