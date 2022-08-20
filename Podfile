@@ -27,7 +27,7 @@ target 'kongxia' do
     
 #   七牛短视频
     pod 'PLShortVideoKit', '~> 3.0.0'
-    pod 'PLPlayerKit'
+    pod 'PLPlayerKit', '~> 3.4.7'
     
 #   美颜
     pod 'AgoraRtcEngine_iOS' , '~> 3.6.1.1'
@@ -61,7 +61,7 @@ target 'kongxia' do
     pod 'YYImage', :git => 'https://github.com/QiuYeHong90/YYImage.git'
     
 #    lottie
-    pod 'lottie-ios'
+    pod 'lottie-ios', '~> 2.5.3'
     
 #   Swift
     pod 'ObjectMapper'

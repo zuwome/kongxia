@@ -150,7 +150,7 @@
         [ZZHUD dismiss];
         _sureBtn.enabled = YES;
         if (error) {
-            [UIAlertController presentAlertControllerWithTitle:@"抱歉 没认出您来" message:@"哎呀 有外星人入侵，请确保是您本人操作" doneTitle:@"重试" cancelTitle:@"返回" showViewController:self completeBlock:^(BOOL isCancelled) {
+            [UIAlertController presentAlertControllerWithTitle:@"错误" message:error.message doneTitle:@"重试" cancelTitle:@"返回" showViewController:self completeBlock:^(BOOL isCancelled) {
                 if (isCancelled) {
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 }
