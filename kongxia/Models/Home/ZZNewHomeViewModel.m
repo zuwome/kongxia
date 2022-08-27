@@ -402,7 +402,7 @@
     }
     else if ([cellIdentifier isEqualToString:ZZHomeCollectionsNewCellId]) {
         ZZHomeCollectionsNewCell *collectionCell = (ZZHomeCollectionsNewCell *)cell;
-        [collectionCell configureTopThree:self.homeModel.rankResponeModel];
+        [collectionCell configureTopThree:self.homeModel.rankResponeModel qchat:self.homeModel.q_chat];
         collectionCell.delegate = self;
     }
     return cell;

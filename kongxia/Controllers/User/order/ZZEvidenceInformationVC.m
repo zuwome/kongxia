@@ -137,12 +137,13 @@
 
 //跳转到在线客服
 - (void)jumpGoToKeFuChat {
-    ZZChatServerViewController *chatService = [[ZZChatServerViewController alloc] init];
-    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-    chatService.targetId = kCustomerServiceId;
-    chatService.title = @"客服";
-    chatService.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController :chatService animated:YES];
+    [ZZServerHelper showServer];
+//    ZZChatServerViewController *chatService = [[ZZChatServerViewController alloc] init];
+//    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//    chatService.targetId = kCustomerServiceId;
+//    chatService.title = @"客服";
+//    chatService.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController :chatService animated:YES];
 }
 
 

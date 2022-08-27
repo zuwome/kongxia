@@ -12519,7 +12519,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12602,7 +12602,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12742,7 +12742,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12825,7 +12825,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12966,7 +12966,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13049,7 +13049,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13189,7 +13189,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13270,7 +13270,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.3;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

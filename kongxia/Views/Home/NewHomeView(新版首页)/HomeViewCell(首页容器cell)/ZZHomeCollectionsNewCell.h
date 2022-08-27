@@ -24,7 +24,7 @@
 
 @property (nonatomic, weak) id<ZZHomeCollectionsNewCellDelegate> delegate;
 
-- (void)configureTopThree:(ZZRankResponeModel *)rankResponeMode;
+- (void)configureTopThree:(ZZRankResponeModel *)rankResponeMode qchat:(ZZHomeChatModel *)qchat;
 
 @end
 
