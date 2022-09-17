@@ -671,6 +671,11 @@
             
             _haveGetUserInfo = YES;
             self.user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            if ([ZZUtils isEmpty:self.user.rent.city.cityId]) {
+                if ( [data[@"rent"] isKindOfClass: [NSDictionary class]] && [data[@"rent"][@"city"] isKindOfClass: [NSDictionary class]]) {
+                    self.user.rent.city.cityId = data[@"rent"][@"city"][@"id"];
+                }
+            }
             self.navigationItem.title = self.user.nickname;
             self.nickName = self.user.nickname;
             [self managerPluginBoardView];

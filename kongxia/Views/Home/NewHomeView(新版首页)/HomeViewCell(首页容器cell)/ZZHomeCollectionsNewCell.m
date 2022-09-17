@@ -238,7 +238,7 @@
         make.centerY.equalTo(_taskView).offset(12);
     }];
     
-    // 点唱机Party
+    // 视频咨询
     [_rankingView addSubview:self.rankingIconImageView];
     [_rankingView addSubview:self.rankingTitleLabel];
     [_rankingView addSubview:self.rankingSubTitleLabel];

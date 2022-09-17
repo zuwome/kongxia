@@ -48,6 +48,8 @@
 
 @property (nonatomic,strong) UILabel *pay_weiChatNum_type_lab;//支付微信号的方式
 
+@property (nonatomic,strong) UILabel *messageLabel;
+
 @property (nonatomic, strong) UIButton *payButton;//支付按钮
 @property (nonatomic, strong) TTTAttributedLabel *changeLabel;//支付提示
 @property (nonatomic, strong) TTTAttributedLabel *readProtocol; //阅读充值协议
@@ -218,7 +220,7 @@
     [self.bgView addSubview:self.titleLabel];
     [self.bgView addSubview:self.look_weiChatNum_moneyLab];
     [self.bgView addSubview:self.changeLabel];
-
+    [self.bgView addSubview:self.messageLabel];
     [self.bgView addSubview:self.payButton];
     
     [self.bgView addSubview:self.mebiIcon];
@@ -344,9 +346,14 @@
         make.height.equalTo(@50);
     }];
     
-    [self.assistanceView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         make.top.equalTo(_payButton.mas_bottom).offset(10);
+    }];
+    
+    [self.assistanceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.top.equalTo(_messageLabel.mas_bottom).offset(10);
         make.height.equalTo(@17);
     }];
     
@@ -735,6 +742,17 @@
         _titleLabel.text = _model.type == PaymentTypeWX ? @"查看微信" : @"查看证件照";
     }
     return _titleLabel;
+}
+
+- (UILabel *)messageLabel {
+    if (!_messageLabel) {
+        _messageLabel = [[UILabel alloc] init];
+        _messageLabel.font = [UIFont systemFontOfSize:11];
+        _messageLabel.textColor = RGBCOLOR(63, 58, 58);
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.text = @"达人若私自索要红包才能添加，举报核实后平台全额退款";
+    }
+    return _messageLabel;
 }
 
 //Helvetica-Bold
