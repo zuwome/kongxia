@@ -85,7 +85,7 @@
             NSLog(@"PY_内购数据请求下来");
             if (!data[@"error"]) {
                 [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id userData, NSURLSessionDataTask *task) {
-                    ZZUser *user = [[ZZUser alloc] initWithDictionary:userData error:nil];
+                    ZZUser *user = [ZZUser yy_modelWithJSON:data];
                     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                     completionCall(data);
                 }];

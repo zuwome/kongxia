@@ -123,7 +123,7 @@
         NSLog(@"sssssss:%@",infoModel.wechatseenId);
         if ([_evaluationType isEqualToString:@"1"]) {
             [ZZUser loadUser:self.uid param:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];;
                 if (user.have_commented_wechat_no) {
                     _titleCustomLabel.text = @"已评价";
                 }

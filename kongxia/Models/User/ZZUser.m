@@ -124,6 +124,13 @@
     }];
 }
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"mcoin_total"        : @"mcoin",
+             @"new_query_at" : @"returner",
+             };
+}
+
 
 - (instancetype)init {
     self = [super init];

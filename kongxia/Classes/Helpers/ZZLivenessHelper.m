@@ -369,7 +369,7 @@
         else {
             [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
                 if (error == NULL) {
-                    ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                    ZZUser *user = [ZZUser yy_modelWithJSON:data];
                     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 }
                 [self uploadFaceSuccessAction:faces];

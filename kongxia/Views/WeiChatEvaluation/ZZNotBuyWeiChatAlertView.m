@@ -447,7 +447,7 @@
             } else {
                 //更新用户信息
                 [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id userData, NSURLSessionDataTask *task) {
-                    ZZUser *user = [[ZZUser alloc] initWithDictionary:userData error:nil];
+                    ZZUser *user = [ZZUser yy_modelWithJSON:data];;
                     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 }];
                 
@@ -464,7 +464,7 @@
             } else {
                 //更新用户信息
                 [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id userData, NSURLSessionDataTask *task) {
-                    ZZUser *user = [[ZZUser alloc] initWithDictionary:userData error:nil];
+                    ZZUser *user = [ZZUser yy_modelWithJSON:data];;
                     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 }];
                 !self.payBuyWeiChat ? : self.payBuyWeiChat(YES,@"pay_for_idphoto");

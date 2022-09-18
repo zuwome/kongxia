@@ -242,7 +242,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [ZZHUD dismiss];
-            _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            _user = [ZZUser yy_modelWithJSON:data];;
             
             if (_user.banStatus) {
                 [UIAlertView showWithTitle:@"提示" message:@"该用户已被封禁!" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {

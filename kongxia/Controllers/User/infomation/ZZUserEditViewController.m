@@ -603,7 +603,7 @@
     [ZZUser loadUser:_loginer.uid param:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         [ZZUserHelper shareInstance].uploadingQuestionVideo = NO;
         if (data) {
-            weakSelf.loginer = [[ZZUser alloc] initWithDictionary:data error:nil];
+            weakSelf.loginer = [ZZUser yy_modelWithJSON:data];;
             [[ZZUserHelper shareInstance] saveLoginer:[_loginer toDictionary] postNotif:NO];
             //            weakSelf.headView.photos = _loginer.photos_origin;
             if (weakSelf.sk) {

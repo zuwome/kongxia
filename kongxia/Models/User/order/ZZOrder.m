@@ -168,12 +168,6 @@
         [dic removeObjectForKey:@"xdf_price"];
     }
     
-    if (![ZZUtils isEmpty:self.city.cityId] && [ZZUtils isEmpty:dic ]) {
-        NSMutableDictionary *citym = [dic[@"city"] mutableCopy];
-        citym[@"id"] = self.city.cityId;
-        dic[@"city"] = citym.copy;
-    }
-    
     [ZZRequest method:@"POST" path:path params:dic.copy next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         next(error, data, task);
     }];

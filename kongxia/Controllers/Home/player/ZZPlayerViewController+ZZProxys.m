@@ -601,7 +601,7 @@
     } else if (data) {
         [ZZHUD dismiss];
         
-        ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+        ZZUser *user = [ZZUser yy_modelWithJSON:data];
         weakSelf.rentUser = user;
         //当前视频处于的用户
         if (user.can_see_wechat_no) {
@@ -666,7 +666,7 @@
                     if (error) {
                         [ZZHUD showErrorWithStatus:error.message];
                     } else if (data) {
-                        weakSelf.rentUser = [[ZZUser alloc] initWithDictionary:data error:nil];
+                        weakSelf.rentUser = [ZZUser yy_modelWithJSON:data];;
                     }
                 }];
             }];

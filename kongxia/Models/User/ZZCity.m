@@ -20,6 +20,12 @@
                                                        }];
 }
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+        @"cityId":@"id"
+             };
+}
+
 - (void)list:(requestCallback)next {
     [ZZRequest method:@"GET" path:@"/city/list" params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         next(error, data, task);

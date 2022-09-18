@@ -351,7 +351,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         }
         else if (data) {
-            model.user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            model.user = [ZZUser yy_modelWithJSON:data];;
             evaluationModel.user = model.user;
             [ZZWeiChatEvaluationManager LookWeiChatWithModel:evaluationModel watchViewController:nil goToBuy:nil recharge:nil touchChangePhone:nil evaluation:^(BOOL goChat) {
                 if (goChat) {

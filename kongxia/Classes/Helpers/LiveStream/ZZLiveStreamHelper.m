@@ -660,10 +660,13 @@
 - (void)getUserMoney {
     [[JX_GCDTimerManager sharedInstance] scheduledDispatchTimerWithName:@"Delay" timeInterval:0.1f queue:nil repeats:NO actionOption:AbandonPreviousAction action:^{
         [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id userData, NSURLSessionDataTask *task) {
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:userData error:nil];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
-            NSLog(@"更新之后的么币 : %d", [user.mcoin intValue]);
-            [[JX_GCDTimerManager sharedInstance] cancelTimerWithName:@"Delay"];
+            if ([userData isKindOfClass:[NSDictionary class]]) {
+                ZZUser *user = [ZZUser yy_modelWithJSON:(NSDictionary *)userData];
+                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                NSLog(@"更新之后的么币 : %d", [user.mcoin intValue]);
+                [[JX_GCDTimerManager sharedInstance] cancelTimerWithName:@"Delay"];
+            }
+            
         }];
     }];
 }

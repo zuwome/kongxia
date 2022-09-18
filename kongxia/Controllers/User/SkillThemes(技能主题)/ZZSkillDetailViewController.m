@@ -125,7 +125,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else if (data) {
-                self.user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                self.user = [ZZUser yy_modelWithJSON:data];;
                 [self.tableview reloadData];
             }
         }];

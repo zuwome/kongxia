@@ -103,7 +103,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             }
             else if (data) {
-                _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                _user = [ZZUser yy_modelWithJSON:data];
                 [self reload];
             }
         }];

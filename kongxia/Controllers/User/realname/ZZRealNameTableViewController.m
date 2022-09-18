@@ -214,7 +214,7 @@
         if (error) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
-            _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            _user = [ZZUser yy_modelWithJSON:data];;
             [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UpdatedGenderStatus object:nil];
             [weakSelf gotoChuZu];
@@ -287,7 +287,7 @@
         if (error) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
-            _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            _user = [ZZUser yy_modelWithJSON:data];;
             [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
             [weakSelf fastChatNextPage];
         }

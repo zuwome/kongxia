@@ -380,7 +380,6 @@
 - (void)getFootData {
     if (self.models.count) {
         WEAK_SELF();
-//        NSMutableDictionary *aDcit = [@{@"sortValue" : self.users.lastObject.sortValue} mutableCopy];
         NSMutableDictionary *aDcit = [@{} mutableCopy];
         if ([ZZUserHelper shareInstance].location) {
             CLLocation *location = [ZZUserHelper shareInstance].location;

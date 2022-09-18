@@ -1341,14 +1341,7 @@
     WEAK_SELF();
     [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (data) {
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
-            
-            if ([ZZUtils isEmpty:user.rent.city.cityId]) {
-                if ( [data[@"rent"] isKindOfClass: [NSDictionary class]] && [data[@"rent"][@"city"] isKindOfClass: [NSDictionary class]]) {
-                    user.rent.city.cityId = data[@"rent"][@"city"][@"id"];
-                }
-            }
-            
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             
             [weakSelf showUserErrorInfoAlertView];

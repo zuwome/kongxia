@@ -197,7 +197,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             }
             else {
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 
                 [ZZUserHelper shareInstance].consumptionMebi = 0;

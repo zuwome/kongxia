@@ -133,7 +133,7 @@
         } else if (data) {
             [ZZHUD dismiss];
             [ZZHUD showTaskInfoWithStatus:@"购买成功"];
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             _user = user;
             [self.tableView reloadData];
             [self showIDPhoto:_user.id_photo.pic];
@@ -882,7 +882,7 @@
                 if (error) {
                     [ZZHUD showErrorWithStatus:error.message];
                 } else if (data) {
-                    self.user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                    self.user = [ZZUser yy_modelWithJSON:data];
                 }
             }];
         }];
@@ -902,7 +902,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else if (data) {
-                self.user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                self.user = [ZZUser yy_modelWithJSON:data];;
             }
         }];
     }];
