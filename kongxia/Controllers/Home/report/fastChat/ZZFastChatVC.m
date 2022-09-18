@@ -357,9 +357,9 @@
     _tableView.mj_header = [ZZRefreshHeader headerWithRefreshingBlock:^{
         [weakSelf getHeadData];
     }];
-    _tableView.mj_footer = [ZZRefreshFooter footerWithRefreshingBlock:^{
-        [weakSelf getFootData];
-    }];
+//    _tableView.mj_footer = [ZZRefreshFooter footerWithRefreshingBlock:^{
+//        [weakSelf getFootData];
+//    }];
     [_tableView.mj_header beginRefreshing];
 }
 
