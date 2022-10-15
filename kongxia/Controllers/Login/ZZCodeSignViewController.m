@@ -248,7 +248,7 @@
     if (!accountCancel) {
         
         ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
-        _loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+        _loginer = [ZZUser yy_modelWithJSON:data[@"user"]];// [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
         userHelper.uploadToken = data[@"upload_token"];
         if (data[@"access_token"]) {
             userHelper.oAuthToken = data[@"access_token"];
@@ -277,7 +277,7 @@
 - (BOOL)isUserAccountCancel:(id)data block:(void (^)(void))block
 {
     [self.view endEditing:YES];
-    _loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+    _loginer = [ZZUser yy_modelWithJSON:data[@"user"]];// [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
     if (_loginer.have_close_account) {
         ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
         userHelper.uploadToken = data[@"upload_token"];

@@ -160,7 +160,7 @@
 //    }
     
     // 初始状态 UI
-    if (user.base_video.sk.skId) {
+    if (user.base_video.sk.id) {
         _playImgView.hidden = NO;
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.base_video.sk.video.cover_url] placeholderImage:nil options:SDWebImageRetryFailed];
         self.headImageView.backgroundColor = kGrayTextColor;

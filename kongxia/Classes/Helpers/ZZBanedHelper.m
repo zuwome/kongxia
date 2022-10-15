@@ -13,7 +13,7 @@
 + (void)showBan:(id)data {
     ZZUser *user = nil;
     if (![data isKindOfClass: [ZZUser class]]) {
-        user = [[ZZUser alloc] initWithDictionary:data error:nil];
+        user = [ZZUser yy_modelWithJSON:data];
     }
     else {
         user = data;

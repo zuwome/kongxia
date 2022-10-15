@@ -15,7 +15,7 @@
 
 @interface ZZSKModel : JSONModel
 
-@property (nonatomic, strong) NSString *skId;
+@property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) ZZUser *user;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSMutableArray<ZZMemedaTopicModel> *groups;

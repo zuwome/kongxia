@@ -48,7 +48,7 @@
         }
     else if ([_mebiModel.mcoin_record[@"type"] isEqualToString:@"give_gift"]) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(cell:showUserInfo:)]) {
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:_mebiModel.mcoin_record[@"to"] error:nil];
+                ZZUser *user = [ZZUser yy_modelWithJSON:_mebiModel.mcoin_record[@"to"]];// [[ZZUser alloc] initWithDictionary:_mebiModel.mcoin_record[@"to"] error:nil];
                 [self.delegate cell:self showUserInfo:user];
             }
         }
@@ -130,7 +130,7 @@
 - (void)setMebiModel:(ZZMeBiRecordModel *)mebiModel {
     _mebiModel = mebiModel;
     
-    ZZUser *user = [[ZZUser alloc] initWithDictionary:mebiModel.mcoin_record[@"to"] error:nil];
+    ZZUser *user = [ZZUser yy_modelWithJSON:mebiModel.mcoin_record[@"to"]];// [[ZZUser alloc] initWithDictionary:mebiModel.mcoin_record[@"to"] error:nil];
     self.moneyLabel.text = [NSString stringWithFormat:@"%@么币",mebiModel.mcoin_record[@"amount"]];
     self.recordTitleLab.text = [NSString stringWithFormat:@"%@",mebiModel.mcoin_record[@"type_text"]];
     self.timeLabel.text = [NSString stringWithFormat:@"%@",mebiModel.mcoin_record[@"created_at_text"]];

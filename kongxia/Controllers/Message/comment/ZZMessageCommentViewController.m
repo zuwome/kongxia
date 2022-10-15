@@ -172,7 +172,7 @@
     
     if (model.message.mmd.mid) {
         [self gotoMmdDetail:model];
-    } else if (model.message.sk.skId) {
+    } else if (model.message.sk.id) {
         [self gotoSKDetail:model];
     }
     
@@ -204,7 +204,7 @@
 - (void)gotoSKDetail:(ZZMessageDynamicModel *)model
 {
     ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
-    controller.skId = model.message.sk.skId;
+    controller.skId = model.message.sk.id;
     [self.navigationController pushViewController:controller animated:YES];
     controller.firstSkModel = model.message.sk;
 }
@@ -237,8 +237,8 @@
     }
     NSMutableDictionary *aDict = [@{@"content":content} mutableCopy];
     [aDict setObject:replyId forKey:@"reply_which_reply"];
-    if (_commentModel.message.sk.skId) {
-        [ZZSKModel commentMememdaParam:aDict skId:_commentModel.message.sk.skId next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+    if (_commentModel.message.sk.id) {
+        [ZZSKModel commentMememdaParam:aDict skId:_commentModel.message.sk.id next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else {

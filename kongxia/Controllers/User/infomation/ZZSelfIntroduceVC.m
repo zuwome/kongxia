@@ -248,7 +248,7 @@
     else if (self.reviewStatus == ZZVideoReviewStatusSuccess) {
         ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
         controller.fromLiveStream = YES;
-        controller.skId = _loginer.base_video.sk.skId;
+        controller.skId = _loginer.base_video.sk.id;
         controller.hidesBottomBarWhenPushed = YES;
         controller.isBaseVideo = YES;
         [self.navigationController pushViewController:controller animated:YES];
@@ -257,7 +257,7 @@
     else {
         ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
         controller.fromLiveStream = YES;
-        controller.skId = _loginer.base_video.sk.skId;
+        controller.skId = _loginer.base_video.sk.id;
         controller.hidesBottomBarWhenPushed = YES;
         controller.isBaseVideo = YES;
         [self.navigationController pushViewController:controller animated:YES];

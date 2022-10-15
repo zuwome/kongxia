@@ -196,7 +196,7 @@
     ZZUserVideoListModel *model = _dataArray[indexPath.row - self.videoArray.count];
     if (model.like_status) {
         // 取消赞
-        if (model.sk.skId) {
+        if (model.sk.id) {
             // 时刻视频
             [self skUnLisk:indexPath];
         } else {
@@ -205,7 +205,7 @@
         }
     } else {
         // 赞
-        if (model.sk.skId) {
+        if (model.sk.id) {
             // 时刻视频
             [self skLike:indexPath];
         } else {
@@ -224,7 +224,7 @@
         controller.mid = model.mmd.mid;
         controller.firstMMDModel = model.mmd;
     } else {
-        controller.skId = model.sk.skId;
+        controller.skId = model.sk.id;
         controller.firstSkModel = model.sk;
     }
     controller.isShowTextField = YES;
@@ -290,7 +290,7 @@
     // 区分 瞬间 和 么么哒视频
     CGFloat imageHeight = 0;
     NSString *content = @"";
-    if (model.sk.skId) {
+    if (model.sk.id) {
         imageHeight = [INT_TO_STRING(model.sk.video.height) floatValue] / [INT_TO_STRING(model.sk.video.width) floatValue] * itemWidth;
         content = model.sk.content;
     } else {
@@ -401,7 +401,7 @@
             controller.mid = model.mmd.mid;
             controller.firstMMDModel = model.mmd;
         } else {
-            controller.skId = model.sk.skId;
+            controller.skId = model.sk.id;
             controller.firstSkModel = model.sk;
         }
         controller.userVideo = model;

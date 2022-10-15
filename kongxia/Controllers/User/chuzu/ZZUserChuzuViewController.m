@@ -123,7 +123,7 @@
 // 加载缓存中的信息（草稿）
 - (void)updateLocalInfoForUI {
     
-    ZZUser *cacheUser = [[ZZUser alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:SAVE_RENTINFO_KEY] error:nil];
+    ZZUser *cacheUser = [ZZUser yy_modelWithJSON:[[NSUserDefaults standardUserDefaults] objectForKey:SAVE_RENTINFO_KEY]];// [[ZZUser alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:SAVE_RENTINFO_KEY] error:nil];
     if (cacheUser) {
         if ([cacheUser.uid isEqualToString:[ZZUserHelper shareInstance].loginer.uid] && _user.rent.status == 0) {
             WEAK_SELF();
@@ -922,7 +922,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else if (data) {
             [ZZHUD dismiss];
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             weakSelf.user.rent = user.rent;
             [self managerStatusImage];
             [[ZZUserHelper shareInstance] saveLoginer:[weakSelf.user toDictionary] postNotif:NO];

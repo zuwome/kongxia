@@ -58,7 +58,7 @@
 - (void)setShareInfomation
 {
     if (self.currentSkModel) {
-        self.shareView.shareUrl = [NSString stringWithFormat:@"%@/sk/%@/page", kBase_URL, self.currentSkModel.skId];
+        self.shareView.shareUrl = [NSString stringWithFormat:@"%@/sk/%@/page", kBase_URL, self.currentSkModel.id];
         if (isNullString(self.currentSkModel.content)) {
             self.shareView.shareTitle = [NSString stringWithFormat:@"瞬间"];
         } else {
@@ -74,7 +74,7 @@
         } else {
             self.shareView.itemCount = 5;
         }
-        self.shareView.skId = self.currentSkModel.skId;
+        self.shareView.skId = self.currentSkModel.id;
         
     } else {
         self.shareView.shareUrl = [NSString stringWithFormat:@"/%@mmd/%@/page", kBase_URL, self.currentMMDModel.mid];

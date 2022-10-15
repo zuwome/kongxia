@@ -449,7 +449,7 @@ static NSString *TextIdentifier = @"textcell";
 - (void)gotoPlayerDetailWithSkId:(ZZSKModel *)sk
 {
     ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
-    controller.skId = sk.skId;
+    controller.skId = sk.id;
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
     controller.firstSkModel = sk;

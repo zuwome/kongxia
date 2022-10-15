@@ -275,7 +275,7 @@
     ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
     if (loginer.base_video.status == 0) {
         introduceVC.reviewStatus = ZZVideoReviewStatusNoRecord;
-        if (loginer.base_video.sk.skId) {//当前有录制还未保存，也算进入成功页面
+        if (loginer.base_video.sk.id) {//当前有录制还未保存，也算进入成功页面
             introduceVC.reviewStatus = ZZVideoReviewStatusSuccess;
             introduceVC.loginer = loginer;
         }
@@ -336,8 +336,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
-                NSError *err;
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                 [weakSelf clearTheCache];

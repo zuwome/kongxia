@@ -28,7 +28,7 @@
 - (void)setUserModel:(ZZUser *)userModel
 {
     _userModel = userModel;
-    self.meBiDetailInfoLable.text = [NSString stringWithFormat:@"%@",userModel.mcoin];
+    self.meBiDetailInfoLable.text = [NSString stringWithFormat:@"%d",userModel.mcoin != nil ? userModel.mcoin.intValue : 0];
 }
 
 -(void)layoutSubviews {

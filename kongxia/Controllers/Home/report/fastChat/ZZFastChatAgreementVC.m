@@ -306,8 +306,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
-                NSError *err;
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [weakSelf gotoFastChatSetting];
             }

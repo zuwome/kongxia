@@ -361,7 +361,7 @@
     // 不感兴趣的视频
     NSMutableArray<ZZFindVideoModel *> *filteredArray = @[].mutableCopy;
     [peoplefilteredArray enumerateObjectsUsingBlock:^(ZZFindVideoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![videoMuArray containsObject:obj.sk.skId] && ![videoMuArray containsObject:obj.mmd.mid]) {
+        if (![videoMuArray containsObject:obj.sk.id] && ![videoMuArray containsObject:obj.mmd.mid]) {
             [filteredArray addObject: obj];
         }
     }];
@@ -380,7 +380,7 @@
     }
     CGFloat imageHeight = 0;
     NSString *content = @"";
-    if (model.sk.skId) {
+    if (model.sk.id) {
         imageHeight = [INT_TO_STRING(model.sk.video.height) floatValue] / [INT_TO_STRING(model.sk.video.width) floatValue] * itemWidth;
         content = model.sk.content;
     } else {
@@ -413,7 +413,7 @@
         return cell;
     } else {
         ZZFindNewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mycell" forIndexPath:indexPath];
-            if (model.sk.skId) {
+            if (model.sk.id) {
                 [cell setSkData:model];
             } else {
                 [cell setMMDData:model];
@@ -479,7 +479,7 @@
     ZZFindVideoModel *model = _dataArray[indexPath.row];
     if (model.like_status) {
         // 取消赞
-        if (model.sk.skId) {
+        if (model.sk.id) {
             // 时刻视频
             [self skUnLisk:indexPath];
         } else {
@@ -488,7 +488,7 @@
         }
     } else {
         // 赞
-        if (model.sk.skId) {
+        if (model.sk.id) {
             // 时刻视频
             [self skLike:indexPath];
         } else {
@@ -747,7 +747,7 @@
              [cell setData:model.group];
          } else {
               ZZFindNewCell *cell = (ZZFindNewCell*)(ZZFindTopicCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-             if (model.sk.skId) {
+             if (model.sk.id) {
                  [cell setSkData:model];
              } else {
                  [cell setMMDData:model];
@@ -793,7 +793,7 @@
                 WEAK_OBJECT(cell, weakCell);
                 weakCell.imgView.jp_videoPlayerDelegate = weakSelf;
                 
-                if (weakCell.model.sk.skId) {
+                if (weakCell.model.sk.id) {
                     NSLog(@"PY_视频地址 %@\n",weakCell.model.sk.video.video_url);
                     [weakCell.imgView jp_playVideoWithURL:[NSURL URLWithString:weakCell.model.sk.video.video_url] options:JPVideoPlayerContinueInBackground | JPVideoPlayerMutedPlay | JPVideoPlayerLayerVideoGravityResizeAspectFill progress:nil completed:nil];
                     

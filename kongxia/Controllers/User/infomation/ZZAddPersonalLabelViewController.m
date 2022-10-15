@@ -91,8 +91,7 @@
         
         if (data) {
             [ZZHUD showSuccessWithStatus:@"更新成功!"];
-            NSError *err;
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             _user.tags_new = user.tags_new;
             [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
             if (_updateLabel) {

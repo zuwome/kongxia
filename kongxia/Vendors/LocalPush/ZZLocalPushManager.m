@@ -139,7 +139,7 @@
             alertBody = @"你抢的任务已被选择, 请立即查看";
             [GetSoundToolsManager() starAlertSound];//抢了单，处于后台要震动
         } else {
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:[content objectForKey:@"user"] error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:[content objectForKey:@"user"]];// [[ZZUser alloc] initWithDictionary:[content objectForKey:@"user"] error:nil];
             alertBody = [NSString stringWithFormat:@"%@邀请您视频通话,视频结束后获得收益", user.nickname];
             [GetSoundToolsManager() starAlertSound];//后台震动
         }
@@ -245,7 +245,7 @@
             alertBody = @"你抢的任务已被选择, 请立即查看";
             [GetSoundToolsManager() starAlertSound];//抢了单，处于后台要震动
         } else {
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:[content objectForKey:@"user"] error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:[content objectForKey:@"user"]]; //[[ZZUser alloc] initWithDictionary:[content objectForKey:@"user"] error:nil];
             alertBody = [NSString stringWithFormat:@"%@邀请您视频通话,视频结束后获得收益", user.nickname];
             [GetSoundToolsManager() starAlertSound];//后台震动
         }

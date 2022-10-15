@@ -1319,7 +1319,7 @@
                         [ZZHUD showErrorWithStatus:error.message];
                         sender.on = !isOn;
                     } else {
-                        _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                        _user = [ZZUser yy_modelWithJSON:data];
                         _user.push_config.pd_push = isOn;
                         [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
                         [weakSelf.tableView reloadData];
@@ -1354,7 +1354,7 @@
             [ZZHUD showErrorWithStatus:error.message];
             sender.on = !isOn;
         } else {
-            _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            _user = [ZZUser yy_modelWithJSON:data];
             _user.push_config.pd_push = isOn;
             [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
             [self.tableView reloadData];
@@ -1516,8 +1516,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
-                NSError *err;
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                 [weakSelf.tableView reloadData];

@@ -162,7 +162,7 @@
 
 - (void)setData:(ZZUserVideoListModel *)model
 {
-    if (model.sk.skId) {
+    if (model.sk.id) {
         [_headImgView setUser:model.sk.user width:38 vWidth:10];
         _titleLabel.text = model.sk.content;
         _readCountLabel.text = [NSString stringWithFormat:@"%ld",model.sk.browser_count];

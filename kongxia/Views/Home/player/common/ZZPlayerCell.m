@@ -55,7 +55,7 @@
 }
 
 - (void)setData:(ZZFindVideoModel *)model {
-    if (model.sk.skId) {
+    if (model.sk.id) {
         self.skDataModel = model.sk;
     }
     else {
@@ -105,7 +105,7 @@
     }
     _skDataModel = skDataModel;
     _isMMD = NO;
-    _skId = skDataModel.skId;
+    _skId = skDataModel.id;
     _imgView.contentMode =  UIViewContentModeScaleAspectFill ;
     
     self.isDarenVideo = [ZZPlayerHelper whenWatchDaRenVideoBacKIsFillScreen:self withModel:skDataModel];

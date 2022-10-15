@@ -685,7 +685,7 @@
             WeakSelf;
             ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
             controller.fromLiveStream = _fromLiveStream;
-            controller.skId = _user.base_sk.skId;
+            controller.skId = _user.base_sk.id;
             controller.canPop = YES;
             controller.hidesBottomBarWhenPushed = YES;
             controller.deleteCallBack = ^{

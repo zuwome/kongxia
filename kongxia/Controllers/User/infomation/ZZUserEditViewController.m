@@ -325,8 +325,7 @@
                 }
                 else {
                     [ZZHUD showSuccessWithStatus:@"更新成功"];
-                    NSError *err;
-                    ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                    ZZUser *user = [ZZUser yy_modelWithJSON:data];
                     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                     [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                     _loginer = user;
@@ -391,8 +390,7 @@
             }
             else {
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
-                NSError *err;
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 _loginer = user;
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
@@ -503,8 +501,7 @@
                         }
                         else {
                             [ZZHUD showSuccessWithStatus:@"更新成功"];
-                            NSError *err;
-                            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                            ZZUser *user = [ZZUser yy_modelWithJSON:data];
                             _loginer = user;
                             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
@@ -671,8 +668,7 @@
         }
         else {
             [ZZHUD showWithStatus:@"更新成功"];
-            NSError *err;
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             _loginer = loginedUser;
             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
@@ -1124,7 +1120,7 @@
     introduceVC.isUploadAfterCompleted = NO;
     if (_loginer.base_video.status == 0) {
         introduceVC.reviewStatus = ZZVideoReviewStatusNoRecord;
-        if (_loginer.base_video.sk.skId) {
+        if (_loginer.base_video.sk.id) {
             // 当前有录制还未保存，也算进入成功页面
             introduceVC.reviewStatus = ZZVideoReviewStatusSuccess;
             introduceVC.loginer = _loginer;
@@ -1244,7 +1240,7 @@
 - (void)gotoPlayerView {
     WeakSelf;
     ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
-    controller.skId = _loginer.base_sk.skId;
+    controller.skId = _loginer.base_sk.id;
     controller.canPop = YES;
     controller.hidesBottomBarWhenPushed = YES;
     controller.deleteCallBack = ^{

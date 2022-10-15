@@ -232,7 +232,7 @@
     
     _order.skill = skill;
     _order.city = _user.rent.city;
-    _order.to = [[ZZUser alloc] initWithDictionary:@{@"uid":_user.uid} error:nil];;
+    _order.to = [ZZUser yy_modelWithJSON:@{@"uid": _user.uid}];//[[ZZUser alloc] initWithDictionary:@{@"uid":_user.uid} error:nil];;
     vc.order = _order;
     vc.user = _user;
     vc.callBack = ^{

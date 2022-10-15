@@ -148,7 +148,7 @@
             [ZZHUD showErrorWithStatus:error.message];
            weakSelf.showBgView.openSwitch.on =! _showBgView.openSwitch.on;
         } else {
-            ZZUser *user   = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user   = [ZZUser yy_modelWithJSON:data];
             weakSelf.showBgView.openSwitch.on = user.push_config.pd_push;
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             if ([ZZUserHelper shareInstance].configModel.can_skip_qchat) {

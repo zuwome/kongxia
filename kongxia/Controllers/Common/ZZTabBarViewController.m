@@ -1013,9 +1013,9 @@
 }
 
 - (void)checkAuthority:(NSDictionary *)aDict isFromNotification:(bool)isFromNotification {
-    ZZUser *user = [[ZZUser alloc] initWithDictionary:[aDict objectForKey:@"user"] error:nil];
+    ZZUser *user = [ZZUser yy_modelWithJSON:[aDict objectForKey:@"user"]];
     if ([[aDict objectForKey:@"user"] isKindOfClass:[NSString class]]) {
-        user = [[ZZUser alloc] initWithDictionary:[ZZUtils dictionaryWithJsonString:[aDict objectForKey:@"user"]] error:nil];
+        user =[ZZUser yy_modelWithJSON:[ZZUtils dictionaryWithJsonString:[aDict objectForKey:@"user"]]];
     }
     
     if ([ZZLiveStreamHelper sharedInstance].isTryingConnecting) {
@@ -1055,7 +1055,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     });
-    ZZUser *user = [[ZZUser alloc] initWithDictionary:[aDict objectForKey:@"user"] error:nil];
+    
+    ZZUser *user = [ZZUser yy_modelWithJSON:[aDict objectForKey:@"user"]];
     if ([[aDict objectForKey:@"user"] isKindOfClass:[NSString class]] || !user) {
         user = [[ZZUser alloc] initWithString:[aDict objectForKey:@"user"] error:nil];
     }

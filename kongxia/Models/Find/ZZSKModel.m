@@ -23,7 +23,7 @@
 
 + (void)zanSkWithModel:(ZZSKModel *)model next:(requestCallback)next
 {
-    [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/sk/%@/like",model.skId] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+    [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/sk/%@/like",model.id] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else {
@@ -36,7 +36,7 @@
 
 + (void)unzanSkWithModel:(ZZSKModel *)model next:(requestCallback)next
 {
-    [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/sk/%@/like",model.skId] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+    [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/sk/%@/like",model.id] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else {

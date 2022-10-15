@@ -196,7 +196,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else if (data) {
-                _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                _user = [ZZUser yy_modelWithJSON:data];
                 [self getUserStatus];
             }
         }];
@@ -577,7 +577,7 @@
 - (void)playVideo {
     ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
     controller.fromLiveStream = YES;
-    controller.skId = self.user.base_video.sk.skId;
+    controller.skId = self.user.base_video.sk.id;
     controller.hidesBottomBarWhenPushed = YES;
     controller.isBaseVideo = YES;
     [self.navigationController pushViewController:controller animated:YES];

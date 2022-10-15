@@ -720,7 +720,7 @@
         self.oldCityName = self.loginer.current_city_name;
         [ZZRequest method:@"POST" path:@"/api/user2" params:params next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (!error && data) {
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 NSLog(@"地理位置更新成功～～～～～～～");
             }
@@ -810,7 +810,7 @@
 
 - (ZZUser *)loginer {
     NSDictionary *user =  [UIApplication objectForKey:@"loginer"];
-    return [[ZZUser alloc] initWithDictionary:user error:nil];
+    return [ZZUser yy_modelWithJSON:user];
 }
 
 - (NSString *)loginerId {

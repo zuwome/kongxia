@@ -317,7 +317,7 @@
             if (shouldManualReview) {
                 [SVProgressHUD showInfoWithStatus:@"提交成功，我们将在1个工作日内审核"];
             }
-            ZZUser *loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+            ZZUser *loginer = [ZZUser yy_modelWithJSON:data[@"user"]];
             [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
          
             [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
@@ -356,7 +356,7 @@
             if (shouldManualReview) {
                 [SVProgressHUD showInfoWithStatus:@"提交成功，我们将在1个工作日内审核"];
             }
-            ZZUser *loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+            ZZUser *loginer = [ZZUser yy_modelWithJSON:data[@"user"]];
             [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
             [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
             
@@ -445,8 +445,7 @@
 
 - (void)updateWithData:(id)data
 {
-    NSError *err;
-    ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+    ZZUser *user = [ZZUser yy_modelWithJSON:data];
     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:YES];
     if (!_isPush) {
      

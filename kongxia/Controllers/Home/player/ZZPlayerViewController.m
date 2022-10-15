@@ -350,7 +350,7 @@
     if (_canLoadMore) {
         if (_playType == PlayTypeUserVideo) {
             if (!_userVideo.like_status) {
-                if (_userVideo.sk.skId) {
+                if (_userVideo.sk.id) {
                     [self skLikeMethod];
                 } else {
                     [self mmdLikeMethod];
@@ -358,7 +358,7 @@
             }
         } else {
             if (!_findModel.like_status) {
-                if (_findModel.sk.skId) {
+                if (_findModel.sk.id) {
                     [self skLikeMethod];
                 } else {
                     [self mmdLikeMethod];
@@ -860,7 +860,7 @@
         if (_playType == PlayTypeUserVideo) {
             ZZUserVideoListModel *model = self.videoArray[self.currentVideoPath.row];
             _userVideo = model;
-            _skId = model.sk.skId;
+            _skId = model.sk.id;
             _mid = model.mmd.mid;
             _currentSkModel = model.sk;
             _currentMMDModel = model.mmd;
@@ -868,7 +868,7 @@
         else {
             ZZFindVideoModel *model = self.videoArray[self.currentVideoPath.row];
             _findModel = model;
-            _skId = model.sk.skId;
+            _skId = model.sk.id;
             _mid = model.mmd.mid;
             _currentSkModel = _findModel.sk;
             _currentMMDModel = _findModel.mmd;
@@ -889,7 +889,7 @@
         }
         if (_playType == PlayTypeUserVideo) {
             if (!haveValue) {
-                if (_userVideo.sk.skId) {
+                if (_userVideo.sk.id) {
                     [contributions addObjectsFromArray:_userVideo.sk_tips];
                 } else {
                     [contributions addObjectsFromArray:_userVideo.mmd_tips];
@@ -897,7 +897,7 @@
             }
         } else {
             if (!haveValue) {
-                if (_findModel.sk.skId) {
+                if (_findModel.sk.id) {
                     [contributions addObjectsFromArray:_findModel.sk_tips];
                 } else {
                     [contributions addObjectsFromArray:_findModel.mmd_tips];
@@ -953,7 +953,7 @@
     ZZReportViewController *controller = [[ZZReportViewController alloc] init];
     if (_currentSkModel) {
         controller.uid = _currentSkModel.user.uid;
-        controller.skId = _currentSkModel.skId;
+        controller.skId = _currentSkModel.id;
     } else {
         controller.uid = _currentMMDModel.to.uid;
         controller.mid = _currentMMDModel.mid;
@@ -968,7 +968,7 @@
 {
     NSIndexPath *indexPath = _currentVideoPath;
     if (_currentSkModel) {
-        [ZZSKModel deleteSKWithSkId:_currentSkModel.skId param:nil  next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        [ZZSKModel deleteSKWithSkId:_currentSkModel.id param:nil  next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             [JPVideoPlayerPlayVideoTool sharedTool].stopWhenAppDidEnterPlayGround = NO;
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
@@ -1155,7 +1155,7 @@
     [self.view endEditing:YES];
     ZZContributionViewController *controller = [[ZZContributionViewController alloc] init];
     if (_currentSkModel) {
-        controller.skId = _currentSkModel.skId;
+        controller.skId = _currentSkModel.id;
     } else {
         controller.mid = _currentMMDModel.mid;
     }
@@ -1195,7 +1195,7 @@
         }
         if (_currentSkModel) {
             _alertView.user = _currentSkModel.user;
-            _alertView.skId = _currentSkModel.skId;
+            _alertView.skId = _currentSkModel.id;
             _alertView.serviceScale = [ZZUserHelper shareInstance].configModel.yj.sk_tip;
         } else {
             _alertView.user = _currentMMDModel.to;
@@ -1224,7 +1224,7 @@
     } else {
         if (_currentSkModel) {
             _alertView.user = _currentSkModel.user;
-            _alertView.skId = _currentSkModel.skId;
+            _alertView.skId = _currentSkModel.id;
         } else {
             _alertView.user = _currentMMDModel.to;
             _alertView.mid = _currentMMDModel.mid;
@@ -1423,8 +1423,8 @@
             }
             
             NSString *vid = nil;
-            if (weakSelf.skDetailModel.sk.skId && ![muArray containsObject:weakSelf.skDetailModel.sk.skId]) {
-                vid = weakSelf.skDetailModel.sk.skId;
+            if (weakSelf.skDetailModel.sk.id && ![muArray containsObject:weakSelf.skDetailModel.sk.id]) {
+                vid = weakSelf.skDetailModel.sk.id;
             }
             else if (weakSelf.mmdDetailModel.mmd.mid && ![muArray containsObject:weakSelf.mmdDetailModel.mmd.mid]) {
                 vid = weakSelf.mmdDetailModel.mmd.mid;

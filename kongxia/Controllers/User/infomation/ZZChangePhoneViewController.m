@@ -202,7 +202,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [ZZHUD showSuccessWithStatus:@"手机号更改成功"];
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             _user.phone = user.phone;
             [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
             if (_updateBlock) {

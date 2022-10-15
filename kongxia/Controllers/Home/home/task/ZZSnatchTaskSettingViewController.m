@@ -205,7 +205,7 @@
                     if (error) {
                         [ZZHUD showErrorWithStatus:error.message];
                     } else {
-                        _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                        _user = [ZZUser yy_modelWithJSON:data];
                         _user.push_config.pd_push = isOn;
                         [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
                     }
@@ -239,7 +239,7 @@
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else {
-            _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            _user = [ZZUser yy_modelWithJSON:data];
             _user.push_config.pd_push = isOn;
             [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
             

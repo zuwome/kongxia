@@ -166,7 +166,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
                 }
             } else {
-            ZZUser *currentRegistUser = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+                ZZUser *currentRegistUser = [ZZUser yy_modelWithJSON:data[@"user"]];// [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
                 ///验证码登录添加人脸识别 -  只有设备首次登录会
                 NSNumber* isneedfacetest = data[@"isneedfacetest"];
                 if ([isneedfacetest integerValue]==1) {
@@ -195,7 +195,7 @@
     ZZQQ *qq = _user.qq;
     
     ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
-    _user = [[ZZUser alloc] initWithDictionary:userDic[@"user"] error:nil];
+    _user = [ZZUser yy_modelWithJSON:userDic[@"user"]];// [[ZZUser alloc] initWithDictionary:userDic[@"user"] error:nil];
     userHelper.uploadToken = userDic[@"upload_token"];
     _user.wechat = weChat;
     _user.weibo = weBo;

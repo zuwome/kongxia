@@ -153,7 +153,7 @@
             [ZZHUD showErrorWithStatus:error.message];
             openSwitch.on = !isOn;
         } else {
-            _user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            _user = [ZZUser yy_modelWithJSON:data];
             _user.push_config.qchat_push = isOn;
 
             

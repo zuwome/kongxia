@@ -1243,7 +1243,7 @@
     
     NSString *key = [NSString stringWithFormat:@"getBannedNumber%@%@",[ZZUserHelper shareInstance].loginer.uid,self.uid];
     NSString *value = [ZZKeyValueStore getValueWithKey:key];
- 
+
     //
     if (self.payChatModel.isRequessSuccess && self.payChatModel.isPay && !self.payChatModel.wechat_flag && !self.payChatModel.following_flag) {
         //TODO:私聊付费模式, 如果是优享邀约 不要钱

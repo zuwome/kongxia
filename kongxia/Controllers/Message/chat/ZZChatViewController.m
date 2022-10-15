@@ -84,7 +84,7 @@
         }
     }];
     
-    // 获取账户余额
+    // 获取账户余额余额
     [ZZUserHelper updateTheBalanceNext:nil];
     
     // 获取通告

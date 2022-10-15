@@ -261,7 +261,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else if (data) {
             [ZZHUD dismiss];
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             weakSelf.user.rent = user.rent;
 //            [self managerStatusImage];
             [[ZZUserHelper shareInstance] saveLoginer:[weakSelf.user toDictionary] postNotif:NO];

@@ -210,7 +210,7 @@
 - (void)calculateReadCount
 {
     if (self.currentSkModel) {
-        [self addSkReadCount:self.currentSkModel.skId];
+        [self addSkReadCount:self.currentSkModel.id];
     } else if (self.currentMMDModel) {
         [self addMmdReadCount:self.currentMMDModel.mid];
     }

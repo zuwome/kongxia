@@ -82,6 +82,10 @@ class ZZIAPPayView: UIView {
 // MARK: ZZIAPPayView Private Method
 extension ZZIAPPayView {
     func configData() {
+        guard let loginer = ZZUserHelper.shareInstance()?.loginer else {
+            return
+        }
+        
         guard paymentModel.type == .gift || paymentModel.type == .ktvGift else {
             infoView.choosedView(index: 0)
             return
@@ -89,11 +93,12 @@ extension ZZIAPPayView {
 
         infoView.titleLable.text = "么币余额不足"
         
+        var totalMcoins = (loginer.mcoin != nil) ? loginer.mcoin.doubleValue : 0
         
         if paymentModel.type == .gift {
-            let userTotalMcoins = ZZUserHelper.shareInstance()?.loginer.mcoin.intValue ?? 0
+            let userTotalMcoins = totalMcoins
             let currentCostMcoins = ZZUserHelper.shareInstance()?.consumptionMebi ?? 0
-            let leftMcoins =  userTotalMcoins - currentCostMcoins
+            let leftMcoins =  userTotalMcoins - Double(currentCostMcoins)
             infoView.balanceLabel.text = "么币余额: \(leftMcoins)"
         }
         else if paymentModel.type == .ktvGift {
@@ -113,10 +118,10 @@ extension ZZIAPPayView {
                 if paymentModel.type == .gift {
                     let currentCostMebi: Double = Double(userHelper.consumptionMebi)
                     let totalToBeCost = currentCostMebi + paymentModel.mcoinForItem
-                    stillNeedToPay = totalToBeCost - userHelper.loginer.mcoin.doubleValue
+                    stillNeedToPay = totalToBeCost - totalMcoins
                 }
                 else if paymentModel.type == .ktvGift {
-                    stillNeedToPay = paymentModel.mcoinForItem - userHelper.loginer.mcoin.doubleValue
+                    stillNeedToPay = paymentModel.mcoinForItem - totalMcoins
                 }
                 
                 infoView.statusLabel.text = "还需\(Int(stillNeedToPay))么币"

@@ -215,7 +215,7 @@
     }
     [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/user2"] params:mutableParam next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (data) {
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             [ZZHUD dismiss];
             BOOL paystate = [data[@"open_charge"] boolValue];

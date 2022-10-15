@@ -136,8 +136,7 @@
     [label updateDataWithParam:param next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (data) {
             [ZZHUD showSuccessWithStatus:@"更新成功!"];
-            NSError *err;
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             
             _user.interests_new = user.interests_new;

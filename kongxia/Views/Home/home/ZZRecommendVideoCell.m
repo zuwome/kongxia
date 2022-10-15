@@ -205,7 +205,7 @@
 //赞发生变化
 - (void)skDidChange:(NSNotification *)notification {
     ZZFindVideoModel *model = (ZZFindVideoModel *)[notification object];
-    if ([model.sk.skId isEqualToString:_model.sk.skId]) {
+    if ([model.sk.id isEqualToString:_model.sk.id]) {
         if (model.like_status) {
             // 赞
             _zanButton.selected = YES;
@@ -231,7 +231,7 @@
 
 - (void)setData:(ZZFindVideoModel *)model {
     _model = model;
-    if (model.sk.skId) {
+    if (model.sk.id) {
         [self.imgView sd_setImageWithURL:[NSURL URLWithString:model.sk.video.cover_url]];
         [self.headImgView setUser:model.sk.user width:+28 vWidth:6];
         self.contentLabel.text = model.sk.content;

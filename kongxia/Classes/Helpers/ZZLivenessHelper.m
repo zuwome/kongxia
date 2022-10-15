@@ -334,7 +334,7 @@
                 [self continueSaveUserInfo:YES faces:faces];
             }
             else {
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [ZZHUD dismiss];
                 [weakSelf uploadFaceSuccessAction:faces];

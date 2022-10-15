@@ -596,7 +596,7 @@
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else {
-            _user = [[ZZUser alloc] initWithDictionary:[data objectForKey:@"user"] error:nil];
+            _user = [ZZUser yy_modelWithJSON:[data objectForKey:@"user"]];
             self.topView.hidden = NO;
             self.topView.user = _user;
             self.topView.localLabel.text = [data objectForKey:@"distance"];

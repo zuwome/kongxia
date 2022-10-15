@@ -638,7 +638,7 @@
 {
     [self.view endEditing:YES];
   
-    _loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+    _loginer = [ZZUser yy_modelWithJSON:data[@"user"]]; //[[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
     if (_loginer.have_close_account) {
         ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
         userHelper.uploadToken = data[@"upload_token"];

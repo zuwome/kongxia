@@ -206,9 +206,8 @@
                     [ZZHUD showWithStatus:_successMessage];
                 }
             }
-            
-            NSError *err;
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             _user = loginedUser;
             // 判断跳转...
@@ -327,8 +326,7 @@
 }
 
 - (void)updateWithData:(id)data {
-    NSError *err;
-    ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+    ZZUser *user = [ZZUser yy_modelWithJSON:data];
     [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:YES];
     
     _user = [ZZUserHelper shareInstance].loginer;
@@ -483,8 +481,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
-                NSError *err;
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [weakSelf gotoFastChatSetting];
             }

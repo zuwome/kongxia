@@ -103,7 +103,7 @@
             ZZMMDAnswersModel *answerModel = model.message.mmd.answers[0];
             [_imgView sd_setImageWithURL:[NSURL URLWithString:answerModel.video.cover_url]];
         }
-    } else if (model.message.sk.skId) {
+    } else if (model.message.sk.id) {
         _imgView.hidden = NO;
         [_imgView sd_setImageWithURL:[NSURL URLWithString:model.message.sk.video.cover_url]];
     } else if ([model.message.type isEqualToString:@"following"]) {

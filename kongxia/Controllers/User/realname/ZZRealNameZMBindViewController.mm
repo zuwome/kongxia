@@ -170,7 +170,7 @@
             } else {
                 [MobClick event:Event_click_realname_confirm];
                 [ZZHUD showSuccessWithStatus:@"绑定成功"];
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 _user.zmxy = user.zmxy;
                 _user.realname = user.realname;
                 [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];

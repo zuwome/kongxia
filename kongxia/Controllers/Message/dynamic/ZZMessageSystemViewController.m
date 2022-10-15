@@ -687,8 +687,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
-                NSError *err;
-                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+                ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
             }

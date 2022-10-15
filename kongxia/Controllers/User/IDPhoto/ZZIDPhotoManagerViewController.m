@@ -165,8 +165,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [ZZHUD showSuccessWithStatus:@"更新成功!"];
         
-        NSError *err;
-        ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
+        ZZUser *user = [ZZUser yy_modelWithJSON:data];
         [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
     
         if (_delegate && [_delegate respondsToSelector:@selector(IDPhotoDidUpdated:needRefresh:)]) {

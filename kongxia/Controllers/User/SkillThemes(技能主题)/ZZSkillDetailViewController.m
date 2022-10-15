@@ -116,7 +116,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else if (data) {
-                self.user = [[ZZUser alloc] initWithDictionary:data error:nil];
+                self.user = [ZZUser yy_modelWithJSON:data];
                 [self.tableview reloadData];
             }
         }];
@@ -377,7 +377,7 @@
     order.price = [NSNumber numberWithDouble:[skill.price doubleValue]];
     order.skill = skill;
     order.city = _user.rent.city;
-    order.to = [[ZZUser alloc] initWithDictionary:@{@"uid":_user.uid} error:nil];
+    order.to = [ZZUser yy_modelWithJSON:@{@"uid": _user.uid}]; //[[ZZUser alloc] initWithDictionary:@{@"uid":_user.uid} error:nil];
     order.from = [ZZUserHelper shareInstance].loginer;
     vc.order = order;
     vc.user = _user;

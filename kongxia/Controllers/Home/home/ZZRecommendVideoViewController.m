@@ -194,7 +194,7 @@
     // 不感兴趣的视频
     NSMutableArray<ZZFindVideoModel *> *filteredArray = @[].mutableCopy;
     [peoplefilteredArray enumerateObjectsUsingBlock:^(ZZFindVideoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![videoMuArray containsObject:obj.sk.skId] && ![videoMuArray containsObject:obj.mmd.mid]) {
+        if (![videoMuArray containsObject:obj.sk.id] && ![videoMuArray containsObject:obj.mmd.mid]) {
             [filteredArray addObject: obj];
         }
     }];
@@ -225,7 +225,7 @@
     ZZFindVideoModel *model = _dataArray[indexPath.row];
     if (model.like_status) {
         // 取消赞
-        if (model.sk.skId) {
+        if (model.sk.id) {
             // 时刻视频
             [self skUnLisk:indexPath];
         } else {
@@ -234,7 +234,7 @@
         }
     } else {
         // 赞
-        if (model.sk.skId) {
+        if (model.sk.id) {
             // 时刻视频
             [self skLike:indexPath];
         } else {
@@ -327,7 +327,7 @@
     }
     CGFloat imageHeight = 0;
     NSString *content = @"";
-    if (model.sk.skId) {
+    if (model.sk.id) {
         imageHeight = [INT_TO_STRING(model.sk.video.height) floatValue] / [INT_TO_STRING(model.sk.video.width) floatValue] * itemWidth;
         content = model.sk.content;
     } else {

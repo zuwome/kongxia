@@ -171,7 +171,7 @@
     else {
         if (model.message.mmd.mid) {
             [self gotoMmdDetail:model];
-        } else if (model.message.sk.skId) {
+        } else if (model.message.sk.id) {
             [self gotoSKDetai:model];
         }
     }
@@ -191,7 +191,7 @@
 - (void)gotoSKDetai:(ZZMessageDynamicModel *)model
 {
     ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
-    controller.skId = model.message.sk.skId;
+    controller.skId = model.message.sk.id;
     [self.navigationController pushViewController:controller animated:YES];
     controller.firstSkModel = model.message.sk;
 }

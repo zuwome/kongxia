@@ -291,7 +291,7 @@
 }
 
 - (BOOL)isUserAccountCancel:(id)data controller:(UIViewController *)controller block:(void (^)(void))block {
-    ZZUser *loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+    ZZUser *loginer = [ZZUser yy_modelWithJSON:data[@"usaer"]];
     if (loginer.have_close_account) {
         ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
         userHelper.uploadToken = data[@"upload_token"];
@@ -326,7 +326,7 @@
     if (!data[@"access_token"]) {
         return NO;
     }
-    ZZUser *loginer = [[ZZUser alloc] initWithDictionary:data[@"user"] error:nil];
+    ZZUser *loginer = [ZZUser yy_modelWithJSON:data[@"user"]];
     
     if (!loginer.phone) {
         ZZSignUpS1ViewController *s1 = [[ZZSignUpS1ViewController alloc] init];

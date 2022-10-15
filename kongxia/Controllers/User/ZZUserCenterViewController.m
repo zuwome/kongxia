@@ -515,6 +515,9 @@
             if (indexPath.row == 1) {
                 return 50;
             }
+            if (indexPath.row == 4) {
+                return 0;
+            }
             if (indexPath.row == 6 && [ZZUtils isIdentifierAuthority:_loginer]) {
                 return 0;
             }

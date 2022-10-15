@@ -107,7 +107,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [ZZHUD showSuccessWithStatus:infoString];
-            ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:nil];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
             [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
             if (weakSelf.wxUpdate) {
                 weakSelf.wxUpdate();
