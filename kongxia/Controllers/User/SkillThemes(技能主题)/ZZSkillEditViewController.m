@@ -167,7 +167,7 @@
                 if (deleteIndex != -1) {
                     [user.rent.topics removeObjectAtIndex:deleteIndex];
                 }
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 //退出编辑，重置修改标记
                 [[ZZSkillThemesHelper shareInstance] resetUpdateSign];
                 [self.navigationController popViewControllerAnimated:YES];

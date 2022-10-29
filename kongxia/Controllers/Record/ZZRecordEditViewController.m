@@ -396,7 +396,7 @@
             [ZZHUD showSuccessWithStatus:@"更新成功"];
             NSError *err;
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             [NSObject asyncWaitingWithTime:0.5 completeBlock:^{
                 [weakSelf dismissViewControllerAnimated:YES completion:^{
                     [GetSendVideoManager() asyncSendVideoWithVideoId:sk];

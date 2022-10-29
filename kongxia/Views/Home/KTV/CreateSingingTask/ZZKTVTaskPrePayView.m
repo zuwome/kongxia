@@ -198,7 +198,7 @@
             }
             else {
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 
                 [ZZUserHelper shareInstance].consumptionMebi = 0;
                 [weakSelf updateMebi];

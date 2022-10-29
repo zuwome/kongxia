@@ -150,7 +150,7 @@
         } else {
             ZZUser *user   = [ZZUser yy_modelWithJSON:data];
             weakSelf.showBgView.openSwitch.on = user.push_config.pd_push;
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             if ([ZZUserHelper shareInstance].configModel.can_skip_qchat) {
                 [weakSelf jumpClick:ShowHUDType_OpenRentSuccess];
             } else {

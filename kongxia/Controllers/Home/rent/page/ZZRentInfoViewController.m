@@ -690,7 +690,7 @@
             controller.hidesBottomBarWhenPushed = YES;
             controller.deleteCallBack = ^{
                 weakSelf.user.base_sk = nil;
-                [[ZZUserHelper shareInstance] saveLoginer:[weakSelf.user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:weakSelf.user postNotif:NO];
                 [weakSelf.tableView reloadData];
             };
             controller.buyWxCallBack = ^{
@@ -960,7 +960,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else if (data) {
                 user.rent.show = YES;
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [self createShareView];
             }
         }];

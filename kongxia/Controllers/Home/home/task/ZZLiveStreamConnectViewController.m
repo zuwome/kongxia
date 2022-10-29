@@ -621,7 +621,7 @@
             } else {
                 
                 loginer.balance = [[data objectForKey:@"login_user"] objectForKey:@"balance"];
-                [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
                 if ([ZZUtils compareWithValue1:loginer.balance value2:[NSNumber numberWithInteger:11]] == NSOrderedAscending) {
                     weakSelf.isShowLowBalance = YES;
                     [self hideBottomAlert:NO];

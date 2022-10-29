@@ -173,7 +173,7 @@
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 _user.zmxy = user.zmxy;
                 _user.realname = user.realname;
-                [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
                 for (UIViewController *ctl in self.navigationController.viewControllers) {
                     if ([ctl isKindOfClass:[ZZRealNameListViewController class]]) {
                         if (_successCallBack) {

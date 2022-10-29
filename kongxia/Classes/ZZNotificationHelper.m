@@ -86,7 +86,7 @@
                     ZZUser *user = [ZZUserHelper shareInstance].loginer;
                     if (user) {
                         user.banStatus = YES;
-                        [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                        [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     }
                     _banAlertView = [[ZZBanAlertView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
                     _banAlertView.contentLabel.text = model.msg;

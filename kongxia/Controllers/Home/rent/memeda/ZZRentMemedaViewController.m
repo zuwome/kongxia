@@ -569,7 +569,7 @@
             //更新余额
             ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
             loginer.balance = data[@"balance"];
-            [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
             
             [self createAlertView];
         }

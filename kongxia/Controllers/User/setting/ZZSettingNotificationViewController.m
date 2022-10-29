@@ -495,7 +495,7 @@
                         [self disableRCIMWithStarTime:@"00:00:00" mins:1439];
                     }
                     
-                    [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
                     break;
                 }
                 case 1: {
@@ -638,7 +638,7 @@
                 default:
                     break;
             }
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
         }
     }];
 }
@@ -665,7 +665,7 @@
                     [self disableIMWithString:_timeString];
                 }
                 [_tableView reloadData];
-                [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             }
         }];
     }

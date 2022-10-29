@@ -200,7 +200,7 @@
         } else {
             [ZZHUD dismiss];
             _user.privacy_config.open_chat = isOn;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
         }
     }];
 }
@@ -242,7 +242,7 @@
         } else {
             [ZZHUD dismiss];
             _user.rent.show = isOn;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             
             if (isOn) {
                 [[ZZSayHiHelper sharedInstance] showSayHiWithType:SayHiTypeRecallLogin canAlwaysShow:YES];

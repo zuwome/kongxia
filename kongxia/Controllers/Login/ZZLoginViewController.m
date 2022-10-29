@@ -686,7 +686,7 @@
     }
     if (data[@"access_token"]) {
         userHelper.oAuthToken = data[@"access_token"];
-        [userHelper saveLoginer:[_loginer toDictionary] postNotif:YES];
+        [userHelper saveLoginer:_loginer postNotif:YES];
         userHelper.countryCode = _phoneView.codeLabel.text;
         
            //登录成功开启内购漏单检测

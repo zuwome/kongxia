@@ -138,7 +138,7 @@
                 //更新余额
                 ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
                 loginer.balance = data[@"balance"];
-                [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
                 
                 weakSelf.userAccountBalanceBtn.numMoneyLab.text =[NSString stringWithFormat:@"¥ %.2f",[loginer.balance floatValue]];//剩余金额
                 weakSelf.userMeMeMoneyBtn.numMoneyLab.text = [NSString stringWithFormat:@"%.2f",[loginer.mcoin floatValue]];//么么币

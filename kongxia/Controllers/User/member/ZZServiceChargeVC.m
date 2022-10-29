@@ -264,7 +264,7 @@
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
             weakSelf.user.rent = user.rent;
 //            [self managerStatusImage];
-            [[ZZUserHelper shareInstance] saveLoginer:[weakSelf.user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:weakSelf.user postNotif:NO];
             
 //            [self createShareView];
 //            if (weakSelf.user.rent.status == 2 || weakSelf.user.rent.status == 3) {

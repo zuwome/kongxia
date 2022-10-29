@@ -93,7 +93,7 @@
             [ZZHUD showSuccessWithStatus:@"更新成功!"];
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
             _user.tags_new = user.tags_new;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             if (_updateLabel) {
                 _updateLabel();
             }

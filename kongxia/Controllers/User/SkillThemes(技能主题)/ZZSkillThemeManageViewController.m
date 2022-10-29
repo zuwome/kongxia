@@ -79,7 +79,7 @@
                 [self.themesArray addObject:topic];
             }
             user.rent.topics = [self.themesArray copy];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             [self.tableview reloadData];
             
             if (_themesArray.count > 0) {

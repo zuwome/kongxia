@@ -164,7 +164,7 @@
             [ZZHUD showSuccessWithStatus:@"已提交审核"];
             ZZRealname *realname = [[ZZRealname alloc] initWithDictionary:[data objectForKey:@"realname_abroad"] error:nil];
             _user.realname_abroad = realname;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             if (_isTiXian) {
                 
                 for (UIViewController *ctl in self.navigationController.viewControllers) {

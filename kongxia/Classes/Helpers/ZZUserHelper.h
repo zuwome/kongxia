@@ -238,7 +238,7 @@ static dispatch_once_t ZZUserhelperOnce = 0;
 /**
  *  MARK: 保存登录用户
  */
-- (void)saveLoginer:(NSDictionary *)user postNotif:(BOOL)post;
+- (void)saveLoginer:(ZZUser *)user postNotif:(BOOL)post;
 
 /**
  * MARK: 当更改账户的时候释放

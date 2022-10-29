@@ -181,7 +181,7 @@
             ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
             loginer.balance = data[@"balance"];
             loginer.forzen = _forzen;
-            [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
             if (isRecharge) {
                 if (self.rechargeCallBack) {
                     self.rechargeCallBack();

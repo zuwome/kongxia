@@ -132,7 +132,7 @@
             ZZTopic *topic = [[ZZTopic alloc] initWithDictionary:topicDict error:nil];
             ZZUser *user = [ZZUserHelper shareInstance].loginer;
             [user.rent.topics addObject:topic];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             [self showAlert:params];
             [self showNotificationAlert:params[@"addType"]];
         }
@@ -151,7 +151,7 @@
                 ZZSkill *skill = userTopic.skills[0];
                 if ([skill.id isEqualToString:data[@"id"]]) {
                     [user.rent.topics replaceObjectAtIndex:i withObject:topic];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     break;
                 }
             }

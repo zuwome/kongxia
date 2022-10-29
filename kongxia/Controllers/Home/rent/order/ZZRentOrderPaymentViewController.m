@@ -292,7 +292,7 @@
             //更新余额
             ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
             loginer.balance = data[@"balance"];
-            [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
             
             [_tableView reloadData];
         }
@@ -329,7 +329,7 @@
             if (_paySelectIndex == 0) {
                 ZZUser *user = [ZZUserHelper shareInstance].loginer;
                 user.balance = [NSNumber numberWithInt:([user.balance doubleValue] - _price)];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [MobClick event:Event_pay_deposit_success];
                 
                 // 目前只有当优享邀约打开之后才需要通知个人页刷洗一下下

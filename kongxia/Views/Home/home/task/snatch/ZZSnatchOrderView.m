@@ -1321,7 +1321,7 @@
                     } else {
                         _user = [ZZUser yy_modelWithJSON:data];
                         _user.push_config.pd_push = isOn;
-                        [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                        [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
                         [weakSelf.tableView reloadData];
                     }
                 }];
@@ -1356,7 +1356,7 @@
         } else {
             _user = [ZZUser yy_modelWithJSON:data];
             _user.push_config.pd_push = isOn;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [self.tableView reloadData];
         }
     }];
@@ -1384,7 +1384,7 @@
                     _timeString = [NSString stringWithFormat:@"%@至%@",_user.push_config.pd_push_begin_at,_user.push_config.pd_push_end_at];
                 }
                 [_tableView reloadData];
-                [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             }
         }];
     }
@@ -1517,7 +1517,7 @@
             } else {
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                 [weakSelf.tableView reloadData];
                 if (isShowCongratulations) {

@@ -239,7 +239,7 @@
 
     [ZZUserHelper shareInstance].publicToken = userDic[@"access_token"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [userHelper saveLoginer:[_user toDictionary] postNotif:YES];
+        [userHelper saveLoginer:_user postNotif:YES];
         userHelper.countryCode = _phoneView.codeLabel.text;
         //注册成功开启内购漏单检测
         [ZZPayHelper startManager];

@@ -338,7 +338,7 @@
     }
     if (data[@"access_token"]) {
         userHelper.oAuthToken = data[@"access_token"];
-        [userHelper saveLoginer:[loginer toDictionary] postNotif:YES];
+        [userHelper saveLoginer:loginer postNotif:YES];
         
         //登录成功开启内购漏单检测
         [ZZPayHelper startManager];

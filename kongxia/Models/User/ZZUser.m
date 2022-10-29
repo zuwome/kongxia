@@ -126,8 +126,8 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
-             @"mcoin_total"        : @"mcoin",
-             @"new_query_at" : @"returner",
+                @"mcoin" : @"mcoin_total",
+              @"returner" : @"new_query_at",
              };
 }
 

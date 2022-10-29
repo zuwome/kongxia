@@ -92,7 +92,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             _user = [ZZUser yy_modelWithJSON:data];;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             
             if (!_haveLoadData) {
                 [self createNavigationRightBtn];

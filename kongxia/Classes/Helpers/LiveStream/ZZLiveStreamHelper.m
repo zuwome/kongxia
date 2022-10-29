@@ -662,7 +662,7 @@
         [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id userData, NSURLSessionDataTask *task) {
             if ([userData isKindOfClass:[NSDictionary class]]) {
                 ZZUser *user = [ZZUser yy_modelWithJSON:(NSDictionary *)userData];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 NSLog(@"更新之后的么币 : %d", [user.mcoin intValue]);
                 [[JX_GCDTimerManager sharedInstance] cancelTimerWithName:@"Delay"];
             }

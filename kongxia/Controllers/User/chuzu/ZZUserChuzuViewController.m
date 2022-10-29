@@ -925,7 +925,7 @@
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
             weakSelf.user.rent = user.rent;
             [self managerStatusImage];
-            [[ZZUserHelper shareInstance] saveLoginer:[weakSelf.user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:weakSelf.user postNotif:NO];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UpdatedRentStatus object:nil];
             if (self.isModify) {
@@ -1122,7 +1122,7 @@
                         } else if (data) {
                             _user.rent.show = NO;
                             openSwitch.on = NO;
-                            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:YES];
+                            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:YES];
                             
                         }
                         [self isModiupdateYaoYue: openSwitch];
@@ -1142,7 +1142,7 @@
                     _user.rent.show = YES;
                     openSwitch.on = YES;
 
-                    [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
                 }
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UpdatedRentStatus object:nil];
             }];

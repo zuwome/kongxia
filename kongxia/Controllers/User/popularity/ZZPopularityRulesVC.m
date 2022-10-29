@@ -305,7 +305,7 @@
             } else {
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                 [weakSelf clearTheCache];
             }

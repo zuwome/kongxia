@@ -299,7 +299,7 @@
                              _user.emergency_contacts = array;
                          }
                          [_user.emergency_contacts addObject:model];
-                         [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                         [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
                          dispatch_async(dispatch_get_main_queue(), ^{
                              [self.tableView reloadData];
                              if (_updateCallBack) {
@@ -318,7 +318,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [_user.emergency_contacts removeObject:model];
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             if (_updateCallBack) {
                 _updateCallBack();

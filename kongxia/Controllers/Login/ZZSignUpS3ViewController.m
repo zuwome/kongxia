@@ -323,7 +323,7 @@
             [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
             
             _userHelper.uploadToken = data[@"upload_token"];
-            [_userHelper saveLoginer:[loginer toDictionary] postNotif:YES];
+            [_userHelper saveLoginer:loginer postNotif:YES];
             
             if ([ZZUserHelper shareInstance].location) {
                 [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
@@ -361,7 +361,7 @@
             [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
             
             _userHelper.uploadToken = data[@"upload_token"];
-            [_userHelper saveLoginer:[loginer toDictionary] postNotif:YES];
+            [_userHelper saveLoginer:loginer postNotif:YES];
             
             if ([ZZUserHelper shareInstance].location) {
                 [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
@@ -446,7 +446,7 @@
 - (void)updateWithData:(id)data
 {
     ZZUser *user = [ZZUser yy_modelWithJSON:data];
-    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:YES];
+    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:YES];
     if (!_isPush) {
      
         [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UserLogin object:self];

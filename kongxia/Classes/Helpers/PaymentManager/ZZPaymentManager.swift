@@ -255,7 +255,7 @@ extension ZZPaymentManager {
                                 ZZUser.load(ZZUserHelper.shareInstance()?.loginerId, param: nil, next: { (error, userData, task) in
                                     let user = try? ZZUser.init(dictionary: userData as? [AnyHashable : Any])
                                     if let user = user {
-                                        ZZUserHelper.shareInstance()?.saveLoginer(user.toDictionary(), postNotif: false)
+                                        ZZUserHelper.shareInstance()?.saveLoginer(user, postNotif: false)
                                     }
                                     
                                 })
@@ -295,7 +295,7 @@ extension ZZPaymentManager {
             ZZUser.load(ZZUserHelper.shareInstance()?.loginerId, param: nil, next: { (error, userData, task) in
                 let user = try? ZZUser.init(dictionary: userData as? [AnyHashable : Any])
                 if let user = user {
-                    ZZUserHelper.shareInstance()?.saveLoginer(user.toDictionary(), postNotif: false)
+                    ZZUserHelper.shareInstance()?.saveLoginer(user, postNotif: false)
                 }
                 
             })
@@ -322,7 +322,7 @@ extension ZZPaymentManager {
             ZZUser.load(ZZUserHelper.shareInstance()?.loginerId, param: nil, next: { (error, userData, task) in
                 let user = try? ZZUser.init(dictionary: userData as? [AnyHashable : Any])
                 if let user = user {
-                    ZZUserHelper.shareInstance()?.saveLoginer(user.toDictionary(), postNotif: false)
+                    ZZUserHelper.shareInstance()?.saveLoginer(user, postNotif: false)
                 }
             })
             

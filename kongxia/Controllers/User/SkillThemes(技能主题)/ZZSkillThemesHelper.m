@@ -232,7 +232,7 @@ static id _instance = nil;
         }
         else {
             ZZUser *user = [ZZUser yy_modelWithJSON:data];;
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             
             __block ZZTopic *currentTopic = nil;
             [user.rent.topics enumerateObjectsUsingBlock:^(ZZTopic * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

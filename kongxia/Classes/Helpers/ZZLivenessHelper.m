@@ -114,7 +114,7 @@
     
     [ZZRequest method:@"POST" path:@"/api/user/compare_face" params:param next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         [ZZHUD dismiss];
-        if (error) {
+        if (error) {    
             if (_type == NavigationTypeDevicesLoginFirst) {
                 [self.controller.navigationController popViewControllerAnimated:YES];
                 if (_newDeviceLoginBlock) {
@@ -335,7 +335,7 @@
             }
             else {
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [ZZHUD dismiss];
                 [weakSelf uploadFaceSuccessAction:faces];
             }
@@ -370,7 +370,7 @@
             [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
                 if (error == NULL) {
                     ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 }
                 [self uploadFaceSuccessAction:faces];
             }];

@@ -247,8 +247,8 @@
             [ZZHUD showErrorWithStatus:error.message];
         }
         else {
-            ZZUser *user = [ZZUser yy_modelWithJSON:data];;
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            ZZUser *user = [ZZUser yy_modelWithJSON:data];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             _loginer = user;
             [self reload];
             

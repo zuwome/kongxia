@@ -153,7 +153,7 @@
           ZZRealname *realname = [[ZZRealname alloc] initWithDictionary:data error:nil];
           _user = [ZZUserHelper shareInstance].loginer;
           _user.realname = realname;
-          [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+          [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
 
           if (self.isRentPerfectInfo) {// 如果是从申请出租过来的，则要先更新用户信息，再进入下一步
               [self updateUserInfo];
@@ -215,7 +215,7 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
             _user = [ZZUser yy_modelWithJSON:data];;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UpdatedGenderStatus object:nil];
             [weakSelf gotoChuZu];
         }
@@ -288,7 +288,7 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
             _user = [ZZUser yy_modelWithJSON:data];;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [weakSelf fastChatNextPage];
         }
     }];
@@ -312,7 +312,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
                 _user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
 //                [weakSelf gotoFastChatSetting];
                 
                 // 闪聊开通成功

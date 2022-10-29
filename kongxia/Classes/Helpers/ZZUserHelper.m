@@ -540,8 +540,10 @@
 /**
  *  MARK: 保存登录用户
  */
-- (void)saveLoginer:(NSDictionary *)user postNotif:(BOOL)post {
-    [UIApplication setObject:user forKey:@"loginer"];
+- (void)saveLoginer:(ZZUser *)user postNotif:(BOOL)post {
+//    NSDictionary *userDic1 = [user yy_modelToJSONObject];
+    NSDictionary *userDic = [user toDictionary];
+    [UIApplication setObject:userDic forKey:@"loginer"];
     if (post) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginerDidSaveNotification" object:self];
     }
@@ -594,7 +596,7 @@
             return ;
         }
         ZZUser *user = [ZZUser yy_modelWithJSON:data];
-        [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+        [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
         if (next) {
             next(error, user);
         }
@@ -721,8 +723,7 @@
         [ZZRequest method:@"POST" path:@"/api/user2" params:params next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (!error && data) {
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
-                NSLog(@"地理位置更新成功～～～～～～～");
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             }
         }];
     }
@@ -769,7 +770,7 @@
             if (data[@"balance"] != NULL && [data[@"balance"] isKindOfClass:[NSNumber class]]) {
                 loginer.balance = data[@"balance"];
             }
-            [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
         }
         else {
             [ZZHUD showErrorWithStatus:error.message];
@@ -795,7 +796,7 @@
             user.mcoin = mcoin;
             NSLog(@"之后的么币: %d", [user.mcoin intValue]);
             
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
         }
         if (next) {
             next(error,data,task);
@@ -810,7 +811,8 @@
 
 - (ZZUser *)loginer {
     NSDictionary *user =  [UIApplication objectForKey:@"loginer"];
-    return [ZZUser yy_modelWithJSON:user];
+    ZZUser *uu = [ZZUser yy_modelWithJSON:user];
+    return uu;
 }
 
 - (NSString *)loginerId {

@@ -187,7 +187,7 @@
             ZZTopic *topic = [[ZZTopic alloc] initWithDictionary:topicDict error:nil];
             ZZUser *user = [ZZUserHelper shareInstance].loginer;
             [user.rent.topics addObject:topic];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             [self showAlert:params];
             if (shouldShowSayHi) {
                 [[ZZSayHiHelper sharedInstance] showSayHiWithType:SayHiTypeRent canAlwaysShow:NO];
@@ -214,7 +214,7 @@
                 ZZSkill *skill = userTopic.skills[0];
                 if ([skill.id isEqualToString:data[@"id"]]) {
                     [user.rent.topics replaceObjectAtIndex:i withObject:topic];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     break;
                 }
             }
@@ -330,7 +330,7 @@
                 if (deleteIndex != -1) {
                     [user.rent.topics removeObjectAtIndex:deleteIndex];
                 }
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 //退出编辑，重置修改标记
                 [[ZZSkillThemesHelper shareInstance] resetUpdateSign];
                 ZZViewController *popVc;

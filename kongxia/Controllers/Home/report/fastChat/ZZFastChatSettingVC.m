@@ -158,7 +158,7 @@
 
             
             
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [self.tableView reloadData];
         }
     }];
@@ -189,7 +189,7 @@
                     }
                 }
                 [_tableView reloadData];
-                [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             }
         }];
     }

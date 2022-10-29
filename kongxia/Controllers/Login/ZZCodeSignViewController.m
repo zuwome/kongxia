@@ -225,7 +225,7 @@
                 
                 userHelper.oAuthToken = data[@"access_token"];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [userHelper saveLoginer:[weakSelf.loginer toDictionary] postNotif:YES];
+                    [userHelper saveLoginer:weakSelf.loginer postNotif:YES];
                     userHelper.countryCode = weakSelf.phoneView.codeLabel.text;
                     //登录成功开启内购漏单检测
                     [ZZPayHelper startManager];
@@ -254,7 +254,7 @@
             userHelper.oAuthToken = data[@"access_token"];
             [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [userHelper saveLoginer:[_loginer toDictionary] postNotif:YES];
+                [userHelper saveLoginer:_loginer postNotif:YES];
                 userHelper.countryCode = _phoneView.codeLabel.text;
                 //登录成功开启内购漏单检测
                 [ZZPayHelper startManager];

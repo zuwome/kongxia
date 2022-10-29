@@ -204,7 +204,7 @@
             [ZZHUD showSuccessWithStatus:@"手机号更改成功"];
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
             _user.phone = user.phone;
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             if (_updateBlock) {
                 _updateBlock();
             }

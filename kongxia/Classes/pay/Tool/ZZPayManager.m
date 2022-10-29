@@ -86,7 +86,7 @@
             if (!data[@"error"]) {
                 [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id userData, NSURLSessionDataTask *task) {
                     ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     completionCall(data);
                 }];
                 return ;

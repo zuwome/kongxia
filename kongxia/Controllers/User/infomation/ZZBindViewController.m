@@ -264,7 +264,7 @@
                 default:
                     break;
             }
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [self.tableView reloadData];
             if (weakSelf.updateBind) {
                 weakSelf.updateBind();
@@ -304,7 +304,7 @@
                 default:
                     break;
             }
-            [[ZZUserHelper shareInstance] saveLoginer:[_user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:NO];
             [self.tableView reloadData];
             if (_updateBind) {
                 _updateBind();

@@ -145,23 +145,6 @@
 
 - (void)callBack
 {
-//    if (_updateName) {
-//        ZZUser *user = [ZZUserHelper shareInstance].loginer;
-//        user.nickname = _textField.text;
-//        [user updateWithParam:[user toDictionary] next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-//            if (error) {
-//                [ZZHUD showErrorWithStatus:error.message];
-//            } else {
-//                [ZZHUD showSuccessWithStatus:@"更新成功"];
-//                NSError *err;
-//                ZZUser *user = [[ZZUser alloc] initWithDictionary:data error:&err];
-//                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
-//                
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
-//        }];
-//        return;
-//    }
     if (_callBackBlock) {
         _callBackBlock(_textField.text);
         [self.navigationController popViewControllerAnimated:YES];

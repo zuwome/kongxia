@@ -621,7 +621,7 @@
                 ZZUser *user =  [ZZUserHelper shareInstance].loginer;
                 user.banStatus = YES;
                 user.ban = model;
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [ZZBanedHelper showBan:user];
                 return;
             }
@@ -634,7 +634,7 @@
                 ZZUser *user =  [ZZUserHelper shareInstance].loginer;
                 user.banStatus = NO;
                 user.ban = nil;
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 return;
             }
             switch (type) {
@@ -714,7 +714,7 @@
                     ZZUser *user = [ZZUserHelper shareInstance].loginer;
                     user.base_video.status = 2;
                     user.base_video.status_text = aDict[@"status_text"];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadAuditFail object:nil userInfo:aDict];
                     break;
                 }
@@ -722,7 +722,7 @@
                     // 达人视频上传，并保存用户信息完成
                     ZZUser *user = [ZZUserHelper shareInstance].loginer;
                     user.base_video.status = 1;
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil userInfo:aDict];
                     break;
                 }
@@ -731,8 +731,22 @@
                     ZZUser *user = [ZZUserHelper shareInstance].loginer;
                     user.base_video.status = 2;
                     user.base_video.status_text = aDict[@"status_text"];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_FastChatFail object:nil userInfo:aDict];
+                    break;
+                }
+                case 17: {
+                    // 消息盒子的消息 直接到列表 不到盒子
+                    NSString *content = @"";
+                    if ([aDict[@"content"] isKindOfClass:[NSString class]]) {
+                        content = aDict[@"content"];
+                    }
+                    
+                    RCTextMessage *contentMessage = [RCTextMessage messageWithContent:content];
+                    [[RCIMClient sharedRCIMClient] insertIncomingMessage:ConversationType_PRIVATE targetId:message.targetId senderUserId:message.senderUserId receivedStatus:ReceivedStatus_READ content:contentMessage];
+                    NSDictionary *aDict = @{@"message":contentMessage,
+                                            @"left":[NSNumber numberWithInt:left]};
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_ReceiveMessage object:nil userInfo:aDict];
                     break;
                 }
                 case 21:{
@@ -852,6 +866,7 @@
             [[RCIMClient sharedRCIMClient] deleteMessages:@[@(message.messageId)]];
             return;
         }
+        
         NSDictionary *aDict = @{@"message":message,
                                 @"left":[NSNumber numberWithInt:left]};
         [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_ReceiveMessage object:nil userInfo:aDict];
@@ -864,7 +879,7 @@
         
         if ([message.content isKindOfClass:[RCTextMessage class]] && message.conversationType == ConversationType_PRIVATE) {
             RCTextMessage *text = (RCTextMessage *)message.content;
-            
+
             // 判断当前收到的信息, 判断当前文本信息是否可能为账号，如是账号则判处警告
             BOOL itMightBeAnAccount = [text.content wechatAlipayAccountCheck];
             if (itMightBeAnAccount) {
@@ -1343,7 +1358,7 @@
     [ZZUser loadUser:[ZZUserHelper shareInstance].loginerId param:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (data) {
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             
             [weakSelf showUserErrorInfoAlertView];
         }

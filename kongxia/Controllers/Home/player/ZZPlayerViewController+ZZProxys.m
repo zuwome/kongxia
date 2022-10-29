@@ -27,7 +27,7 @@
             //更新余额
             ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
             loginer.balance = data[@"balance"];
-            [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
             
             [self createAlertView];
         }
@@ -647,7 +647,7 @@
             //更新余额
             ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
             loginer.balance = data[@"balance"];
-            [[ZZUserHelper shareInstance] saveLoginer:[loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:loginer postNotif:NO];
             
             ZZWeiChatEvaluationModel *model = [[ZZWeiChatEvaluationModel alloc]init];
             model.user = weakSelf.rentUser;

@@ -225,7 +225,7 @@
             
             ZZUser *user = [ZZUserHelper shareInstance].loginer;
             user.userGooToAddress = _locationsArray;
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(controllerDidEdited:)]) {
                 [self.delegate controllerDidEdited:self];

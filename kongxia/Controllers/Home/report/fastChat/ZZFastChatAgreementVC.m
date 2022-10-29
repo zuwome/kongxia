@@ -307,7 +307,7 @@
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [weakSelf gotoFastChatSetting];
             }
         }];

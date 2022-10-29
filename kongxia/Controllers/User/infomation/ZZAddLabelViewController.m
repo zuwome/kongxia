@@ -137,7 +137,7 @@
         if (data) {
             [ZZHUD showSuccessWithStatus:@"更新成功!"];
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             
             _user.interests_new = user.interests_new;
             _user.works_new = user.works_new;

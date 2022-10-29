@@ -326,7 +326,7 @@
                 else {
                     [ZZHUD showSuccessWithStatus:@"更新成功"];
                     ZZUser *user = [ZZUser yy_modelWithJSON:data];
-                    [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                    [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                     [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                     _loginer = user;
                     [self callBack];
@@ -392,7 +392,7 @@
                 [ZZHUD showSuccessWithStatus:@"更新成功"];
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 _loginer = user;
-                [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                 [self callBack];
                 if (_haveToGoBack) {
@@ -503,7 +503,7 @@
                             [ZZHUD showSuccessWithStatus:@"更新成功"];
                             ZZUser *user = [ZZUser yy_modelWithJSON:data];
                             _loginer = user;
-                            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+                            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
                             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
                             _loginer = user;
                             [self callBack];
@@ -601,7 +601,7 @@
         [ZZUserHelper shareInstance].uploadingQuestionVideo = NO;
         if (data) {
             weakSelf.loginer = [ZZUser yy_modelWithJSON:data];;
-            [[ZZUserHelper shareInstance] saveLoginer:[_loginer toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:_loginer postNotif:NO];
             //            weakSelf.headView.photos = _loginer.photos_origin;
             if (weakSelf.sk) {
                 weakSelf.loginer.base_video.sk = weakSelf.sk;
@@ -669,7 +669,7 @@
         else {
             [ZZHUD showWithStatus:@"更新成功"];
             ZZUser *user = [ZZUser yy_modelWithJSON:data];
-            [[ZZUserHelper shareInstance] saveLoginer:[user toDictionary] postNotif:NO];
+            [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
             _loginer = loginedUser;
             [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UploadCompleted object:nil];
             
@@ -1245,7 +1245,7 @@
     controller.hidesBottomBarWhenPushed = YES;
     controller.deleteCallBack = ^{
         weakSelf.loginer.base_sk = nil;
-        [[ZZUserHelper shareInstance] saveLoginer:[weakSelf.loginer toDictionary] postNotif:NO];
+        [[ZZUserHelper shareInstance] saveLoginer:weakSelf.loginer postNotif:NO];
         [weakSelf.tableView reloadData];
         if (weakSelf.editCallBack) {
             weakSelf.editCallBack();
