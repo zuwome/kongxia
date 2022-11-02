@@ -1450,6 +1450,7 @@
 		BDBB99E523065120008D27FA /* ZZSearchLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBB99E32306511F008D27FA /* ZZSearchLocationController.m */; };
 		BDBB99E82306523C008D27FA /* ZZLocationSearchedController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBB99E72306523C008D27FA /* ZZLocationSearchedController.m */; };
 		BDBD557721DC5412004FB608 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDBD557621DC5412004FB608 /* CoreLocation.framework */; };
+		BDBE1DD02912B4F50095FC15 /* OpenMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE1DCF2912B4F50095FC15 /* OpenMap.swift */; };
 		BDBE2A26252ABD64000B78ED /* UserPrivateTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE2A25252ABD64000B78ED /* UserPrivateTermsController.swift */; };
 		BDBE2A28252B0D3E000B78ED /* UserPrivateTermsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE2A27252B0D3E000B78ED /* UserPrivateTermsHelper.swift */; };
 		BDBEC9AD25B2CBB500CDF49B /* ZZRentOrderPayCompleteWeChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEC9AC25B2CBB500CDF49B /* ZZRentOrderPayCompleteWeChatCell.swift */; };
@@ -4278,6 +4279,7 @@
 		BDBB99E62306523C008D27FA /* ZZLocationSearchedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZLocationSearchedController.h; sourceTree = "<group>"; };
 		BDBB99E72306523C008D27FA /* ZZLocationSearchedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZLocationSearchedController.m; sourceTree = "<group>"; };
 		BDBD557621DC5412004FB608 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BDBE1DCF2912B4F50095FC15 /* OpenMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMap.swift; sourceTree = "<group>"; };
 		BDBE2A25252ABD64000B78ED /* UserPrivateTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateTermsController.swift; sourceTree = "<group>"; };
 		BDBE2A27252B0D3E000B78ED /* UserPrivateTermsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivateTermsHelper.swift; sourceTree = "<group>"; };
 		BDBEC9AC25B2CBB500CDF49B /* ZZRentOrderPayCompleteWeChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZRentOrderPayCompleteWeChatCell.swift; sourceTree = "<group>"; };
@@ -9248,6 +9250,7 @@
 				BD7C0EC323BC37F30017D7F5 /* ZZAppDelegateConfig.m */,
 				BDA5FD4E22FA785800BCB48E /* ZZCustomUploadImage */,
 				BD8417E9290D0BBA00968D25 /* MapView.swift */,
+				BDBE1DCF2912B4F50095FC15 /* OpenMap.swift */,
 			);
 			path = Vendors;
 			sourceTree = "<group>";
@@ -11499,6 +11502,7 @@
 				BDF5C3B322407D0200A0B37F /* ZZPostTaskPhotoCell.m in Sources */,
 				BD6DA0A9226474D000102627 /* ZZPostTaskViewModel.m in Sources */,
 				91DBA5021F613D3500013F4C /* ZZReportInputView.m in Sources */,
+				BDBE1DD02912B4F50095FC15 /* OpenMap.swift in Sources */,
 				91DB9D911F6129E600013F4C /* ZZNavigationController.m in Sources */,
 				BDA500F022FA785B00BCB48E /* Global.m in Sources */,
 				BDA5003422FA785A00BCB48E /* NSString+Utilities.m in Sources */,

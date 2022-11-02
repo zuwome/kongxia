@@ -2816,11 +2816,12 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 ZZChatBaseModel *model = [userInfo objectForKey:@"data"];
                 RCLocationMessage *message = (RCLocationMessage *)model.message.content;
-                ZZOrderLocationViewController *controller = [[ZZOrderLocationViewController alloc] init];
-                controller.location = [[CLLocation alloc] initWithLatitude:message.location.latitude longitude:message.location.longitude];
-                controller.name = message.locationName;
-                controller.navigationItem.title = @"位置信息";
-                [self.navigationController pushViewController:controller animated:YES];
+//                ZZOrderLocationViewController *controller = [[ZZOrderLocationViewController alloc] init];
+//                controller.location = [[CLLocation alloc] initWithLatitude:message.location.latitude longitude:message.location.longitude];
+//                controller.name = message.locationName;
+//                controller.navigationItem.title = @"位置信息";
+//                [self.navigationController pushViewController:controller animated:YES];
+                [OpenMapKit showMapWithName:message.locationName latitudde:message.location.latitude longtitude:message.location.longitude];
             });
             break;
         }
