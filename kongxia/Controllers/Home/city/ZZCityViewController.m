@@ -18,7 +18,7 @@
 #import "ChineseInclude.h"
 #import "PinYinForObjc.h"
 
-@interface ZZCityViewController () <UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,ZZCitySearchViewControllerDelegate>
+@interface ZZCityViewController () <UITableViewDataSource,UITableViewDelegate,ZZCitySearchViewControllerDelegate>
 {
     NSMutableArray                      *_cityArray;//城市
     NSMutableArray                      *_indexArray;//索引
@@ -39,7 +39,6 @@
 
 @property (nonatomic, strong) NSMutableArray *searchArray;//搜索的数据
 @property (nonatomic, assign) BOOL getLocatio;
-@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 
@@ -134,72 +133,58 @@
     _currentCity = @"正在定位...";
     [_tableView reloadData];
     _getLocatio = NO;
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
-        _locationManager.distanceFilter = 100; //控制定位服务移动后更新频率。单位是“米”
-    }
-    [_locationManager startUpdatingLocation];
+    [[LocationManager shared] getLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
+        [self configureLocation:location
+                      placeMark:placemark];
+    } failure:^(CLAuthorizationStatus status, NSString *error) {
+        self.currentCity = @"定位失败，重新获取";
+    }];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
-{
+- (void)configureLocation:(CLLocation *)location placeMark:(CLPlacemark *)placemark {
     if (_getLocatio) {
         return;
     }
     _getLocatio = YES;
-    [_locationManager stopUpdatingLocation];
-    [ZZUserHelper shareInstance].location = locations[0];
-    [self reverseGeocodeLocation];
-}
-
-- (void)reverseGeocodeLocation
-{
+    
+    [ZZUserHelper shareInstance].location = location;
+    
     __block BOOL haveCity = NO;
     if ([ZZUserHelper shareInstance].cityName) {
         haveCity = YES;
     }
     __weak typeof(self)weakSelf = self;
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    CLLocation *location = [ZZUserHelper shareInstance].location;
-    [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (error) {
-            weakSelf.currentCity = @"定位失败，重新获取";
-        } else {
-            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            NSString *cityName = @"";
-            if (placemark.locality) {
-                cityName = placemark.locality;
-            } else if (placemark.administrativeArea) {
-                cityName = placemark.administrativeArea;
-            }
-            if ([self isSpecailProvince:cityName]) {
-                cityName = placemark.subLocality;
-            }
-            if (![placemark.ISOcountryCode isEqualToString:@"CN"]) {
-                [ZZUserHelper shareInstance].isAbroad = YES;
-                cityName = placemark.country;
-            }
-            [weakSelf.locationManager stopUpdatingLocation];
-            
-            if (!isNullString(cityName)) {
-                [ZZUserHelper shareInstance].cityName = cityName;
-                weakSelf.currentCity = cityName;
-                weakSelf.haveGotCity = YES;
-                if (!weakSelf.currentLocation) {
-                    weakSelf.currentLocation = [[ZZCity alloc] init];
-                }
-                weakSelf.currentLocation.name = cityName;
-                weakSelf.currentLocation.center = [NSString stringWithFormat:@"%f,%f",placemark.location.coordinate.longitude, placemark.location.coordinate.latitude];
-            }
-            else {
-                weakSelf.currentCity = @"定位失败，重新获取";
-            }
+
+    NSString *cityName = @"";
+    if (placemark.locality) {
+        cityName = placemark.locality;
+    } else if (placemark.administrativeArea) {
+        cityName = placemark.administrativeArea;
+    }
+    if ([self isSpecailProvince:cityName]) {
+        cityName = placemark.subLocality;
+    }
+    if (![placemark.ISOcountryCode isEqualToString:@"CN"]) {
+        [ZZUserHelper shareInstance].isAbroad = YES;
+        cityName = placemark.country;
+    }
+    
+    if (!isNullString(cityName)) {
+        [ZZUserHelper shareInstance].cityName = cityName;
+        weakSelf.currentCity = cityName;
+        weakSelf.haveGotCity = YES;
+        if (!weakSelf.currentLocation) {
+            weakSelf.currentLocation = [[ZZCity alloc] init];
         }
-        weakSelf.requestLocation = YES;
-        [weakSelf.tableView reloadData];
-    }];
+        weakSelf.currentLocation.name = cityName;
+        weakSelf.currentLocation.center = [NSString stringWithFormat:@"%f,%f",placemark.location.coordinate.longitude, placemark.location.coordinate.latitude];
+    }
+    else {
+        weakSelf.currentCity = @"定位失败，重新获取";
+    }
+    
+    weakSelf.requestLocation = YES;
+    [weakSelf.tableView reloadData];
 }
 
 - (BOOL)isSpecailProvince:(NSString *)province

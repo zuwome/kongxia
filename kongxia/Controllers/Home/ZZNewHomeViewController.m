@@ -58,7 +58,7 @@
 #import "ZZRankIndexController.h"
 #import "ZZKTVPlazaController.h"
 
-@interface ZZNewHomeViewController () <CLLocationManagerDelegate, WBSendVideoManagerObserver, WBFastRentManagerObserver, ZZUserRegistedGuidViewDelegate>
+@interface ZZNewHomeViewController () <WBSendVideoManagerObserver, WBFastRentManagerObserver, ZZUserRegistedGuidViewDelegate>
 //view
 @property (nonatomic, strong) ZZNewHomeNaviBar *naviBar;        //头部导航
 @property (nonatomic, strong) ZZNewHomeTableView *tableView;    //首页容器
@@ -88,8 +88,6 @@
 @property (nonatomic, assign) BOOL isUnderway;  // 当前是否处于发布任务中的状态
 @property (nonatomic, assign) NSInteger taskCountDown;  //任务发布倒计时
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) AMapLocationManager *aMapManager;
 @property (nonatomic, strong) NSTimer *waitSnatchTimer; //任务倒计时定时器
 
 // 开发发任务的时间，记录主要用于退到后台，NSTimer不计时问题，便于实时刷新剩余时间
@@ -615,32 +613,106 @@
     [self removeShineViews];
 }
 
-// 获取位置
+#pragma mark - 获取位置
 - (void)getLocation {
-    if (([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
-        // 在线且定位可用
-        if ([ZZUserHelper shareInstance].cityName) {
-            self.viewModel.cityName = [ZZUserHelper shareInstance].cityName;
-            self.naviBar.cityName = self.viewModel.cityName;
-        }
-        
-        [self configViewWithData];
-        self.viewModel.haveGetLocation = NO;
-        self.isGetSysLoc = NO;
-        if (!self.locationManager) {
-            self.locationManager = [[CLLocationManager alloc] init];
-            self.locationManager.delegate = self;
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            self.locationManager.distanceFilter = 100;
-        }
-        [self.locationManager startUpdatingLocation];
-    }
-    else {
+    if (![LocationManager shared].isAuthorized) {
         self.viewModel.haveGetLocation = NO;
         self.viewModel.cityName = nil;
         self.naviBar.cityName = @"全国";
         [self configViewWithData];
+        return;
     }
+    
+    // 在线且定位可用
+    if ([ZZUserHelper shareInstance].cityName) {
+        self.viewModel.cityName = [ZZUserHelper shareInstance].cityName;
+        self.naviBar.cityName = self.viewModel.cityName;
+    }
+    
+    [self configViewWithData];
+    self.viewModel.haveGetLocation = NO;
+    self.isGetSysLoc = NO;
+    
+    [[LocationManager shared] getLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
+        [self configureLocation:location
+                      placeMark:placemark];
+    } failure:^(CLAuthorizationStatus status, NSString *error) {
+        
+    }];
+}
+
+- (void)configureLocation:(CLLocation *)location placeMark:(CLPlacemark *)placemark {
+    if (self.isGetSysLoc) {
+        return;
+    }
+    self.isGetSysLoc = YES;
+    if ([ZZUserHelper shareInstance].isLogin) {
+        [[ZZUserHelper shareInstance] updateUserLocationWithLocation:location];
+    }
+    
+    [ZZUserHelper shareInstance].location = location;
+    
+    __block BOOL haveCity = NO;
+    if ([ZZUserHelper shareInstance].cityName) {
+        haveCity = YES;
+    }
+    [ZZUserHelper shareInstance].isAbroad = NO;
+    
+    NSString *cityName = @"";
+    if (placemark.locality) {
+        cityName = placemark.locality;
+    }
+    else if (placemark.administrativeArea) {
+        cityName = placemark.administrativeArea;
+    }
+    if ([self isSpecailProvince:cityName]) {
+        cityName = placemark.subLocality;
+    }
+    if (![placemark.ISOcountryCode isEqualToString:@"CN"]) {
+        [ZZUserHelper shareInstance].isAbroad = YES;
+        cityName = placemark.country;
+    }
+    if (!isNullString(cityName)) {
+        self.viewModel.haveGetLocation = YES;
+        if (haveCity && ![cityName isEqualToString:[ZZUserHelper shareInstance].cityName]) {    //与之前记录的城市不同时
+            dispatch_async(dispatch_get_main_queue(), ^{
+                haveCity = NO;
+                self.viewModel.cityName = cityName;
+                self.naviBar.cityName = cityName;
+                [[ZZTabBarViewController sharedInstance] showBubbleView:2];
+                [ZZUserHelper shareInstance].cityName = cityName;
+                
+                // FIXME:新定位
+                [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"NewLocation"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self configViewWithData];
+                });
+            });
+        }
+        if (!haveCity) {
+            self.viewModel.cityName = cityName;
+            self.naviBar.cityName = cityName;
+            [ZZUserHelper shareInstance].cityName = cityName;
+        }
+    }
+    
+    // 城市改变则获取首页信息
+    if (!haveCity) {
+        // FIXME:新定位
+        [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"NewLocation"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self configViewWithData];
+        });
+    }
+}
+
+//是否是特殊省份？
+- (BOOL)isSpecailProvince:(NSString *)province {
+    NSArray *array = @[@"新疆维吾尔自治区",@"海南省",@"湖北省",@"河南省"];
+    if ([array containsObject:province]) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - ZZUserRegistedGuidViewDelegate
@@ -654,16 +726,9 @@
                                                    cancelTitle:@"取消"
                                                  completeBlock:^(BOOL isCancelled) {
                                                      if (!isCancelled) {
-//                                                         if (![UserHelper didHaveRealFace]) {
-                                                             [self gotoVerifyFace:NavigationTypeApplicantForTalent];
-//                                                         }
-//                                                         else {
-//                                                             [self gotoUploadPicture:NavigationTypeApplyTalent];
-//                                                         }
-
+                                                         [self gotoVerifyFace:NavigationTypeApplicantForTalent];
                                                      }
                                                  }];
-        
         }
         else {
             if ([UserHelper didHaveRealAvatar] || ([UserHelper isAvatarManualReviewing] && [UserHelper didHaveOldAvatar])) {
@@ -697,140 +762,6 @@
             }
         }
     }
-}
-
-#pragma mark -- CLLocationManagerDelegate & LocationReverse
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    if (self.isGetSysLoc) {
-        return;
-    }
-    self.isGetSysLoc = YES;
-    if ([ZZUserHelper shareInstance].isLogin) {
-        [[ZZUserHelper shareInstance] updateUserLocationWithLocation:locations[0]];
-    }
-    
-    [ZZUserHelper shareInstance].location = locations[0];
-    [self.locationManager stopUpdatingLocation];
-    [self reverseGeocodeLocation];
-}
-
-- (void)reverseGeocodeLocation {    //先用系统自带的逆地址解析
-    __block BOOL haveCity = NO;
-    if ([ZZUserHelper shareInstance].cityName) {
-        haveCity = YES;
-    }
-    [ZZUserHelper shareInstance].isAbroad = NO;
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    CLLocation *location = [ZZUserHelper shareInstance].location;
-    [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"locationerror = %@",error);
-            [self gaodeReverseGeocodeLocation];
-        } else {
-            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            NSString *cityName = @"";
-            if (placemark.locality) {
-                cityName = placemark.locality;
-            }
-            else if (placemark.administrativeArea) {
-                cityName = placemark.administrativeArea;
-            }
-            if ([self isSpecailProvince:cityName]) {
-                cityName = placemark.subLocality;
-            }
-            if (![placemark.ISOcountryCode isEqualToString:@"CN"]) {
-                [ZZUserHelper shareInstance].isAbroad = YES;
-                cityName = placemark.country;
-            }
-            if (!isNullString(cityName)) {
-                self.viewModel.haveGetLocation = YES;
-                if (haveCity && ![cityName isEqualToString:[ZZUserHelper shareInstance].cityName]) {    //与之前记录的城市不同时
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        haveCity = NO;
-                        self.viewModel.cityName = cityName;
-                        self.naviBar.cityName = cityName;
-                        [[ZZTabBarViewController sharedInstance] showBubbleView:2];
-                        [ZZUserHelper shareInstance].cityName = cityName;
-                        
-                        // FIXME:新定位
-                        [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"NewLocation"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [self configViewWithData];
-                        });
-                    });
-                }
-                if (!haveCity) {
-                    self.viewModel.cityName = cityName;
-                    self.naviBar.cityName = cityName;
-                    [ZZUserHelper shareInstance].cityName = cityName;
-                }
-            }
-        }
-        
-        // 城市改变则获取首页信息
-        if (!haveCity) {
-            // FIXME:新定位
-            [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"NewLocation"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self configViewWithData];
-            });
-        }
-    }];
-}
-
-// 系统的没解析出来用高德的解析
-- (void)gaodeReverseGeocodeLocation {
-    __block BOOL haveCity = NO;
-    if ([ZZUserHelper shareInstance].cityName) {
-        haveCity = YES;
-    }
-    self.aMapManager = [[AMapLocationManager alloc] init];
-    self.aMapManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-    [self.aMapManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        if (error) {
-            NSLog(@"locationerror = %@",error);
-        } else {
-            NSLog(@"regeocode = %@",regeocode);
-            [_aMapManager stopUpdatingLocation];
-            NSString *cityName = @"";
-            if (regeocode.city) {
-                cityName = regeocode.city;
-            } else if (regeocode.province) {
-                cityName = regeocode.province;
-            }
-            if ([self isSpecailProvince:cityName]) {
-                cityName = regeocode.district;
-            }
-            if (!isNullString(cityName)) {
-                self.viewModel.haveGetLocation = YES;
-                if (!haveCity || ![cityName isEqualToString:[ZZUserHelper shareInstance].cityName]) {
-                    haveCity = NO;
-                    self.viewModel.cityName = cityName;
-                    self.naviBar.cityName = cityName;
-                }
-                ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
-                userHelper.cityName = cityName;
-                userHelper.location = location;
-            }
-        }
-        if (!haveCity) {    //城市改变则获取首页信息
-            // FIXME:新定位
-            [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"NewLocation"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self configViewWithData];
-            });
-            
-        }
-    }];
-}
-
-//是否是特殊省份？
-- (BOOL)isSpecailProvince:(NSString *)province {
-    NSArray *array = @[@"新疆维吾尔自治区",@"海南省",@"湖北省",@"河南省"];
-    if ([array containsObject:province]) {
-        return YES;
-    }
-    return NO;
 }
 
 #pragma mark - WBFastRentManagerObserver

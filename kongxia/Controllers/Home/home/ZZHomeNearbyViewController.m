@@ -20,13 +20,12 @@
 #import "HttpDNS.h"
 #import "ZZNewHomeViewController.h"
 
-@interface ZZHomeNearbyViewController () <UITableViewDataSource,UITableViewDelegate,NJKScrollFullscreenDelegate,CLLocationManagerDelegate,ZZHomeNearbyCellDelegate>
+@interface ZZHomeNearbyViewController () <UITableViewDataSource,UITableViewDelegate,NJKScrollFullscreenDelegate,ZZHomeNearbyCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) BOOL haveLoad;
 @property (nonatomic, strong) NJKScrollFullScreen *scrollProxy;
 @property (nonatomic, assign) BOOL authorized;
-@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong)  ZZNotNetEmptyView *emptyView ;
 @property (nonatomic, strong)  ZZAlertNotNetEmptyView *alertEmptyView;
 
@@ -70,11 +69,10 @@
 - (void)checkLocationAuthority
 {
     //第一次打开APP就有授权就不用考虑kCLAuthorizationStatusNotDetermined
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
     if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         _authorized = NO;
         [self.tableView reloadData];
-        [self createLocationManager];
     } else {
         _authorized = YES;
         [self sendRequest];
@@ -90,30 +88,6 @@
 - (void)reloadInfo
 {
     [_tableView.mj_header beginRefreshing];
-}
-
-- (void)createLocationManager
-{
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    if (!_authorized) {
-        switch (status) {
-            case kCLAuthorizationStatusAuthorized:
-            case kCLAuthorizationStatusAuthorizedWhenInUse:
-            {
-                _authorized = YES;
-                [self sendRequest];
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
 }
 
 #pragma mark - SendRequest

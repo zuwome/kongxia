@@ -1543,7 +1543,7 @@
     if (![ZZUserHelper shareInstance].firstHomeGuide) {
         return;
     }
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
     if (status == kCLAuthorizationStatusNotDetermined) {
         dispatch_async(dispatch_get_main_queue(), ^{
             ZZAuthorityView *authorityView = [[ZZAuthorityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];

@@ -13,7 +13,7 @@
 #import <LCActionSheet.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface ZZOrderLocationViewController ()<MKMapViewDelegate,CLLocationManagerDelegate>
+@interface ZZOrderLocationViewController ()<MKMapViewDelegate>
 {
     NSMutableArray *_navapps;
     NSString *_riginAddressString;//用户自身当前的地址
@@ -21,7 +21,7 @@
     CLLocationCoordinate2D _pt;//目的地的经纬度
 
 }
-@property (nonatomic, strong) CLLocationManager *locationManager;
+
 @property (nonatomic,strong)   UIView *mapViewNav;
 //@property (strong, nonatomic) MAMapView *mapView;
 @property (nonatomic, strong) MKMapView *mapView;
@@ -83,9 +83,6 @@
     [self setMapNavigation];
 }
 
-
-
-
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self.mapView removeFromSuperview];
@@ -93,57 +90,37 @@
     [self.view addSubview:mapView];
     [self.view bringSubviewToFront:self.mapViewNav];
 }
+
 #pragma mark  - amapLocationManager
 
 /**
  判断定位功能是否打开
  */
 - (void)locateMap {
-    
-    if ([CLLocationManager locationServicesEnabled]) {
-            //定位地址
-            if (!_locationManager) {
-                _locationManager = [[CLLocationManager alloc] init];
-                _locationManager.delegate = self;
-                _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
-                _locationManager.distanceFilter = 100; //控制定位服务移动后更新频率。单位是“米”
-            }
-            [_locationManager startUpdatingLocation];
-    
+    if ([LocationManager shared].locationServicesEnabled) {
+        [[LocationManager shared] getLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
+            [self configureLocation:location
+                          placeMark:placemark];
+        } failure:^(CLAuthorizationStatus status, NSString *error) {
+            [UIAlertView showWithTitle:@"允许\"定位\"提示" message:@"请在设置中打开定位" cancelButtonTitle:@"取消" otherButtonTitles:@[@"打开定位"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex ==1 ) {
+                    //打开定位设置
+                    NSURL *settingUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    [[UIApplication sharedApplication] openURL:settingUrl];
+                }
+                
+            }];
+        }];
     }
 }
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    [_locationManager stopUpdatingLocation];
-    CLLocation *currentLocation = [locations lastObject];
-    _currentUserLocation.latitude = currentLocation.coordinate.latitude;
-    _currentUserLocation.longitude = currentLocation.coordinate.longitude;
 
-    CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
-    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (placemarks.count>0) {
-            CLPlacemark *placeMark = placemarks[0];
-            _riginAddressString = placeMark.addressDictionary[@"Name"];
-            if (!_riginAddressString) {
-                NSLog(@"无法定位");
-            }
-        }
-        
-    }];
-}
-
-
-/**
- 定位失败提醒用户器开启定位
- */
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    [UIAlertView showWithTitle:@"允许\"定位\"提示" message:@"请在设置中打开定位" cancelButtonTitle:@"取消" otherButtonTitles:@[@"打开定位"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex ==1 ) {
-            //打开定位设置
-            NSURL *settingUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            [[UIApplication sharedApplication] openURL:settingUrl];
-        }
-        
-    }];
+- (void)configureLocation:(CLLocation *)location placeMark:(CLPlacemark *)placemark {
+    _currentUserLocation.latitude = location.coordinate.latitude;
+    _currentUserLocation.longitude = location.coordinate.longitude;
+    _riginAddressString = placemark.addressDictionary[@"Name"];
+    if (!_riginAddressString) {
+        NSLog(@"无法定位");
+    }
 }
 
 #pragma mark -  导航UI

@@ -60,10 +60,7 @@
 #import "ZZCommossionManager.h"
 #import <XHLaunchAd.h>
 
-@interface AppDelegate () <CLLocationManagerDelegate,ZZNewGuidViewDelegate, XHLaunchAdDelegate, MiPushSDKDelegate, UNUserNotificationCenterDelegate, OpenInstallDelegate, WXApiDelegate>
-{
-    CLLocationManager *_LocationManager;
-}
+@interface AppDelegate () <ZZNewGuidViewDelegate, XHLaunchAdDelegate, MiPushSDKDelegate, UNUserNotificationCenterDelegate, OpenInstallDelegate, WXApiDelegate>
 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier backgroundTask;
 @property (nonatomic, strong) NSDictionary *remoteInfo; // App被杀死收到远程推送的信息
@@ -577,7 +574,7 @@
 
     [ZZAppDelegateConfig config];
     
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
     if (status != kCLAuthorizationStatusNotDetermined) {
         // 注册推送, 用于iOS8以及iOS8之后的系统
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge |
@@ -661,29 +658,22 @@
 - (void)getLocation {
     _haveGetLocation = NO;
     NSString *string = [ZZKeyValueStore getValueWithKey:[ZZStoreKey sharedInstance].firstinstallapp];
-    if ([CLLocationManager locationServicesEnabled] && string) {
-        //定位地址
-        if (!_LocationManager) {
-            _LocationManager = [[CLLocationManager alloc] init];
-            _LocationManager.delegate = self;
-            _LocationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
-            _LocationManager.distanceFilter = 100; //控制定位服务移动后更新频率。单位是“米”
-        }
-        [_LocationManager startUpdatingLocation];
+    
+    if (string) {
+        [[LocationManager shared] getLocationWithSuccess:^(CLLocation * location, CLPlacemark * placemark) {
+            if (_haveGetLocation) {
+                return;
+            }
+            _haveGetLocation = YES;
+            [ZZUserHelper shareInstance].location = location;
+            if ([ZZUserHelper shareInstance].isLogin) {
+                [[ZZUserHelper shareInstance] updateUserLocationWithLocation:location];
+            }
+        } failure:^(CLAuthorizationStatus status, NSString * error) {
+            
+        }];
     }
     [ZZKeyValueStore saveValue:@"firstinstallapp" key:[ZZStoreKey sharedInstance].firstinstallapp];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    if (_haveGetLocation) {
-        return;
-    }
-    _haveGetLocation = YES;
-    [ZZUserHelper shareInstance].location = locations[0];
-    if ([ZZUserHelper shareInstance].isLogin) {
-        [[ZZUserHelper shareInstance] updateUserLocationWithLocation:locations[0]];
-    }
-    [_LocationManager stopUpdatingLocation];
 }
 
 #pragma mark - XHLaunchAd

@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class AMapPOI;
 
 @protocol ZZLocationSearchedControllerDelegate <NSObject>
 
-- (void)setSelectedLocationWithLocation:(AMapPOI *)poi;
+- (void)setSelectedLocationWithLocation:(PoiModel *)poi;
 
 @end
 
-@interface ZZLocationSearchedController : UITableViewController <UISearchBarDelegate, UISearchResultsUpdating, AMapSearchDelegate>
+@interface ZZLocationSearchedController : UITableViewController <UISearchBarDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, assign) BOOL isFromMylocations;
 
@@ -24,6 +23,8 @@
 @property (nonatomic, weak) id<ZZLocationSearchedControllerDelegate> delegate;
 
 @property (nonatomic, assign) BOOL isFromTaskFree;
+
+@property (nonatomic, copy) CLLocation *location;
 
 - (void)setSearchCity:(NSString *)city;
 

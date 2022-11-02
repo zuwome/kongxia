@@ -14,10 +14,7 @@
 #import "JZLocationConverter.h"
 #import "ZZActivityUrlNetManager.h"//活动的H5
  
-@interface ZZUserHelper()<CLLocationManagerDelegate> {
-    CLLocationManager *_LocationManager;
-}
-
+@interface ZZUserHelper()
 @end
 
 @implementation ZZUserHelper

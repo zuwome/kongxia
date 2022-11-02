@@ -142,7 +142,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
 + (BOOL)isAllowLocation
 {
     //判断定位
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
     if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         //无权限
         dispatch_async(dispatch_get_main_queue(), ^{

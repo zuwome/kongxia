@@ -8,7 +8,7 @@
 
 #import "ZZAuthorityView.h"
 
-@interface ZZAuthorityView () <CLLocationManagerDelegate>
+@interface ZZAuthorityView ()
 
 @property (nonatomic, assign) CGFloat scale;
 @property (nonatomic, strong) UIButton *bgBtn;
@@ -20,7 +20,6 @@
 @property (nonatomic, strong) UIButton *notificationBtn;
 @property (nonatomic, strong) UIImageView *notificationImgView;
 @property (nonatomic, strong) UIButton *sureBtn;
-@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, assign) BOOL touchedLocation;
 
@@ -79,14 +78,6 @@
 
 - (void)locationAuthority
 {
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest; //控制定位精度,越高耗电量越大。
-        if([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-            [_locationManager requestWhenInUseAuthorization]; //使用中授权
-        }
-    }
     _locationImgView.image = [UIImage imageNamed:@"icon_authority_local_p"];
     _localBtn.layer.borderColor = kYellowColor.CGColor;
     [_localBtn setTitleColor:kBlackTextColor forState:UIControlStateNormal];
@@ -98,29 +89,6 @@
     _notificationImgView.image = [UIImage imageNamed:@"icon_authority_notification_p"];
     _notificationBtn.layer.borderColor = kYellowColor.CGColor;
     [_notificationBtn setTitleColor:kBlackTextColor forState:UIControlStateNormal];
-}
-
-#pragma mark - 
-
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    switch (status) {
-        case kCLAuthorizationStatusNotDetermined:
-        {
-            
-        }
-            break;
-        default:
-        {
-            if (!_touchedLocation) {
-                [self pushAuthority];
-            }
-        }
-            break;
-    }
-    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
-        _notificationBtn.layer.borderColor = HEXCOLOR(0xB3B3B3).CGColor;
-    }
 }
 
 #pragma mark - lazyload
@@ -302,12 +270,6 @@
         }];
     }
     return _sureBtn;
-}
-
-- (void)dealloc
-{
-    _locationManager.delegate = nil;
-    _locationManager = nil;
 }
 
 @end

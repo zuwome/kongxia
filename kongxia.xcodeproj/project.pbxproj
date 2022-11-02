@@ -117,7 +117,6 @@
 		914658011F692BB7007D1FAD /* UIColor+RCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 914658001F692BB7007D1FAD /* UIColor+RCColor.m */; };
 		914D33F31F18978D009B2FDC /* ZZLiveStreamHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 914D33F21F18978D009B2FDC /* ZZLiveStreamHelper.m */; };
 		914E84B21F2C78A400475126 /* ZZVideoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 914E84B11F2C78A400475126 /* ZZVideoHelper.m */; };
-		915B73001E271B4D00BF0238 /* ZZLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 915B72FF1E271B4D00BF0238 /* ZZLocationHelper.m */; };
 		915C97281EA0C320004960A7 /* ZZStoreKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 915C97271EA0C320004960A7 /* ZZStoreKey.m */; };
 		915F01361D51E209009AB3B6 /* pushaudio.wav in Resources */ = {isa = PBXBuildFile; fileRef = 915F01351D51E209009AB3B6 /* pushaudio.wav */; };
 		9169EEB21D9900A500FEBD8D /* ZZRCUserInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9169EEB11D9900A500FEBD8D /* ZZRCUserInfoHelper.m */; };
@@ -1146,7 +1145,6 @@
 		BD7852B122B22AD500279A6C /* ZZHomeCollectionsNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7852B022B22AD500279A6C /* ZZHomeCollectionsNewCell.m */; };
 		BD78B7992236636400172570 /* ZZDateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78B7982236636400172570 /* ZZDateFormatterHelper.swift */; };
 		BD7C0EC423BC37F30017D7F5 /* ZZAppDelegateConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7C0EC323BC37F30017D7F5 /* ZZAppDelegateConfig.m */; };
-		BD7F2E8823CEE8F900141DC3 /* libACRCloud_IOS_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD7F2E8723CEE8F800141DC3 /* libACRCloud_IOS_SDK.a */; };
 		BD7F2E9123CEF03A00141DC3 /* ZZACRRecognitionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7F2E9023CEF03A00141DC3 /* ZZACRRecognitionHelper.m */; };
 		BD7F2E9423CFECBF00141DC3 /* ZZKTVMyGiftUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7F2E9323CFECBF00141DC3 /* ZZKTVMyGiftUserInfoCell.m */; };
 		BD7F2E9723CFF00F00141DC3 /* ZZKTVRecievedGiftResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7F2E9623CFF00E00141DC3 /* ZZKTVRecievedGiftResponseModel.m */; };
@@ -1154,6 +1152,12 @@
 		BD7F2E9D23D03A4900141DC3 /* ZZChatKTVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7F2E9C23D03A4900141DC3 /* ZZChatKTVModel.m */; };
 		BD7F2EA023D03D9400141DC3 /* ZZChatKTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7F2E9F23D03D9400141DC3 /* ZZChatKTVCell.m */; };
 		BD7F2EA223D06B5500141DC3 /* KTV_index.gif in Resources */ = {isa = PBXBuildFile; fileRef = BD7F2EA123D06B5500141DC3 /* KTV_index.gif */; };
+		BD8417DD290CC69600968D25 /* libACRCloud_IOS_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8417DC290CC69600968D25 /* libACRCloud_IOS_SDK.a */; };
+		BD8417E4290CCA6C00968D25 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8417E3290CCA6C00968D25 /* LocationManager.swift */; };
+		BD8417E6290CCA8900968D25 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8417E5290CCA8900968D25 /* LocationModel.swift */; };
+		BD8417E8290D09C200968D25 /* PoiManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8417E7290D09C200968D25 /* PoiManger.swift */; };
+		BD8417EA290D0BBA00968D25 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8417E9290D0BBA00968D25 /* MapView.swift */; };
+		BD8417EC290D5A3500968D25 /* PoiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8417EB290D5A3400968D25 /* PoiModel.swift */; };
 		BD87CE6D23068D78008105D4 /* ZZInternationalCitySearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD87CE6C23068D78008105D4 /* ZZInternationalCitySearchResultController.m */; };
 		BD8B3B6D22969AAD00022C82 /* ZZRankingTopsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8B3B6C22969AAD00022C82 /* ZZRankingTopsHeaderView.swift */; };
 		BD8B3B6F22969B7B00022C82 /* ZZRankingTopThreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8B3B6E22969B7B00022C82 /* ZZRankingTopThreeView.swift */; };
@@ -1755,8 +1759,6 @@
 		914D33F21F18978D009B2FDC /* ZZLiveStreamHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZLiveStreamHelper.m; sourceTree = "<group>"; };
 		914E84B01F2C78A400475126 /* ZZVideoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZVideoHelper.h; sourceTree = "<group>"; };
 		914E84B11F2C78A400475126 /* ZZVideoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZVideoHelper.m; sourceTree = "<group>"; };
-		915B72FE1E271B4D00BF0238 /* ZZLocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZLocationHelper.h; sourceTree = "<group>"; };
-		915B72FF1E271B4D00BF0238 /* ZZLocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZLocationHelper.m; sourceTree = "<group>"; };
 		915C97261EA0C320004960A7 /* ZZStoreKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZStoreKey.h; sourceTree = "<group>"; };
 		915C97271EA0C320004960A7 /* ZZStoreKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZStoreKey.m; sourceTree = "<group>"; };
 		915F01351D51E209009AB3B6 /* pushaudio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pushaudio.wav; sourceTree = "<group>"; };
@@ -3714,9 +3716,6 @@
 		BD78B7982236636400172570 /* ZZDateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZDateFormatterHelper.swift; sourceTree = "<group>"; };
 		BD7C0EC223BC37F20017D7F5 /* ZZAppDelegateConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZAppDelegateConfig.h; path = ZZAdditions/ZZAppDelegateConfig.h; sourceTree = "<group>"; };
 		BD7C0EC323BC37F30017D7F5 /* ZZAppDelegateConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZAppDelegateConfig.m; path = ZZAdditions/ZZAppDelegateConfig.m; sourceTree = "<group>"; };
-		BD7F2E8523CEE8F800141DC3 /* ACRCloudConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRCloudConfig.h; sourceTree = "<group>"; };
-		BD7F2E8623CEE8F800141DC3 /* ACRCloudRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRCloudRecognition.h; sourceTree = "<group>"; };
-		BD7F2E8723CEE8F800141DC3 /* libACRCloud_IOS_SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libACRCloud_IOS_SDK.a; sourceTree = "<group>"; };
 		BD7F2E8F23CEF03A00141DC3 /* ZZACRRecognitionHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZACRRecognitionHelper.h; sourceTree = "<group>"; };
 		BD7F2E9023CEF03A00141DC3 /* ZZACRRecognitionHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZACRRecognitionHelper.m; sourceTree = "<group>"; };
 		BD7F2E9223CFECBF00141DC3 /* ZZKTVMyGiftUserInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVMyGiftUserInfoCell.h; sourceTree = "<group>"; };
@@ -3730,6 +3729,14 @@
 		BD7F2E9E23D03D9400141DC3 /* ZZChatKTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZChatKTVCell.h; sourceTree = "<group>"; };
 		BD7F2E9F23D03D9400141DC3 /* ZZChatKTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZChatKTVCell.m; sourceTree = "<group>"; };
 		BD7F2EA123D06B5500141DC3 /* KTV_index.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = KTV_index.gif; sourceTree = "<group>"; };
+		BD8417DA290CC69600968D25 /* ACRCloudConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRCloudConfig.h; sourceTree = "<group>"; };
+		BD8417DB290CC69600968D25 /* ACRCloudRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRCloudRecognition.h; sourceTree = "<group>"; };
+		BD8417DC290CC69600968D25 /* libACRCloud_IOS_SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libACRCloud_IOS_SDK.a; sourceTree = "<group>"; };
+		BD8417E3290CCA6C00968D25 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		BD8417E5290CCA8900968D25 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		BD8417E7290D09C200968D25 /* PoiManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiManger.swift; sourceTree = "<group>"; };
+		BD8417E9290D0BBA00968D25 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		BD8417EB290D5A3400968D25 /* PoiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiModel.swift; sourceTree = "<group>"; };
 		BD87CE6B23068D78008105D4 /* ZZInternationalCitySearchResultController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZInternationalCitySearchResultController.h; sourceTree = "<group>"; };
 		BD87CE6C23068D78008105D4 /* ZZInternationalCitySearchResultController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZInternationalCitySearchResultController.m; sourceTree = "<group>"; };
 		BD8B3B6C22969AAD00022C82 /* ZZRankingTopsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZRankingTopsHeaderView.swift; sourceTree = "<group>"; };
@@ -4480,7 +4487,6 @@
 				BDFDD61C21DBAA660024C028 /* CoreAudio.framework in Frameworks */,
 				BD17816B23CE0486005567BA /* libmp4ff.a in Frameworks */,
 				BDFDD61A21DBAA340024C028 /* Accelerate.framework in Frameworks */,
-				BD7F2E8823CEE8F900141DC3 /* libACRCloud_IOS_SDK.a in Frameworks */,
 				BDFDD61821DBA9E10024C028 /* CoreVideo.framework in Frameworks */,
 				BDFDD61721DBA9A00024C028 /* AVKit.framework in Frameworks */,
 				AC1255071FF216210096AA7F /* StoreKit.framework in Frameworks */,
@@ -4500,6 +4506,7 @@
 				33EC7FCA1C5E6E60001D157F /* CFNetwork.framework in Frameworks */,
 				33F7EF451C4BE04900B76F08 /* libz.tbd in Frameworks */,
 				91F477861DFED4A70003AED4 /* UIKit.framework in Frameworks */,
+				BD8417DD290CC69600968D25 /* libACRCloud_IOS_SDK.a in Frameworks */,
 				BDA5006D22FA785A00BCB48E /* IDLFaceSDK.framework in Frameworks */,
 				33F7EF431C4BE04000B76F08 /* libstdc++.tbd in Frameworks */,
 				BDA9E2F1237560A700E9E351 /* RongSight.framework in Frameworks */,
@@ -4999,8 +5006,6 @@
 				91F4F9B71D3CFBB400997359 /* ZZHomeHelper.m */,
 				917D61931D91371800E2F733 /* ZZScrollToTopHelper.h */,
 				917D61941D91371800E2F733 /* ZZScrollToTopHelper.m */,
-				915B72FE1E271B4D00BF0238 /* ZZLocationHelper.h */,
-				915B72FF1E271B4D00BF0238 /* ZZLocationHelper.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -9045,22 +9050,48 @@
 			path = KTV;
 			sourceTree = "<group>";
 		};
-		BD7F2E8323CEE8F800141DC3 /* ACRCloudLibraies */ = {
+		BD8417D8290CC69600968D25 /* ACRCloudLibraies */ = {
 			isa = PBXGroup;
 			children = (
-				BD7F2E8423CEE8F800141DC3 /* include */,
-				BD7F2E8723CEE8F800141DC3 /* libACRCloud_IOS_SDK.a */,
+				BD8417D9290CC69600968D25 /* include */,
+				BD8417DC290CC69600968D25 /* libACRCloud_IOS_SDK.a */,
 			);
 			path = ACRCloudLibraies;
 			sourceTree = "<group>";
 		};
-		BD7F2E8423CEE8F800141DC3 /* include */ = {
+		BD8417D9290CC69600968D25 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				BD7F2E8523CEE8F800141DC3 /* ACRCloudConfig.h */,
-				BD7F2E8623CEE8F800141DC3 /* ACRCloudRecognition.h */,
+				BD8417DA290CC69600968D25 /* ACRCloudConfig.h */,
+				BD8417DB290CC69600968D25 /* ACRCloudRecognition.h */,
 			);
 			path = include;
+			sourceTree = "<group>";
+		};
+		BD8417DE290CC72300968D25 /* TianMap */ = {
+			isa = PBXGroup;
+			children = (
+				BD8417E1290CC78000968D25 /* Models */,
+				BD8417E7290D09C200968D25 /* PoiManger.swift */,
+			);
+			path = TianMap;
+			sourceTree = "<group>";
+		};
+		BD8417E1290CC78000968D25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BD8417EB290D5A3400968D25 /* PoiModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BD8417E2290CC97D00968D25 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				BD8417E3290CCA6C00968D25 /* LocationManager.swift */,
+				BD8417E5290CCA8900968D25 /* LocationModel.swift */,
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 		BD92F0F5238E1F7E00D61F08 /* ZZPayView */ = {
@@ -9165,8 +9196,10 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				BD8417E2290CC97D00968D25 /* LocationManager */,
+				BD8417DE290CC72300968D25 /* TianMap */,
+				BD8417D8290CC69600968D25 /* ACRCloudLibraies */,
 				BD5DB5B427B53ABC00BBBDEA /* FaceID */,
-				BD7F2E8323CEE8F800141DC3 /* ACRCloudLibraies */,
 				BDA5000122FA785A00BCB48E /* AdView */,
 				BDA245EE2334BB990039704B /* AgoraRtcTools */,
 				BDA5FDBB22FA785800BCB48E /* Agreement */,
@@ -9214,6 +9247,7 @@
 				BD7C0EC223BC37F20017D7F5 /* ZZAppDelegateConfig.h */,
 				BD7C0EC323BC37F30017D7F5 /* ZZAppDelegateConfig.m */,
 				BDA5FD4E22FA785800BCB48E /* ZZCustomUploadImage */,
+				BD8417E9290D0BBA00968D25 /* MapView.swift */,
 			);
 			path = Vendors;
 			sourceTree = "<group>";
@@ -11086,6 +11120,7 @@
 				BDA5012C22FA785B00BCB48E /* TTTAttributedLabel.m in Sources */,
 				91DB9E1C1F6129E600013F4C /* ZZRechargeViewController.m in Sources */,
 				BD21F65C229AE94B0037D447 /* ZZMyRankInfoVIew.swift in Sources */,
+				BD8417E4290CCA6C00968D25 /* LocationManager.swift in Sources */,
 				BDA5012222FA785B00BCB48E /* JPVideoPlayerCachePathTool.m in Sources */,
 				BD2C007523BB380900756D98 /* JXCategoryViewAnimator.m in Sources */,
 				91DB9E141F6129E600013F4C /* ZZMemedaAnswerDetailViewController.m in Sources */,
@@ -11316,6 +11351,7 @@
 				AC1DC6ED20CFC59C00D1D9F0 /* ZZNewTiXianFootView.m in Sources */,
 				BD8B3B6F22969B7B00022C82 /* ZZRankingTopThreeView.swift in Sources */,
 				91DBA5B91F6151F500013F4C /* ZZFindVideoModel.m in Sources */,
+				BD8417E6290CCA8900968D25 /* LocationModel.swift in Sources */,
 				BD75ECAD23B9F6790073356C /* ZZKTVUserInfoCell.m in Sources */,
 				AC8FD7461FF62CA80023371E /* SubTitleView.m in Sources */,
 				BD442770252A53590018A84E /* TYImageStorage.m in Sources */,
@@ -11443,6 +11479,7 @@
 				BDE4B6F222700DF4002EC5F2 /* ZZTaskPhotosCell.m in Sources */,
 				91DBA4751F613D3400013F4C /* ZZFilterRangeBubbleView.m in Sources */,
 				BDE75CBB236685C2007F18D4 /* ZZWechatOrderReportInputCell.swift in Sources */,
+				BD8417EC290D5A3500968D25 /* PoiModel.swift in Sources */,
 				91DBA5ED1F6151F500013F4C /* ZZRealname.m in Sources */,
 				ACBC308F20DA2E9A00480832 /* ZZIntegralNoviceRollingView.m in Sources */,
 				0454A583215B17C90051595C /* ZZUserNotificationAlert.m in Sources */,
@@ -11450,6 +11487,7 @@
 				91DBA26E1F613CF700013F4C /* ZZChatBaseCell.m in Sources */,
 				0489EF2B21252C5000086FBE /* ZZNewHomeBaseCell.m in Sources */,
 				BD32B3B223ACD6E8002A8419 /* ZZPopularityRulesVC.m in Sources */,
+				BD8417E8290D09C200968D25 /* PoiManger.swift in Sources */,
 				91DBA30D1F613CF700013F4C /* ZZVideoHeadView.m in Sources */,
 				BDA87183231627A10081DA2B /* ZZRentPayCompleteCreateTaskCell.m in Sources */,
 				047B8F662110360100E6C0E9 /* ZZSkillEditViewController.m in Sources */,
@@ -11579,7 +11617,6 @@
 				91DBA26B1F613CF700013F4C /* ZZChatBoxTopView.m in Sources */,
 				B79B97E41FD7A582003E6A48 /* ZZLiveStreamAcceptController.m in Sources */,
 				91DBA2DC1F613CF700013F4C /* ZZCommentLabelCell.m in Sources */,
-				915B73001E271B4D00BF0238 /* ZZLocationHelper.m in Sources */,
 				91DB9DFC1F6129E600013F4C /* ZZOrderDetailViewController.m in Sources */,
 				BDF5C3CE2241E28600A0B37F /* ZZTaskModel.m in Sources */,
 				AC613E4420C002A90064C9F8 /* ZZShowOriginalImageView.m in Sources */,
@@ -11814,6 +11851,7 @@
 				BDA5010C22FA785B00BCB48E /* WXSTransitionManager+SpreadAnimation.m in Sources */,
 				ACF77487209FFE460043B77A /* ZZRentSuccessShadowView.m in Sources */,
 				BD7F2E9D23D03A4900141DC3 /* ZZChatKTVModel.m in Sources */,
+				BD8417EA290D0BBA00968D25 /* MapView.swift in Sources */,
 				BDE3445D2351B1F0008290F0 /* ZZCommissionModel.m in Sources */,
 				91DB9D971F6129E600013F4C /* ZZTopicHotViewController.m in Sources */,
 				BDA500CB22FA785B00BCB48E /* row_neon.cc in Sources */,
@@ -12519,7 +12557,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12742,7 +12780,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12966,7 +13004,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13189,7 +13227,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;

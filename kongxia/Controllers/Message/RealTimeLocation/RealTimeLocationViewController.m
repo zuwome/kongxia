@@ -90,7 +90,7 @@ MBProgressHUD *hud;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.realTimeLocationProxy addRealTimeLocationObserver:self];
-  CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
   if (status == kCLAuthorizationStatusDenied) {
     [hud hide:YES];
     UIAlertView *alertView =
