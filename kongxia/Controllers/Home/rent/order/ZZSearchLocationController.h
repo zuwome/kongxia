@@ -22,6 +22,8 @@
 
 @property (nonatomic, copy) void (^selectPoiDone)(ZZRentDropdownModel *model);
 
+@property (nonatomic, copy) void (^selectPoi)(ZZRentDropdownModel *model, UIImage *image);
+
 @property (nonatomic, assign) BOOL isFromTaskFree;
 
 - (instancetype)initWithSelectCity:(ZZCity *)city;

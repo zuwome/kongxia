@@ -133,12 +133,14 @@
     _currentCity = @"正在定位...";
     [_tableView reloadData];
     _getLocatio = NO;
-    [[LocationManager shared] getLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
-        [self configureLocation:location
-                      placeMark:placemark];
-    } failure:^(CLAuthorizationStatus status, NSString *error) {
-        self.currentCity = @"定位失败，重新获取";
-    }];
+    [[LocationMangers shared] requestPlacemark:^(CLPlacemark * placemark, NSError * error) {
+            if (error != NULL) {
+                self.currentCity = @"定位失败，重新获取";
+            } else {
+                [self configureLocation:placemark.location
+                              placeMark:placemark];
+            }
+        }];
 }
 
 - (void)configureLocation:(CLLocation *)location placeMark:(CLPlacemark *)placemark {

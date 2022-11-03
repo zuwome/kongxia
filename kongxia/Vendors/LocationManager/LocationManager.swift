@@ -1,139 +1,127 @@
 //
 //  LocationManager.swift
-//  kongxia
+//  GeoManager
 //
-//  Created by qiming xiao on 2022/10/29.
-//  Copyright © 2022 TimoreYu. All rights reserved.
+//  Created by qiming xiao on 2022/11/3.
 //
 
 import Foundation
 import CoreLocation
 
-@objc class LocationManager: NSObject {
-    @objc public static let shared = LocationManager()
+@objc class LocationMangers: NSObject {
     
-    private let locationManager = CLLocationManager()
-    private let geocoder = CLGeocoder()
+    @objc public static let shared = LocationMangers()
+    
+    @objc public var getAuthHandler: ((_ success: Bool) -> Void)?
+    @objc public var getLocationHandler: ((_ location: CLLocation, _ error: Error?) -> Void)?
+    @objc public var getPlacemarkHandler: ((_ placemark: CLPlacemark?, _ error: Error?) -> Void)?
+    
+    @objc public var hasLocationService: Bool {
+        return CLLocationManager.locationServicesEnabled()
+    }
     
     @objc public var authorizationStatus: CLAuthorizationStatus {
-        if #available(iOS 14, *) {
-            return locationManager.authorizationStatus
+        if #available(iOS 14.0, *) {
+            let status: CLAuthorizationStatus = locationManager.authorizationStatus
+            print("location authorizationStatus is \(status.rawValue)")
+            return status
         } else {
-            return CLLocationManager.authorizationStatus()
+            let status = CLLocationManager.authorizationStatus()
+            print("location authorizationStatus is \(status.rawValue)")
+            return status
         }
     }
     
-    @objc public var locationServicesEnabled: Bool {
-        CLLocationManager.locationServicesEnabled()
+    @objc public var hasPermission: Bool {
+        switch authorizationStatus {
+        case .notDetermined, .restricted, .denied:
+            return false
+        case .authorizedWhenInUse, .authorizedAlways:
+            return true
+        default:
+            break
+        }
+        return false
     }
     
-    @objc public var isAuthorized: Bool {
-        authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways
-    }
     
-    @objc public var success: ((CLLocation, CLPlacemark) -> Void)?
-    @objc public var failure: ((CLAuthorizationStatus, String) -> Void)?
+    private var locationManager: CLLocationManager!
+    private var geocoder: CLGeocoder!
     
-    private var isUpdating: Bool = false
     override init() {
         super.init()
-        defaultLocationSetting()
-    }
-    
-    private func defaultLocationSetting() {
-        locationManager.delegate = self
-        locationManager.distanceFilter = 100
+        locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        
+        geocoder = CLGeocoder()
     }
     
-    private func getLocationAuthorization() {
+    @objc func requestLocationAuthorizaiton() {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    private func startGettingLocation() {
-        locationManager.startUpdatingLocation()
+    @objc func requestLocation() {
+        locationManager.requestLocation()
     }
     
-    @objc public func getLocation(
-        success: ((CLLocation, CLPlacemark) -> Void)? = nil,
-        failure: ((CLAuthorizationStatus, String) -> Void)? = nil) {
-            self.success = success
-            self.failure = failure
-            print("authorizationStatus: \(authorizationStatus)")
-            
-            guard !isUpdating else {
-                return
-            }
-            
-            guard !(authorizationStatus == .denied || authorizationStatus == .restricted) else {
-                self.failure?(authorizationStatus, "denied")
-                return
-            }
-            
-            isUpdating = true
-            
-            if authorizationStatus == .notDetermined {
-                getLocationAuthorization()
-            } else {
-                startGettingLocation()
-            }
+    @objc func requestLocation(_ handler: @escaping (_ location: CLLocation, _ error: Error?) -> Void) {
+        getLocationHandler = handler
+        locationManager.requestLocation()
+    }
+    
+    @objc func requestPlacemark(_ handler: @escaping (_ placemark: CLPlacemark?, _ error: Error?) -> Void) {
+        getPlacemarkHandler = handler
+        locationManager.requestLocation()
     }
 }
 
-extension LocationManager {
+extension LocationMangers {
     func reverseLocation(location: CLLocation) {
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            self.isUpdating = false
-            
-            guard error == nil else {
-                
+        geocoder.reverseGeocodeLocation(location) { [unowned self] placemarks, error in
+
+            guard error == nil, let placemark = placemarks?.first else {
                 return
             }
             
-            guard let placemark = placemarks?.first else {
-                
-                return
-            }
-            
-            self.configurePlaceMark(placemark: placemark, location: location)
+            self.getPlacemarkHandler?(placemark, nil)
         }
     }
-    
-    func configurePlaceMark(placemark: CLPlacemark, location: CLLocation) {
-//        let location = LocationModel(placemark)
-        success?(location, placemark)
-    }
 }
 
-extension LocationManager: CLLocationManagerDelegate {
-    // 代理方法，位置更新时回调
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        locationManager.stopUpdatingLocation()
-        
-        guard let location = locations.last else {
-            isUpdating = false
+extension LocationMangers: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        handleChangeAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        handleChangeAuthorization()
+    }
+    
+    private func handleChangeAuthorization() {
+        guard authorizationStatus != .denied else {
             return
         }
-
+        
+        getAuthHandler?(hasPermission ? true : false)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        handleDidUpdateLocations(locations: locations)
+    }
+    
+    private func handleDidUpdateLocations(locations: [CLLocation]) {
+        guard let location = locations.last else {
+            return
+        }
+        
+//        print("latitude: \(location.coordinate.latitude) longitude:\(location.coordinate.longitude)")
+        
+//        getLocationHandler?(location)
         reverseLocation(location: location)
     }
     
-    // 代理方法，当定位授权更新时回调
-    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse ||
-            status == .authorizedAlways &&
-            isUpdating {
-            getLocation(success: success, failure: failure)
-        }
-        isUpdating = false
-    }
-
-    // 当获取定位出错时调用
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // 这里应该停止调用api
-        locationManager.stopUpdatingLocation()
-        
-        isUpdating = false
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        getPlacemarkHandler?(nil, error)
     }
 }

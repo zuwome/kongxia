@@ -40,13 +40,24 @@ import MapKit
     }
     
     override func layoutSubviews() {
-        mapView.frame = frame
+        mapView.frame = CGRect(x: 1, y: 1, width: frame.width - 2, height: frame.height - 2)
     }
 }
 
 extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 //        regionDidChange?(mapView.centerCoordinate)
-        delegate?.regionDidChanged(coordinate: mapView.centerCoordinate)
+//        delegate?.regionDidChanged(coordinate: mapView.centerCoordinate)
+    }
+}
+
+extension MapView {
+    @objc public func setCenter(_ coordinate: CLLocationCoordinate2D, animated: Bool) {
+        mapView.setCenter(coordinate, animated: animated)
+    }
+    
+    @objc public func setRegion(_ region: MKCoordinateRegion, animated: Bool) {
+        let fitRegion = mapView.regionThatFits(region)
+        mapView.setRegion(fitRegion, animated: animated)
     }
 }

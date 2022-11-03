@@ -68,9 +68,7 @@
 
 - (void)checkLocationAuthority
 {
-    //第一次打开APP就有授权就不用考虑kCLAuthorizationStatusNotDetermined
-    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
-    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
+    if (![LocationMangers shared].hasPermission) {
         _authorized = NO;
         [self.tableView reloadData];
     } else {

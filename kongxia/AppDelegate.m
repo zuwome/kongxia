@@ -574,8 +574,7 @@
 
     [ZZAppDelegateConfig config];
     
-    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
-    if (status != kCLAuthorizationStatusNotDetermined) {
+    if ([LocationMangers shared].authorizationStatus != kCLAuthorizationStatusNotDetermined) {
         // 注册推送, 用于iOS8以及iOS8之后的系统
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge |
                             UIUserNotificationTypeSound |
@@ -660,17 +659,19 @@
     NSString *string = [ZZKeyValueStore getValueWithKey:[ZZStoreKey sharedInstance].firstinstallapp];
     
     if (string) {
-        [[LocationManager shared] getLocationWithSuccess:^(CLLocation * location, CLPlacemark * placemark) {
+        [[LocationMangers shared] requestPlacemark:^(CLPlacemark * placemark, NSError * error) {
+            if (error != NULL) {
+                return;
+            }
+            
             if (_haveGetLocation) {
                 return;
             }
             _haveGetLocation = YES;
-            [ZZUserHelper shareInstance].location = location;
+            [ZZUserHelper shareInstance].location = placemark.location;
             if ([ZZUserHelper shareInstance].isLogin) {
-                [[ZZUserHelper shareInstance] updateUserLocationWithLocation:location];
+                [[ZZUserHelper shareInstance] updateUserLocationWithLocation:placemark.location];
             }
-        } failure:^(CLAuthorizationStatus status, NSString * error) {
-            
         }];
     }
     [ZZKeyValueStore saveValue:@"firstinstallapp" key:[ZZStoreKey sharedInstance].firstinstallapp];

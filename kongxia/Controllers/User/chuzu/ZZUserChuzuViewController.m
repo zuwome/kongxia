@@ -324,7 +324,7 @@
 - (void)manageLocation
 {
     //定位是否可用
-    CLAuthorizationStatus status = [LocationManager shared].authorizationStatus;
+    CLAuthorizationStatus status = [LocationMangers shared].authorizationStatus;
     if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         [UIAlertView showWithTitle:@"定位服务未开启" message:@"请在手机设置中开启定位服务以看到附近用户" cancelButtonTitle:@"取消" otherButtonTitles:@[@"开启定位"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             

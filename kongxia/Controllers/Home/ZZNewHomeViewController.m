@@ -615,7 +615,7 @@
 
 #pragma mark - 获取位置
 - (void)getLocation {
-    if (![LocationManager shared].isAuthorized) {
+    if (![LocationMangers shared].hasPermission) {
         self.viewModel.haveGetLocation = NO;
         self.viewModel.cityName = nil;
         self.naviBar.cityName = @"全国";
@@ -633,11 +633,11 @@
     self.viewModel.haveGetLocation = NO;
     self.isGetSysLoc = NO;
     
-    [[LocationManager shared] getLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
-        [self configureLocation:location
-                      placeMark:placemark];
-    } failure:^(CLAuthorizationStatus status, NSString *error) {
-        
+    [[LocationMangers shared] requestPlacemark:^(CLPlacemark * placemark, NSError * error) {
+        if (error == NULL) {
+            [self configureLocation:placemark.location
+                          placeMark:placemark];
+        }
     }];
 }
 

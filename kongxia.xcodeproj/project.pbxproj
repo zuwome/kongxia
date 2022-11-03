@@ -1062,6 +1062,7 @@
 		BD358A6E26FF157600CE843B /* H5Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD358A6D26FF157600CE843B /* H5Urls.swift */; };
 		BD37E1492234DAEB0043234E /* ZZWxCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD37E1482234DAEB0043234E /* ZZWxCouponModel.swift */; };
 		BD37E151223521480043234E /* ZZCustomServiceWechatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD37E150223521480043234E /* ZZCustomServiceWechatCell.m */; };
+		BD38CEB22913EC600087D4D3 /* LocationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD38CEB12913EC600087D4D3 /* LocationUtil.swift */; };
 		BD3B936A23CC550A0018A26B /* ZZKTVAudioPlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3B936923CC550A0018A26B /* ZZKTVAudioPlayManager.m */; };
 		BD3B937223CCC0D20018A26B /* ZZKTVLeadSongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3B937123CCC0D20018A26B /* ZZKTVLeadSongModel.m */; };
 		BD3B937523CCC94D0018A26B /* ZZEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3B937423CCC94D0018A26B /* ZZEmptyCell.m */; };
@@ -3577,6 +3578,7 @@
 		BD37E1482234DAEB0043234E /* ZZWxCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZWxCouponModel.swift; sourceTree = "<group>"; };
 		BD37E14F223521480043234E /* ZZCustomServiceWechatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZCustomServiceWechatCell.h; sourceTree = "<group>"; };
 		BD37E150223521480043234E /* ZZCustomServiceWechatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZCustomServiceWechatCell.m; sourceTree = "<group>"; };
+		BD38CEB12913EC600087D4D3 /* LocationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtil.swift; sourceTree = "<group>"; };
 		BD3B936823CC550A0018A26B /* ZZKTVAudioPlayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVAudioPlayManager.h; sourceTree = "<group>"; };
 		BD3B936923CC550A0018A26B /* ZZKTVAudioPlayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZKTVAudioPlayManager.m; sourceTree = "<group>"; };
 		BD3B937023CCC0D20018A26B /* ZZKTVLeadSongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVLeadSongModel.h; sourceTree = "<group>"; };
@@ -9091,6 +9093,7 @@
 			isa = PBXGroup;
 			children = (
 				BD8417E3290CCA6C00968D25 /* LocationManager.swift */,
+				BD38CEB12913EC600087D4D3 /* LocationUtil.swift */,
 				BD8417E5290CCA8900968D25 /* LocationModel.swift */,
 			);
 			path = LocationManager;
@@ -12011,6 +12014,7 @@
 				BDCD2D0E23B98E3700F15FEF /* ZZKTVLeadSingerController.m in Sources */,
 				AC64EF4F2047D2B1008256C8 /* ZZWeiChatBadReviewCell.m in Sources */,
 				91DBA5F41F6151F500013F4C /* ZZUserLabel.m in Sources */,
+				BD38CEB22913EC600087D4D3 /* LocationUtil.swift in Sources */,
 				ACBC30A120DC933C00480832 /* ZZHeaderIntegralExChangeView.m in Sources */,
 				BD2C006623BB380900756D98 /* JXCategoryTitleImageCell.m in Sources */,
 				B73DFD1D1F9F290C00D02104 /* PLSClipMovieView.m in Sources */,
@@ -12561,7 +12565,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12784,7 +12788,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13008,7 +13012,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13231,7 +13235,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;

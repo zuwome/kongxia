@@ -37,6 +37,7 @@
 #import "ZZChatShotViewController.h"
 #import "ZZChatVideoCell.h"
 #import "ZZChatVideoPlayerController.h"
+#import "ZZSearchLocationController.h"
 
 #import "ZZChatGiftCell.h"
 #import "ZZChatKTVCell.h"
@@ -1379,32 +1380,56 @@
                 if (buttonIndex == 0) {
                     
                     _notUpdateOrder = YES;
-                    ZZChatLocationViewController *controller = [[ZZChatLocationViewController alloc] init];
-                    controller.locationCallBack = ^(UIImage *image,CLLocation *location,NSString *name) {
-                        __strong typeof(weakSelf) strongSelf = weakSelf;
-
-                        RCLocationMessage *message = [RCLocationMessage messageWithLocationImage:image location:location.coordinate locationName:name];
+                    ZZSearchLocationController *c = [[ZZSearchLocationController alloc] init];
+                    c.selectPoi = ^(ZZRentDropdownModel *model, UIImage *image) {
+                        RCLocationMessage *message = [RCLocationMessage messageWithLocationImage:image location:model.location.coordinate locationName:model.name];
                         //私聊付费模式
-                        if (strongSelf.payChatModel.isRequessSuccess&&strongSelf.payChatModel.isPay) {
+                        if (weakSelf.payChatModel.isRequessSuccess&&weakSelf.payChatModel.isPay) {
                             [ZZUserHelper shareInstance].consumptionMebi += [[ZZUserHelper shareInstance].configModel.priceConfig.per_chat_cost_mcoin integerValue];;
                             [self askForAPrivateChatFeeAgain];
 
-                            [ZZPrivateChatPayManager  payMebiWithPayChatModel:strongSelf.payChatModel nav:strongSelf.navigationController CallBack:^{
+                            [ZZPrivateChatPayManager payMebiWithPayChatModel:weakSelf.payChatModel nav:weakSelf.navigationController CallBack:^{
                                    [ZZUserHelper shareInstance].consumptionMebi -= [[ZZUserHelper shareInstance].configModel.priceConfig.per_chat_cost_mcoin integerValue];;
                             } NoPayCallBack:^{
                                 NSString *extra = [ZZUtils dictionaryToJson:@{@"payChat":PrivateChatPay,@"check":@(NO)}];
                                 message.extra  = self.payChatModel.isThanCheckVersion?extra:PrivateChatPay;
-                                [strongSelf sendMessageContent:message pushContent:@"[位置]"];
+                                [weakSelf sendMessageContent:message pushContent:@"[位置]"];
                             } vc:self];
                         }else{
                             [self askForAPrivateChatFeeAgain];
                             NSString *extra = [ZZUtils dictionaryToJson:@{@"payChat":BurnAfterRead,@"check":@(NO)}];
-                            message.extra = strongSelf.boxView.topView.isBurnAfterRead?(self.payChatModel.isThanCheckVersion?extra:BurnAfterRead):nil;
-                            [strongSelf sendMessageContent:message pushContent:@"[位置]"];
+                            message.extra = weakSelf.boxView.topView.isBurnAfterRead?(self.payChatModel.isThanCheckVersion?extra:BurnAfterRead):nil;
+                            [weakSelf sendMessageContent:message pushContent:@"[位置]"];
 
                         }
                     };
-                    [self.navigationController pushViewController:controller animated:YES];
+                    [self.navigationController pushViewController:c animated:YES];
+//                    ZZChatLocationViewController *controller = [[ZZChatLocationViewController alloc] init];
+//                    controller.locationCallBack = ^(UIImage *image,CLLocation *location,NSString *name) {
+//                        __strong typeof(weakSelf) strongSelf = weakSelf;
+//
+//                        RCLocationMessage *message = [RCLocationMessage messageWithLocationImage:image location:location.coordinate locationName:name];
+//                        //私聊付费模式
+//                        if (strongSelf.payChatModel.isRequessSuccess&&strongSelf.payChatModel.isPay) {
+//                            [ZZUserHelper shareInstance].consumptionMebi += [[ZZUserHelper shareInstance].configModel.priceConfig.per_chat_cost_mcoin integerValue];;
+//                            [self askForAPrivateChatFeeAgain];
+//
+//                            [ZZPrivateChatPayManager  payMebiWithPayChatModel:strongSelf.payChatModel nav:strongSelf.navigationController CallBack:^{
+//                                   [ZZUserHelper shareInstance].consumptionMebi -= [[ZZUserHelper shareInstance].configModel.priceConfig.per_chat_cost_mcoin integerValue];;
+//                            } NoPayCallBack:^{
+//                                NSString *extra = [ZZUtils dictionaryToJson:@{@"payChat":PrivateChatPay,@"check":@(NO)}];
+//                                message.extra  = self.payChatModel.isThanCheckVersion?extra:PrivateChatPay;
+//                                [strongSelf sendMessageContent:message pushContent:@"[位置]"];
+//                            } vc:self];
+//                        }else{
+//                            [self askForAPrivateChatFeeAgain];
+//                            NSString *extra = [ZZUtils dictionaryToJson:@{@"payChat":BurnAfterRead,@"check":@(NO)}];
+//                            message.extra = strongSelf.boxView.topView.isBurnAfterRead?(self.payChatModel.isThanCheckVersion?extra:BurnAfterRead):nil;
+//                            [strongSelf sendMessageContent:message pushContent:@"[位置]"];
+//
+//                        }
+//                    };
+//                    [self.navigationController pushViewController:controller animated:YES];
                 } else if (buttonIndex == 1)  {
                     _isMessageBoxTo = NO;
                     _notUpdateOrder = YES;
@@ -2816,12 +2841,12 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 ZZChatBaseModel *model = [userInfo objectForKey:@"data"];
                 RCLocationMessage *message = (RCLocationMessage *)model.message.content;
-//                ZZOrderLocationViewController *controller = [[ZZOrderLocationViewController alloc] init];
-//                controller.location = [[CLLocation alloc] initWithLatitude:message.location.latitude longitude:message.location.longitude];
-//                controller.name = message.locationName;
-//                controller.navigationItem.title = @"位置信息";
-//                [self.navigationController pushViewController:controller animated:YES];
-                [OpenMapKit showMapWithName:message.locationName latitudde:message.location.latitude longtitude:message.location.longitude];
+                ZZOrderLocationViewController *controller = [[ZZOrderLocationViewController alloc] init];
+                controller.location = [[CLLocation alloc] initWithLatitude:message.location.latitude longitude:message.location.longitude];
+                controller.name = message.locationName;
+                controller.navigationItem.title = @"位置信息";
+                [self.navigationController pushViewController:controller animated:YES];
+//                [OpenMapKit showMapWithName:message.locationName latitudde:message.location.latitude longtitude:message.location.longitude];
             });
             break;
         }
