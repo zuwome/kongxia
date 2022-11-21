@@ -1404,32 +1404,6 @@
                         }
                     };
                     [self.navigationController pushViewController:c animated:YES];
-//                    ZZChatLocationViewController *controller = [[ZZChatLocationViewController alloc] init];
-//                    controller.locationCallBack = ^(UIImage *image,CLLocation *location,NSString *name) {
-//                        __strong typeof(weakSelf) strongSelf = weakSelf;
-//
-//                        RCLocationMessage *message = [RCLocationMessage messageWithLocationImage:image location:location.coordinate locationName:name];
-//                        //私聊付费模式
-//                        if (strongSelf.payChatModel.isRequessSuccess&&strongSelf.payChatModel.isPay) {
-//                            [ZZUserHelper shareInstance].consumptionMebi += [[ZZUserHelper shareInstance].configModel.priceConfig.per_chat_cost_mcoin integerValue];;
-//                            [self askForAPrivateChatFeeAgain];
-//
-//                            [ZZPrivateChatPayManager  payMebiWithPayChatModel:strongSelf.payChatModel nav:strongSelf.navigationController CallBack:^{
-//                                   [ZZUserHelper shareInstance].consumptionMebi -= [[ZZUserHelper shareInstance].configModel.priceConfig.per_chat_cost_mcoin integerValue];;
-//                            } NoPayCallBack:^{
-//                                NSString *extra = [ZZUtils dictionaryToJson:@{@"payChat":PrivateChatPay,@"check":@(NO)}];
-//                                message.extra  = self.payChatModel.isThanCheckVersion?extra:PrivateChatPay;
-//                                [strongSelf sendMessageContent:message pushContent:@"[位置]"];
-//                            } vc:self];
-//                        }else{
-//                            [self askForAPrivateChatFeeAgain];
-//                            NSString *extra = [ZZUtils dictionaryToJson:@{@"payChat":BurnAfterRead,@"check":@(NO)}];
-//                            message.extra = strongSelf.boxView.topView.isBurnAfterRead?(self.payChatModel.isThanCheckVersion?extra:BurnAfterRead):nil;
-//                            [strongSelf sendMessageContent:message pushContent:@"[位置]"];
-//
-//                        }
-//                    };
-//                    [self.navigationController pushViewController:controller animated:YES];
                 } else if (buttonIndex == 1)  {
                     _isMessageBoxTo = NO;
                     _notUpdateOrder = YES;
@@ -2846,7 +2820,6 @@
                 controller.name = message.locationName;
                 controller.navigationItem.title = @"位置信息";
                 [self.navigationController pushViewController:controller animated:YES];
-//                [OpenMapKit showMapWithName:message.locationName latitudde:message.location.latitude longtitude:message.location.longitude];
             });
             break;
         }

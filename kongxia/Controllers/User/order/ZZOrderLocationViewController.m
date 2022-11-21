@@ -242,7 +242,8 @@
     
     
     CLLocationCoordinate2D baidu = _pt;
-    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=%@&mode=driving&coord_type=gcj02",baidu.latitude, baidu.longitude,_name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=name:%@|latlng:%f,%f&mode=driving&coord_type=gcj02",_name, baidu.latitude, baidu.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+baidumap://map/direction?origin={{我的位置}}&destination=%@&mode=driving&src=kongxia&coord_type=gcj02
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }

@@ -22,7 +22,6 @@
 #import "ZZOrderOptionsTableViewController.h"
 #import "ZZUserEditViewController.h"
 #import "TZImagePickerController.h"
-#import "ZZChatLocationViewController.h"
 
 #import "ZZChatOrderStatusView.h"
 #import "ZZChatPacketAlertView.h"

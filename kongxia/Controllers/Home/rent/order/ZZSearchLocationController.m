@@ -60,10 +60,11 @@
     [super viewDidLoad];
     self.definesPresentationContext = YES;
     [self createRightDoneBtn];
+
+    [self createViews];
     [self createTimer];
     [self initMapView];
     [self initSearch];
-    [self createViews];
 
 }
 

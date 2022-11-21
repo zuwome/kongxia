@@ -190,7 +190,8 @@
 #pragma mark - getters and setters
 - (NSArray<NSNumber *> *)actionsArr {
     if (!_actionsArr) {
-        _actionsArr = @[@(ChatBoxTypeRecord), @(ChatBoxTypeImage), @(ChatBoxTypeShot), @(ChatBoxTypeGift), @(ChatBoxTypeBurn), @(ChatBoxTypeVideo), @(ChatBoxTypeLocation)];
+        _actionsArr = @[@(ChatBoxTypeRecord), @(ChatBoxTypeImage), @(ChatBoxTypeShot), @(ChatBoxTypeGift), @(ChatBoxTypeBurn), @(ChatBoxTypeVideo)];
+//        , @(ChatBoxTypeLocation)
     }
     return _actionsArr;
 }

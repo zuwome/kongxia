@@ -546,7 +546,7 @@
 }
 
 - (void)applicationBecomeActive {
-//    [self getLocation];
+    [self getLocation];
     [self uploadUserNotificionStatus];
 }
 

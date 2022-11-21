@@ -191,7 +191,6 @@
 		91DB9DCE1F6129E600013F4C /* ZZSignUpS3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CCE1F6129E600013F4C /* ZZSignUpS3ViewController.m */; };
 		91DB9DCF1F6129E600013F4C /* ZZMessageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CD21F6129E600013F4C /* ZZMessageBoxViewController.m */; };
 		91DB9DD01F6129E600013F4C /* ZZChatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CD51F6129E600013F4C /* ZZChatBaseViewController.m */; };
-		91DB9DD11F6129E600013F4C /* ZZChatLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CD71F6129E600013F4C /* ZZChatLocationViewController.m */; };
 		91DB9DD21F6129E600013F4C /* ZZChatMemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CD91F6129E600013F4C /* ZZChatMemeViewController.m */; };
 		91DB9DD31F6129E600013F4C /* ZZChatServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CDB1F6129E600013F4C /* ZZChatServerViewController.m */; };
 		91DB9DD41F6129E600013F4C /* ZZChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9CDD1F6129E600013F4C /* ZZChatViewController.m */; };
@@ -1909,8 +1908,6 @@
 		91DB9CD21F6129E600013F4C /* ZZMessageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZMessageBoxViewController.m; sourceTree = "<group>"; };
 		91DB9CD41F6129E600013F4C /* ZZChatBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZChatBaseViewController.h; sourceTree = "<group>"; };
 		91DB9CD51F6129E600013F4C /* ZZChatBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZChatBaseViewController.m; sourceTree = "<group>"; };
-		91DB9CD61F6129E600013F4C /* ZZChatLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZChatLocationViewController.h; sourceTree = "<group>"; };
-		91DB9CD71F6129E600013F4C /* ZZChatLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZChatLocationViewController.m; sourceTree = "<group>"; };
 		91DB9CD81F6129E600013F4C /* ZZChatMemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZChatMemeViewController.h; sourceTree = "<group>"; };
 		91DB9CD91F6129E600013F4C /* ZZChatMemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZChatMemeViewController.m; sourceTree = "<group>"; };
 		91DB9CDA1F6129E600013F4C /* ZZChatServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZChatServerViewController.h; sourceTree = "<group>"; };
@@ -5392,8 +5389,6 @@
 				91DB9CD51F6129E600013F4C /* ZZChatBaseViewController.m */,
 				91DB9CDC1F6129E600013F4C /* ZZChatViewController.h */,
 				91DB9CDD1F6129E600013F4C /* ZZChatViewController.m */,
-				91DB9CD61F6129E600013F4C /* ZZChatLocationViewController.h */,
-				91DB9CD71F6129E600013F4C /* ZZChatLocationViewController.m */,
 				91DB9CD81F6129E600013F4C /* ZZChatMemeViewController.h */,
 				91DB9CD91F6129E600013F4C /* ZZChatMemeViewController.m */,
 				91DB9CDA1F6129E600013F4C /* ZZChatServerViewController.h */,
@@ -11351,7 +11346,6 @@
 				AC29CBCA20EE1A46008DBDA1 /* ZZRealNameFailureModel.m in Sources */,
 				BDE59FFA2227818400ACCDA9 /* ZZOrderDetailUploadCell.swift in Sources */,
 				91DB9D9F1F6129E600013F4C /* ZZFilterViewController.m in Sources */,
-				91DB9DD11F6129E600013F4C /* ZZChatLocationViewController.m in Sources */,
 				BD8B3B7122969D6400022C82 /* ZZRanksCell.swift in Sources */,
 				91DBA2C11F613CF700013F4C /* ZZRentDropdownCell.m in Sources */,
 				AC1DC6ED20CFC59C00D1D9F0 /* ZZNewTiXianFootView.m in Sources */,
