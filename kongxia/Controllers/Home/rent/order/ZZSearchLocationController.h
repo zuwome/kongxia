@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import <AMapSearchKit/AMapSearchKit.h>
 #import "ZZCity.h"
 #import "ZZRentDropdownModel.h"
 

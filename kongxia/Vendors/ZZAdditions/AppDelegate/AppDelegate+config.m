@@ -18,10 +18,10 @@
 
 #import <RongIMKit/RongIMKit.h>
 
-#import <MAMapKit/MAMapKit.h>
-#import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
+//#import <MAMapKit/MAMapKit.h>
+//#import <AMapFoundationKit/AMapFoundationKit.h>
+//#import <AMapLocationKit/AMapLocationKit.h>
+//#import <AMapSearchKit/AMapSearchKit.h>
 
 #import "MiPushSDK.h"
 
@@ -135,7 +135,7 @@
 */
 - (void)configAMap {
     // 高德
-    [AMapServices sharedServices].apiKey = @"ddbc9ec789eb08c4f18c4232e7732446";
+//    [AMapServices sharedServices].apiKey = @"ddbc9ec789eb08c4f18c4232e7732446";
 }
 
 /*

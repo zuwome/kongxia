@@ -3,10 +3,10 @@ inhibit_all_warnings!
 
 target 'kongxia' do
 #   高德地图
-    pod 'AMap2DMap'
-    pod 'AMapLocation'
-    pod 'AMapSearch’
-    pod 'AMapFoundation’
+#    pod 'AMap2DMap'
+#    pod 'AMapLocation'
+#    pod 'AMapSearch’
+#    pod 'AMapFoundation’
 
 #   七牛
     pod 'Qiniu'

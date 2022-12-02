@@ -14,7 +14,6 @@
 
 #import "ZZAFNHelper.h"
 #import <MapKit/MapKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface ZZRentAbroadLocationViewController () <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource,MKMapViewDelegate, ZZRentAbroadLocationSearchViewControllerDelegate>
 {
@@ -464,7 +463,7 @@
 
 @end
 
-@interface ZZRentAbroadLocationSearchViewController () <UISearchResultsUpdating, AMapSearchDelegate>
+@interface ZZRentAbroadLocationSearchViewController () <UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSMutableArray *searchArray;
 

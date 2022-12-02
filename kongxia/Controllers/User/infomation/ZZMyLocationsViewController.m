@@ -7,7 +7,6 @@
 //
 
 #import "ZZMyLocationsViewController.h"
-#import "ZZMyLocationsSelectViewController.h"
 #import "ZZRentAbroadLocationViewController.h"
 #import "ZZMultipleSelectMapViewController.h"
 
@@ -169,14 +168,6 @@
     }
 }
 
-#pragma mark - ZZMyLocationsSelectViewControllerDelegate
-- (void)viewController:(ZZMyLocationsSelectViewController *)controller didSelectLocations:(NSArray<ZZMyLocationModel *> *)locations {
-    _didUpdate = YES;
-    _locationsArray = locations;
-    _titleLabel.text = [NSString stringWithFormat:@"常出没的地点 %ld/5个（最多5个）", _locationsArray.count];
-    [self layout];
-}
-
 #pragma mark - ZZMultipleSelectMapViewControllerDelegate
 - (void)controller:(ZZMultipleSelectMapViewController *)controller didSelectLocations:(NSArray<ZZMyLocationModel *> *)locations {
     _didUpdate = YES;
@@ -193,7 +184,6 @@
 #pragma mark - Navigator
 - (void)goToSearchLocationView {
     ZZMultipleSelectMapViewController *vc = [[ZZMultipleSelectMapViewController alloc] initWithCurrentSelectLocations:_locationsArray];
-//    ZZMyLocationsSelectViewController *searchLocationView = [[ZZMyLocationsSelectViewController alloc] initWithCurrentSelectLocations:_locationsArray from:FromMyLocations];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }

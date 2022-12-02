@@ -111,8 +111,6 @@
 
 #import "UIButton+Utils.h"
 
-#import "CLLocation+Sino.h"
-
-#import "AMapPOI+AMapPOICatgory.h"
+#import "CLLocation+Sino.h" 
 
 #endif /* !ZZADDITIONS_H */

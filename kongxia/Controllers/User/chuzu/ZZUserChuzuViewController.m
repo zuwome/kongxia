@@ -24,7 +24,7 @@
 #import "ZZLevelImgView.h"
 #import "ZZPrivateChatPayManager.h"
 #import <CoreLocation/CoreLocation.h>
-#import <AMapLocationKit/AMapLocationKit.h>
+
 
 #import "ZZServiceChargeVC.h"
 #import "ZZOpenSuccessVC.h"
@@ -45,7 +45,6 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *topics;
-@property (nonatomic, strong) AMapLocationManager *locationManger;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UILabel *ageLabel;
 @property (strong, nonatomic) UILabel *heightLabel;
@@ -349,20 +348,17 @@
         [ZZHUD showWithStatus:@"获取地址中..."];
         self.tableView.userInteractionEnabled = NO;
         //获取地理位置
-        _locationManger = [[AMapLocationManager alloc] init];
-        _locationManger.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        [_locationManger requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-            weakSelf.tableView.userInteractionEnabled = YES;
+        [[LocationMangers shared] requestPlacemark:^(CLPlacemark * placemark, NSError * error) {
             if (!error) {
                 [ZZHUD showSuccessWithStatus:@"城市更新成功!"];
-                [weakSelf.locationManger stopUpdatingLocation];
-                
+
                 NSString *cityName = @"";
-                if (regeocode.city) {
-                    cityName = regeocode.city;
-                } else if (regeocode.province) {
-                    cityName = regeocode.province;
+                if (placemark.locality) {
+                    cityName = placemark.locality;
                 }
+//                else if (placemark.province) {
+//                    cityName = placemark.province;
+//                }
                 if (!isNullString(cityName)) {
                     ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
                     userHelper.cityName = cityName;
@@ -378,6 +374,35 @@
                 [ZZHUD showErrorWithStatus:@"地址获取失败..."];
             }
         }];
+//        _locationManger = [[AMapLocationManager alloc] init];
+//        _locationManger.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+//        [_locationManger requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+//            weakSelf.tableView.userInteractionEnabled = YES;
+//            if (!error) {
+//                [ZZHUD showSuccessWithStatus:@"城市更新成功!"];
+//                [weakSelf.locationManger stopUpdatingLocation];
+//
+//                NSString *cityName = @"";
+//                if (regeocode.city) {
+//                    cityName = regeocode.city;
+//                } else if (regeocode.province) {
+//                    cityName = regeocode.province;
+//                }
+//                if (!isNullString(cityName)) {
+//                    ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
+//                    userHelper.cityName = cityName;
+//                }
+//
+//                //如果已登录就上传
+//                if ([ZZUserHelper shareInstance].isLogin) {
+//                    if ([ZZUserHelper shareInstance].cityName) {
+//                        weakSelf.user.rent.city.name = [ZZUserHelper shareInstance].cityName;
+//                    }
+//                }
+//            } else {
+//                [ZZHUD showErrorWithStatus:@"地址获取失败..."];
+//            }
+//        }];
     }
 }
 

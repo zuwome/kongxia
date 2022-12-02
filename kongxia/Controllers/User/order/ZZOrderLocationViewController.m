@@ -7,7 +7,6 @@
 //
 
 #import "ZZOrderLocationViewController.h"
-#import <MAMapKit/MAMapKit.h>
 #import <MapKit/MapKit.h>
 #import <AddressBook/AddressBook.h>
 #import <LCActionSheet.h>

@@ -1212,7 +1212,6 @@
 		BDA3E8342407C07A00557DD7 /* ZZPayTonggaoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA3E8332407C07A00557DD7 /* ZZPayTonggaoCell.m */; };
 		BDA42DDF22782B1300760DE7 /* ZZNewGuidView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA42DDE22782B1300760DE7 /* ZZNewGuidView.m */; };
 		BDA4B3B9235D58580034D553 /* ZZMyLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */; };
-		BDA4B3BC235D8CA50034D553 /* ZZMyLocationsSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */; };
 		BDA4E5232789745000403344 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA4E5222789745000403344 /* UIViewExtension.swift */; };
 		BDA4E52527897EE600403344 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA4E52427897EE600403344 /* CoreServices.framework */; };
 		BDA5001022FA785A00BCB48E /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FCA822FA785800BCB48E /* ZHPickView.m */; };
@@ -1525,7 +1524,6 @@
 		BDEBBA6B235FF0BC006A3B3C /* ZZRentOrderInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEBBA6A235FF0BC006A3B3C /* ZZRentOrderInfoViewController.m */; };
 		BDEBBA6E23605962006A3B3C /* ZZRentOrderPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEBBA6D23605962006A3B3C /* ZZRentOrderPaymentViewController.m */; };
 		BDEBBA71236155B1006A3B3C /* ZZMyLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEBBA70236155B1006A3B3C /* ZZMyLocationModel.m */; };
-		BDEBBA7723618C28006A3B3C /* AMapPOI+AMapPOICatgory.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEBBA7623618C28006A3B3C /* AMapPOI+AMapPOICatgory.m */; };
 		BDEBBA7A23629B07006A3B3C /* ZZPostTaskThemeTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEBBA7923629B07006A3B3C /* ZZPostTaskThemeTagsCell.m */; };
 		BDEF622922E155FE0095ACFB /* VideoCaptureDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEF621322E155FE0095ACFB /* VideoCaptureDevice.m */; };
 		BDEF622A22E155FE0095ACFB /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEF621522E155FE0095ACFB /* ImageUtils.m */; };
@@ -3829,8 +3827,6 @@
 		BDA42DDE22782B1300760DE7 /* ZZNewGuidView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZNewGuidView.m; sourceTree = "<group>"; };
 		BDA4B3B7235D58580034D553 /* ZZMyLocationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMyLocationsViewController.h; sourceTree = "<group>"; };
 		BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationsViewController.m; sourceTree = "<group>"; };
-		BDA4B3BA235D8CA50034D553 /* ZZMyLocationsSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMyLocationsSelectViewController.h; sourceTree = "<group>"; };
-		BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationsSelectViewController.m; sourceTree = "<group>"; };
 		BDA4E5222789745000403344 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BDA4E52427897EE600403344 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		BDA5000222FA785A00BCB48E /* AdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdView.h; sourceTree = "<group>"; };
@@ -4407,8 +4403,6 @@
 		BDEBBA6D23605962006A3B3C /* ZZRentOrderPaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZRentOrderPaymentViewController.m; sourceTree = "<group>"; };
 		BDEBBA6F236155B1006A3B3C /* ZZMyLocationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMyLocationModel.h; sourceTree = "<group>"; };
 		BDEBBA70236155B1006A3B3C /* ZZMyLocationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMyLocationModel.m; sourceTree = "<group>"; };
-		BDEBBA7523618C28006A3B3C /* AMapPOI+AMapPOICatgory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMapPOI+AMapPOICatgory.h"; sourceTree = "<group>"; };
-		BDEBBA7623618C28006A3B3C /* AMapPOI+AMapPOICatgory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AMapPOI+AMapPOICatgory.m"; sourceTree = "<group>"; };
 		BDEBBA7823629B07006A3B3C /* ZZPostTaskThemeTagsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPostTaskThemeTagsCell.h; sourceTree = "<group>"; };
 		BDEBBA7923629B07006A3B3C /* ZZPostTaskThemeTagsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZPostTaskThemeTagsCell.m; sourceTree = "<group>"; };
 		BDEF620F22E155B30095ACFB /* FaceParameterConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FaceParameterConfig.h; path = kongxia/Vendors/FaceSDK/FaceParameterConfig.h; sourceTree = SOURCE_ROOT; };
@@ -5580,8 +5574,6 @@
 				91DB9D291F6129E600013F4C /* ZZSignEditViewController.m */,
 				BDA4B3B7235D58580034D553 /* ZZMyLocationsViewController.h */,
 				BDA4B3B8235D58580034D553 /* ZZMyLocationsViewController.m */,
-				BDA4B3BA235D8CA50034D553 /* ZZMyLocationsSelectViewController.h */,
-				BDA4B3BB235D8CA50034D553 /* ZZMyLocationsSelectViewController.m */,
 				BD92F13E2390B8BD00D61F08 /* ZZMultipleSelectMapViewController.h */,
 				BD92F13F2390B8BD00D61F08 /* ZZMultipleSelectMapViewController.m */,
 			);
@@ -9284,8 +9276,6 @@
 		BDA5FCB222FA785800BCB48E /* ZZAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				BDEBBA7523618C28006A3B3C /* AMapPOI+AMapPOICatgory.h */,
-				BDEBBA7623618C28006A3B3C /* AMapPOI+AMapPOICatgory.m */,
 				BDAFDF4123B31227008938DF /* AppDelegate */,
 				BDA5FD2E22FA785800BCB48E /* Block */,
 				BDA5FCE322FA785800BCB48E /* CLLocation+Sino.h */,
@@ -10833,7 +10823,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-kongxia/Pods-kongxia-resources.sh",
-				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
@@ -10881,7 +10870,6 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
@@ -11060,7 +11048,6 @@
 				BD358A6E26FF157600CE843B /* H5Urls.swift in Sources */,
 				BDA500C522FA785B00BCB48E /* scale_gcc.cc in Sources */,
 				91DBA2DE1F613CF700013F4C /* ZZStarsView.m in Sources */,
-				BDEBBA7723618C28006A3B3C /* AMapPOI+AMapPOICatgory.m in Sources */,
 				91DBA3081F613CF700013F4C /* ZZMemedaTypeView.m in Sources */,
 				BD2C006523BB380900756D98 /* JXCategoryTitleImageView.m in Sources */,
 				AC8FD7341FF624F70023371E /* ZZMeBiViewController.m in Sources */,
@@ -11986,7 +11973,6 @@
 				B7BC2CA21FFB19E900B6D282 /* ZZFastChatTextCell.m in Sources */,
 				ACBA4E8B206109CB0097E36E /* ZZPrivateChatPayManager.m in Sources */,
 				BD3FB6942330DFF000324C45 /* ZZUserRegistedGuidView.m in Sources */,
-				BDA4B3BC235D8CA50034D553 /* ZZMyLocationsSelectViewController.m in Sources */,
 				BDAFDF4423B31239008938DF /* AppDelegate+config.m in Sources */,
 				B7E0A6F72015D9F200F666AD /* JX_GCDTimerManager.m in Sources */,
 				91DBA2671F613CF700013F4C /* ZZChatBoxMoreCell.m in Sources */,

@@ -45,7 +45,6 @@
 #import "ZZCity.h"
 
 #import "UINavigationController+WXSTransition.h"
-#import <AMapLocationKit/AMapLocationKit.h>
 #import "ZZFastRentManager.h"
 #import "ZZSendVideoManager.h"
 #import "ZZActivityUrlNetManager.h"
