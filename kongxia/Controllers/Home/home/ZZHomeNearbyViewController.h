@@ -28,5 +28,5 @@
 
 - (void)updateData;
 - (void)refresh;
-
+- (void)updateLocationInfoAndRefresh;
 @end

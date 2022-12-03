@@ -46,8 +46,8 @@ import MapKit
 
 extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        regionDidChange?(mapView.centerCoordinate)
-//        delegate?.regionDidChanged(coordinate: mapView.centerCoordinate)
+        regionDidChange?(mapView.centerCoordinate)
+        delegate?.regionDidChanged(coordinate: mapView.centerCoordinate)
     }
 }
 

@@ -78,6 +78,19 @@
 
 - (void)locationAuthority
 {
+    [[LocationMangers shared] requestLocationAuthorizaitonWithHandler:^(BOOL hasPermission) {
+        if (hasPermission) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_LocationConfirm object:nil];
+        }
+        
+        if (!_touchedLocation) {
+            [self pushAuthority];
+        }
+        
+        if ([LocationMangers shared].authorizationStatus == kCLAuthorizationStatusDenied || [LocationMangers shared].authorizationStatus == kCLAuthorizationStatusRestricted) {
+            _notificationBtn.layer.borderColor = HEXCOLOR(0xB3B3B3).CGColor;
+        }
+    }];
     _locationImgView.image = [UIImage imageNamed:@"icon_authority_local_p"];
     _localBtn.layer.borderColor = kYellowColor.CGColor;
     [_localBtn setTitleColor:kBlackTextColor forState:UIControlStateNormal];

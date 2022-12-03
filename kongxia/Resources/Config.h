@@ -97,6 +97,7 @@ typedef NS_ENUM(NSInteger, ChangeMobileStep) {
 #define kMsg_SendMessage                @"SendMessage"//聊天发送消息
 #define kMsg_PushSystemPacket           @"PushSystemPacket"//系统扫脸红包 --- 扫脸红包已经没开启了
 #define kMsg_AuthorityConfirm           @"AuthorityConfirm"//第一次安装APP的授权弹窗推送授权通知
+#define kMsg_LocationConfirm           @"LocationConfirm"//第一次安装APP的授权弹窗推送授权通知
 #define kMsg_RecordFinish               @"RecordFinish"//上传视频成功
 #define kMsg_UploadUpdateVideo          @"UploadUpdateVideo"//视频重新录制
 #define kMsg_VideoDataShouldUpdate      @"VideoDataShouldUpdate"//视频删除、上传、重录等需要几个页面刷新视频数据

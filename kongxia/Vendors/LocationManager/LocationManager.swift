@@ -57,7 +57,8 @@ import CoreLocation
         geocoder = CLGeocoder()
     }
     
-    @objc func requestLocationAuthorizaiton() {
+    @objc func requestLocationAuthorizaiton(handler: @escaping ((_ success: Bool) -> Void)) {
+        self.getAuthHandler = handler
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -108,6 +109,7 @@ extension LocationMangers: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         handleDidUpdateLocations(locations: locations)
+        manager.stopUpdatingHeading()
     }
     
     private func handleDidUpdateLocations(locations: [CLLocation]) {

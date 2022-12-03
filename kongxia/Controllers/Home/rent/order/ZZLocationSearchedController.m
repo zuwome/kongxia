@@ -62,42 +62,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UISearchResultsUpdating
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-//    [self searchTipsWithKey:searchController.searchBar.text searchLimited:YES];
-//    _searchString = searchController.searchBar.text;
-//    _searchString = searchController.searchBar.text;
-//    searchPage = 1;
-//    [self searchPoiBySearchString:_searchString];
-}
-
-#pragma mark - AMapSearchDelegate
-- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
-{
-    // 判断是否从更多拉取
-    if (_isFromMoreLoadRequest) {
-        _isFromMoreLoadRequest = NO;
-    }
-    else{
-        [_searchResultArray removeAllObjects];
-        // 刷新后TableView返回顶部
-        [self.tableView setContentOffset:CGPointMake(0, 0) animated:NO];
-    }
-    // 刷新完成,没有数据时不显示footer
-    if (response.pois.count == 0) {
-        self.tableView.mj_footer.state = MJRefreshStateNoMoreData;
-    }
-    else {
-        self.tableView.mj_footer.state = MJRefreshStateIdle;
-        // 添加数据并刷新TableView
-        [response.pois enumerateObjectsUsingBlock:^(AMapPOI *obj, NSUInteger idx, BOOL *stop) {
-            [_searchResultArray addObject:obj];
-        }];
-    }
-    [self.tableView reloadData];
-    
-}
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _searchResultArray.count;

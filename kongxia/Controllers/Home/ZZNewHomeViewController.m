@@ -537,9 +537,18 @@
                                              selector:@selector(userRentInfoDidChanged)
                                                  name:kMsg_UserRentInfoDidChanged
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                selector:@selector(fetchLocation)
+                                                    name:kMsg_LocationConfirm
+                                                  object:nil];
 }
 
 #pragma mark -- Notification Implementation
+- (void)fetchLocation {
+    [self getLocation];
+}
+
 - (void)userRentInfoDidChanged {
     [self reloadHomeData];
 }

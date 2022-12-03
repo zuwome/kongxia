@@ -15,19 +15,19 @@
 
 #import "ZZCity.h"
 
-@interface ZZMultipleSelectMapViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface ZZMultipleSelectMapViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ZZLocationSearchedControllerDelegate,MapViewDelegate>
 
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) MapView *mapView;
+
+@property (nonatomic, strong) UIImageView *pinImageView;
+
+@property (nonatomic, strong) ZZLocationSearchedController *searchResultTableVC;
+
+@property (nonatomic, strong) UISearchController *searchController;
 
 @property (nonatomic, strong) UITableView *tableView;
 
-//@property (nonatomic, strong) MAMapView *mapView;
-
-//@property (nonatomic, strong) UIImageView *pinImageView;
-
 @property (nonatomic, strong) ZZLocationAlertView *alertView;
-
-@property (nonatomic, strong) AMapSearchAPI *searchManager;
 
 @property (nonatomic, assign) NSInteger maxCounts;
 
@@ -52,17 +52,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSMutableArray<PoiModel *> *locArr = @[].mutableCopy;
             [locations enumerateObjectsUsingBlock:^(ZZMyLocationModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                AMapPOI *poi = [[AMapPOI alloc] init];
-//                poi.name = obj.simple_address;
-//                poi.address = obj.address;
-//                poi.city = obj.city;
-//                poi.province = obj.province;
-//                poi.oriLocationUID = obj._id;
-//                AMapGeoPoint *point = [[AMapGeoPoint alloc] init];
-//                point.longitude = obj.address_lng;
-//                point.latitude = obj.address_lat;
-//                poi.location = point;
-                
+
                 PoiModel *poi = [[PoiModel alloc] init];
                 poi.name = obj.simple_address;
                 poi.address = obj.address;
@@ -86,24 +76,31 @@
     [self defaultConfig];
     [self layoutNavigations];
     [self layout];
-    [self start];
+    [self initMapView];
+    [self initSearch];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    CLLocation *location = [ZZUserHelper shareInstance].location;
+
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 100, 500);
+    
+    [_mapView setRegion:region animated:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_mapView.mapView setCenterCoordinate:location.coordinate animated:YES];
+    });
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    _searchManager = nil;
 }
 
 #pragma mark - private method
 - (void)defaultConfig {
     _regionFirstDidChangeWithoutReload = YES;
     _maxCounts = 5;
-}
-
-- (void)start {
-    CLLocation *location = [ZZUserHelper shareInstance].location;
-//    [_mapView setCenterCoordinate:location.coordinate animated:YES];
-    [self searchPoiByCenterCoordinate:location.coordinate];
 }
 
 - (void)selectLocationAt:(PoiModel *)poi {
@@ -135,23 +132,6 @@
             return;
         }
 
-//        if ([poi.typecode isEqualToString: @"100100"]
-//            || [poi.typecode isEqualToString: @"100101"]
-//            || [poi.typecode isEqualToString: @"100102"]
-//            || [poi.typecode isEqualToString: @"100103"]
-//            || [poi.typecode isEqualToString: @"100104"]
-//            || [poi.typecode isEqualToString: @"100105"]
-//            || [poi.typecode isEqualToString: @"100200"]
-//            || [poi.typecode isEqualToString: @"100201"]
-//            || [poi.typecode isEqualToString: @"120300"]
-//            || [poi.typecode isEqualToString: @"120301"]
-//            || [poi.typecode isEqualToString: @"120302"]
-//            || [poi.typecode isEqualToString: @"120303"]
-//            || [poi.typecode isEqualToString: @"120304"]) {
-//            [ZZHUD showTastInfoErrorWithString:@"请选择公共场合"];
-//            return;
-//        }
-
         [selectedPoisArr addObject:poi];
 //        [self.mapView setCenterCoordinate:(CLLocationCoordinate2D){poi.location.latitude, poi.location.longitude} animated:YES];
     }
@@ -180,13 +160,6 @@
     [self.tableView reloadData];
 }
 
-
-#pragma mark - ZZLocationSearchedControllerDelegate
-- (void)setSelectedLocationWithLocation:(AMapPOI *)poi {
-//    [self selectLocationAt:poi];
-//    [self.mapView setCenterCoordinate:(CLLocationCoordinate2D){poi.location.latitude, poi.location.longitude} animated:YES];
-}
-
 #pragma mark - response method
 - (void)rightDoneClick {
     NSMutableArray<ZZMyLocationModel *> *array = @[].mutableCopy;
@@ -207,6 +180,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - SearchResultTableVCDelegate
+- (void)setSelectedLocationWithLocation:(PoiModel *)poi {
+    [self selectLocationAt:poi];
+}
+
 #pragma mark - POI Search
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
     [POIManager getPoisWithLocation:coordinate completion:^(NSArray<PoiModel *> * poiModels) {
@@ -215,40 +193,10 @@
     }];
 }
 
-#pragma mark - AMapSearchDelegate
-//- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response {
-//    if (response.pois.count == 0) {
-//        return;
-//    }
-//    AMapPOI *poi = response.pois[0];
-//    _poisArray = response.pois;
-////    [self.mapView setCenterCoordinate:(CLLocationCoordinate2D){poi.location.latitude, poi.location.longitude} animated:YES];
-//    _regionDidChangeWithoutReload = YES;
-//
-//    if (_isKeywordSearch) {
-//        _isKeywordSearch = NO;
-//    }
-//
-//    [_tableView reloadData];
-//}
-
-#pragma mark - MAMapViewDelegate
-//- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-//    if (_regionDidChangeWithoutReload || _regionFirstDidChangeWithoutReload) {
-//        _regionFirstDidChangeWithoutReload = NO;
-//    }
-//    else {
-//        [self searchPoiByCenterCoordinate:mapView.centerCoordinate];
-//    }
-//    _regionDidChangeWithoutReload = NO;
-//}
-
 #pragma mark - UITextFieldMethod
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.view endEditing:YES];
     _isKeywordSearch = YES;
-//    [self.displayController setActive:NO animated:NO];
-//    self.searchController.searchBar.placeholder = key;
     [self searchTipsWithKey:textField.text searchLimited:NO];
     return YES;
 }
@@ -289,6 +237,75 @@
     _regionDidChangeWithoutReload = YES;
 }
 
+- (void)regionDidChangedWithCoordinate:(CLLocationCoordinate2D)coordinate {
+    if (self.regionDidChangeWithoutReload || self.regionFirstDidChangeWithoutReload) {
+        self.regionFirstDidChangeWithoutReload = NO;
+    }
+    else {
+        [self searchPoiByCenterCoordinate:coordinate];
+    }
+    self.regionDidChangeWithoutReload = NO;
+}
+
+- (void)initMapView {
+    CLLocation *location = [ZZUserHelper shareInstance].location;
+
+    WEAK_SELF();
+    [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
+        if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
+            weakSelf.regionFirstDidChangeWithoutReload = NO;
+        }
+        else {
+            [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
+        }
+        weakSelf.regionDidChangeWithoutReload = NO;
+    }];
+    [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
+        if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
+            weakSelf.regionFirstDidChangeWithoutReload = NO;
+        }
+        else {
+            [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
+        }
+        weakSelf.regionDidChangeWithoutReload = NO;
+
+    }];
+    _regionFirstDidChangeWithoutReload = YES;
+    
+    [_mapView.mapView setCenterCoordinate:location.coordinate animated:YES];
+    [self searchPoiByCenterCoordinate:location.coordinate];
+    
+//    if (_currentSelectCity) {
+//        NSArray *coordinatesArr = [_currentSelectCity.center componentsSeparatedByString:@","];
+//        if (coordinatesArr.count == 2) {
+//            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([coordinatesArr.lastObject doubleValue], [coordinatesArr.firstObject doubleValue]);
+//            [_mapView.mapView setCenterCoordinate:coordinate animated:YES];
+//            [self searchPoiByCenterCoordinate:coordinate];
+//        }
+//        else {
+//            [_mapView.mapView setCenterCoordinate:location.coordinate animated:YES];
+//            [self searchPoiByCenterCoordinate:location.coordinate];
+//        }
+//
+//    }
+//    else  if (location) {
+//        [_mapView.mapView setCenterCoordinate:location.coordinate animated:YES];
+//        [self searchPoiByCenterCoordinate:location.coordinate];
+//    }
+    [_mapView bringSubviewToFront:_pinImageView];
+}
+
+- (void)initSearch {
+    _searchResultTableVC = [[ZZLocationSearchedController alloc] init];
+    _searchResultTableVC.delegate = self;
+    _searchResultTableVC.location = [ZZUserHelper shareInstance].location;
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchResultTableVC];
+    
+    _searchController.searchResultsUpdater = _searchResultTableVC;
+    _searchController.searchBar.delegate = _searchResultTableVC;
+    [self.view addSubview:_searchController.searchBar];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
 
 #pragma mark - Layout
 - (void)layoutNavigations {
@@ -305,102 +322,33 @@
 
 - (void)layout {
     self.title = @"请选择地点";
-    
-    //黄色底
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    topView.backgroundColor = UIColor.lightGrayColor;
-    [self.view addSubview:topView];
-    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-        make.height.equalTo(@44);
+    _mapView = [[MapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 360)];
+    _mapView.delegate = self;
+    [self.view addSubview:_mapView];
+
+    _pinImageView = [[UIImageView alloc] init];
+    _pinImageView.image = [UIImage imageNamed:@"pin"];
+    _pinImageView.contentMode = UIViewContentModeCenter;
+    _pinImageView.userInteractionEnabled = NO;
+    [_mapView addSubview:_pinImageView];
+
+    [_pinImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(_mapView.mas_centerX);
+        make.centerY.mas_equalTo(_mapView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(24, 38));
     }];
-    
-    //白色
-    UIView *bgView = [[UIView alloc] init];
-    bgView.backgroundColor = [UIColor whiteColor];
-    bgView.layer.cornerRadius = 4;
-    [topView addSubview:bgView];
-    
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(topView.mas_left).offset(5);
-        make.right.mas_equalTo(topView.mas_right).offset(-5);
-        make.height.mas_equalTo(@34);
-        make.center.equalTo(topView);
-    }];
-    
-    UIImageView *imgView = [[UIImageView alloc] init];
-    imgView.image = [UIImage imageNamed:@"icon_filter_search"];
-    imgView.userInteractionEnabled = NO;
-    [bgView addSubview:imgView];
-    
-    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(bgView.mas_left).offset(8);
-        make.centerY.mas_equalTo(bgView.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(14, 14));
-    }];
-    
-    _textField = [[UITextField alloc] init];
-    _textField.placeholder = @"请输入地点";
-    _textField.textAlignment = NSTextAlignmentLeft;
-    _textField.textColor = kBlackTextColor;
-    _textField.font = [UIFont systemFontOfSize:14];
-    _textField.delegate = self;
-    _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    _textField.returnKeyType = UIReturnKeySearch;
-    [bgView addSubview:_textField];
-    
-    [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(bgView.mas_top);
-        make.bottom.mas_equalTo(bgView.mas_bottom);
-        make.left.mas_equalTo(imgView.mas_right).offset(8);
-        make.right.mas_equalTo(bgView.mas_right).offset(-8);
-    }];
-    
-//    [self.view addSubview:self.mapView];
-//    [self.mapView addSubview:self.pinImageView];
+
     [self.view addSubview:self.tableView];
-    
-//    [_pinImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(_mapView.mas_centerX);
-//        make.centerY.mas_equalTo(_mapView.mas_centerY);
-//        make.size.mas_equalTo(CGSizeMake(24, 38));
-//    }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
-        make.top.mas_equalTo(_textField.mas_bottom).offset(5);
+        make.top.mas_equalTo(_mapView.mas_bottom);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
 }
 
 #pragma mark - getters and setters
-//- (MAMapView *)mapView {
-//    if (!_mapView) {
-//        _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 360)];
-//        _mapView.showsCompass = NO;
-//        _mapView.showsScale = NO;
-//        _mapView.zoomLevel = 16;
-//        _mapView.delegate = self;
-//        CLLocation *location = [ZZUserHelper shareInstance].location;
-//        if (location) {
-//            [_mapView setShowsUserLocation:YES];
-//        }
-//        [_mapView bringSubviewToFront:_pinImageView];
-//    }
-//    return _mapView;
-//}
-
-//- (UIImageView *)pinImageView {
-//    if (!_pinImageView) {
-//        _pinImageView = [[UIImageView alloc] init];
-//        _pinImageView.image = [UIImage imageNamed:@"pin"];
-//        _pinImageView.contentMode = UIViewContentModeCenter;
-//        _pinImageView.userInteractionEnabled = NO;
-//    }
-//    return _pinImageView;
-//}
-
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] init];
@@ -412,13 +360,5 @@
         [_tableView registerClass:[ZZRentLocationCell class] forCellReuseIdentifier:@"ZZRentLocationCell"];
     }
     return _tableView;
-}
-
-- (AMapSearchAPI *)searchManager {
-    if (!_searchManager) {
-        _searchManager = [[AMapSearchAPI alloc] init];
-        _searchManager.delegate = self;
-    }
-    return _searchManager;
 }
 @end

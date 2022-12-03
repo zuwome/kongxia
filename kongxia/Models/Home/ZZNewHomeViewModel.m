@@ -514,7 +514,7 @@
             controller.filterDict = self.filterDict;
             controller.haveGetLocation = self.haveGetLocation;
             controller.update = YES;
-            [controller refresh];
+            [controller updateLocationInfoAndRefresh];
             continue;
         }
         if ([ctl isKindOfClass:[ZZHomeTypeViewController class]]) {

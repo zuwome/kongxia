@@ -212,6 +212,10 @@
     [_tableView.mj_header beginRefreshing];
 }
 
+- (void)updateLocationInfoAndRefresh {
+    [self checkLocationAuthority];
+}
+
 #pragma mark - CreateViews
 
 - (void)createViews

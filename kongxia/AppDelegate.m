@@ -602,9 +602,9 @@
                                                 selector:@selector(configNotificationAuthority)
                                                     name:kMsg_AuthorityConfirm
                                                   object:nil];
-       
-       // 用户登录
-       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:kMsg_UserLogin object:nil];
+    
+   // 用户登录
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:kMsg_UserLogin object:nil];
 }
 
 - (void)configNotificationAuthority {

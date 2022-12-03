@@ -99,8 +99,8 @@
         
         if (!isExist) {
             NSDictionary *infoDic = @{
-                @"province" : currentModel.province,
-                @"city" : currentModel.city,
+//                @"province" : currentModel.province,
+//                @"city" : currentModel.city,
                 @"address" : currentModel.address,
                 @"address_lng" : @(currentModel.address_lng),
                 @"address_lat" : @(currentModel.address_lat),

@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) MapView *mapView;
 
-@property (nonatomic, strong) UIImageView *pinImageView;;
+@property (nonatomic, strong) UIImageView *pinImageView;
 
 @property (nonatomic, strong) UITableView *listTableView;
 
@@ -72,7 +72,6 @@
     [super viewDidAppear: animated];
     CLLocation *location = [ZZUserHelper shareInstance].location;
 
-    MKCoordinateSpan span = MKCoordinateSpanMake(0.2, 0.2);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 100, 500);
     
     [_mapView setRegion:region animated:NO];
@@ -138,26 +137,26 @@
 - (void)initMapView {
     CLLocation *location = [ZZUserHelper shareInstance].location;
 
-//    WEAK_SELF();
-//    [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
-//        if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
-//            weakSelf.regionFirstDidChangeWithoutReload = NO;
-//        }
-//        else {
-//            [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
-//        }
-//        weakSelf.regionDidChangeWithoutReload = NO;
-//    }];
-//    [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
-//        if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
-//            weakSelf.regionFirstDidChangeWithoutReload = NO;
-//        }
-//        else {
-//            [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
-//        }
-//        weakSelf.regionDidChangeWithoutReload = NO;
-//
-//    }];
+    WEAK_SELF();
+    [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
+        if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
+            weakSelf.regionFirstDidChangeWithoutReload = NO;
+        }
+        else {
+            [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
+        }
+        weakSelf.regionDidChangeWithoutReload = NO;
+    }];
+    [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
+        if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
+            weakSelf.regionFirstDidChangeWithoutReload = NO;
+        }
+        else {
+            [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
+        }
+        weakSelf.regionDidChangeWithoutReload = NO;
+
+    }];
     _regionFirstDidChangeWithoutReload = YES;
     
     if (_currentSelectCity) {
