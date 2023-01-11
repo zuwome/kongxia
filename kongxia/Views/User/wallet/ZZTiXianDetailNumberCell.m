@@ -102,7 +102,7 @@
 - (UITextField *)tiXianTextField {
     if (!_tiXianTextField) {
         _tiXianTextField = [[UITextField alloc]init];
-        _tiXianTextField.placeholder = @"50元 — 2000元";
+        _tiXianTextField.placeholder = [NSString stringWithFormat:@"%ld元 - %ld元",(long)[ZZUserHelper shareInstance].configModel.min_bankcard_transfer, (long)[ZZUserHelper shareInstance].configModel.max_bankcard_transfer];
         [_tiXianTextField setValue:RGBCOLOR(204, 204, 204) forKeyPath:@"placeholderLabel.textColor"];
         _tiXianTextField.font = ADaptedFontMediumSize(15);
         _tiXianTextField.textColor = kBlackColor;

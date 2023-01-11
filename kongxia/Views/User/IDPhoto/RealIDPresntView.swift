@@ -235,7 +235,7 @@ class RealPhotoPresentView: UIView {
             iconImageView.image = UIImage(named: "icZhenshitouxiang")
         }
         
-        guard let userInfomationModel = ZZUserHelper.shareInstance().configModel.user_infomation else {
+        guard let confimodel = ZZUserHelper.shareInstance().configModel,  let userInfomationModel = confimodel.user_infomation else {
             return
         }
         

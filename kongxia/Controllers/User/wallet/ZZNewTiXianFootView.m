@@ -30,7 +30,7 @@
         
         NSString *money = [NSString stringWithFormat:@"(最低%ld元/笔, 最多%ld元/笔）",(long)[ZZUserHelper shareInstance].configModel.min_bankcard_transfer, (long)[ZZUserHelper shareInstance].configModel.max_bankcard_transfer];
         
-        NSString *string = [NSString stringWithFormat:@"只能提现到认证姓名为%@的微信和银行卡账户%@详细",userName,money];
+        NSString *string = [NSString stringWithFormat:@"只能提现到认证姓名为%@的微信账户%@详细",userName,money];
         NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:string attributes:nil];
         
         [attribute addAttribute:NSForegroundColorAttributeName value:RGBCOLOR(161, 161, 161) range:NSMakeRange(0, string.length)];

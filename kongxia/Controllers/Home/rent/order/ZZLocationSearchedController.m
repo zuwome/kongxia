@@ -62,6 +62,15 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+//    [self searchTipsWithKey:searchController.searchBar.text searchLimited:YES];
+//    _searchString = searchController.searchBar.text;
+//    _searchString = searchController.searchBar.text;
+//    searchPage = 1;
+//    [self searchPoiBySearchString:_searchString];
+} 
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _searchResultArray.count;

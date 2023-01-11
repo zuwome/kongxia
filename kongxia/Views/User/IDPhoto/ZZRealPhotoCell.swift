@@ -60,6 +60,22 @@ class ZZRealPhotoCell: ZZTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func titleTapGesture(enable: Bool) {
+        if enable {
+            titleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(titleAction)))
+            titleLabel.isUserInteractionEnabled = true
+        } else {
+            titleLabel.isUserInteractionEnabled = false
+            titleLabel.gestureRecognizers?.forEach({
+                titleLabel.removeGestureRecognizer($0)
+            })
+        }
+    }
+    
+    @objc func titleAction() {
+        delegate?.showIDPhoto(cell: self)
+    }
+    
     @objc func showIDPhoto() {
         delegate?.showIDPhoto(cell: self)
     }
@@ -67,6 +83,7 @@ class ZZRealPhotoCell: ZZTableViewCell {
     @objc func showInfo(user: ZZUser) {
         updateFrame(user: user)
         
+        titleTapGesture(enable: false)
         titleLabel.text = "点亮真实头像徽章，解锁真实头像"
         actionButton.setTitle("去认证", for: .normal)
         iconImageView.image = UIImage(named: "icZhenshitouxiang")
@@ -114,6 +131,7 @@ class ZZRealPhotoCell: ZZTableViewCell {
                 titleLabel.text = "Ta已认证真实头像， 证件照与头像确认为本人"
             }
             if user.id_photo?.status == 2 {
+                titleTapGesture(enable: true)
                 if let avatar = user.id_photo.pic {
                     var userAvatar: String
                     if avatar.hasSuffix("/blur/70x70") {
