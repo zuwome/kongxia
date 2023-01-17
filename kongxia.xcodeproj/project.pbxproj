@@ -976,6 +976,7 @@
 		BD21F65C229AE94B0037D447 /* ZZMyRankInfoVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21F65B229AE94B0037D447 /* ZZMyRankInfoVIew.swift */; };
 		BD21F661229B6FCA0037D447 /* ZZHomeCollectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD21F660229B6FCA0037D447 /* ZZHomeCollectionsCell.m */; };
 		BD2405452214FA8D002AD733 /* ZZInfoToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2405442214FA8D002AD733 /* ZZInfoToastView.m */; };
+		BD2BBCFA297044C10025A3BE /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BBCF9297044C10025A3BE /* MessageHelper.swift */; };
 		BD2BC614233B081F0011246D /* ZZPostFreeTaskTaskInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2BC613233B081E0011246D /* ZZPostFreeTaskTaskInfoViewController.m */; };
 		BD2BC617233B0A240011246D /* ZZPostFreeTaskLocTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2BC616233B0A240011246D /* ZZPostFreeTaskLocTimeViewController.m */; };
 		BD2BC61A233B10230011246D /* ZZPostTaskCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2BC619233B10230011246D /* ZZPostTaskCellModel.m */; };
@@ -3406,6 +3407,7 @@
 		BD21F660229B6FCA0037D447 /* ZZHomeCollectionsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZHomeCollectionsCell.m; sourceTree = "<group>"; };
 		BD2405432214FA8D002AD733 /* ZZInfoToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZInfoToastView.h; sourceTree = "<group>"; };
 		BD2405442214FA8D002AD733 /* ZZInfoToastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZInfoToastView.m; sourceTree = "<group>"; };
+		BD2BBCF9297044C10025A3BE /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 		BD2BC612233B081E0011246D /* ZZPostFreeTaskTaskInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPostFreeTaskTaskInfoViewController.h; sourceTree = "<group>"; };
 		BD2BC613233B081E0011246D /* ZZPostFreeTaskTaskInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZPostFreeTaskTaskInfoViewController.m; sourceTree = "<group>"; };
 		BD2BC615233B0A240011246D /* ZZPostFreeTaskLocTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPostFreeTaskLocTimeViewController.h; sourceTree = "<group>"; };
@@ -4963,6 +4965,7 @@
 				BD20A8152541CEE7007B2800 /* ZZLivenessHelper.h */,
 				BD20A8162541CEE7007B2800 /* ZZLivenessHelper.m */,
 				BD698B4B2830140300EF83F1 /* ZZServerHelper.swift */,
+				BD2BBCF9297044C10025A3BE /* MessageHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -11906,6 +11909,7 @@
 				BDB8E89D22CF4B8800C11DEC /* ZZHomeNewRecommendCell.m in Sources */,
 				BDA5005B22FA785A00BCB48E /* TPKeyboardAvoidingTableView.m in Sources */,
 				BD1E5AA2222634CB00635E59 /* ConfigSwift.swift in Sources */,
+				BD2BBCFA297044C10025A3BE /* MessageHelper.swift in Sources */,
 				BDA9E2EE23755BE100E9E351 /* ZZChatVideoPlayerController.m in Sources */,
 				91AF19E81F678C4600E163F0 /* ZZAboutWXCell.m in Sources */,
 				BDA500D122FA785B00BCB48E /* planar_functions.cc in Sources */,
@@ -12545,7 +12549,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12628,7 +12632,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.4;
+				MARKETING_VERSION = 4.7.5;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12760,7 +12764,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12843,7 +12847,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.4;
+				MARKETING_VERSION = 4.7.5;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12976,7 +12980,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13059,7 +13063,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.4;
+				MARKETING_VERSION = 4.7.5;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13191,7 +13195,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13272,7 +13276,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.4;
+				MARKETING_VERSION = 4.7.5;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

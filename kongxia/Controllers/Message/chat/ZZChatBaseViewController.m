@@ -2389,6 +2389,7 @@
 
 //是否可以聊天
 - (BOOL)canSendMessageWithMessageContent:(RCMessageContent *)messageContent {
+    return YES;
     if (self.statusModel.chat_status == 1 || [messageContent isKindOfClass:[ZZChatPacketModel class]] || [messageContent isKindOfClass:[ZZChatGiftModel class]]) {
         return YES;
     }
@@ -3578,8 +3579,8 @@ static CGPoint delayOffset = {0.0};
     if (!_boxView) {
         _boxView = [[ZZChatBoxView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 54 - SafeAreaBottomHeight, SCREEN_WIDTH, 54 + CHATBOX_CONTENT_HEIGHT)];
         if (!self.payChatModel.isPay) {
-            _boxView.isMessageBox = _isMessageBox && !_isMessageBoxTo ? YES : NO;
-            _boxView.topView.isMessageBox = _isMessageBox && !_isMessageBoxTo ? YES : NO;
+            _boxView.isMessageBox = NO;//_isMessageBox && !_isMessageBoxTo ? YES : NO;
+            _boxView.topView.isMessageBox = NO;// _isMessageBox && !_isMessageBoxTo ? YES : NO;
         }
         _boxView.delegate = self;
         _boxView.uid = _uid;

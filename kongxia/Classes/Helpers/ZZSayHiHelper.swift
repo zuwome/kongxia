@@ -644,45 +644,78 @@ extension ZZSayHiHelper {
     }
 
     
-    func send(to users: String, content: String, didChangeContent: Bool, _ completeHandler: @escaping (_ isSuccess: Bool) -> Void) {
+//    func send(to users: String, content: String, didChangeContent: Bool, _ completeHandler: @escaping (_ isSuccess: Bool) -> Void) {
+//        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let userId = user.uid else {
+//            return
+//        }
+//        
+//        var editType = 0
+//        if sayHiType == .rent {
+//            editType = 1
+//            if ZZUserHelper.shareInstance()?.didHaveOldAvatar() == true || ZZUserHelper.shareInstance()?.didHaveRealAvatar() == true {
+//                editType = 0
+//            }
+//        }
+//        else if sayHiType == .login {
+//            editType = didChangeContent ? 1 : 0
+//        }
+//        
+//        var type = sayHiType
+//        if type == .dailyLogin {
+//            type = .login
+//        }
+//        
+//        ZZRequest.method("POST",
+//                         path: "/api/sayhinew/sendSayhiToUsers",
+//                         params: [
+//                            "from": userId,
+//                            "toUids": users,
+//                            "content": content,
+//                            "editType": editType,
+//                            "firmType": type.rawValue])
+//        { (error, data, _) in
+//            if error == nil {
+//                completeHandler(true)
+//                return;
+//            }
+//            ZZHUD.showError(withStatus: error?.message ?? "发送失败,请重试")
+//            completeHandler(false)
+//        }
+//    }
+    
+    @objc func send(to users: [String], content: String, didChangeContent: Bool, completeHandler: @escaping (_ isSuccess: Bool) -> Void) {
         guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let userId = user.uid else {
             return
         }
         
-        var editType = 0
-        if sayHiType == .rent {
-            editType = 1
-            if ZZUserHelper.shareInstance()?.didHaveOldAvatar() == true || ZZUserHelper.shareInstance()?.didHaveRealAvatar() == true {
-                editType = 0
-            }
-        }
-        else if sayHiType == .login {
-            editType = didChangeContent ? 1 : 0
+        let puhData = "收到一条新的信息"
+        let pushContent = ZZUtils.dictionary(toJson: ["rc" : [
+            "fId": ZZUserHelper.shareInstance().loginer.uid,
+            "tId": "ss",
+            "cType" : "PR"
+        ]])
+        
+        MessageHelper.SendMessage(message: content, to: users, pushContent: pushContent ?? "", pushData: puhData) {
+            completeHandler(true)
         }
         
-        var type = sayHiType
-        if type == .dailyLogin {
-            type = .login
-        }
-        
-        ZZRequest.method("POST",
-                         path: "/api/sayhinew/sendSayhiToUsers",
-                         params: [
-                            "from": userId,
-                            "toUids": users,
-                            "content": content,
-                            "editType": editType,
-                            "firmType": type.rawValue])
-        { (error, data, _) in
-            if error == nil {
-                completeHandler(true)
-                return;
-            }
-            ZZHUD.showError(withStatus: error?.message ?? "发送失败,请重试")
-            completeHandler(false)
-        }
+//        var editType = 0
+//        if sayHiType == .rent {
+//            editType = 1
+//            if ZZUserHelper.shareInstance()?.didHaveOldAvatar() == true || ZZUserHelper.shareInstance()?.didHaveRealAvatar() == true {
+//                editType = 0
+//            }
+//        }
+//        else if sayHiType == .login {
+//            editType = didChangeContent ? 1 : 0
+//        }
+//
+//        var type = sayHiType
+//        if type == .dailyLogin {
+//            type = .login
+//        }
     }
-
+    
     /*
      检测发送内容是否违规
      */

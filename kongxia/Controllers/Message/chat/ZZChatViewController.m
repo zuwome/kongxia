@@ -821,13 +821,13 @@
                 return ;
             }
             if (self.statusModel.chat_status == 0) {
-                self.isMessageBox = YES;
+                self.isMessageBox = NO;
             }
             else {
                 self.isMessageBox = NO;
             }
-            self.boxView.isMessageBox = self.isMessageBox && !self.isMessageBoxTo ? YES : NO;
-            self.boxView.topView.isMessageBox = self.isMessageBox && !self.isMessageBoxTo ? YES : NO;
+            self.boxView.isMessageBox = NO;// self.isMessageBox && !self.isMessageBoxTo ? YES : NO;
+            self.boxView.topView.isMessageBox = NO;// self.isMessageBox && !self.isMessageBoxTo ? YES : NO;
         }
     }];
 }

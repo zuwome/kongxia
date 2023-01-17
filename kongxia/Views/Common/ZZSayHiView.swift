@@ -151,6 +151,7 @@ extension ZZSayHiView {
     @objc func confirm() {
         
         var usersStr: String = ""
+        var selectedUsers: [String];
         if sayHiType == .login || sayHiType == .dailyLogin {
             guard let selectUsers = fetchSelectedUsers(), selectUsers.count != responseModel.sayHiUsers?.count else {
                 ZZHUD.showError(withStatus: "请选择需要发送的用户")
@@ -162,14 +163,15 @@ extension ZZSayHiView {
                 return
             }
             
-            guard let usersData = try? JSONSerialization.data(withJSONObject: selectUsers, options: []) else {
-                return
-            }
-            
-            guard let usersJson = String(data: usersData, encoding: String.Encoding.utf8) else {
-                return
-            }
-            usersStr = usersJson
+            selectedUsers = selectUsers
+//            guard let usersData = try? JSONSerialization.data(withJSONObject: selectUsers, options: []) else {
+//                return
+//            }
+//
+//            guard let usersJson = String(data: usersData, encoding: String.Encoding.utf8) else {
+//                return
+//            }
+//            usersStr = usersJson
         }
         else {
             guard let selectUsers = fetchSelectedUsers(), selectUsers.count > 0 else {
@@ -177,39 +179,58 @@ extension ZZSayHiView {
                 return
             }
             
-            guard let usersData = try? JSONSerialization.data(withJSONObject: selectUsers, options: []) else {
-                return
-            }
+            selectedUsers = selectUsers
             
-            guard let usersJson = String(data: usersData, encoding: String.Encoding.utf8) else {
-                return
-            }
-            usersStr = usersJson
+//            guard let usersData = try? JSONSerialization.data(withJSONObject: selectUsers, options: []) else {
+//                return
+//            }
+//
+//            guard let usersJson = String(data: usersData, encoding: String.Encoding.utf8) else {
+//                return
+//            }
+//            usersStr = usersJson
         }
         
         ZZHUD.show()
         
         if ZZSayHiHelper.shared.sayHiType == .login || ZZSayHiHelper.shared.sayHiType == .dailyLogin {
-            ZZSayHiHelper.shared.sendLogin(exclude: usersStr,
-                                           content: responseModel.send_content ?? "",
-                                           didChangeContent: self.responseModel.isContentModified,
-                                           { (isSuccess) in
+            ZZSayHiHelper.shared.send(to: selectedUsers,
+                                      content: responseModel.send_content ?? "",
+                                      didChangeContent: self.responseModel.isContentModified) { isSuccess in
                 if isSuccess {
                     ZZHUD.showTastInfo(with: "发送成功")
                     self.hide()
                 }
-            })
+            }
+            
+//            ZZSayHiHelper.shared.sendLogin(exclude: usersStr,
+//                                           content: responseModel.send_content ?? "",
+//                                           didChangeContent: self.responseModel.isContentModified,
+//                                           { (isSuccess) in
+//                if isSuccess {
+//                    ZZHUD.showTastInfo(with: "发送成功")
+//                    self.hide()
+//                }
+//            })
         }
         else {
-            ZZSayHiHelper.shared.send(to: usersStr,
+            ZZSayHiHelper.shared.send(to: selectedUsers,
                                       content: responseModel.send_content ?? "",
-                                      didChangeContent: self.responseModel.isContentModified,
-                                      { (isSuccess) in
+                                      didChangeContent: self.responseModel.isContentModified) { isSuccess in
                 if isSuccess {
                     ZZHUD.showTastInfo(with: "发送成功")
                     self.hide()
                 }
-            })
+            }
+//            ZZSayHiHelper.shared.send(to: usersStr,
+//                                      content: responseModel.send_content ?? "",
+//                                      didChangeContent: self.responseModel.isContentModified,
+//                                      { (isSuccess) in
+//                if isSuccess {
+//                    ZZHUD.showTastInfo(with: "发送成功")
+//                    self.hide()
+//                }
+//            })
         }
         
     }
