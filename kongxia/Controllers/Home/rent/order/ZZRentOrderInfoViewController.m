@@ -439,6 +439,7 @@
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         ZZSearchLocationController *vc = [[ZZSearchLocationController alloc] initWithSelectCity:_order.city];
+        vc.isCityLimited = YES;
         vc.title = @"选择邀约地点";
         vc.selectPoiDone = ^(ZZRentDropdownModel *model) {
             [self getLocationModel:model];

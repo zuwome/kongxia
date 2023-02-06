@@ -11,13 +11,9 @@
 #import "ZZGifMessageModel.h"
 
 #import <UMSocialCore/UMSocialCore.h>
-//#import <AMapLocationKit/AMapLocationKit.h>
-//#import <AMapSearchKit/AMapSearchKit.h>
-//#import <MAMapKit/MAMapKit.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "Pingpp.h"
 #import <RongIMKit/RongIMKit.h>
-//#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <SobotKit/SobotKit.h>
 #import "MiPushSDK.h"
 #import "ZZChatPacketModel.h"
@@ -35,6 +31,11 @@
 #import "ZZVideoInviteModel.h"
 #import "WXApi.h"
 
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <MAMapKit/MAMapKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
 @implementation ZZAppDelegateConfig
 
 + (void)config
@@ -44,7 +45,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
     // 高德
-//    [AMapServices sharedServices].apiKey = @"ddbc9ec789eb08c4f18c4232e7732446";
+    [AMapServices sharedServices].apiKey = @"ddbc9ec789eb08c4f18c4232e7732446";
     
     // UMeng 社会化分享
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMENG_KEY];

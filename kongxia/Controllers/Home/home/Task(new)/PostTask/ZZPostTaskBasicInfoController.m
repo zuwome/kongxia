@@ -255,6 +255,7 @@
     else {
         // 国内
         ZZSearchLocationController *vc = [[ZZSearchLocationController alloc] initWithSelectCity:_viewModel.taskType == TaskNormal ? nil :_viewModel.city];
+        vc.isCityLimited = NO;
         if (_viewModel.taskType == TaskNormal) {
             vc.title = @"选择通告地点";
         }

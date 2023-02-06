@@ -41,9 +41,20 @@
     NSString *key = searchBar.text;
     _searchString = searchBar.text;
     
-    [POIManager getPoisWithKeyword:key location:_location.coordinate completion:^(NSArray<PoiModel *> * pois) {
+    NSString *city = @"";
+    if (_currentCity) {
+        city = _currentCity.name ? _currentCity.name: @"厦门";
+    }
+    else if ([ZZUserHelper shareInstance].cityName) {
+        city = [ZZUserHelper shareInstance].cityName;
+    }
+    
+    [[POIManager shared] getGDPoiWithKeyword:key city:city cityLimited:_isCityLimited completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         [self filterResults:pois];
     }];
+//    [POIManager getPoisWithKeyword:key location:_location.coordinate completion:^(NSArray<PoiModel *> * pois) {
+//        [self filterResults:pois];
+//    }];
  
 }
 

@@ -140,9 +140,9 @@
 }
 
 - (void)searchTipsWithKey:(NSString *)key searchLimited:(BOOL)searchLimited {
-    [POIManager getPoisWithKeyword:key location:[ZZUserHelper shareInstance].location.coordinate completion:^(NSArray<PoiModel *> * pois) {
-        [self filterResults:pois];
-    }];
+//    [POIManager getPoisWithKeyword:key location:[ZZUserHelper shareInstance].location.coordinate completion:^(NSArray<PoiModel *> * pois) {
+//        [self filterResults:pois];
+//    }];
 }
 
 - (void)filterResults:(NSArray<PoiModel *> *)pois {
@@ -187,10 +187,15 @@
 
 #pragma mark - POI Search
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
-    [POIManager getPoisWithLocation:coordinate completion:^(NSArray<PoiModel *> * poiModels) {
-        _poisArray = poiModels;
+    [[POIManager shared] getGDPoiWithCoordinate:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+        _poisArray = pois;
         [_tableView reloadData];
     }];
+//
+//    [POIManager getPoisWithLocation:coordinate completion:^(NSArray<PoiModel *> * poiModels) {
+//        _poisArray = poiModels;
+//        [_tableView reloadData];
+//    }];
 }
 
 #pragma mark - UITextFieldMethod

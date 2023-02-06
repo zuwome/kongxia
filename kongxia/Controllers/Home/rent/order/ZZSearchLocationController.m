@@ -197,12 +197,16 @@
 
 #pragma mark - POI Search
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
-    CLLocationCoordinate2D transCoor = [LocationUtil transformGCJToWGSWithLocation:coordinate];
+//    CLLocationCoordinate2D transCoor = [LocationUtil transformGCJToWGSWithLocation:coordinate];
     
-    [POIManager getPoisWithLocation:transCoor completion:^(NSArray<PoiModel *> * poiModels) {
-        _pois = poiModels;
+    [[POIManager shared] getGDPoiWithCoordinate:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+        _pois = pois;
         [_listTableView reloadData];
     }];
+//    [POIManager getPoisWithLocation:transCoor completion:^(NSArray<PoiModel *> * poiModels) {
+//        _pois = poiModels;
+//        [_listTableView reloadData];
+//    }];
 }
 
 
@@ -309,6 +313,7 @@
     _searchResultTableVC.delegate = self;
     _searchResultTableVC.location = [ZZUserHelper shareInstance].location;
     _searchResultTableVC.currentCity = _currentSelectCity;
+    _searchResultTableVC.isCityLimited = _isCityLimited;
     _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchResultTableVC];
     
     _searchController.searchResultsUpdater = _searchResultTableVC;

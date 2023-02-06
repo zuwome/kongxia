@@ -15,6 +15,13 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - AgoraRtcEngine_iOS (3.6.1.4)
+  - AMap2DMap (5.6.1):
+    - AMapFoundation (~> 1.4)
+  - AMapFoundation (1.7.0)
+  - AMapLocation (2.9.0):
+    - AMapFoundation (>= 1.7.0)
+  - AMapSearch (7.1.0):
+    - AMapFoundation (~> 1.4)
   - Bugly (2.5.91)
   - FLAnimatedImage (1.0.12)
   - FMDB (2.7.5):
@@ -101,6 +108,10 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AgoraRtcEngine_iOS (~> 3.6.1.1)
+  - AMap2DMap
+  - AMapFoundation
+  - AMapLocation
+  - AMapSearch
   - Bugly
   - FLAnimatedImage (~> 1.0)
   - GPUImage (~> 0.1.7)
@@ -142,6 +153,10 @@ SPEC REPOS:
   trunk:
     - AFNetworking
     - AgoraRtcEngine_iOS
+    - AMap2DMap
+    - AMapFoundation
+    - AMapLocation
+    - AMapSearch
     - Bugly
     - FLAnimatedImage
     - FMDB
@@ -191,6 +206,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AgoraRtcEngine_iOS: e5ec287a98b155e07931d3f4b4443accbbee47d7
+  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
+  AMapFoundation: c14fcebd8e4267c593bd2e25067ac86b0ce64aba
+  AMapLocation: f5eb11e11c62f0f599f80b578eec8a1f70deb985
+  AMapSearch: 6bd6d361c5eb00110e0bffa4acf88b7bb9f7e059
   Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -229,6 +248,6 @@ SPEC CHECKSUMS:
   YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: e1fbd9230fb7e619dc06e13034a0a40dd279da2b
+PODFILE CHECKSUM: a9ea1a3952fd895ac589f3f1d5d941fae095eec9
 
 COCOAPODS: 1.11.2
