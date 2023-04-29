@@ -70,3 +70,4 @@ fastlane/.env
 kongxia/Vendors/FaceID/
 Vendors/FaceID/
 
+.DS_Store
