@@ -232,7 +232,6 @@
 		91DB9E041F6129E600013F4C /* ZZRealNameZMBindViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D4D1F6129E600013F4C /* ZZRealNameZMBindViewController.mm */; };
 		91DB9E051F6129E600013F4C /* ZZRealNameZMDoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D4F1F6129E600013F4C /* ZZRealNameZMDoneViewController.m */; };
 		91DB9E061F6129E600013F4C /* ZZRealNameZMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D511F6129E600013F4C /* ZZRealNameZMViewController.m */; };
-		91DB9E071F6129E600013F4C /* ZZFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D551F6129E600013F4C /* ZZFeedbackViewController.m */; };
 		91DB9E091F6129E600013F4C /* ZZChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D5A1F6129E600013F4C /* ZZChangePwdViewController.m */; };
 		91DB9E0A1F6129E600013F4C /* ZZSettingSecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D5C1F6129E600013F4C /* ZZSettingSecurityViewController.m */; };
 		91DB9E0B1F6129E600013F4C /* ZZEmergencyContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DB9D5F1F6129E600013F4C /* ZZEmergencyContactViewController.m */; };
@@ -1989,8 +1988,6 @@
 		91DB9D4F1F6129E600013F4C /* ZZRealNameZMDoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZRealNameZMDoneViewController.m; sourceTree = "<group>"; };
 		91DB9D501F6129E600013F4C /* ZZRealNameZMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZRealNameZMViewController.h; sourceTree = "<group>"; };
 		91DB9D511F6129E600013F4C /* ZZRealNameZMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZRealNameZMViewController.m; sourceTree = "<group>"; };
-		91DB9D541F6129E600013F4C /* ZZFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFeedbackViewController.h; sourceTree = "<group>"; };
-		91DB9D551F6129E600013F4C /* ZZFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFeedbackViewController.m; sourceTree = "<group>"; };
 		91DB9D591F6129E600013F4C /* ZZChangePwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZChangePwdViewController.h; sourceTree = "<group>"; };
 		91DB9D5A1F6129E600013F4C /* ZZChangePwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZChangePwdViewController.m; sourceTree = "<group>"; };
 		91DB9D5B1F6129E600013F4C /* ZZSettingSecurityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZSettingSecurityViewController.h; sourceTree = "<group>"; };
@@ -5661,7 +5658,6 @@
 		91DB9D521F6129E600013F4C /* setting */ = {
 			isa = PBXGroup;
 			children = (
-				91DB9D531F6129E600013F4C /* helpAndFeedback */,
 				91DB9D581F6129E600013F4C /* secure */,
 				91DB9D5D1F6129E600013F4C /* travelSecurity */,
 				91DB9D6E1F6129E600013F4C /* ZZSettingViewController.h */,
@@ -5680,15 +5676,6 @@
 				91DB9D6D1F6129E600013F4C /* ZZSettingPrivacyViewController.m */,
 			);
 			path = setting;
-			sourceTree = "<group>";
-		};
-		91DB9D531F6129E600013F4C /* helpAndFeedback */ = {
-			isa = PBXGroup;
-			children = (
-				91DB9D541F6129E600013F4C /* ZZFeedbackViewController.h */,
-				91DB9D551F6129E600013F4C /* ZZFeedbackViewController.m */,
-			);
-			path = helpAndFeedback;
 			sourceTree = "<group>";
 		};
 		91DB9D581F6129E600013F4C /* secure */ = {
@@ -11206,7 +11193,6 @@
 				BDE5A0042227B25E00ACCDA9 /* ZZOrderReportOtherReasonCell.swift in Sources */,
 				91DB9D9C1F6129E600013F4C /* ZZFindViewController.m in Sources */,
 				BDA500BF22FA785B00BCB48E /* PPAddressBookHandle.m in Sources */,
-				91DB9E071F6129E600013F4C /* ZZFeedbackViewController.m in Sources */,
 				91DB9DEF1F6129E600013F4C /* ZZAddPersonalLabelViewController.m in Sources */,
 				ACFACDFE1FE9204700BB799C /* PYCycleScrollView.m in Sources */,
 				91DB9DEA1F6129E600013F4C /* ZZUserSkillChooseViewController.m in Sources */,
@@ -12634,7 +12620,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.5;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12849,7 +12835,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.5;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13065,7 +13051,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.5;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13278,7 +13264,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.5;
+				MARKETING_VERSION = 4.7.4;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

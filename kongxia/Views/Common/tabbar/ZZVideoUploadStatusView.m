@@ -351,7 +351,8 @@
         } else {
             if (self.isIntroduceVideo) {
                 // 如果录制达人视频
-                ZZSKModel *sk = [[ZZSKModel alloc] initWithDictionary:data error:&error];
+                NSError *e;
+                ZZSKModel *sk = [[ZZSKModel alloc] initWithDictionary:data error:&e];
                 [GetSendVideoManager() asyncSendVideoWithVideoId:sk];
             }
             

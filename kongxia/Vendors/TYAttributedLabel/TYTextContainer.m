@@ -101,7 +101,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     _characterSpacing = 1;
     _linesSpacing = 2;
     _paragraphSpacing = 0;
-    _textAlignment = kCTLeftTextAlignment;
+    _textAlignment = kCTTextAlignmentLeft;
     _lineBreakMode = kCTLineBreakByCharWrapping;
     _textColor = kTextColor;
     _linkColor = kLinkColor;

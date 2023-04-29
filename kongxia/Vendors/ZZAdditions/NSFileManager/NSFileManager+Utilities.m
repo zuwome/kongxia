@@ -6,22 +6,22 @@
 
 #import "NSFileManager+Utilities.h"
 
-NSString *NSDocumentsFolder()
+NSString *NSDocumentsFolder(void)
 {
 	return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
 }
 
-NSString *NSLibraryFolder()
+NSString *NSLibraryFolder(void)
 {
 	return [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
 }
 
-NSString *NSTmpFolder()
+NSString *NSTmpFolder(void)
 {
 	return [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
 }
 
-NSString *NSBundleFolder()
+NSString *NSBundleFolder(void)
 {
 	return [[NSBundle mainBundle] bundlePath];
 }

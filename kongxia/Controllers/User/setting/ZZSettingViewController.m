@@ -422,24 +422,27 @@
     sender.enabled = NO;
     //退出
     [MobClick event:Event_click_logout];
-    [UIAlertView showWithTitle:@"提示" message:@"确定退出登录吗？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"确定"]) {
-            //停止内购的检测
-            [[ZZPayHelper shared] stopManager];
-            [MiPushSDK unsetAlias:[ZZUserHelper shareInstance].loginer.uid];
-            
-            [[RCIM sharedRCIM] logout];
-            [ZZUserHelper shareInstance].firstCloseTopView = NO;
-            [[[ZZUser alloc] init] logout:nil];
-            [[ZZUserHelper shareInstance] clearLoginer];
-            [self.navigationController popViewControllerAnimated:YES];
-            ZZUserhelperOnce = 0;
-            _sharedObject = nil;
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UserDidLogout object:self];
-            });
+    
+    [UIAlertController presentAlertControllerWithTitle:@"提示" message:@"确定退出登录吗？" doneTitle:@"确定" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
+        if (isCancelled) {
+            return;
         }
+        
+        [[ZZPayHelper shared] stopManager];
+        [MiPushSDK unsetAlias:[ZZUserHelper shareInstance].loginer.uid];
+        
+        [[RCIM sharedRCIM] logout];
+        [ZZUserHelper shareInstance].firstCloseTopView = NO;
+        [[[ZZUser alloc] init] logout:nil];
+        [[ZZUserHelper shareInstance] clearLoginer];
+        [self.navigationController popViewControllerAnimated:YES];
+        ZZUserhelperOnce = 0;
+        _sharedObject = nil;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UserDidLogout object:self];
+        });
+        
     }];
 }
 
