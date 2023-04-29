@@ -684,7 +684,7 @@ extension ZZSayHiHelper {
 //    }
     
     @objc func send(to users: [String], content: String, didChangeContent: Bool, completeHandler: @escaping (_ isSuccess: Bool) -> Void) {
-        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let userId = user.uid else {
+        guard let helper = ZZUserHelper.shareInstance(), let user = helper.loginer, let _ = user.uid else {
             return
         }
         

@@ -656,8 +656,7 @@
 }
 
 - (void)gotoUpdatePhotoWithUrls:(NSMutableArray *)urls isPush:(BOOL)isPush {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    ZZSignUpS3ViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CompleteUserInfo"];
+    ZZSignUpS3ViewController *vc = [[ZZSignUpS3ViewController alloc] init];
     vc.faces = urls;
     vc.code = _code;
     vc.countryCode = _countryCode;

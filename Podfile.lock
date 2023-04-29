@@ -132,8 +132,8 @@ DEPENDENCIES:
   - PLShortVideoKit (~> 3.0.0)
   - Qiniu
   - RegexKitLite-NoWarning
-  - RongCloudIM/IMKit
-  - RongCloudIM/IMLib
+  - RongCloudIM/IMKit (~> 5.2.4.1)
+  - RongCloudIM/IMLib (~> 5.2.4.1)
   - SDWebImage (~> 4.4.6)
   - SKTagView
   - SobotKit
@@ -204,7 +204,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/QiuYeHong90/YYImage.git
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AFNetworking: cb604b1c2bded0871f5f61f5d53653739e841d6b
   AgoraRtcEngine_iOS: e5ec287a98b155e07931d3f4b4443accbbee47d7
   AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
   AMapFoundation: c14fcebd8e4267c593bd2e25067ac86b0ce64aba
@@ -248,6 +248,6 @@ SPEC CHECKSUMS:
   YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: a9ea1a3952fd895ac589f3f1d5d941fae095eec9
+PODFILE CHECKSUM: 807bdd945cc9bc4dcb3557d507394e565c1eac88
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

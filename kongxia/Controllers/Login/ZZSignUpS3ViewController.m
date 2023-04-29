@@ -18,17 +18,22 @@
 
 @interface ZZSignUpS3ViewController ()<PECropViewControllerDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
-    IBOutlet UITextField *_nameField;
-    IBOutlet UIButton *_boyButton;
-    IBOutlet UIButton *_girlButton;
-    UIImage *_avatarImage;
     ZZUserHelper *_userHelper;
-    UIButton *_leftReturnBtn;
-    UILabel *_subTitleLabel;
-    __weak IBOutlet UIButton *loginButton;
 }
 
-@property (strong, nonatomic) IBOutlet UIButton *avatarButton;
+@property (nonatomic, strong) UIButton *leftReturnBtn;
+@property (strong, nonatomic) UIButton *avatarButton;
+@property (nonatomic, strong) UIView *userNameView;
+@property (nonatomic, strong) UILabel *userNameLabel;
+@property (nonatomic, strong) UITextField *nameField;
+@property (nonatomic, strong) UIView *genderView;
+@property (nonatomic, strong) UILabel *genderLabel;
+@property (nonatomic, strong) UIButton *boyButton;
+@property (nonatomic, strong) UIButton *girlButton;
+@property (nonatomic, strong) UILabel *subTitleLabel;
+@property (nonatomic, strong) UIButton *signupButton;
+
+@property (nonatomic, strong) UIImage *avatarImage;
 @property (copy, nonatomic) NSString *gender_auto;//1男 2女  3性别无法判别时
 
 @property (nonatomic, copy) NSDictionary *inviteInfo;
@@ -52,21 +57,134 @@
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     self.view.backgroundColor = kBGColor;
     
+    self.title = @"完善资料";
+    
+    _avatarButton = [[UIButton alloc] init];
+    [_avatarButton setImage:[UIImage imageNamed:@"loginAvatar"] forState:UIControlStateNormal];
+    _avatarButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [_avatarButton addTarget:self action:@selector(uploadAvatar) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_avatarButton];
+    [_avatarButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).offset(35);
+        make.width.equalTo(@90);
+        make.height.equalTo(@90);
+    }];
+    
+    _userNameView = [[UIView alloc] init];
+    _userNameView.backgroundColor = UIColor.whiteColor;
+    _userNameView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_userNameView];
+    [_userNameView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_avatarButton.mas_bottom).offset(35);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@50);
+    }];
+    
+    _userNameLabel = [[UILabel alloc] init];
+    _userNameLabel.text = @"用户名";
+    _userNameLabel.textColor = kBlackTextColor;
+    _userNameLabel.font = [UIFont systemFontOfSize:15];
+    [_userNameView addSubview:_userNameLabel];
+    [_userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_userNameView.mas_left).offset(20);
+        make.centerY.equalTo(_userNameView.mas_centerY);
+        make.width.equalTo(@50);
+    }];
+    
+    _nameField = [[UITextField alloc] init];
+    _nameField.font = [UIFont systemFontOfSize:15];
+    _nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _nameField.delegate = self;
+    _nameField.placeholder = @"设置你的用户名";
+    [_userNameView addSubview:_nameField];
+    [_nameField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_userNameLabel.mas_right).offset(10);
+        make.right.equalTo(_userNameView).offset(-10);
+        make.centerY.equalTo(_userNameView.mas_centerY);
+    }];
+
+    _genderView = [[UIView alloc] init];
+    _genderView.backgroundColor = UIColor.whiteColor;
+    _genderView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_genderView];
+    [_genderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_userNameView.mas_bottom).offset(15);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@50);
+    }];
+    
+    _genderLabel = [[UILabel alloc] init];
+    _genderLabel.text = @"性别";
+    _genderLabel.textColor = kBlackTextColor;
+    _genderLabel.font = [UIFont systemFontOfSize:15];
+    [_genderView addSubview:_genderLabel];
+    [_genderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_genderView.mas_left).offset(20);
+        make.centerY.equalTo(_genderView.mas_centerY);
+        make.width.equalTo(@50);
+    }];
+    
+    _boyButton = [[UIButton alloc] init];
+    [_boyButton setTitle:@"男" forState:UIControlStateNormal];
+    [_boyButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [_boyButton setImage:[UIImage imageNamed:@"radio"] forState:UIControlStateNormal];
+    [_boyButton setImage:[UIImage imageNamed:@"radioChecked"] forState:UIControlStateSelected];
+    [_boyButton setImagePosition:LXMImagePositionLeft spacing:10];
+    [_boyButton addTarget:self action:@selector(tapBoy:) forControlEvents:UIControlEventTouchUpInside];
+    [_genderView addSubview:_boyButton];
+    [_boyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_genderLabel.mas_right);
+        make.top.bottom.equalTo(_genderView);
+        make.width.equalTo(@80);
+    }];
+
+    _girlButton = [[UIButton alloc] init];
+    [_girlButton setTitle:@"女" forState:UIControlStateNormal];
+    [_girlButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    [_girlButton setImage:[UIImage imageNamed:@"radio"] forState:UIControlStateNormal];
+    [_girlButton setImage:[UIImage imageNamed:@"radioChecked"] forState:UIControlStateSelected];
+    [_girlButton addTarget:self action:@selector(tapGirl:) forControlEvents:UIControlEventTouchUpInside];
+    [_girlButton setImagePosition:LXMImagePositionLeft spacing:10];
+    [_genderView addSubview:_girlButton];
+    [_girlButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_boyButton.mas_right).offset(10);
+        make.top.bottom.equalTo(_genderView);
+        make.width.equalTo(@80);
+    }];
+    
     _subTitleLabel = [[UILabel alloc] init];
     _subTitleLabel.textAlignment = NSTextAlignmentCenter;
     _subTitleLabel.numberOfLines = 2;
+    _subTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _subTitleLabel.text = @"为确保资料真实，保障您的人身及账户资金安全，提交资料后需要您进行人脸识别，请确保是您本人操作";
     _subTitleLabel.hidden = YES;
-    _subTitleLabel.font = [UIFont systemFontOfSize:12];
+    _subTitleLabel.font = [UIFont systemFontOfSize:13];
     _subTitleLabel.textColor = UIColor.grayColor;
     [self.view addSubview:_subTitleLabel];
     [_subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(18);
         make.right.equalTo(self.view).offset(-18);
-        make.top.equalTo(loginButton.mas_bottom).offset(10);
+        make.top.equalTo(_genderView.mas_bottom).offset(10);
     }];
-    
-    
+
+    _signupButton = [[UIButton alloc] init];
+    _signupButton.translatesAutoresizingMaskIntoConstraints = NO;
+    _signupButton.backgroundColor = kYellowColor;
+    [_signupButton setTitle:@"登录" forState:UIControlStateNormal];
+    [_signupButton setTitleColor:kBlackTextColor forState:UIControlStateNormal];
+    _signupButton.titleLabel.font = [UIFont systemFontOfSize:17];
+    [_signupButton addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_signupButton];
+    [_signupButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.top.equalTo(_subTitleLabel.mas_top).offset(50);
+        make.height.equalTo(@50);
+    }];
+
+ 
+
     if (!_user) {
         _user = [[ZZUser alloc] init];
     }
@@ -107,7 +225,7 @@
         [_user getGenderAutoWithParam:@{@"image_best" : _faces[0]} next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             [ZZHUD dismiss];
             _gender_auto = [NSString stringWithFormat:@"%d", [data[@"gender_auto"] intValue]];
-            
+
             if ([_gender_auto intValue] == 1) {
                 [weakSelf tapBoy:_boyButton];
             }
@@ -127,15 +245,14 @@
     [_leftReturnBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateHighlighted];
     [_leftReturnBtn addTarget:self action:@selector(navigationLeftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItems =@[leftItem];
-    
+
 }
 
 - (void)navigationLeftBtnClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)done:(UIButton *)sender {
-    WeakSelf
+- (void)done:(UIButton *)sender {
     [self.view endEditing:YES];
     [MobClick event:Event_click_infomation_complete];
     NSString *nickname = [_nameField.text trimmedString];
@@ -149,17 +266,18 @@
         [ZZHUD showErrorWithStatus:@"用户名不能全空格"];
         return;
     }
-    
+
     if (nickname.length == 0 || [ZZUtils lenghtWithString:nickname] > 15) {
         [ZZHUD showErrorWithStatus:@"用户名不能超过7个汉字或15个字母"];
         return;
     }
-    
+
     if (!_user.gender) {
         [ZZHUD showErrorWithStatus:@"请选择性别"];
         return;
     }
-    
+
+    WeakSelf
     [ZZUserHelper checkTextWithText:nickname type:2 next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
            [ZZHUD showErrorWithStatus:error.message];
@@ -256,19 +374,19 @@
     else {
         [aDict setObject:_code forKey:@"code"];
     }
-    
+
     if (isNullString(_countryCode)) {
         [aDict setObject:@"" forKey:@"country_code"];
     }
     else {
         [aDict setObject:_countryCode forKey:@"country_code"];
     }
-    
+
     // 是否需要人工审核头像
     if (shouldManualReview) {
         aDict[@"avatar_manual_status"] = @1;
     }
-    
+
     // 如果没有自动检测性别，则这个参数传和选择的相反
     if (isNullString(_gender_auto)) {
         if (_user.gender == 1) {
@@ -281,12 +399,12 @@
     else {
         [aDict setObject:_gender_auto forKey:@"gender_auto"];
     }
-    
+
     if (_inviteInfo && !isNullString(_inviteInfo[@"code"]) && !isNullString(_inviteInfo[@"uid"])) {
         aDict[@"invite_code"] = _inviteInfo[@"code"];
         aDict[@"invite_uid"] = _inviteInfo[@"uid"];
     }
-    
+
     NSString *uuid = [WBKeyChain keyChainLoadWithKey:DEVICE_ONLY_KEY];
     if (isNullString(uuid)) {
         uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
@@ -296,7 +414,7 @@
         [aDict setObject:uuid forKey:@"uuid"];
     }
     [ZZHUD show];
-    
+
     if (_isQuickLogin) {
         [self quickLogin:aDict shouldManualReview:shouldManualReview];
     }
@@ -307,7 +425,7 @@
 
 - (void)quickLogin:(NSMutableDictionary *)aDict shouldManualReview:(BOOL)shouldManualReview {
     aDict[@"AccessToken"] = _quickLoginToken;
-    
+
     [ZZRequest method:@"POST" path:@"/user/registerByAliMobile" params:aDict next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
@@ -319,19 +437,19 @@
             }
             ZZUser *loginer = [ZZUser yy_modelWithJSON:data[@"user"]];
             [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
-         
+
             [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
-            
+
             _userHelper.uploadToken = data[@"upload_token"];
             [_userHelper saveLoginer:loginer postNotif:YES];
-            
+
             if ([ZZUserHelper shareInstance].location) {
                 [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
             }
-            
+
             ZZSignRecommendViewController *controller = [[ZZSignRecommendViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
-            
+
             // openInstall 统计注册的
             if (_inviteInfo && !isNullString(_inviteInfo[@"code"]) && !isNullString(_inviteInfo[@"uid"])) {
 //#ifdef DEBUG
@@ -340,7 +458,7 @@
 //
 //#endif
             }
-            
+
         }
         _leftReturnBtn.userInteractionEnabled = YES;
     }];
@@ -359,17 +477,17 @@
             ZZUser *loginer = [ZZUser yy_modelWithJSON:data[@"user"]];
             [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
             [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
-            
+
             _userHelper.uploadToken = data[@"upload_token"];
             [_userHelper saveLoginer:loginer postNotif:YES];
-            
+
             if ([ZZUserHelper shareInstance].location) {
                 [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
             }
-            
+
             ZZSignRecommendViewController *controller = [[ZZSignRecommendViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
-            
+
             // openInstall 统计注册的
             if (_inviteInfo && !isNullString(_inviteInfo[@"code"]) && !isNullString(_inviteInfo[@"uid"])) {
                 [[OpenInstallSDK defaultManager] reportEffectPoint:@"register" effectValue:1];
@@ -396,7 +514,7 @@
         } else {
             [ZZHUD dismiss];
             if ([ZZUserHelper shareInstance].publicToken) {
-           
+
 
                 [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
                 [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
@@ -426,7 +544,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [ZZHUD dismiss];
-            
+
             if ([ZZUserHelper shareInstance].publicToken) {
                 [ZZUserHelper shareInstance].oAuthToken = [ZZUserHelper shareInstance].publicToken;
                 [ZZUserHelper shareInstance].publicToken = nil;
@@ -448,30 +566,30 @@
     ZZUser *user = [ZZUser yy_modelWithJSON:data];
     [[ZZUserHelper shareInstance] saveLoginer:user postNotif:YES];
     if (!_isPush) {
-     
+
         [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UserLogin object:self];
     }
-    
+
     if ([ZZUserHelper shareInstance].location) {
         [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
     }
 }
 
-- (IBAction)tapBoy:(UIButton *)sender {
+- (void)tapBoy:(UIButton *)sender {
     sender.selected = YES;
     _girlButton.selected = NO;
     _user.gender = 1;
     _subTitleLabel.hidden = YES;
 }
 
-- (IBAction)tapGirl:(UIButton *)sender {
+- (void)tapGirl:(UIButton *)sender {
     sender.selected = YES;
     _boyButton.selected = NO;
     _user.gender = 2;
     _subTitleLabel.hidden = NO;
 }
 
-- (IBAction)uploadAvatar:(UIButton *)sender {
+- (void)uploadAvatar {
     [MobClick event:Event_click_infomation_uploadhead];
     [self.view endEditing:YES];
     [UIActionSheet showInView:self.view
@@ -487,13 +605,13 @@
                              imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
                                  IOS_11_NO_Show
                                  [[UIApplication sharedApplication] setStatusBarHidden:YES];
-               
+
                                  [picker dismissViewControllerAnimated:YES completion:^{
                                      UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
                                      [weakSelf updateImg:image];
                                  }];
                              };
-                             
+
                              imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
                                  [picker dismissViewControllerAnimated:YES completion:nil];
                              };
@@ -503,11 +621,11 @@
                              imgPicker.cameraViewTransform = CGAffineTransformScale(transform, -1, 1);
                              imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
                              [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
-                             
+
                          }
                          if (buttonIndex ==1) {
                           IOS_11_Show
-                      
+
                              WeakSelf;
                              IOS_11_Show
                              UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
@@ -517,22 +635,22 @@
                              imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
                                  IOS_11_NO_Show
                                  [[UIApplication sharedApplication] setStatusBarHidden:YES];
-                                 
+
                                  [picker dismissViewControllerAnimated:YES completion:^{
                                      UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
                                      [weakSelf edit:image];
-                                     
+
                                  }];
                              };
                              imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
                                  [picker dismissViewControllerAnimated:YES completion:nil];
                                  [[UIApplication sharedApplication] setStatusBarHidden:YES];
                                  IOS_11_NO_Show
-                                 
+
                              };
                              [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
                          }
-                         
+
                      }];
 }
 
@@ -544,7 +662,7 @@
 }
 //编辑相册
 -(void)edit:(UIImage *)originalImage{
-    
+
     PECropViewController *controller = [[PECropViewController alloc] init];
     controller.delegate = self;
     controller.image = originalImage;
@@ -559,8 +677,8 @@
                                           length);
     [controller resetCropRect];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    
-    
+
+
     [self presentViewController:navigationController animated:YES completion:NULL];
 }
 #pragma mark - PECropViewControllerDelegate methods

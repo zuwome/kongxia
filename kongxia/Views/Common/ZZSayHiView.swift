@@ -150,7 +150,7 @@ extension ZZSayHiView {
     
     @objc func confirm() {
         
-        var usersStr: String = ""
+//        var usersStr: String = ""
         var selectedUsers: [String];
         if sayHiType == .login || sayHiType == .dailyLogin {
             guard let selectUsers = fetchSelectedUsers(), selectUsers.count != responseModel.sayHiUsers?.count else {

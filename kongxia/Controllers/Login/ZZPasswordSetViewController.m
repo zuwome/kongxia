@@ -136,8 +136,7 @@
 }
 
 - (void)gotoUpdatePhotoWithIsPush:(BOOL)isPush {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    ZZSignUpS3ViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CompleteUserInfo"];
+    ZZSignUpS3ViewController *vc = [[ZZSignUpS3ViewController alloc] init];
     vc.fromSignUp = _fromSignUp;
     vc.code = _code;
     vc.countryCode = _countryCode;

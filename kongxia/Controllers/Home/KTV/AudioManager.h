@@ -63,12 +63,6 @@ typedef NS_ENUM(NSInteger, AudioState) {
 
 + (AudioManager *)audioManager;
 
-+ (AudioManager *)playAudio:(NSString *)audioPath;
-
-- (void)defaultPlayState:(NSString *)filePath;
-
-- (void)reset;
-
 #pragma mark - Record
 - (void)fetchRecordAuthentication:(void(^)(AVAudioSessionRecordPermission recordPermission))block;
 

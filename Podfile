@@ -19,8 +19,8 @@ target 'kongxia' do
     pod 'UMengAnalytics’
     
 #   融云
-    pod 'RongCloudIM/IMLib'
-    pod 'RongCloudIM/IMKit'
+  pod 'RongCloudIM/IMLib', '~> 5.2.4.1'
+  pod 'RongCloudIM/IMKit', '~> 5.2.4.1'
     
 #   智齿
     pod 'SobotKit'

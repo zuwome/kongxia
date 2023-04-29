@@ -1720,8 +1720,7 @@
 }
 
 - (BOOL)gotoUploadPhoto {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    ZZSignUpS3ViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CompleteUserInfo"];
+    ZZSignUpS3ViewController *vc =[[ZZSignUpS3ViewController alloc] init];
     vc.faces = [NSMutableArray arrayWithArray:[ZZUserHelper shareInstance].loginer.faces];
     vc.user = [ZZUserHelper shareInstance].loginer;
     vc.isPush = YES;

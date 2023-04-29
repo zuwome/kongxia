@@ -41,12 +41,6 @@ static dispatch_once_t predicate;
     _instance = nil;
 }
 
-+ (AudioManager *)playAudio:(NSString *)audioPath {
-//    NSString *fullPath = [NSString stringWithFormat:@"http://img.movtrip.com/%@", audioPath];
-    AudioManager *audioPlayer     = [AudioManager audioManager];
-//    [audioPlayer defaultPlayState:fullPath];
-    return audioPlayer;
-}
 
 - (instancetype)init {
     self = [super init];
