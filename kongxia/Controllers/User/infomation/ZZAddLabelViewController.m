@@ -318,7 +318,7 @@
     
     WeakSelf;
     [self.selectedArray enumerateObjectsUsingBlock:^(ZZUserLabel *label, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([label.labelId isEqualToString:model.labelId]) {
+        if ([label.id isEqualToString:model.id]) {
             contain = YES;
             weakSelf.selectLabel = label;
             *stop = YES;

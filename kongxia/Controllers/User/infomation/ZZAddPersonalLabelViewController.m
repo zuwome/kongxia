@@ -10,6 +10,7 @@
 #import "ZZUserLabel.h"
 
 #import "ZZAddLabelCell.h"
+#import <YYModel.h>
 
 @interface ZZAddPersonalLabelViewController () <UICollectionViewDataSource,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -113,7 +114,7 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             [ZZHUD dismiss];
-            _tagArray = [ZZUserLabel arrayOfModelsFromDictionaries:data error:nil];
+            _tagArray = [NSArray yy_modelArrayWithClass:[ZZUserLabel class] json:data].mutableCopy;
             [_collectionView reloadData];
         }
     }];
@@ -160,7 +161,7 @@
     
     WeakSelf;
     [self.selectedArray enumerateObjectsUsingBlock:^(ZZUserLabel *label, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([label.labelId isEqualToString:model.labelId]) {
+        if ([label.id isEqualToString:model.id]) {
             contain = YES;
             weakSelf.selectLabel = label;
             *stop = YES;

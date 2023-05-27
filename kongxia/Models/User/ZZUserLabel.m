@@ -10,18 +10,6 @@
 
 @implementation ZZUserLabel
 
-+ (BOOL)propertyIsOptional:(NSString*)propertyName {
-    return YES;
-}
-
-+ (JSONKeyMapper *)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"id":@"labelId",
-                                                       @"content":@"content"
-                                                       }];
-}
-
 - (void)getData:(NSString *)url next:(requestCallback)next {
     [ZZRequest method:@"GET" path:[NSString stringWithFormat:@"%@",url] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         next(error, data, task);

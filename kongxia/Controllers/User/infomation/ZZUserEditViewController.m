@@ -379,8 +379,6 @@
     [_loginer.photos_origin addObjectsFromArray:self.headView.urlArray];
     
     if ([_loginer isAvatarManualReviewing] || !_headView.isUpdate) {
-        ZZUser *user = _loginer;
-        user.photos = user.photos_origin;
         NSMutableDictionary *userInfoMutableDic = [[self getUserDictionWithShouldUpdateSK:NO] mutableCopy];
         
         [_loginer updateWithParam:userInfoMutableDic next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
