@@ -169,6 +169,8 @@
 	<string>空虾将上传手机通讯录至空虾服务器用来屏蔽您通讯录中的朋友，不会保存您的通讯录内容。</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>空虾需要获取您的位置信息,以便您能正常获取附近达人的信息</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>空虾需要获取您的位置信息,以便您能正常获取附近达人的信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>空虾需要获取您的位置信息,以便您能正常获取附近达人的信息</string>
 	<key>NSMicrophoneUsageDescription</key>

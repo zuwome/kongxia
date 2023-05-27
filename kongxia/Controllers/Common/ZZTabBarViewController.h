@@ -26,7 +26,6 @@
 - (void)hideBubbleView;//隐藏浮窗（视频录制推荐）
 - (void)hideRentBubble;//隐藏闪租浮窗
 - (void)showBubbleView:(NSInteger)type;//1、注册后的推荐 2、城市变化的推荐
-- (void)dismissRecordViewCntrollerWhenBackgroundInto;//当从后台进入的时候如果跳转到聊天界面的前一个界面是录制界面就让录制界面消失
 
 - (void)resetMenuBtn;
 

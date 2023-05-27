@@ -396,10 +396,6 @@ typedef NS_ENUM(NSInteger, IDPhotoCellStatus) {
 - (void)updateWithParam:(NSDictionary *)param next:(requestCallback)next;
 - (void)updateUserFacesAndManualStatus:(NSDictionary *)param next:(requestCallback)next;
 
-- (void)updateWithParam:(NSDictionary *)param
-shouldCheckFaceManually:(BOOL)shouldCheckFaceManually
-                   next:(requestCallback)next;
-
 - (void)updatePhone:(NSDictionary *)param next:(requestCallback)next;
 - (void)updateAvatar:(NSDictionary *)param next:(requestCallback)next;// 单独更新头像接口
 

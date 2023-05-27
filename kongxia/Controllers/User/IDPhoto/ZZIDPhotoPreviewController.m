@@ -46,7 +46,7 @@
 }
 
 - (void)configData {
-    NSString *utfString = [_idPhotoURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *utfString = [_idPhotoURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     [_idPhotoimageView sd_setImageWithURL:[NSURL URLWithString:utfString] completed:nil];
 }
 
