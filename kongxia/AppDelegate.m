@@ -88,8 +88,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
-   
-    [self monitorNetworkStatus];
     
     [LoginHelper setAliAuthenSDK];
     
@@ -138,31 +136,10 @@
     return YES;
 }
 
-- (void)monitorNetworkStatus {
-    _reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reachabilityChanged:)
-                                                 name:kReachabilityChangedNotification
-                                               object:nil];
-    [_reach startNotifier];
-}
-
 - (void)configBaiduFaceCheck {
     NSString* licensePath = [[NSBundle mainBundle] pathForResource:FACE_LICENSE_NAME ofType:FACE_LICENSE_SUFFIX];
     NSAssert([[NSFileManager defaultManager] fileExistsAtPath:licensePath], @"license文件路径不对，请仔细查看文档");
     [[FaceSDKManager sharedInstance] setLicenseID:FACE_LICENSE_ID andLocalLicenceFile:licensePath];
-}
-
-- (void)reachabilityChanged:(NSNotification *)sender {
-//    NetworkStatus internetStatus = [self.reach currentReachabilityStatus];
-//    if (internetStatus) {
-//        // 可以访问网络
-//        NSLog(@"可以访问网络");
-//    }
-//    else {
-//        NSLog(@"没有可以访问的网络");
-//        // 没有可以访问的网络
-//    }
 }
 
 //启动内购,检测是否有漏单情况
@@ -446,6 +423,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
    NSLog(@"PY_进入前台");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AppDidBecomeActive" object:nil];
+    
     //查询订单支付情况
     NSDictionary *paymentData = [ZZUserDefaultsHelper objectForDestKey:kPaymentData];
     NSString *paymentId = paymentData[@"id"];

@@ -663,11 +663,12 @@
  *  如果用户正在审核,并且有可用的旧头像, 就显示旧的头像. 如果没有就显示avatar.(这边东西多逻辑奇怪)
  */
 - (NSString *)displayAvatar {
+    NSString *pattern = @"\\?imageMogr2/blur/20x20";
     if ([self isAvatarManualReviewing] && [self didHaveOldAvatar]) {
         return self.old_avatar;
     }
     else {
-        if ([self.avatar isEqualToString:@"http://img.movtrip.com/user/avatar.png"]) {
+        if ([self.avatar isEqualToString:@"http://img.movtrip.com/user/avatar.png"] || [self.avatar isEqualToString:@"http://img.zuwome.com/?imageMogr2/blur/20x20"] ) {
             if (self.photos.count > 0) {
                 ZZPhoto *photo = self.photos[0];
                 return photo.url;
@@ -677,7 +678,7 @@
             }
         }
         else {
-            return self.avatar;
+            return [AvatarHelper RemoveDuplicateWithStr:self.avatar pattern:@"\\?imageMogr2/blur/20x20"];
         }
     }
 }

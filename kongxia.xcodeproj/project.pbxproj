@@ -833,6 +833,7 @@
 		ACFF24F2206B7F4600F29F11 /* ZZActivityUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F1206B7F4500F29F11 /* ZZActivityUrlModel.m */; };
 		ACFF24F6206B8C6A00F29F11 /* ZZActivityUrlNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */; };
 		ACFF24F9206BA6C300F29F11 /* ZZBanStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */; };
+		B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */; };
 		B70358B41FF4E40A002805EF /* ZZHeadAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B70358B31FF4E40A002805EF /* ZZHeadAnimationView.m */; };
 		B70358B71FF4E528002805EF /* ZZWhiteLaceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B70358B61FF4E528002805EF /* ZZWhiteLaceHeadView.m */; };
 		B71B351E1F9B3E6200B86734 /* ZZSystemToolsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B71B351D1F9B3E6200B86734 /* ZZSystemToolsManager.m */; };
@@ -3171,6 +3172,7 @@
 		ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZActivityUrlNetManager.m; sourceTree = "<group>"; };
 		ACFF24F7206BA6C300F29F11 /* ZZBanStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBanStateModel.h; sourceTree = "<group>"; };
 		ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBanStateModel.m; sourceTree = "<group>"; };
+		B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarHelper.swift; sourceTree = "<group>"; };
 		B70358B21FF4E40A002805EF /* ZZHeadAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZHeadAnimationView.h; sourceTree = "<group>"; };
 		B70358B31FF4E40A002805EF /* ZZHeadAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZHeadAnimationView.m; sourceTree = "<group>"; };
 		B70358B51FF4E528002805EF /* ZZWhiteLaceHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZWhiteLaceHeadView.h; sourceTree = "<group>"; };
@@ -4963,6 +4965,7 @@
 				BD20A8162541CEE7007B2800 /* ZZLivenessHelper.m */,
 				BD698B4B2830140300EF83F1 /* ZZServerHelper.swift */,
 				BD2BBCF9297044C10025A3BE /* MessageHelper.swift */,
+				B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -11558,6 +11561,7 @@
 				040C94D521119D0D00FD4E94 /* ZZScheduleTableHeader.m in Sources */,
 				91DBA28F1F613CF700013F4C /* ZZMessageHeadView.m in Sources */,
 				91DB9E011F6129E600013F4C /* ZZRealNameListViewController.m in Sources */,
+				B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */,
 				BDE59FFE2227882300ACCDA9 /* ZZOrderReportReasonCell.swift in Sources */,
 				BD6DA0AD226474D000102627 /* ZZTaskLikesViewModel.m in Sources */,
 				91DBA1951F613CF600013F4C /* ZZHUD.m in Sources */,
@@ -12537,7 +12541,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12752,7 +12756,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12968,7 +12972,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13183,7 +13187,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;

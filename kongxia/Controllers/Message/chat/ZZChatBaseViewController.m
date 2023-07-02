@@ -625,6 +625,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveRecallNotification:) name:RCKitDispatchRecallMessageNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(AppDidBecomeActive:) name:@"AppDidBecomeActive" object:nil];
     
     [self checkBurnAfterReading];
 }
@@ -1186,6 +1188,12 @@
 
 //TODO:发送消息的接口
 - (void)chatView:(ZZChatBoxView *)boxView sendTextMessage:(NSString *)messageStr {
+    
+    if (![[AFNetworkReachabilityManager sharedManager] isReachable]) {
+        [ZZHUD showErrorWithStatus:@"无网络连接"];
+        return;
+    }
+    
     if ([ZZUtils isBan]) {
         return;
     }
@@ -1811,6 +1819,10 @@
 }
 
 #pragma mark - NSNotification
+- (void)AppDidBecomeActive:(NSNotification *)notification {
+    [self askForAPrivateChatFeeAgain];
+}
+
 //收到消息通知
 - (void)receiveMessageNofitication:(NSNotification *)notification {
     RCMessage *message = [notification.userInfo objectForKey:@"message"];

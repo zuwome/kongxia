@@ -721,9 +721,14 @@
             if (!error && data) {
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
+                [self sendUpdateLocationNotification];
             }
         }];
     }
+}
+
+- (void)sendUpdateLocationNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_LocationDidChange object:nil];
 }
 
 /**

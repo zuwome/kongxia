@@ -46,8 +46,8 @@
 }
 
 - (void)configData {
-    NSString *utfString = [_idPhotoURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    [_idPhotoimageView sd_setImageWithURL:[NSURL URLWithString:utfString] completed:nil];
+    NSString *urlEncoded = [_idPhotoURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [_idPhotoimageView sd_setImageWithURL:[NSURL URLWithString:urlEncoded] completed:nil];
 }
 
 /**
@@ -197,7 +197,7 @@
     if (!_idPhotoimageView) {
         _idPhotoimageView = [[UIImageView alloc] init];
         _idPhotoimageView.contentMode = UIViewContentModeScaleAspectFit;
-        _idPhotoimageView.backgroundColor = UIColor.blackColor;
+//        _idPhotoimageView.backgroundColor = UIColor.blackColor;
     }
     return _idPhotoimageView;
 }

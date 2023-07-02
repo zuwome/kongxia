@@ -196,7 +196,7 @@
                     default:
                         break;
                 }
-                ZZUserLabel *userLabel = [[ZZUserLabel alloc] initWithDictionary:cateDict error:nil];
+                ZZUserLabel *userLabel = [ZZUserLabel yy_modelWithJSON:cateDict];
                 [_typeArray addObject:userLabel];
             }];
             
@@ -227,7 +227,7 @@
     }
     
     [_tagArray removeAllObjects];
-    _tagArray = [ZZUserLabel arrayOfModelsFromDictionaries:subArray error:nil];
+    _tagArray = [[NSArray yy_modelArrayWithClass:[ZZUserLabel class] json:subArray] mutableCopy];
     [_collectionView reloadData];
 }
 

@@ -1117,11 +1117,12 @@
     controller.isFromHome = YES;
     controller.user = user;
     controller.uid = user.uid;
-    [self.navigationController wxs_pushViewController:controller makeTransition:^(WXSTransitionProperty *transition) {
-        transition.animationType = WXSTransitionAnimationTypeCustomZoom;
-        transition.animationTime = 0.4;
-        transition.startView  = imgView;
-    }];
+    [self.navigationController pushViewController:controller animated:YES];
+//    [self.navigationController wxs_pushViewController:controller makeTransition:^(WXSTransitionProperty *transition) {
+//        transition.animationType = WXSTransitionAnimationTypeCustomZoom;
+//        transition.animationTime = 0.4;
+//        transition.startView  = imgView;
+//    }];
 }
 
 /**

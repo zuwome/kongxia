@@ -59,11 +59,17 @@
             [weakSelf reloadInfo];
         }
     };
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidUpdate) name:kMsg_LocationDidChange object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSLog(@"did disappear");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)locationDidUpdate {
+    [self reloadInfo];
 }
 
 - (void)checkLocationAuthority

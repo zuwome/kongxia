@@ -294,9 +294,7 @@
     [self.dynamicCtrl setUser:_user];
 }
 - (void)updateUserInfo {
-//    _user = [ZZUserHelper shareInstance].loginer;
-//    ZZPhoto *photo = _user.photos.firstObject;
-//    NSLog(@"image:%@", photo.url);
+    _user = [ZZUserHelper shareInstance].loginer;
     [self reloadUserInfo];
 }
 

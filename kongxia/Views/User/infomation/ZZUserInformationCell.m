@@ -128,6 +128,7 @@
                         }
                     }];
                 } else {
+                    _contentLabel.text = nil;
                     if (![ZZUserHelper shareInstance].userFirstJob) {
                         _redPointView.hidden = NO;
                     }
