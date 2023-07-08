@@ -90,13 +90,11 @@
         }
     };
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coverWindowClick) name:@"click" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidUpdate) name:kMsg_LocationDidChange object:nil];
 }
 
-- (void)coverWindowClick {
-   [UIView animateWithDuration:0.5 animations:^{
-       [self.tableview setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
-   }];
+- (void)locationDidUpdate {
+    [self reloadInfo];
 }
 
 - (void)createViews {
