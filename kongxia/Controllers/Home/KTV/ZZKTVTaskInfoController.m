@@ -23,9 +23,9 @@
 
 #import "ZZKTVAudioPlayManager.h"
 #import "ZZKTVConfig.h"
-#import "faac.h"
-#import "ESCFAACDecoder.h"
-#import "ESCAACEncoder.h"
+//#import "faac.h"
+//#import "ESCFAACDecoder.h"
+//#import "ESCAACEncoder.h"
 #import "AudioManager.h"
 #import <RongIMLib/RongIMLib.h>
 #import "ZZChatKTVModel.h"
@@ -187,17 +187,17 @@
     [_tableView reloadData];
 }
 
-- (void)convertPCMToAAc:(NSString *)pcmPath completion:(void(^)(NSData *aacFileData))completion {
-    ESCAACEncoder *aacEncoder = [[ESCAACEncoder alloc] init];
-    [aacEncoder setupEncoderWithSampleRate:8000 channels:1 sampleBit:16];
-    NSData *pcmData = [NSData dataWithContentsOfFile:pcmPath];
-    NSData *aacData = [aacEncoder encodePCMDataWithPCMData:pcmData];
-    [aacEncoder closeEncoder];
-    
-    if (completion) {
-        completion(aacData ? aacData : nil);
-    }
-}
+//- (void)convertPCMToAAc:(NSString *)pcmPath completion:(void(^)(NSData *aacFileData))completion {
+//    ESCAACEncoder *aacEncoder = [[ESCAACEncoder alloc] init];
+//    [aacEncoder setupEncoderWithSampleRate:8000 channels:1 sampleBit:16];
+//    NSData *pcmData = [NSData dataWithContentsOfFile:pcmPath];
+//    NSData *aacData = [aacEncoder encodePCMDataWithPCMData:pcmData];
+//    [aacEncoder closeEncoder];
+//    
+//    if (completion) {
+//        completion(aacData ? aacData : nil);
+//    }
+//}
 
 // 为pcm文件写入wav头
 - (NSData*)writeWavHead:(NSData *)audioData {

@@ -33,7 +33,7 @@ PODS:
   - JSONModel (1.8.0)
   - LCActionSheet (3.3.3):
     - Masonry (~> 1.1.0)
-  - libOpenInstallSDK (2.7.1)
+  - libOpenInstallSDK (2.8.0)
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
   - MGSwipeTableCell (1.6.11)
@@ -218,7 +218,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   LCActionSheet: b111d036a2323a580e51facfe57c0440bb374f52
-  libOpenInstallSDK: ba46171e5ac466deb82fc0f9174a6da3bca0e830
+  libOpenInstallSDK: 3c24ebe6cc0eb7856918023f07b2e8d3202c7db8
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
@@ -250,4 +250,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 807bdd945cc9bc4dcb3557d507394e565c1eac88
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

@@ -89,7 +89,6 @@
 		33EC7FD01C5E6EA2001D157F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EC7FCF1C5E6EA2001D157F /* QuartzCore.framework */; };
 		33F7EF371C4BDFD400B76F08 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F7EF361C4BDFD400B76F08 /* SystemConfiguration.framework */; };
 		33F7EF391C4BDFED00B76F08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F7EF381C4BDFED00B76F08 /* Security.framework */; };
-		33F7EF3B1C4BE01000B76F08 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F7EF3A1C4BE01000B76F08 /* libiconv.2.4.0.tbd */; };
 		33F7EF3D1C4BE01D00B76F08 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F7EF3C1C4BE01D00B76F08 /* CoreGraphics.framework */; };
 		33F7EF3F1C4BE02700B76F08 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F7EF3E1C4BE02700B76F08 /* libsqlite3.tbd */; };
 		33F7EF411C4BE03600B76F08 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F7EF401C4BE03600B76F08 /* CoreTelephony.framework */; };
@@ -961,11 +960,6 @@
 		BD16E25426FE4DCD00C57EA2 /* ZZBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD16E25326FE4DCD00C57EA2 /* ZZBaseTableView.m */; };
 		BD17814923CDA0F5005567BA /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17814823CDA0F5005567BA /* AudioManager.m */; };
 		BD17814C23CDA12A005567BA /* FileCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17814B23CDA12A005567BA /* FileCenter.m */; };
-		BD17816923CE0486005567BA /* ESCFAACDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17815823CE0485005567BA /* ESCFAACDecoder.m */; };
-		BD17816A23CE0486005567BA /* libfaac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD17815E23CE0485005567BA /* libfaac.a */; };
-		BD17816B23CE0486005567BA /* libmp4ff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD17816623CE0485005567BA /* libmp4ff.a */; };
-		BD17816C23CE0486005567BA /* libfaad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD17816723CE0485005567BA /* libfaad.a */; };
-		BD17816D23CE0486005567BA /* ESCAACEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17816823CE0485005567BA /* ESCAACEncoder.m */; };
 		BD17817023CE12D3005567BA /* ZZKTVRecordCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17816F23CE12D3005567BA /* ZZKTVRecordCompleteView.m */; };
 		BD17817323CE251D005567BA /* ZZKTVDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17817223CE251D005567BA /* ZZKTVDetailsModel.m */; };
 		BD17817623CE282E005567BA /* ZZKTVReceiveUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD17817523CE282E005567BA /* ZZKTVReceiveUserModel.m */; };
@@ -3358,19 +3352,6 @@
 		BD17814823CDA0F5005567BA /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		BD17814A23CDA12A005567BA /* FileCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCenter.h; sourceTree = "<group>"; };
 		BD17814B23CDA12A005567BA /* FileCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCenter.m; sourceTree = "<group>"; };
-		BD17815623CE0485005567BA /* ESCFAACDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCFAACDecoder.h; sourceTree = "<group>"; };
-		BD17815723CE0485005567BA /* ESCAACEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCAACEncoder.h; sourceTree = "<group>"; };
-		BD17815823CE0485005567BA /* ESCFAACDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCFAACDecoder.m; sourceTree = "<group>"; };
-		BD17815B23CE0485005567BA /* faac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = faac.h; sourceTree = "<group>"; };
-		BD17815C23CE0485005567BA /* faaccfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = faaccfg.h; sourceTree = "<group>"; };
-		BD17815E23CE0485005567BA /* libfaac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfaac.a; sourceTree = "<group>"; };
-		BD17816123CE0485005567BA /* neaacdec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neaacdec.h; sourceTree = "<group>"; };
-		BD17816223CE0485005567BA /* mp4ff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mp4ff.h; sourceTree = "<group>"; };
-		BD17816323CE0485005567BA /* mp4ffint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mp4ffint.h; sourceTree = "<group>"; };
-		BD17816423CE0485005567BA /* faad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = faad.h; sourceTree = "<group>"; };
-		BD17816623CE0485005567BA /* libmp4ff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp4ff.a; sourceTree = "<group>"; };
-		BD17816723CE0485005567BA /* libfaad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfaad.a; sourceTree = "<group>"; };
-		BD17816823CE0485005567BA /* ESCAACEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCAACEncoder.m; sourceTree = "<group>"; };
 		BD17816E23CE12D3005567BA /* ZZKTVRecordCompleteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVRecordCompleteView.h; sourceTree = "<group>"; };
 		BD17816F23CE12D3005567BA /* ZZKTVRecordCompleteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZKTVRecordCompleteView.m; sourceTree = "<group>"; };
 		BD17817123CE251D005567BA /* ZZKTVDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZKTVDetailsModel.h; sourceTree = "<group>"; };
@@ -4418,7 +4399,6 @@
 				BD5DB5BA27B53ABC00BBBDEA /* MGFaceIDBaseKit.framework in Frameworks */,
 				9101AE1B1DB626050014F1CB /* WebKit.framework in Frameworks */,
 				91D376561D2F4A2C0002F63B /* AssetsLibrary.framework in Frameworks */,
-				BD17816A23CE0486005567BA /* libfaac.a in Frameworks */,
 				BDFDC45622D4315500B92634 /* AddressBookUI.framework in Frameworks */,
 				BDFDC45722D4315500B92634 /* AddressBook.framework in Frameworks */,
 				BDA5007322FA785A00BCB48E /* libopencore-amrwb.a in Frameworks */,
@@ -4429,7 +4409,6 @@
 				BDA500F222FA785B00BCB48E /* UMSocialNetwork.framework in Frameworks */,
 				BDFDD62021DBAA9D0024C028 /* MediaPlayer.framework in Frameworks */,
 				BDFDD61C21DBAA660024C028 /* CoreAudio.framework in Frameworks */,
-				BD17816B23CE0486005567BA /* libmp4ff.a in Frameworks */,
 				BDFDD61A21DBAA340024C028 /* Accelerate.framework in Frameworks */,
 				BDFDD61821DBA9E10024C028 /* CoreVideo.framework in Frameworks */,
 				BDFDD61721DBA9A00024C028 /* AVKit.framework in Frameworks */,
@@ -4468,8 +4447,6 @@
 				33F7EF3F1C4BE02700B76F08 /* libsqlite3.tbd in Frameworks */,
 				BDA500F422FA785B00BCB48E /* UMSocialCore.framework in Frameworks */,
 				BDFD975C233CBBD500CE0DCB /* libMiPushSDK.a in Frameworks */,
-				BD17816C23CE0486005567BA /* libfaad.a in Frameworks */,
-				33F7EF3B1C4BE01000B76F08 /* libiconv.2.4.0.tbd in Frameworks */,
 				33F7EF391C4BDFED00B76F08 /* Security.framework in Frameworks */,
 				A5B9593CE613E433286FE060 /* libPods-kongxia.a in Frameworks */,
 			);
@@ -8399,74 +8376,6 @@
 			path = IDPhoto;
 			sourceTree = "<group>";
 		};
-		BD17815523CE0485005567BA /* Faac */ = {
-			isa = PBXGroup;
-			children = (
-				BD17815623CE0485005567BA /* ESCFAACDecoder.h */,
-				BD17815723CE0485005567BA /* ESCAACEncoder.h */,
-				BD17815823CE0485005567BA /* ESCFAACDecoder.m */,
-				BD17815923CE0485005567BA /* faac */,
-				BD17815F23CE0485005567BA /* faad */,
-				BD17816823CE0485005567BA /* ESCAACEncoder.m */,
-			);
-			path = Faac;
-			sourceTree = "<group>";
-		};
-		BD17815923CE0485005567BA /* faac */ = {
-			isa = PBXGroup;
-			children = (
-				BD17815A23CE0485005567BA /* include */,
-				BD17815D23CE0485005567BA /* lib */,
-			);
-			path = faac;
-			sourceTree = "<group>";
-		};
-		BD17815A23CE0485005567BA /* include */ = {
-			isa = PBXGroup;
-			children = (
-				BD17815B23CE0485005567BA /* faac.h */,
-				BD17815C23CE0485005567BA /* faaccfg.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		BD17815D23CE0485005567BA /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				BD17815E23CE0485005567BA /* libfaac.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		BD17815F23CE0485005567BA /* faad */ = {
-			isa = PBXGroup;
-			children = (
-				BD17816023CE0485005567BA /* include */,
-				BD17816523CE0485005567BA /* lib */,
-			);
-			path = faad;
-			sourceTree = "<group>";
-		};
-		BD17816023CE0485005567BA /* include */ = {
-			isa = PBXGroup;
-			children = (
-				BD17816123CE0485005567BA /* neaacdec.h */,
-				BD17816223CE0485005567BA /* mp4ff.h */,
-				BD17816323CE0485005567BA /* mp4ffint.h */,
-				BD17816423CE0485005567BA /* faad.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		BD17816523CE0485005567BA /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				BD17816623CE0485005567BA /* libmp4ff.a */,
-				BD17816723CE0485005567BA /* libfaad.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		BD2C000223BB380900756D98 /* Indicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -9140,7 +9049,6 @@
 				BDA5FFD022FA785900BCB48E /* BaseManager */,
 				BDA5000422FA785A00BCB48E /* ESAutoHeightImageScroll */,
 				BDA5FE3422FA785900BCB48E /* ESMaskBanner */,
-				BD17815523CE0485005567BA /* Faac */,
 				BDA5FD8C22FA785800BCB48E /* FaceSDK */,
 				BDA5FD6522FA785800BCB48E /* HttpDNS */,
 				BDA5FD6F22FA785800BCB48E /* InputView */,
@@ -11525,7 +11433,6 @@
 				BD5227FE2260220200340A6A /* ZZCameraFilterView.m in Sources */,
 				BDA5013D22FA785B00BCB48E /* AdView.m in Sources */,
 				04F7F0D9217422E8008F6AFF /* ZZRentChatBottomView.m in Sources */,
-				BD17816923CE0486005567BA /* ESCFAACDecoder.m in Sources */,
 				AC1DC6EA20CF785800D1D9F0 /* ZZTiXianBaseCell.m in Sources */,
 				BDA500E622FA785B00BCB48E /* rotate_neon.cc in Sources */,
 				AC3E00B41FFB37B700E3B893 /* ZZMeBiModel.m in Sources */,
@@ -11656,7 +11563,6 @@
 				BDA1A8FA225200C100748242 /* ZZTimeSelector.m in Sources */,
 				91DBA1B41F613CF600013F4C /* ZZFindHotTopicView.m in Sources */,
 				BDE200882297C52B00589E12 /* ZZRankModel.swift in Sources */,
-				BD17816D23CE0486005567BA /* ESCAACEncoder.m in Sources */,
 				BDA5010222FA785B00BCB48E /* WBSearchHeaderView.m in Sources */,
 				B73DFD231F9F290C00D02104 /* PLSRateButtonView.m in Sources */,
 				919D871D1DED666600119B17 /* ZZChatUtil.m in Sources */,
@@ -12619,6 +12525,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
+					"-ld64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -12834,6 +12741,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
+					"-ld64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -13050,6 +12958,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
+					"-ld64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -13264,6 +13173,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
+					"-ld64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
