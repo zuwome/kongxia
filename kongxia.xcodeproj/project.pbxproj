@@ -833,6 +833,15 @@
 		ACFF24F6206B8C6A00F29F11 /* ZZActivityUrlNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */; };
 		ACFF24F9206BA6C300F29F11 /* ZZBanStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */; };
 		B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */; };
+		B6FA4CBB2ADA2FF600A4B44F /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */; };
+		B6FA4CBC2ADA2FF600A4B44F /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B6FA4CAB2ADA2FF600A4B44F /* Pingpp.bundle */; };
+		B6FA4CBD2ADA2FF600A4B44F /* libpingpp+network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CAF2ADA2FF600A4B44F /* libpingpp+network.a */; };
+		B6FA4CBE2ADA2FF600A4B44F /* libpingpp+webview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CB12ADA2FF600A4B44F /* libpingpp+webview.a */; };
+		B6FA4CBF2ADA2FF600A4B44F /* libpingpp+agreement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CB32ADA2FF600A4B44F /* libpingpp+agreement.a */; };
+		B6FA4CC02ADA2FF600A4B44F /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B6FA4CB62ADA2FF600A4B44F /* AlipaySDK.bundle */; };
+		B6FA4CC12ADA2FF600A4B44F /* libpingpp+alipay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CB72ADA2FF600A4B44F /* libpingpp+alipay.a */; };
+		B6FA4CC22ADA2FF700A4B44F /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CB82ADA2FF600A4B44F /* AlipaySDK.framework */; };
+		B6FA4CC32ADA2FF700A4B44F /* libpingpp+wx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CBA2ADA2FF600A4B44F /* libpingpp+wx.a */; };
 		B70358B41FF4E40A002805EF /* ZZHeadAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B70358B31FF4E40A002805EF /* ZZHeadAnimationView.m */; };
 		B70358B71FF4E528002805EF /* ZZWhiteLaceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B70358B61FF4E528002805EF /* ZZWhiteLaceHeadView.m */; };
 		B71B351E1F9B3E6200B86734 /* ZZSystemToolsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B71B351D1F9B3E6200B86734 /* ZZSystemToolsManager.m */; };
@@ -3150,6 +3159,17 @@
 		ACFF24F7206BA6C300F29F11 /* ZZBanStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBanStateModel.h; sourceTree = "<group>"; };
 		ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBanStateModel.m; sourceTree = "<group>"; };
 		B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarHelper.swift; sourceTree = "<group>"; };
+		B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingppcore.a; sourceTree = "<group>"; };
+		B6FA4CAA2ADA2FF600A4B44F /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pingpp.h; sourceTree = "<group>"; };
+		B6FA4CAB2ADA2FF600A4B44F /* Pingpp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Pingpp.bundle; sourceTree = "<group>"; };
+		B6FA4CAE2ADA2FF600A4B44F /* PingppURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingppURLResponse.h; sourceTree = "<group>"; };
+		B6FA4CAF2ADA2FF600A4B44F /* libpingpp+network.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+network.a"; sourceTree = "<group>"; };
+		B6FA4CB12ADA2FF600A4B44F /* libpingpp+webview.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+webview.a"; sourceTree = "<group>"; };
+		B6FA4CB32ADA2FF600A4B44F /* libpingpp+agreement.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+agreement.a"; sourceTree = "<group>"; };
+		B6FA4CB62ADA2FF600A4B44F /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		B6FA4CB72ADA2FF600A4B44F /* libpingpp+alipay.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+alipay.a"; sourceTree = "<group>"; };
+		B6FA4CB82ADA2FF600A4B44F /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		B6FA4CBA2ADA2FF600A4B44F /* libpingpp+wx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+wx.a"; sourceTree = "<group>"; };
 		B70358B21FF4E40A002805EF /* ZZHeadAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZHeadAnimationView.h; sourceTree = "<group>"; };
 		B70358B31FF4E40A002805EF /* ZZHeadAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZHeadAnimationView.m; sourceTree = "<group>"; };
 		B70358B51FF4E528002805EF /* ZZWhiteLaceHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZWhiteLaceHeadView.h; sourceTree = "<group>"; };
@@ -4394,11 +4414,15 @@
 				B76E8ABE1FBAEFD60081EB48 /* libresolv.tbd in Frameworks */,
 				BDB35F6E2793213300C69BB7 /* libWeChatSDK.a in Frameworks */,
 				BDEF623E22E1A3550095ACFB /* UserNotifications.framework in Frameworks */,
+				B6FA4CBB2ADA2FF600A4B44F /* libpingppcore.a in Frameworks */,
 				BDFDC45922D431D100B92634 /* libiconv.tbd in Frameworks */,
 				BDA500FA22FA785B00BCB48E /* libWeiboSDK.a in Frameworks */,
 				BD5DB5BA27B53ABC00BBBDEA /* MGFaceIDBaseKit.framework in Frameworks */,
+				B6FA4CBF2ADA2FF600A4B44F /* libpingpp+agreement.a in Frameworks */,
 				9101AE1B1DB626050014F1CB /* WebKit.framework in Frameworks */,
+				B6FA4CBE2ADA2FF600A4B44F /* libpingpp+webview.a in Frameworks */,
 				91D376561D2F4A2C0002F63B /* AssetsLibrary.framework in Frameworks */,
+				B6FA4CC22ADA2FF700A4B44F /* AlipaySDK.framework in Frameworks */,
 				BDFDC45622D4315500B92634 /* AddressBookUI.framework in Frameworks */,
 				BDFDC45722D4315500B92634 /* AddressBook.framework in Frameworks */,
 				BDA5007322FA785A00BCB48E /* libopencore-amrwb.a in Frameworks */,
@@ -4420,7 +4444,9 @@
 				33EC7FCC1C5E6E75001D157F /* CoreMotion.framework in Frameworks */,
 				B76E8ABD1FBAEFD60081EB48 /* CoreMedia.framework in Frameworks */,
 				BD5DB5BB27B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework in Frameworks */,
+				B6FA4CC32ADA2FF700A4B44F /* libpingpp+wx.a in Frameworks */,
 				913841D31D36451500370348 /* AVFoundation.framework in Frameworks */,
+				B6FA4CBD2ADA2FF600A4B44F /* libpingpp+network.a in Frameworks */,
 				BDA500F822FA785B00BCB48E /* libSocialSina.a in Frameworks */,
 				BD52A8C6253C835F0099759E /* ATAuthSDK.framework in Frameworks */,
 				BD69E9E7243B1C9500AA2D8A /* AuthenticationServices.framework in Frameworks */,
@@ -4445,6 +4471,7 @@
 				33EC7FD01C5E6EA2001D157F /* QuartzCore.framework in Frameworks */,
 				33EC7FCE1C5E6E96001D157F /* CoreText.framework in Frameworks */,
 				33F7EF3F1C4BE02700B76F08 /* libsqlite3.tbd in Frameworks */,
+				B6FA4CC12ADA2FF600A4B44F /* libpingpp+alipay.a in Frameworks */,
 				BDA500F422FA785B00BCB48E /* UMSocialCore.framework in Frameworks */,
 				BDFD975C233CBBD500CE0DCB /* libMiPushSDK.a in Frameworks */,
 				33F7EF391C4BDFED00B76F08 /* Security.framework in Frameworks */,
@@ -8113,6 +8140,88 @@
 			name = ActivityUrlManager;
 			sourceTree = "<group>";
 		};
+		B6FA4CA72ADA2FF600A4B44F /* pingpp */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CA82ADA2FF600A4B44F /* lib */,
+			);
+			path = pingpp;
+			sourceTree = "<group>";
+		};
+		B6FA4CA82ADA2FF600A4B44F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */,
+				B6FA4CAA2ADA2FF600A4B44F /* Pingpp.h */,
+				B6FA4CAB2ADA2FF600A4B44F /* Pingpp.bundle */,
+				B6FA4CAC2ADA2FF600A4B44F /* Dependencies */,
+				B6FA4CB42ADA2FF600A4B44F /* Channels */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		B6FA4CAC2ADA2FF600A4B44F /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CAD2ADA2FF600A4B44F /* Network */,
+				B6FA4CB02ADA2FF600A4B44F /* WebView */,
+				B6FA4CB22ADA2FF600A4B44F /* Agreement */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		B6FA4CAD2ADA2FF600A4B44F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CAE2ADA2FF600A4B44F /* PingppURLResponse.h */,
+				B6FA4CAF2ADA2FF600A4B44F /* libpingpp+network.a */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B6FA4CB02ADA2FF600A4B44F /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CB12ADA2FF600A4B44F /* libpingpp+webview.a */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		B6FA4CB22ADA2FF600A4B44F /* Agreement */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CB32ADA2FF600A4B44F /* libpingpp+agreement.a */,
+			);
+			path = Agreement;
+			sourceTree = "<group>";
+		};
+		B6FA4CB42ADA2FF600A4B44F /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CB52ADA2FF600A4B44F /* Alipay */,
+				B6FA4CB92ADA2FF600A4B44F /* Wx */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		B6FA4CB52ADA2FF600A4B44F /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CB62ADA2FF600A4B44F /* AlipaySDK.bundle */,
+				B6FA4CB72ADA2FF600A4B44F /* libpingpp+alipay.a */,
+				B6FA4CB82ADA2FF600A4B44F /* AlipaySDK.framework */,
+			);
+			path = Alipay;
+			sourceTree = "<group>";
+		};
+		B6FA4CB92ADA2FF600A4B44F /* Wx */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA4CBA2ADA2FF600A4B44F /* libpingpp+wx.a */,
+			);
+			path = Wx;
+			sourceTree = "<group>";
+		};
 		B7228BCF1FA1E84F003343B7 /* XRWaterfallLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -9038,6 +9147,7 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B6FA4CA72ADA2FF600A4B44F /* pingpp */,
 				BD8417E2290CC97D00968D25 /* LocationManager */,
 				BD8417DE290CC72300968D25 /* TianMap */,
 				BD8417D8290CC69600968D25 /* ACRCloudLibraies */,
@@ -10381,7 +10491,7 @@
 				332759F51C478137002ABF2B /* Frameworks */,
 				332759F61C478137002ABF2B /* Resources */,
 				A42A0EE4F43854431C0D6766 /* [CP] Copy Pods Resources */,
-				3D672B4A26FDC048DE6E0FCA /* [CP] Embed Pods Frameworks */,
+				58B66A65150D7C85B54A2370 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -10476,6 +10586,7 @@
 				B73DFD071F9F290C00D02104 /* cut_bar_right@3x.png in Resources */,
 				33275A2F1C478173002ABF2B /* Main.storyboard in Resources */,
 				BDA5006F22FA785A00BCB48E /* com.baidu.idl.face.model.bundle in Resources */,
+				B6FA4CBC2ADA2FF600A4B44F /* Pingpp.bundle in Resources */,
 				BD9EE35723D40257005BC7E9 /* KTV_playing.gif in Resources */,
 				B73DFCD81F9F290C00D02104 /* btn_banner_a@3x.png in Resources */,
 				B73DFD081F9F290C00D02104 /* delete.png in Resources */,
@@ -10486,6 +10597,7 @@
 				B73DFCDB1F9F290C00D02104 /* btn_bar_back_b@2x.png in Resources */,
 				B73DFD131F9F290C00D02104 /* progressbar_front.png in Resources */,
 				B73DFD001F9F290C00D02104 /* cut_bar_left@2x.png in Resources */,
+				B6FA4CC02ADA2FF600A4B44F /* AlipaySDK.bundle in Resources */,
 				BDA5005422FA785A00BCB48E /* PEPhotoCropEditor.bundle in Resources */,
 				B73DFCE01F9F290C00D02104 /* btn_bar_next_b@3x.png in Resources */,
 				BD6BF6AF229E7FC8002C3320 /* Alibaba-PuHuiTi-Light.ttf in Resources */,
@@ -10542,7 +10654,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D672B4A26FDC048DE6E0FCA /* [CP] Embed Pods Frameworks */ = {
+		3DD572D6CD353CBDB24C993E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kongxia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58B66A65150D7C85B54A2370 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -10604,24 +10734,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kongxia/Pods-kongxia-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3DD572D6CD353CBDB24C993E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-kongxia-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A42A0EE4F43854431C0D6766 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10662,8 +10774,6 @@
 				"${PODS_ROOT}/NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-track@2x.png",
 				"${PODS_ROOT}/NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-trackBackground.png",
 				"${PODS_ROOT}/NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-trackBackground@2x.png",
-				"${PODS_ROOT}/Pingpp/lib/Pingpp.bundle",
-				"${PODS_ROOT}/PingppAlipaySDK/AlipaySDK.bundle",
 				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle",
 				"${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj",
 				"${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj",
@@ -10710,8 +10820,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/slider-metal-track@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/slider-metal-trackBackground.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/slider-metal-trackBackground@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pingpp.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RongCloud.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hans.lproj",
@@ -12354,6 +12462,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
@@ -12397,7 +12506,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
 				INFOPLIST_FILE = /Users/qiming.xiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -12416,6 +12525,12 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faac/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faad/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Network",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/WebView",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Agreement",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
 				MARKETING_VERSION = 4.7.6;
@@ -12525,7 +12640,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
-					"-ld64",
+					"-ld_classic",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -12534,7 +12649,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7s arm64";
+				VALID_ARCHS = arm64;
 			};
 			name = "App Store";
 		};
@@ -12570,6 +12685,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -12613,7 +12729,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
 				INFOPLIST_FILE = /Users/qiming.xiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -12632,6 +12748,12 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faac/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faad/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Network",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/WebView",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Agreement",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
 				MARKETING_VERSION = 4.7.6;
@@ -12741,7 +12863,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
-					"-ld64",
+					"-ld_classic",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -12750,7 +12872,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7s arm64";
+				VALID_ARCHS = arm64;
 			};
 			name = "Ad Hoc";
 		};
@@ -12787,6 +12909,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -12830,7 +12953,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
 				INFOPLIST_FILE = /Users/qiming.xiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -12849,6 +12972,12 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faac/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faad/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Network",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/WebView",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Agreement",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
 				MARKETING_VERSION = 4.7.6;
@@ -12958,7 +13087,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
-					"-ld64",
+					"-ld_classic",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -12967,7 +13096,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7s arm64";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
@@ -13002,6 +13131,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Sight",
 					"$(PROJECT_DIR)/kongxia/Vendors/AliAuthSDK",
 					"$(PROJECT_DIR)/kongxia/Vendors/FaceID/framework",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -13044,7 +13174,7 @@
 					"\"${PODS_ROOT}/Headers/Public/YYModel\"",
 				);
 				INFOPLIST_FILE = /Users/qiming.xiao/Documents/Projects/zumome/kongxia/kongxia/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -13063,6 +13193,12 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faac/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/Faac/faad/lib",
 					"$(PROJECT_DIR)/kongxia/Vendors/ACRCloudLibraies",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Network",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/WebView",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Dependencies/Agreement",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Alipay",
+					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = NO;
 				MARKETING_VERSION = 4.7.6;
@@ -13173,7 +13309,7 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"UIKit\"",
-					"-ld64",
+					"-ld_classic",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -13182,7 +13318,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7s arm64";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};

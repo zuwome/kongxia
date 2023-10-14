@@ -11,10 +11,6 @@ target 'kongxia' do
 #   七牛
     pod 'Qiniu'
     
-#   ping++
-    pod 'Pingpp/Alipay'
-    pod 'Pingpp/Wx'
-    
 #   友盟
     pod 'UMengAnalytics’
     
