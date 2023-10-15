@@ -402,8 +402,11 @@
 - (void)rightDoneClick
 {
     if (_regionArray.count == 0) {
-        [UIAlertView showWithTitle:@"提示" message:@"请选择地址" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        }];
+        [UIAlertController showOkAlertIn:[UIViewController currentDisplayViewController]
+                                   title:@"提示"
+                                 message:@"请选择地址"
+                            confirmTitle:@"确定"
+                          confirmHandler:nil];
         return;
     }
     

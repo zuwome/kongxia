@@ -134,22 +134,24 @@
             BOOL canCancelAccount = [data[@"can_close_account"] boolValue];
             if (canCancelAccount) {
                 self.reasonArray = data[@"reason"];
-                [UIActionSheet showInView:self.view withTitle:@"希望您能够告诉我们注销的原因，帮助我们不断改进空虾，感谢您的参与" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:self.reasonArray tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-                    if (buttonIndex != self.reasonArray.count) {
-                        NSString *reason = self.reasonArray[buttonIndex];
+                NSMutableArray *actions = [[NSMutableArray alloc] init];
+                for (NSString *reason in self.reasonArray) {
+                    [actions addObject:[alertAction createWithTitle:reason style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        WeakSelf;
                         ZZDeleteAccountConfirmViewController *controller = [[ZZDeleteAccountConfirmViewController alloc] initWithReason:reason];
-                        [self.navigationController pushViewController:controller animated:YES];
-//                        [UIAlertView showWithTitle:@"请确认注销账号操作" message:@"您的账号将不会被任何人看到，并且所有的聊天信息将会被删除。请确认您没有进行中的邀约。" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认注销"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-//                            if (buttonIndex == 1) {
-//                                [self gotoConfirmDeleteView:reason];
-//                            }
-//                        }];
-                    }
-                }];
+                        [weakSelf.navigationController pushViewController:controller animated:YES];
+                    }]];
+                }
+                
+                [self showSheetActions:@"希望您能够告诉我们注销的原因，帮助我们不断改进空虾，感谢您的参与"
+                               message:nil
+                           cancelTitle:@"取消"
+                         cancelHandler:nil
+                               actions:actions.copy];
+                
+                
             } else {
-                [UIAlertView showWithTitle:@"邀约未完成" message:@"您还有正在进行中的邀约，请您完成后，再进行账号注销。" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                    
-                }];
+                [self showOkAlert:@"邀约未完成" message:@"您还有正在进行中的邀约，请您完成后，再进行账号注销。" confirmTitle:@"确定" confirmHandler:nil];
             }
         }
     }];

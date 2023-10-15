@@ -116,19 +116,17 @@
         [[AudioManager audioManager] fetchRecordAuthentication:^(AVAudioSessionRecordPermission recordPermission) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (recordPermission == AVAudioSessionRecordPermissionDenied ) {
-                    [UIAlertView showWithTitle:@"开启麦克风权限"
-                                       message:@"在“设置-空虾”中开启麦克风就可以开始使用本功能哦~"
-                             cancelButtonTitle:NSLocalizedString(@"取消", nil)
-                             otherButtonTitles:@[NSLocalizedString(@"设置", nil)]
-                                      tapBlock:
-                     ^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                         if (buttonIndex) {
-                             if (UIApplicationOpenSettingsURLString != NULL) {
-                                 NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                                 [[UIApplication sharedApplication] openURL:appSettings];
-                             }
-                         }
-                     }];
+                    [self showOkCancelAlert:@"开启麦克风权限"
+                                    message:@"在“设置-空虾”中开启麦克风就可以开始使用本功能哦~"
+                               confirmTitle:@"设置"
+                             confirmHandler:^(UIAlertAction * _Nonnull action) {
+                        if (UIApplicationOpenSettingsURLString != NULL) {
+                            NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                            [[UIApplication sharedApplication] openURL:appSettings];
+                        }
+                    } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+                        
+                    }];
                 }
                 else if (recordPermission == AVAudioSessionRecordPermissionGranted) {
                     [self showRecordingViewSongIndex:index];

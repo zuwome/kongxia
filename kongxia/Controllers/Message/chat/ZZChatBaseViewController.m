@@ -1384,9 +1384,12 @@
         }
         case ChatBoxTypeLocation: {
             WS(weakSelf);
-            [UIActionSheet showInView:self.view withTitle:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"发送位置",@"位置实时共享"] tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-                if (buttonIndex == 0) {
-                    
+            [self showSheetActions:nil
+                           message:nil
+                       cancelTitle:@"取消"
+                     cancelHandler:nil
+                           actions:@[
+                [alertAction createWithTitle:@"发送位置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     _notUpdateOrder = YES;
                     ZZSearchLocationController *c = [[ZZSearchLocationController alloc] init];
                     c.selectPoi = ^(ZZRentDropdownModel *model, UIImage *image) {
@@ -1412,13 +1415,15 @@
                         }
                     };
                     [self.navigationController pushViewController:c animated:YES];
-                } else if (buttonIndex == 1)  {
+                }],
+            
+                [alertAction createWithTitle:@"位置实时共享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     _isMessageBoxTo = NO;
                     _notUpdateOrder = YES;
                     [self gotoRealTimeController];
-                }
-            }];
-             break;
+                }],
+            ]];
+            break;
         }
         case ChatBoxTypeRecord : {
             if (self.payChatModel.isRequessSuccess&&self.payChatModel.isPay) {

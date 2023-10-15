@@ -833,6 +833,7 @@
 		ACFF24F6206B8C6A00F29F11 /* ZZActivityUrlNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */; };
 		ACFF24F9206BA6C300F29F11 /* ZZBanStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */; };
 		B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */; };
+		B6DA46D72ADA5CDA0051A1C3 /* UIAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */; };
 		B6FA4CBB2ADA2FF600A4B44F /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */; };
 		B6FA4CBC2ADA2FF600A4B44F /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B6FA4CAB2ADA2FF600A4B44F /* Pingpp.bundle */; };
 		B6FA4CBD2ADA2FF600A4B44F /* libpingpp+network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CAF2ADA2FF600A4B44F /* libpingpp+network.a */; };
@@ -1269,9 +1270,7 @@
 		BDA5004322FA785A00BCB48E /* CLLocation+Sino.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD2822FA785800BCB48E /* CLLocation+Sino.m */; };
 		BDA5004422FA785A00BCB48E /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD2A22FA785800BCB48E /* NSDate+Utilities.m */; };
 		BDA5004522FA785A00BCB48E /* UITabBar+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD2D22FA785800BCB48E /* UITabBar+Badge.m */; };
-		BDA5004622FA785A00BCB48E /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD3222FA785800BCB48E /* UIActionSheet+Blocks.m */; };
 		BDA5004722FA785A00BCB48E /* UIImagePickerController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD3322FA785800BCB48E /* UIImagePickerController+Block.m */; };
-		BDA5004822FA785A00BCB48E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD3422FA785800BCB48E /* UIAlertView+Blocks.m */; };
 		BDA5004922FA785A00BCB48E /* TwinkleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD3822FA785800BCB48E /* TwinkleLayer.m */; };
 		BDA5004A22FA785A00BCB48E /* TwinkleLayer+Anim.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD3922FA785800BCB48E /* TwinkleLayer+Anim.m */; };
 		BDA5004B22FA785A00BCB48E /* UIView+Twinkle.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA5FD3A22FA785800BCB48E /* UIView+Twinkle.m */; };
@@ -3159,6 +3158,7 @@
 		ACFF24F7206BA6C300F29F11 /* ZZBanStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBanStateModel.h; sourceTree = "<group>"; };
 		ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBanStateModel.m; sourceTree = "<group>"; };
 		B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarHelper.swift; sourceTree = "<group>"; };
+		B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertHelper.swift; sourceTree = "<group>"; };
 		B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingppcore.a; sourceTree = "<group>"; };
 		B6FA4CAA2ADA2FF600A4B44F /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pingpp.h; sourceTree = "<group>"; };
 		B6FA4CAB2ADA2FF600A4B44F /* Pingpp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Pingpp.bundle; sourceTree = "<group>"; };
@@ -3926,12 +3926,8 @@
 		BDA5FD2B22FA785800BCB48E /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		BDA5FD2C22FA785800BCB48E /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		BDA5FD2D22FA785800BCB48E /* UITabBar+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Badge.m"; sourceTree = "<group>"; };
-		BDA5FD2F22FA785800BCB48E /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
-		BDA5FD3022FA785800BCB48E /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		BDA5FD3122FA785800BCB48E /* UIImagePickerController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+Block.h"; sourceTree = "<group>"; };
-		BDA5FD3222FA785800BCB48E /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
 		BDA5FD3322FA785800BCB48E /* UIImagePickerController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+Block.m"; sourceTree = "<group>"; };
-		BDA5FD3422FA785800BCB48E /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		BDA5FD3622FA785800BCB48E /* CABasicAnimation+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+Ext.h"; sourceTree = "<group>"; };
 		BDA5FD3722FA785800BCB48E /* UIView+Twinkle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Twinkle.h"; sourceTree = "<group>"; };
 		BDA5FD3822FA785800BCB48E /* TwinkleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwinkleLayer.m; sourceTree = "<group>"; };
@@ -7488,6 +7484,7 @@
 				AC0CBCA51FEBC35000005E8F /* ZZMapTranscoding.m */,
 				AC19E48E20174AB700E431A7 /* ZZPlayerHelper.h */,
 				AC19E48F20174AB700E431A7 /* ZZPlayerHelper.m */,
+				B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -9539,10 +9536,6 @@
 		BDA5FD2E22FA785800BCB48E /* Block */ = {
 			isa = PBXGroup;
 			children = (
-				BDA5FD2F22FA785800BCB48E /* UIActionSheet+Blocks.h */,
-				BDA5FD3222FA785800BCB48E /* UIActionSheet+Blocks.m */,
-				BDA5FD3022FA785800BCB48E /* UIAlertView+Blocks.h */,
-				BDA5FD3422FA785800BCB48E /* UIAlertView+Blocks.m */,
 				BDA5FD3122FA785800BCB48E /* UIImagePickerController+Block.h */,
 				BDA5FD3322FA785800BCB48E /* UIImagePickerController+Block.m */,
 			);
@@ -11030,7 +11023,6 @@
 				91DB9E181F6129E600013F4C /* ZZVideoViewController.m in Sources */,
 				BDA500DB22FA785B00BCB48E /* scale_common.cc in Sources */,
 				BD2C007623BB380900756D98 /* UIColor+JXAdd.m in Sources */,
-				BDA5004822FA785A00BCB48E /* UIAlertView+Blocks.m in Sources */,
 				ACE5A664200E35510073DECA /* ZZMessageListViewController+ZZTableView.m in Sources */,
 				91DB9DFF1F6129E600013F4C /* ZZPayViewController.m in Sources */,
 				ACFF24F6206B8C6A00F29F11 /* ZZActivityUrlNetManager.m in Sources */,
@@ -11829,6 +11821,7 @@
 				91DB9E061F6129E600013F4C /* ZZRealNameZMViewController.m in Sources */,
 				BD5B189D2249DA45002239F4 /* ZZChatTaskView.m in Sources */,
 				BDA5007622FA785A00BCB48E /* NSString+PinYin4Cocoa.m in Sources */,
+				B6DA46D72ADA5CDA0051A1C3 /* UIAlertHelper.swift in Sources */,
 				BDA5008122FA785A00BCB48E /* ZZAgreementController.m in Sources */,
 				91DBA4A31F613D3400013F4C /* ZZColorCycleView.m in Sources */,
 				91DBA2BA1F613CF700013F4C /* ZZUserCenterRespondCell.m in Sources */,
@@ -12026,7 +12019,6 @@
 				91DBA4B91F613D3500013F4C /* ZZHomeUserCell.m in Sources */,
 				BD17814C23CDA12A005567BA /* FileCenter.m in Sources */,
 				91DBA2BB1F613CF700013F4C /* ZZUserCenterRespondItemView.m in Sources */,
-				BDA5004622FA785A00BCB48E /* UIActionSheet+Blocks.m in Sources */,
 				914658011F692BB7007D1FAD /* UIColor+RCColor.m in Sources */,
 				04DEB59F2147BFDB00162A90 /* ZZChooseTagViewController.m in Sources */,
 				B73DFD201F9F290C00D02104 /* PLSFilterGroup.m in Sources */,

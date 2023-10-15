@@ -195,13 +195,11 @@
 - (void)navigationLeftBtnClick {
     if (_haveChange) {
         self.navigationLeftBtn.enabled = NO;
-        [UIAlertView showWithTitle:@"已修改,是否保存？" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"保存"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-               self.navigationLeftBtn.enabled = YES;
-            if (buttonIndex == 1) {
-                [self doneBtnClick];
-            } else {
-                [super navigationLeftBtnClick];
-            }
+        [self showOkCancelAlert:@"已修改,是否保存？" message:nil confirmTitle:@"保存" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            self.navigationLeftBtn.enabled = YES;
+            [self doneBtnClick];
+        } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+            [super navigationLeftBtnClick];
         }];
     } else {
         [super navigationLeftBtnClick];
@@ -273,7 +271,7 @@
             [ZZUserHelper checkTextWithText:_textView.text type:5 next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
                 if (error) {
                     if (error.code == 2001 || error.code == 2002) {
-                        [UIAlertView showWithTitle:@"提示" message:error.message cancelButtonTitle:@"修改技能介绍" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                        [self showOkAlert:@"提示" message:error.message confirmTitle:@"修改技能介绍" confirmHandler:^(UIAlertAction * _Nonnull action) {
                             [_textView becomeFirstResponder];
                         }];
                     } else {
@@ -309,10 +307,6 @@
                     [alert addAction:continueAction];
                     [alert addAction:cancelAction];
                     [self presentViewController:alert animated:YES completion:nil];
-                    
-//                    [UIAlertView showWithTitle:@"提示" message:error.message cancelButtonTitle:@"修改签名" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-//                        [_textView becomeFirstResponder];
-//                    }];
                 } else {
                     _isYidunTimeout = YES;
                     _haveChange = NO;

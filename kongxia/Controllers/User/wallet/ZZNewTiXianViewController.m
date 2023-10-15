@@ -168,14 +168,11 @@
         [self withdrawInWeChat:sender photo:url checkStatus:status];
     }
     else {
-        [UIAlertView showWithTitle:@"提示" message:@"将会打开微信来关联提现的账号" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"确定"]) {
-                [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"weChatWithdrawWarning"];
-                [self withdrawInWeChat:sender photo:url checkStatus:status];
-            }
-            else {
-                sender.userInteractionEnabled = YES;
-            }
+        [self showOkCancelAlert:@"提示" message:@"将会打开微信来关联提现的账号" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [ZZUserDefaultsHelper setObject:@"1" forDestKey:@"weChatWithdrawWarning"];
+            [self withdrawInWeChat:sender photo:url checkStatus:status];
+        } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+            sender.userInteractionEnabled = YES;
         }];
     }
 }

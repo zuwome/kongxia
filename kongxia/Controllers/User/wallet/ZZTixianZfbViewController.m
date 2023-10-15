@@ -50,7 +50,7 @@
         if (error) {
             [ZZHUD showErrorWithStatus:error.message];
         } else if (data) {
-            [UIAlertView showWithTitle:@"提示" message:@"您的提现申请已提交，请等待审核，预计1-2日到账。" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            [self showOkAlert:@"提示" message:@"您的提现申请已提交，请等待审核，预计1-2日到账。" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }];
         }

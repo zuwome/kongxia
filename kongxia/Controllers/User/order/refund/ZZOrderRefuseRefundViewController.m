@@ -245,68 +245,65 @@
 - (void)addImgBtnClick
 {
     WeakSelf;
-    [UIActionSheet showInView:self.view
-                    withTitle:@"上传照片"
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"拍照",@"从手机相册选择"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                         if (buttonIndex ==0) {
-                             IOS_11_Show
-                             UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-                             [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-                             imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-                             imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
-                               IOS_11_NO_Show
-                                 [picker dismissViewControllerAnimated:YES completion:^{
-                                     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-                                     [weakSelf.imageArray addObject:image];
-                                     [weakSelf.tableView reloadData];
-                                 }];
-                             };
-                             imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
-                                 IOS_11_NO_Show
-                                 [picker dismissViewControllerAnimated:YES completion:nil];
-                             };
-                             [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
-                         }
-                         if (buttonIndex ==1) {
-                             if (@available(iOS 11.0, *)) {
-                                 [UITableView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
-                                 [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
-                                 [UICollectionView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
-                             }
-                             UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-                             [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-                             imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
-                                 if (@available(iOS 11.0, *)) {
-                                     [UITableView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-                                     [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-                                     [UICollectionView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-                                 }
-                                 [picker dismissViewControllerAnimated:YES completion:^{
-                                     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-                                     [weakSelf.imageArray addObject:image];
-                                     [weakSelf.tableView reloadData];
-                                 }];
-                             };
-                             imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
-                                 [picker dismissViewControllerAnimated:YES completion:nil];
-                             };
-                             [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
-                         }
-                     }];
-    
+    [self showSheetActions:@"上传照片"
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            IOS_11_Show
+            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
+              IOS_11_NO_Show
+                [picker dismissViewControllerAnimated:YES completion:^{
+                    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+                    [weakSelf.imageArray addObject:image];
+                    [weakSelf.tableView reloadData];
+                }];
+            };
+            imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
+                IOS_11_NO_Show
+                [picker dismissViewControllerAnimated:YES completion:nil];
+            };
+            [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }],
+        
+        [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (@available(iOS 11.0, *)) {
+                [UITableView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
+                [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
+                [UICollectionView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
+            }
+            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
+                if (@available(iOS 11.0, *)) {
+                    [UITableView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+                    [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+                    [UICollectionView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+                }
+                [picker dismissViewControllerAnimated:YES completion:^{
+                    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+                    [weakSelf.imageArray addObject:image];
+                    [weakSelf.tableView reloadData];
+                }];
+            };
+            imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
+                [picker dismissViewControllerAnimated:YES completion:nil];
+            };
+            [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }],
+    ]];
 }
 
 - (void)imgBtnClic:(NSInteger)index
 {
-    [UIActionSheet showInView:self.view withTitle:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除图片" otherButtonTitles:nil tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-        if (buttonIndex == 0) {
-            [_imageArray removeObjectAtIndex:index];
-            [_tableView reloadData];
-        }
-    }];
+    [self showOkCancelSheet:nil message:nil confirmTitle:@"删除图片" confirmHandler:^(UIAlertAction * _Nonnull action) {
+        [_imageArray removeObjectAtIndex:index];
+        [_tableView reloadData];
+    } cancelTitle:@"取消" cancelHandler:nil];
 }
 
 - (void)rightBtnClick

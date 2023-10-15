@@ -411,12 +411,10 @@
     sender.enabled = NO;
     WeakSelf;
     if (!self.payAgreementBtn.selected) {
-        [UIAlertView showWithTitle:@"温馨提示" message:@"请先同意充值协议" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [self showOkCancelAlert:@"温馨提示" message:@"请先同意充值协议" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
             weakSelf.payButton.enabled = YES;
-            if (buttonIndex ==1) {
-                weakSelf.payAgreementBtn.selected = YES;
-            }
-        }];
+            weakSelf.payAgreementBtn.selected = YES;
+        } cancelTitle:@"取消" cancelHandler:nil];
         return;
     }
     
@@ -538,8 +536,7 @@
     self.navigationLeftBtn.enabled = YES;
     self.rightBarItem.enabled = YES;
     self.payButton.enabled = YES;
-    [UIAlertView showWithTitle:@"温馨提示" message:error cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-    }];
+    [self showOkAlert:@"温馨提示" message:error confirmTitle:@"确定" confirmHandler:nil];
 }
 
 #pragma mark - UICollectionViewMethod

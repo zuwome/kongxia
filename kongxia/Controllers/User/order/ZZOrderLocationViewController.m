@@ -55,7 +55,6 @@
     }
     [self getNavAppsData];
     [self.view addSubview:self.mapView];
-    [self locateMap];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -88,28 +87,6 @@
     
     [self.view addSubview:mapView];
     [self.view bringSubviewToFront:self.mapViewNav];
-}
-
-/**
- 判断定位功能是否打开
- */
-- (void)locateMap {
-    if ([LocationMangers shared].hasLocationService) {
-//        [LocationMangers shared] getlo;
-//        [[LocationManager shared] getLocationWithSuccess:^(CLLocation *location, CLPlacemark *placemark) {
-//            [self configureLocation:location
-//                          placeMark:placemark];
-//        } failure:^(CLAuthorizationStatus status, NSString *error) {
-//            [UIAlertView showWithTitle:@"允许\"定位\"提示" message:@"请在设置中打开定位" cancelButtonTitle:@"取消" otherButtonTitles:@[@"打开定位"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-//                if (buttonIndex ==1 ) {
-//                    //打开定位设置
-//                    NSURL *settingUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//                    [[UIApplication sharedApplication] openURL:settingUrl];
-//                }
-//                
-//            }];
-//        }];
-    }
 }
 
 - (void)configureLocation:(CLLocation *)location placeMark:(CLPlacemark *)placemark {

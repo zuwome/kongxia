@@ -123,25 +123,23 @@
 - (IBAction)uploadPictureClick {
     [MobClick event:Event_click_infomation_uploadhead];
     [self.view endEditing:YES];
-    [UIActionSheet showInView:self.view
-                    withTitle:@"上传真实头像"
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"拍照",@"从手机相册选择"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                         if (buttonIndex ==0) {
-                             UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-                             [imgPicker setAllowsEditing:YES];
-                             imgPicker.delegate = self;
-                             [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-                             imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-                             [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
-                             
-                         }
-                         if (buttonIndex ==1) {
-                             [self gotoAlbum];
-                         }
-                     }];
+    [self showSheetActions:@"上传真实头像"
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+            [imgPicker setAllowsEditing:YES];
+            imgPicker.delegate = self;
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }],
+        [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self gotoAlbum];
+        }],
+    ]];
 
 }
 
@@ -266,14 +264,16 @@
                                     [weakSelf photoFailAction:newPhoto];
                                     
                                     if ([[data objectForKey:@"tipOpen"] boolValue]) {
-                                        [UIAlertView showWithTitle:@"提示" message:data[@"tip"] cancelButtonTitle:nil otherButtonTitles:@[@"更换头像",@"识别本人"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                                            if (buttonIndex == 0) {
+                                        [self showAlertActions:@"提示"
+                                                       message:data[@"tip"]
+                                                       actions:@[
+                                            [alertAction createWithTitle:@"更换头像" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                                 [self gotoAlbum];
-                                            }
-                                            if (buttonIndex == 1) {
-                                                [self gotoLiveCheck];
-                                            }
-                                        }];
+                                            }],
+                                            [alertAction createWithTitle:@"识别本人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                            [self gotoLiveCheck];
+                                            }],
+                                        ]];
                                     }
                                 }
                                 else {
@@ -281,7 +281,7 @@
                                         // 去人脸识别
                                         if ([[data objectForKey:@"tipOpen"] boolValue]) {
                                             [ZZHUD dismiss];
-                                            [UIAlertView showWithTitle:@"提示" message:data[@"tip"] cancelButtonTitle:nil otherButtonTitles:@[@"识别"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                                            [self showOkAlert:@"提示" message:data[@"tip"] confirmTitle:@"识别" confirmHandler:^(UIAlertAction * _Nonnull action) {
                                                 [self gotoLiveCheck];
                                             }];
                                             return ;

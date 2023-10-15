@@ -138,25 +138,34 @@
     
     if ((_type == OptionTypeCancel && [_order.status isEqualToString:@"paying"])) {
         if (_isFrom) {
-            [UIAlertView showWithTitle:@"提示" message:@"对方已接受预约，如是因为您的原因取消预约后将赔付意向金给对方" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    [self done];
-                }
-            }];
+            [self showOkCancelAlert:@"提示"
+                            message:@"对方已接受预约，如是因为您的原因取消预约后将赔付意向金给对方"
+                       confirmTitle:@"确定"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self done];
+            }
+                        cancelTitle:@"取消"
+                      cancelHandler:nil];
         } else {
-            [UIAlertView showWithTitle:@"提示" message:@"你已经接受对方的邀请，主动取消将会扣除信任值，是否确认取消邀约" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    [self done];
-                }
-            }];
+            [self showOkCancelAlert:@"提示"
+                            message:@"你已经接受对方的邀请，主动取消将会扣除信任值，是否确认取消邀约"
+                       confirmTitle:@"确定"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self done];
+            }
+                        cancelTitle:@"取消"
+                      cancelHandler:nil];
         }
     } else {
         if (_type == OptionTypeCancel && !_isFrom && _order.paid_at) {
-            [UIAlertView showWithTitle:@"提示" message:@"对方已通过平台担保支付全款，取消预约租金将退还给对方。" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    [self done];
-                }
-            }];
+            [self showOkCancelAlert:@"提示"
+                            message:@"对方已通过平台担保支付全款，取消预约租金将退还给对方。"
+                       confirmTitle:@"确定"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self done];
+            }
+                        cancelTitle:@"取消"
+                      cancelHandler:nil];
         } else {
             [self done];
         }

@@ -245,9 +245,13 @@
             _user = [ZZUser yy_modelWithJSON:data];;
             
             if (_user.banStatus) {
-                [UIAlertView showWithTitle:@"提示" message:@"该用户已被封禁!" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [self showOkAlert:@"提示"
+                                message:@"该用户已被封禁!"
+                           confirmTitle:@"确定"
+                         confirmHandler:^(UIAlertAction * _Nonnull action) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
+
             } else {
                 [self createNavigationRightBtn];
                 [self createViews];
@@ -532,20 +536,25 @@
     [ZZUserHelper checkTextWithText:_question type:type next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             if (error.code == 2001) {
-                [UIAlertView showWithTitle:@"提示" message:error.message cancelButtonTitle:@"修改问题" otherButtonTitles:@[@"继续提问"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                    if (buttonIndex == 0) {
+                [self showAlertActions:@"提示" 
+                               message:error.message
+                               actions:@[
+                    [alertAction createWithTitle:@"修改问题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        _isInYellow = YES;
                         [_topicView.questionTV becomeFirstResponder];
-                    } else {
+                    }],
+                    
+                    [alertAction createWithTitle:@"继续提问" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         _isInYellow = YES;
                         [ZZHUD showWithStatus:@"获取支付信息..."];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [self.view endEditing:YES];
                             [self loadBalance];
                         });
-                    }
-                }];
+                    }],
+                ]];
             } else if  (error.code == 2002) {
-                [UIAlertView showWithTitle:@"提示" message:error.message cancelButtonTitle:@"修改问题" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [self showOkAlert:@"提示" message:error.message confirmTitle:@"修改问题" confirmHandler:^(UIAlertAction * _Nonnull action) {
                     [_topicView.questionTV becomeFirstResponder];
                 }];
             } else {

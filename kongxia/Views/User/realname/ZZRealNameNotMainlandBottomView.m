@@ -92,20 +92,29 @@
             break;
     }
     if (containImage) {
-        [UIActionSheet showInView:self.superview withTitle:@"是否删除照片" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"删除"] tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-            if (buttonIndex == 0) {
-                [self deleteImageWithIndex:_index];
-            }
-        }];
+        [UIAlertController showOkCancelSheetIn:[UIViewController currentDisplayViewController]
+                                         title:@"是否删除照片"
+                                       message:nil
+                                  confirmTitle:@"删除"
+                                confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self deleteImageWithIndex:_index];
+        }
+                                   cancelTitle:@"取消"
+                                 cancelHandler:nil];
     } else {
-        [UIActionSheet showInView:self.superview withTitle:@"上传照片" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"拍照",@"从手机相册选择"] tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-            if (buttonIndex == 0) {
+        [UIAlertController showSheetActionsIn:[UIViewController currentDisplayViewController]
+                                        title:@"上传照片"
+                                      message:nil
+                                  cancelTitle:@"取消"
+                                cancelHandler:nil
+                                      actions:@[
+            [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self gotoCamera];
-            }
-            if (buttonIndex == 1) {
+            }],
+            [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self gotoAlbum];
-            }
-        }];
+            }],
+        ]];
     }
 }
 

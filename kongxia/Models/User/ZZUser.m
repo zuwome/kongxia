@@ -523,13 +523,15 @@
 }
 
 - (void)unfollowWithUid:(NSString *)uid next:(requestCallback)next {
-    [UIAlertView showWithTitle:@"提示" message:@"取消关注之后，将无法及时获取TA的动态消息，确定取消关注TA吗？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/user/%@/unfollow",uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                next(error, data, task);
-            }];
-        }
-    }];
+    [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController]
+                                     title:@"提示"
+                                   message:@"取消关注之后，将无法及时获取TA的动态消息，确定取消关注TA吗？"
+                              confirmTitle:@"确定"
+                            confirmHandler:^(UIAlertAction * _Nonnull action) {
+        [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/user/%@/unfollow",uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+            next(error, data, task);
+        }];
+    } cancelTitle:@"取消" cancelHandler:nil];
 }
 
 + (void)getUnloginUserDetailWithUid:(NSString *)uid dic:(NSDictionary *)dic next:(requestCallback)next {

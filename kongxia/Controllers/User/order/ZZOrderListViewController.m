@@ -288,17 +288,18 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle ==UITableViewCellEditingStyleDelete) {
-        [UIAlertView showWithTitle:@"删除本条记录" message:@"删除本条记录后无法恢复，您将无法对本次邀约进行操作" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                ZZOrder *order = _dataArray[indexPath.row];
-                [ZZOrder deleteOrderWithOrderId:order.id next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                    if (data) {
-                        [_dataArray removeObjectAtIndex:indexPath.row];
-                        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-                    }
-                }];
-            }
-        }];
+        [self showOkCancelAlert:@"删除本条记录"
+                        message:@"删除本条记录后无法恢复，您将无法对本次邀约进行操作"
+                   confirmTitle:@"确认"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            ZZOrder *order = _dataArray[indexPath.row];
+            [ZZOrder deleteOrderWithOrderId:order.id next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                if (data) {
+                    [_dataArray removeObjectAtIndex:indexPath.row];
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                }
+            }];
+        } cancelTitle:@"取消" cancelHandler:nil];
     }
 }
 

@@ -194,11 +194,14 @@
     }
     
     if (!_isEdit && _paySelectIndex == 0 && [[ZZUserHelper shareInstance].loginer.balance doubleValue] < _price) {
-        [UIAlertView showWithTitle:@"钱包当前余额不足" message:nil cancelButtonTitle:@"其他支付方式" otherButtonTitles:@[@"马上充值"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
+        [self showAlertActions:@"钱包当前余额不足" message:nil actions:@[
+            [alertAction createWithTitle:@"马上充值" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self gotoRechargeView];
-            }
-        }];
+            }],
+            [alertAction createWithTitle:@"其他支付方式" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+            }],
+        ]];
         return;
     }
     

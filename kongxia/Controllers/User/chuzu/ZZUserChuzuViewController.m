@@ -325,14 +325,11 @@
     //定位是否可用
     CLAuthorizationStatus status = [LocationMangers shared].authorizationStatus;
     if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
-        [UIAlertView showWithTitle:@"定位服务未开启" message:@"请在手机设置中开启定位服务以看到附近用户" cancelButtonTitle:@"取消" otherButtonTitles:@[@"开启定位"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            
-            if (buttonIndex == 1) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                [self.navigationController popViewControllerAnimated:YES];
-            } else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+        [self showOkCancelAlert:@"定位服务未开启" message:@"请在手机设置中开启定位服务以看到附近用户" confirmTitle:@"开启定位" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            [self.navigationController popViewControllerAnimated:YES];
+        } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+            [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {
         [self getLocation];
@@ -1133,28 +1130,28 @@
     
     if (_user.rent.status == 2) {
         if (_user.rent.show) {
-            [UIAlertView showWithTitle:@"提示" message:@"确定隐身吗？隐身之后将无法在首页、附近看到您的信息。" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"确定"]) {
-                    
-                    [MobClick event:Event_chuzu_down];
-                    [ZZHUD showWithStatus:@"正在保存"];
-                    [_user.rent enable:NO next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                        NSLog(@"========%@", data);
-                        [ZZHUD dismiss];
-                        if (error) {
-                              openSwitch.on = YES;
-                            [ZZHUD showErrorWithStatus:error.message];
-                        } else if (data) {
-                            _user.rent.show = NO;
-                            openSwitch.on = NO;
-                            [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:YES];
-                            
-                        }
-                        [self isModiupdateYaoYue: openSwitch];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UpdatedRentStatus object:nil];
-                    }];
-                }
-            }];
+            [self showOkCancelAlert:@"提示"
+                            message:@"确定隐身吗？隐身之后将无法在首页、附近看到您的信息。"
+                       confirmTitle:@"确定"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [MobClick event:Event_chuzu_down];
+                [ZZHUD showWithStatus:@"正在保存"];
+                [_user.rent enable:NO next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    NSLog(@"========%@", data);
+                    [ZZHUD dismiss];
+                    if (error) {
+                          openSwitch.on = YES;
+                        [ZZHUD showErrorWithStatus:error.message];
+                    } else if (data) {
+                        _user.rent.show = NO;
+                        openSwitch.on = NO;
+                        [[ZZUserHelper shareInstance] saveLoginer:_user postNotif:YES];
+                        
+                    }
+                    [self isModiupdateYaoYue: openSwitch];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UpdatedRentStatus object:nil];
+                }];
+            } cancelTitle:@"取消" cancelHandler:nil];
         }
         else{
             [MobClick event:Event_chuzu_up];

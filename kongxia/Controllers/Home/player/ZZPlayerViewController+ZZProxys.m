@@ -484,13 +484,14 @@
         case AFNetworkReachabilityStatusReachableViaWWAN:
         {
             if (![ZZUserHelper shareInstance].allow3GPlay) {
-                [UIAlertView showWithTitle:@"流量提示" message:@"正在使用移动网络，继续使用可能产生流量费用。" cancelButtonTitle:@"继续使用" otherButtonTitles:@[@"取消"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                    if (buttonIndex == 0) {
-                        [self playVideoWithPlayerCell:finnalCell];
-                        [ZZUserHelper shareInstance].allow3GPlay = @"allow3GPlay";
-                    } else {
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }
+                [self showOkCancelAlert:@"流量提示"
+                                message:@"正在使用移动网络，继续使用可能产生流量费用。"
+                           confirmTitle:@"继续使用"
+                         confirmHandler:^(UIAlertAction * _Nonnull action) {
+                    [self playVideoWithPlayerCell:finnalCell];
+                    [ZZUserHelper shareInstance].allow3GPlay = @"allow3GPlay";
+                } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+                    [self.navigationController popViewControllerAnimated:YES];
                 }];
             } else {
                 [self playWithPlayerCell:finnalCell];

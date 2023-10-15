@@ -768,21 +768,19 @@
 }
 - (void)deleteBtnClick
 {
-    [UIAlertView showWithTitle:nil message:@"是否放弃本段视频？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            [MobClick event:Event_click_record_delete];
-            if (_touchLeft) {
-                _touchLeft();
-            }
-            [[NSFileManager defaultManager] removeItemAtURL:self.exportURL error:nil];
-            if (self.navigationController.viewControllers.count == 1) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+    [self showOkCancelAlert:nil message:@"是否放弃本段视频？" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+        [MobClick event:Event_click_record_delete];
+        if (_touchLeft) {
+            _touchLeft();
         }
-    }];
+        [[NSFileManager defaultManager] removeItemAtURL:self.exportURL error:nil];
+        if (self.navigationController.viewControllers.count == 1) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } cancelTitle:@"取消" cancelHandler:nil];
 }
 
 - (UIButton *)downBtn

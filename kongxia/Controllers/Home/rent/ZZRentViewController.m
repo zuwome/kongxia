@@ -262,12 +262,12 @@
         self.bottomView.rentBtn.backgroundColor = HEXCOLOR(0xd8d8d8);
     }
     if (_user.banStatus) {
-        [UIAlertView showWithTitle:@"提示" message:@"该用户已被封禁!" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [self showOkAlert:@"提示" message:@"该用户已被封禁!" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
     else if (_user.have_close_account) {
-        [UIAlertView showWithTitle:@"提示" message:@"该用户已注销!" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [self showOkAlert:@"提示" message:@"该用户已注销!" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
@@ -639,33 +639,33 @@
             if ([[data objectForKey:@"say_hi_status"] integerValue] == 0 && ![[ZZUserHelper shareInstance] isMale]) {
                 if (loginedUser.avatar_manual_status == 1) {
                     if (![loginedUser didHaveOldAvatar]) {
-                        [UIAlertView showWithTitle:@"提示"
-                                           message:@"打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼"
-                                 cancelButtonTitle:@"知道了"
-                                 otherButtonTitles:nil
-                                          tapBlock:nil];
+                        [self showOkAlert:@"提示"
+                                  message:@"打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼"
+                             confirmTitle:@"知道了"
+                           confirmHandler:nil];
                     }
                     else {
                         [self gotoChatView:NO];
                     }
                 }
                 else {
-                    [UIAlertView showWithTitle:@"提示" message:[data objectForKey:@"msg"] cancelButtonTitle:@"放弃" otherButtonTitles:@[[data objectForKey:@"btn_text"]] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                        if (buttonIndex == 1) {
-                            NSInteger type = [[data objectForKey:@"type"] integerValue];
-                            switch (type) {
-                                case 1: {
-                                    [self gotoUploadPicture:NavigationTypeChat];
-                                    break;
-                                }
-                                case 2: {
-                                    [self askBtnClick:YES];
-                                    break;
-                                }
-                                default: break;
+                    [self showOkCancelAlert:@"提示"
+                                    message:[data objectForKey:@"msg"]
+                               confirmTitle:[data objectForKey:@"btn_text"]
+                             confirmHandler:^(UIAlertAction * _Nonnull action) {
+                        NSInteger type = [[data objectForKey:@"type"] integerValue];
+                        switch (type) {
+                            case 1: {
+                                [self gotoUploadPicture:NavigationTypeChat];
+                                break;
                             }
+                            case 2: {
+                                [self askBtnClick:YES];
+                                break;
+                            }
+                            default: break;
                         }
-                    }];
+                    } cancelTitle:@"放弃" cancelHandler:nil];
                 }
             }
             else {
@@ -741,13 +741,14 @@
     
     [MobClick event:Event_user_detail_add_order];
     if ([ZZUserHelper shareInstance].loginer && [ZZUserHelper shareInstance].loginer.avatarStatus == 0) {
-        [UIAlertView showWithTitle:@"提示" message:@"本人头像不是自己的照片，请先去修改" cancelButtonTitle:@"取消" otherButtonTitles:@[@"去修改"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
-                controller.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        }];
+        [self showOkCancelAlert:@"提示"
+                        message:@"本人头像不是自己的照片，请先去修改"
+                   confirmTitle:@"去修改"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
+            controller.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:controller animated:YES];
+        } cancelTitle:@"取消" cancelHandler:nil];
     } else {
         WEAK_SELF();
         // 判断当前操作是否需要做验证

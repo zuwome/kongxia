@@ -92,17 +92,15 @@
         return NO;
     }
     else if (![ZZUtils isIdentifierAuthority:user]) {
-        [UIAlertView showWithTitle:@"提示" message:@"为保障您的资金安全，提现需要实名认证，是否去认证？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"认证"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"认证"]) {
-                if (user.faces.count == 0) {
-                    [self gotoLiveCheck];
-                }
-                else {
-                    [self gotoRealName];
-                    
-                }
+        [self showOkCancelAlert:@"提示" message:@"为保障您的资金安全，提现需要实名认证，是否去认证？" confirmTitle:@"认证" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            if (user.faces.count == 0) {
+                [self gotoLiveCheck];
             }
-        }];
+            else {
+                [self gotoRealName];
+                
+            }
+        } cancelTitle:@"取消" cancelHandler:nil];
         return NO;
     }
     

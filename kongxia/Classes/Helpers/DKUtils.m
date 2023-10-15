@@ -50,7 +50,7 @@ CGSize getTextSizeMinWidth(UIFont *font, NSString *text, CGFloat minWidth) {
     return textSize;
 }
 
-CGSize getScreenSize() {
+CGSize getScreenSize(void) {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) &&
         UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {

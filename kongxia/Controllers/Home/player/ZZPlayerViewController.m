@@ -990,26 +990,27 @@
         }];
     } else {
         if (_currentMMDModel.can_del) {
-            [UIAlertView showWithTitle:@"删除该条么么答" message:@"删除么？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认删除"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    [self deleteRequest:indexPath];
-                } else {
-                    [self playWithPlayerCell:self.playingCell];
-                }
+            [self showOkCancelAlert:@"删除该条么么答" 
+                            message:@"删除么？"
+                       confirmTitle:@"确认删除"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self deleteRequest:indexPath];
+            } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+                [self playWithPlayerCell:self.playingCell];
             }];
         } else {
             if (_currentMMDModel.is_anonymous) {
-                [UIAlertView showWithTitle:@"提示" message:_currentMMDModel.del_msg cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-             [self playWithPlayerCell:self.playingCell];
-                    
+                [self showOkAlert:@"提示" message:_currentMMDModel.del_msg confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+                    [self playWithPlayerCell:self.playingCell];
                 }];
             } else {
-                [UIAlertView showWithTitle:@"提示" message:_currentMMDModel.del_msg cancelButtonTitle:@"取消" otherButtonTitles:@[@"联系对方"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                    if (buttonIndex == 1) {
-                        [self gotoChatView];
-                    } else {
-                       [self playWithPlayerCell:self.playingCell];
-                    }
+                [self showOkCancelAlert:@"提示"
+                                message:_currentMMDModel.del_msg
+                           confirmTitle:@"联系对方"
+                         confirmHandler:^(UIAlertAction * _Nonnull action) {
+                    [self gotoChatView];
+                } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
+                    [self playWithPlayerCell:self.playingCell];
                 }];
             }
         }
@@ -1066,19 +1067,25 @@
                 if ([mid isEqualToString:_currentMMDModel.mid]) {
                     contain = YES;
                     [self pausePlay];
-                    [UIAlertView showWithTitle:@"提示" message:@"您重新录制的视频上传失败了" cancelButtonTitle:@"删除并重录" otherButtonTitles:@[@"重新上传"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                        if (buttonIndex == 0) {
+                    
+                    [self showAlertActions:@"提示"
+                                   message:@"您重新录制的视频上传失败了"
+                                   actions:@[
+                        [alertAction createWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            ZZVideoUploadStatusView *statusView = [ZZVideoUploadStatusView sharedInstance];
+                            statusView.videoDict = aDict;
+                            [statusView showBeginStatusView];
+                            [self playWithPlayerCell:self.playingCell];
+                        }],
+                        
+                        [alertAction createWithTitle:@"删除并重录" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                             [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:url] error:nil];
                             [tempArray removeObject:aDict];
                             [ZZKeyValueStore saveValue:tempArray key:key tableName:kTableName_VideoSave];
                             [self gotoRecordView];
-                        } else if (buttonIndex == 1) {
-                            ZZVideoUploadStatusView *statusView = [ZZVideoUploadStatusView sharedInstance];
-                            statusView.videoDict = aDict;
-                            [statusView showBeginStatusView];
-                        }
-                        [self playWithPlayerCell:self.playingCell];
-                    }];
+                            [self playWithPlayerCell:self.playingCell];
+                        }],
+                    ]];
                     break;
                 }
             } else {
@@ -1251,14 +1258,12 @@
     self.wxCopyView = [ZZCheckWXView new];
     self.wxCopyView.wxNumber = self.rentUser.wechat.no;
     [self.wxCopyView setCopyWXBlock:^{
-        [UIActionSheet showInView:weakSelf.view withTitle:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"复制微信号"] tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-            if (buttonIndex == 0) {
-                [MobClick event:Event_click_userpage_wx_copy];
-                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                pasteboard.string = weakSelf.rentUser.wechat.no;
-                [ZZHUD showSuccessWithStatus:@"已保存至粘贴板"];
-            }
-        }];
+        [weakSelf showOkCancelAlert:@"复制微信号" message:nil confirmTitle:@"复制" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [MobClick event:Event_click_userpage_wx_copy];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = weakSelf.rentUser.wechat.no;
+            [ZZHUD showSuccessWithStatus:@"已保存至粘贴板"];
+        } cancelTitle:@"取消" cancelHandler:nil];
     }];
     [self.wxCopyView setDoneBlock:^{
         weakSelf.isShowWXCopyView = NO;
@@ -1402,16 +1407,13 @@
     [weakSelf playWithPlayerCell:weakSelf.playingCell];        };
         _shareView.touchDelete = ^{
     [weakSelf playWithPlayerCell:weakSelf.playingCell];
-            [UIAlertView showWithTitle:nil
-                               message:NSLocalizedString(@"是否确定删除该视频",nil)
-                     cancelButtonTitle:NSLocalizedString(@"取消", nil)
-                     otherButtonTitles:@[NSLocalizedString(@"确定", nil)]
-                              tapBlock:
-             ^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                 if (buttonIndex) {
+            
+            [weakSelf showOkCancelAlert:nil
+                            message:@"是否确定删除该视频"
+                       confirmTitle:@"确定"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
                 [weakSelf deleteMethod];
-                 }
-             }];
+            } cancelTitle:@"取消" cancelHandler:nil];
         };
         _shareView.touchNotIntersted = ^{
             [ZZHUD showTaskInfoWithStatus:@"操作成功 ，将减少此类内容推荐"];

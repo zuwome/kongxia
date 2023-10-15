@@ -203,54 +203,54 @@ NSString *identifier = @"topiccell";
     if (!_order) {
         return;
     }
-    [UIActionSheet showInView:self.view
-                    withTitle:nil
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"举报", _isBan?@"取消拉黑":@"拉黑"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                         if (buttonIndex == 0) {
-                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                 ZZReportViewController *controller = [[ZZReportViewController alloc] init];
-                                 ZZNavigationController *navCtl = [[ZZNavigationController alloc] initWithRootViewController:controller];
-                                 controller.uid = _userId;
-                                 [self.navigationController presentViewController:navCtl animated:YES completion:NULL];
-                             });
-                         }
-                         if (buttonIndex == 1) {
-                             if (_isBan) {
-                                 [ZZUser removeBlackWithUid:_userId next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                                     if (error) {
-                                         [ZZHUD showErrorWithStatus:error.message];
-                                     } else if (data) {
-                                         _isBan = NO;
-                                         
-                                         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                                         
-                                         NSMutableArray<NSString *> *muArray = [[userDefault objectForKey:@"BannedVideoPeople"] mutableCopy];
-                                         if (!muArray) {
-                                             muArray = @[].mutableCopy;
-                                         }
-                                         
-                                         if ([muArray containsObject:_userId]) {
-                                             [muArray removeObject:_userId];
-                                         }
-                                         
-                                         [userDefault setObject:muArray.copy forKey:@"BannedVideoPeople"];
-                                         [userDefault synchronize];
-                                     }
-                                 }];
-                             } else {
-                                 [ZZUser addBlackWithUid:_userId next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                                     if (error) {
-                                         [ZZHUD showErrorWithStatus:error.message];
-                                     } else if (data) {
-                                         _isBan = YES;
-                                     }
-                                 }];
-                             }
-                         }
-                     }];
+    [self showSheetActions:nil
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                ZZReportViewController *controller = [[ZZReportViewController alloc] init];
+                ZZNavigationController *navCtl = [[ZZNavigationController alloc] initWithRootViewController:controller];
+                controller.uid = _userId;
+                [self.navigationController presentViewController:navCtl animated:YES completion:NULL];
+            });
+        }],
+        
+        [alertAction createWithTitle: _isBan?@"取消拉黑":@"拉黑" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (_isBan) {
+                [ZZUser removeBlackWithUid:_userId next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    if (error) {
+                        [ZZHUD showErrorWithStatus:error.message];
+                    } else if (data) {
+                        _isBan = NO;
+                        
+                        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                        
+                        NSMutableArray<NSString *> *muArray = [[userDefault objectForKey:@"BannedVideoPeople"] mutableCopy];
+                        if (!muArray) {
+                            muArray = @[].mutableCopy;
+                        }
+                        
+                        if ([muArray containsObject:_userId]) {
+                            [muArray removeObject:_userId];
+                        }
+                        
+                        [userDefault setObject:muArray.copy forKey:@"BannedVideoPeople"];
+                        [userDefault synchronize];
+                    }
+                }];
+            } else {
+                [ZZUser addBlackWithUid:_userId next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    if (error) {
+                        [ZZHUD showErrorWithStatus:error.message];
+                    } else if (data) {
+                        _isBan = YES;
+                    }
+                }];
+            }
+        }],
+    ]];
 }
 
 #pragma mark - 订单推送更新
@@ -269,12 +269,16 @@ NSString *identifier = @"topiccell";
     if ([_order.status isEqualToString:@"pending"]) {
         ZZUser *loginer = [ZZUserHelper shareInstance].loginer;
         if (!loginer.height || !loginer.weight) {
-            [UIAlertView showWithTitle:@"提示" message:@"完善资料可以提高约见几率" cancelButtonTitle:@"暂不需要" otherButtonTitles:@[@"完善资料"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"完善资料"]) {
-                    ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
-                    [self.navigationController pushViewController:controller animated:YES];
-                }
-            }];
+            [self showOkCancelAlert:@"提示"
+                            message:@"完善资料可以提高约见几率"
+                       confirmTitle:@"完善资料"
+                     confirmHandler:^(UIAlertAction * _Nonnull action) {
+                ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+                        cancelTitle:@"暂不需要"
+                      cancelHandler:nil];
+            
         }
     }
 }
@@ -1565,17 +1569,21 @@ NSString *identifier = @"topiccell";
     if (_order.paid_at) {
         string = @"您撤销退款申请后，邀约将会继续进行，资金仍由平台监管。您只有一次撤销申请的机会，确定撤销本次退款申请吗？";
     }
-    [UIAlertView showWithTitle:@"提示" message:string cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            [ZZOrder revokeRefundOrder:_order.id status:_order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                if (error) {
-                    [ZZHUD showErrorWithStatus:error.message];
-                } else {
-                    [self fetchOrderId:_order.id];
-                }
-            }];
-        }
-    }];
+    [self showOkCancelAlert:@"提示"
+                    message:string
+               confirmTitle:@"完善资料"
+             confirmHandler:^(UIAlertAction * _Nonnull action) {
+        ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
+        [ZZOrder revokeRefundOrder:_order.id status:_order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+            if (error) {
+                [ZZHUD showErrorWithStatus:error.message];
+            } else {
+                [self fetchOrderId:_order.id];
+            }
+        }];
+    }
+                cancelTitle:@"取消"
+              cancelHandler:nil];
 }
 
 - (void)editRefund
@@ -1603,18 +1611,20 @@ NSString *identifier = @"topiccell";
     }
     if (_isFrom) {
         [MobClick event:Event_from_click_met_order];
-        [UIAlertView showWithTitle:@"提示" message:@"邀约是否已顺利完成，确定后款项将会支付给对方" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self metRequest];
-            }
-        }];
+        [self showOkCancelAlert:@"提示"
+                        message:@"邀约是否已顺利完成，确定后款项将会支付给对方"
+                   confirmTitle:@"确认"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self metRequest];
+        } cancelTitle:@"取消" cancelHandler:nil];
     } else {
         [MobClick event:Event_to_click_met_order];
-        [UIAlertView showWithTitle:@"提示" message:@"确认已到达见面地点？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self metRequest];
-            }
-        }];
+        [self showOkCancelAlert:@"提示"
+                        message:@"确认已到达见面地点？"
+                   confirmTitle:@"确认"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self metRequest];
+        } cancelTitle:@"取消" cancelHandler:nil];
     }
 }
 

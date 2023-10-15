@@ -64,11 +64,11 @@
 - (void)btnClick
 {
     if ([[[UIDevice currentDevice] systemVersion] integerValue] < 8) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"消息通知功能未开启", nil)
-                           message:NSLocalizedString(@"您尚未开启新消息通知功能，无法及时获得邀约等重要消息。请在设置-通知中心中，找到“空虾”并打开通知来获取最完整的服务。",nil)
-                 cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                 otherButtonTitles:nil
-                          tapBlock:nil];
+        [UIAlertController showOkAlertIn:[UIViewController currentDisplayViewController]
+                                   title:@"消息通知功能未开启"
+                                 message:@"您尚未开启新消息通知功能，无法及时获得邀约等重要消息。请在设置-通知中心中，找到“空虾”并打开通知来获取最完整的服务。"
+                            confirmTitle:@"确定"
+                          confirmHandler:nil];
     } else {
         if (UIApplicationOpenSettingsURLString != NULL) {
             NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];

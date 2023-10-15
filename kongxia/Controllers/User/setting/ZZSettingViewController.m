@@ -330,13 +330,9 @@
         {
             [MobClick event:Event_click_setting_clear];
             tableView.userInteractionEnabled =  NO;
-            [UIAlertView showWithTitle:@"提示" message:@"是否清除缓存？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                tableView.userInteractionEnabled =  YES;
-                if (buttonIndex == 1) {
-                    [self clearCache];
-
-                }
-            }];
+            [self showOkCancelAlert:@"提示" message:@"是否清除缓存？" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self clearCache];
+            } cancelTitle:@"取消" cancelHandler:nil];
         }
             break;
         default:

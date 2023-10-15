@@ -363,11 +363,13 @@
     
     if (_tempBtn.tag - 200 == 1) {
         if (_price > [[ZZUserHelper shareInstance].loginer.balance doubleValue]) {
-            [UIAlertView showWithTitle:@"钱包当前余额不足" message:nil cancelButtonTitle:@"其他支付方式" otherButtonTitles:@[@"马上充值"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    [self gotoRechargeView];
-                }
-            }];
+            [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController]
+                                             title:@"钱包当前余额不足"
+                                           message:nil
+                                      confirmTitle:@"马上充值"
+                                    confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self gotoRechargeView];
+            } cancelTitle:@"其他支付方式" cancelHandler:nil];
             return;
         }
         

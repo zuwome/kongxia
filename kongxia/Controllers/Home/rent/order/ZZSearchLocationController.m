@@ -100,7 +100,7 @@
 - (void)rightDoneClick {
     if (_pois.count == 0) {
         self.view.window.userInteractionEnabled = NO;
-        [UIAlertView showWithTitle:@"提示" message:@"请选择地址" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [self showOkAlert:@"提示" message:@"请选择地址" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
             self.view.window.userInteractionEnabled = YES;
         }];
         return;

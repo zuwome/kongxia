@@ -554,11 +554,12 @@
 }
 
 - (void)balanceInfo {
-    [UIAlertView showWithTitle:@"钱包当前余额不足" message:nil cancelButtonTitle:@"其他支付方式" otherButtonTitles:@[@"马上充值"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            [self gotoRechargeView];
-        }
-    }];
+    [self showOkCancelAlert:@"钱包当前余额不足"
+                    message:nil
+               confirmTitle:@"马上充值"
+             confirmHandler:^(UIAlertAction * _Nonnull action) {
+        [self gotoRechargeView];
+    } cancelTitle:@"其他支付方式" cancelHandler:nil];
 }
 
 - (void)payOrderWithChannel:(NSString *)channel {

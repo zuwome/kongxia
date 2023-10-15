@@ -579,19 +579,21 @@
         if (error) {
             if (error.code == 4044) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [UIAlertView showWithTitle:@"提示" message:@"该手机尚未注册，请点击立即注册" cancelButtonTitle:@"取消" otherButtonTitles:@[@"立即注册"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                        if (buttonIndex == 1) {
-                            [self rightBtnClick];
-                        }
-                    }];
+                    [self showOkCancelAlert:@"提示"
+                                    message:@"该手机尚未注册，请点击立即注册"
+                               confirmTitle:@"立即注册"
+                             confirmHandler:^(UIAlertAction * _Nonnull action) {
+                        [self rightBtnClick];
+                    } cancelTitle:@"取消" cancelHandler:nil];
                 });
             } else if (error.code == 4045) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [UIAlertView showWithTitle:@"提示" message:@"密码错误，请选择验证码登录或重新输入" cancelButtonTitle:@"重新输入" otherButtonTitles:@[@"验证码登录"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                        if (buttonIndex == 1) {
-                            [self gotoCodeSignView:NO];
-                        }
-                    }];
+                    [self showOkCancelAlert:@"提示"
+                                    message:@"密码错误，请选择验证码登录或重新输入"
+                               confirmTitle:@"验证码登录"
+                             confirmHandler:^(UIAlertAction * _Nonnull action) {
+                        [self gotoCodeSignView:NO];
+                    } cancelTitle:@"重新输入" cancelHandler:nil];
                 });
             }else if (error.code == 8000) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -642,24 +644,25 @@
     if (_loginer.have_close_account) {
         ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
         userHelper.uploadToken = data[@"upload_token"];
-        [UIAlertView showWithTitle:@"该帐号已被注销" message:@"是否重新启用该帐号" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认启用"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                NSLog(@"PY_先进行人脸识别");
-                [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
-                ZZLivenessHelper *helper = [[ZZLivenessHelper alloc] initWithType:NavigationTypeRestartPhone inController:self];
-                helper.checkSuccess = ^{
-                    [ZZRequest method:@"POST" path:@"/api/user/account/recover" params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                        if (error) {
-                            [ZZHUD showErrorWithStatus:error.message];
-                        } else {
-                            [ZZHUD showSuccessWithStatus:@"您的账号已被重新激活"];
-                            block();
-                        }
-                    }];
-                };
-                [helper start];
-            }
-        }];
+        [self showOkCancelAlert:@"该帐号已被注销"
+                        message:@"是否重新启用该帐号"
+                   confirmTitle:@"确认启用"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"PY_先进行人脸识别");
+            [ZZUserHelper shareInstance].publicToken = data[@"access_token"];
+            ZZLivenessHelper *helper = [[ZZLivenessHelper alloc] initWithType:NavigationTypeRestartPhone inController:self];
+            helper.checkSuccess = ^{
+                [ZZRequest method:@"POST" path:@"/api/user/account/recover" params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    if (error) {
+                        [ZZHUD showErrorWithStatus:error.message];
+                    } else {
+                        [ZZHUD showSuccessWithStatus:@"您的账号已被重新激活"];
+                        block();
+                    }
+                }];
+            };
+            [helper start];
+        } cancelTitle:@"取消" cancelHandler:nil];
         return YES;
     }
     return NO;

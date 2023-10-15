@@ -230,32 +230,28 @@
             [ZZHUD showErrorWithStatus:@"视频正在上传中"];
             return;
         } else if (videoDict) {
-            [UIActionSheet showInView:self.view withTitle:@"当前视频上传失败" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"重新上传",@"删除本视频"] tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-                switch (buttonIndex) {
-                    case 0:
-                    {
-                        ZZVideoUploadStatusView *statusView = [ZZVideoUploadStatusView sharedInstance];
-                        statusView.videoDict = videoDict;
-                        [statusView showBeginStatusView];
+            [self showSheetActions:@"当前视频上传失败"
+                           message:nil
+                       cancelTitle:@"取消"
+                     cancelHandler:nil
+                           actions:@[
+                [alertAction createWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    ZZVideoUploadStatusView *statusView = [ZZVideoUploadStatusView sharedInstance];
+                    statusView.videoDict = videoDict;
+                    [statusView showBeginStatusView];
+                }],
+                [alertAction createWithTitle:@"删除本视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [videoArray removeObject:videoDict];
+                    NSString *key = [NSString stringWithFormat:@"%@%@",[ZZStoreKey sharedInstance].uploadFailureVideo,[ZZUserHelper shareInstance].loginerId];
+                    [ZZKeyValueStore saveValue:videoArray key:key tableName:kTableName_VideoSave];
+                    NSString *url = [videoDict objectForKey:@"url"];
+                    url = [NSString stringWithFormat:@"%@/%@",[ZZFileHelper createPathWithChildPath:video_savepath],url];
+                    [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:url] error:nil];
+                    if (_deleteCallBack) {
+                        _deleteCallBack();
                     }
-                        break;
-                    case 1:
-                    {
-                        [videoArray removeObject:videoDict];
-                        NSString *key = [NSString stringWithFormat:@"%@%@",[ZZStoreKey sharedInstance].uploadFailureVideo,[ZZUserHelper shareInstance].loginerId];
-                        [ZZKeyValueStore saveValue:videoArray key:key tableName:kTableName_VideoSave];
-                        NSString *url = [videoDict objectForKey:@"url"];
-                        url = [NSString stringWithFormat:@"%@/%@",[ZZFileHelper createPathWithChildPath:video_savepath],url];
-                        [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:url] error:nil];
-                        if (_deleteCallBack) {
-                            _deleteCallBack();
-                        }
-                    }
-                        break;
-                    default:
-                        break;
-                }
-            }];
+                }],
+            ]];
         } else {
             if ([ZZUtils isBan]) {
                 return;

@@ -234,16 +234,17 @@
     self.wxCopyView = [ZZCheckWXView new];
     self.wxCopyView.wxNumber = self.user.wechat.no ?: @"100101010";
     [self.wxCopyView setCopyWXBlock:^{
-        [UIActionSheet showInView:weakSelf.view withTitle:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"复制微信号"] tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-            if (buttonIndex == 0) {
-                [MobClick event:Event_click_userpage_wx_copy];
-                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                pasteboard.string = weakSelf.user.wechat.no;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [ZZHUD showSuccessWithStatus:@"已保存至粘贴板"];
-                });
-            }
-        }];
+        [weakSelf showOkCancelSheet:nil
+                        message:nil
+                   confirmTitle:@"复制微信号"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [MobClick event:Event_click_userpage_wx_copy];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = weakSelf.user.wechat.no;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [ZZHUD showSuccessWithStatus:@"已保存至粘贴板"];
+            });
+        } cancelTitle:@"取消" cancelHandler:nil];
     }];
     
     [self.wxCopyView show:YES];
@@ -467,73 +468,64 @@
 
 - (void)rightBtnClick {
     [self endEditing];
-    [UIActionSheet showInView:self.view
-                    withTitle:nil
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"查看个人主页",@"举报", _isBan?@"取消拉黑":@"拉黑"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
+    
+    [self showSheetActions:nil
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"查看个人主页" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self gotoUserPage:NO];
+        }],
+        
+        [alertAction createWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                ZZReportViewController *controller = [[ZZReportViewController alloc] init];
+                ZZNavigationController *navCtl = [[ZZNavigationController alloc] initWithRootViewController:controller];
+                controller.uid = self.uid;
+                [self.navigationController presentViewController:navCtl animated:YES completion:NULL];
+            });
+        }],
+        
+        [alertAction createWithTitle:_isBan?@"取消拉黑":@"拉黑" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (_isBan) {
+                [ZZUser removeBlackWithUid:self.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    if (error) {
+                        [ZZHUD showErrorWithStatus:error.message];
+                    }
+                    else if (data) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                            hud.labelText = @"取消拉黑成功";
+                            hud.mode = MBProgressHUDModeText;
+                            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+                            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                                [hud hide:YES];
+                            });
+                        });
                         
-                         switch (buttonIndex) {
-                             case 0:
-                             {
-                                 [self gotoUserPage:NO];
-                             }
-                                 break;
-                             case 1:
-                             {
-                                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                     ZZReportViewController *controller = [[ZZReportViewController alloc] init];
-                                     ZZNavigationController *navCtl = [[ZZNavigationController alloc] initWithRootViewController:controller];
-                                     controller.uid = self.uid;
-                                     [self.navigationController presentViewController:navCtl animated:YES completion:NULL];
-                                 });
-                             }
-                                 break;
-                             case 2:
-                             {
-                                 if (_isBan) {
-                                     [ZZUser removeBlackWithUid:self.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                                         if (error) {
-                                             [ZZHUD showErrorWithStatus:error.message];
-                                         }
-                                         else if (data) {
-                                             dispatch_async(dispatch_get_main_queue(), ^{
-                                                 MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-                                                 hud.labelText = @"取消拉黑成功";
-                                                 hud.mode = MBProgressHUDModeText;
-                                                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-                                                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                     [hud hide:YES];
-                                                 });
-                                             });
-                                             
-                                             _isBan = NO;
-                                             
-                                             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                                             
-                                             NSMutableArray<NSString *> *muArray = [[userDefault objectForKey:@"BannedVideoPeople"] mutableCopy];
-                                             if (!muArray) {
-                                                 muArray = @[].mutableCopy;
-                                             }
-                                             
-                                             if ([muArray containsObject:self.uid]) {
-                                                 [muArray removeObject:self.uid];
-                                             }
-                                             
-                                             [userDefault setObject:muArray.copy forKey:@"BannedVideoPeople"];
-                                             [userDefault synchronize];
-                                         }
-                                     }];
-                                 } else {
-                                     [self addToBlack];
-                                 }
-                             }
-                                 break;
-                             default:
-                                 break;
-                         }
-                     }];
+                        _isBan = NO;
+                        
+                        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                        
+                        NSMutableArray<NSString *> *muArray = [[userDefault objectForKey:@"BannedVideoPeople"] mutableCopy];
+                        if (!muArray) {
+                            muArray = @[].mutableCopy;
+                        }
+                        
+                        if ([muArray containsObject:self.uid]) {
+                            [muArray removeObject:self.uid];
+                        }
+                        
+                        [userDefault setObject:muArray.copy forKey:@"BannedVideoPeople"];
+                        [userDefault synchronize];
+                    }
+                }];
+            } else {
+                [self addToBlack];
+            }
+        }],
+    ]];
 }
 
 - (void)addToBlack {
@@ -1178,18 +1170,19 @@
     if (self.order.paid_at) {
         string = @"您撤销退款申请后，邀约将会继续进行，资金仍由平台监管。您只有一次撤销申请的机会，确定撤销本次退款申请吗？";
     }
-    [UIAlertView showWithTitle:@"提示" message:string cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            WS(weakSelf);
-            [ZZOrder revokeRefundOrder:self.order.id status:self.order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                if (error) {
-                    [ZZHUD showErrorWithStatus:error.message];
-                } else {
-                    [weakSelf getOrder];
-                }
-            }];
-        }
-    }];
+    [self showOkCancelAlert:@"提示"
+                    message:string
+               confirmTitle:@"确认"
+             confirmHandler:^(UIAlertAction * _Nonnull action) {
+        WS(weakSelf);
+        [ZZOrder revokeRefundOrder:self.order.id status:self.order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+            if (error) {
+                [ZZHUD showErrorWithStatus:error.message];
+            } else {
+                [weakSelf getOrder];
+            }
+        }];
+    } cancelTitle:@"取消" cancelHandler:nil];
 }
 
 - (void)editRefund {
@@ -1236,13 +1229,15 @@
     [self endEditing];
     [MobClick event:Event_user_detail_add_order];
     if ([ZZUserHelper shareInstance].loginer && [ZZUserHelper shareInstance].loginer.avatarStatus == 0) {
-        [UIAlertView showWithTitle:@"提示" message:@"本人头像不是自己的照片，请先去修改" cancelButtonTitle:@"取消" otherButtonTitles:@[@"去修改"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
-                controller.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        }];
+        [self showOkCancelAlert:@"提示"
+                        message:@"本人头像不是自己的照片，请先去修改"
+                   confirmTitle:@"去修改"
+                 confirmHandler:^(UIAlertAction * _Nonnull action) {
+            ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
+            controller.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:controller animated:YES];
+        } cancelTitle:@"取消" cancelHandler:nil];
+        
     } else {
         ZZRentChooseSkillViewController *controller = [[ZZRentChooseSkillViewController alloc] init];
         if (self.order.id) {

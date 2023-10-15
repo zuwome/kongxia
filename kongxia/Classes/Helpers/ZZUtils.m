@@ -69,29 +69,12 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     {
         //无权限
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([[[UIDevice currentDevice] systemVersion] integerValue]< 8) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"无法打开照相机", nil)
-                                   message:NSLocalizedString(@"请在“设置-隐私-相机”选项中允许《空虾》访问你的相机",nil)
-                         cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                         otherButtonTitles:nil
-                                  tapBlock:nil];
-            }else
-            {
-                [UIAlertView showWithTitle:@"开启相机权限"
-                                   message:NSLocalizedString(@"在“设置-空虾”中开启相机就可以开始使用本功能哦~",nil)
-                         cancelButtonTitle:NSLocalizedString(@"取消", nil)
-                         otherButtonTitles:@[NSLocalizedString(@"设置", nil)]
-                                  tapBlock:
-                 ^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                     if (buttonIndex) {
-                         if (UIApplicationOpenSettingsURLString != NULL) {
-                             NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                             [[UIApplication sharedApplication] openURL:appSettings];
-                         }
-                     }
-                 }];
-            }
-            
+            [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController] title:@"开启相机权限" message:@"在“设置-空虾”中开启相机就可以开始使用本功能哦~" confirmTitle:@"设置" confirmHandler:^(UIAlertAction * _Nonnull action) {
+                if (UIApplicationOpenSettingsURLString != NULL) {
+                    NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    [[UIApplication sharedApplication] openURL:appSettings];
+                }
+            } cancelTitle:@"取消" cancelHandler:nil];
         });
         
         return NO;
@@ -108,29 +91,16 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     {
         //无权限
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([[[UIDevice currentDevice] systemVersion] integerValue]< 8) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"无法访问麦克风", nil)
-                                   message:NSLocalizedString(@"请在“设置-隐私-麦克风”选项中允许《空虾》访问你的麦克风",nil)
-                         cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                         otherButtonTitles:nil
-                                  tapBlock:nil];
-            }else
-            {
-                [UIAlertView showWithTitle:@"开启麦克风权限"
-                                   message:@"在“设置-空虾”中开启麦克风就可以开始使用本功能哦~"
-                         cancelButtonTitle:NSLocalizedString(@"取消", nil)
-                         otherButtonTitles:@[NSLocalizedString(@"设置", nil)]
-                                  tapBlock:
-                 ^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                     if (buttonIndex) {
-                         if (UIApplicationOpenSettingsURLString != NULL) {
-                             NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                             [[UIApplication sharedApplication] openURL:appSettings];
-                         }
-                     }
-                 }];
-            }
-            
+            [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController] 
+                                             title:@"开启麦克风权限"
+                                           message:@"在“设置-空虾”中开启麦克风就可以开始使用本功能哦~"
+                                      confirmTitle:@"设置"
+                                    confirmHandler:^(UIAlertAction * _Nonnull action) {
+                if (UIApplicationOpenSettingsURLString != NULL) {
+                    NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    [[UIApplication sharedApplication] openURL:appSettings];
+                }
+            } cancelTitle:@"取消" cancelHandler:nil];
         });
         
         return NO;
@@ -146,28 +116,16 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         //无权限
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([[[UIDevice currentDevice] systemVersion] integerValue]< 8) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"定位服务未开启", nil)
-                                   message:NSLocalizedString(@"您尚未开启定位功能，无法准确获取定位消息。请在“设置-隐私-定位服务中”，找到“空虾”并打开来获取最完整的服务",nil)
-                         cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                         otherButtonTitles:nil
-                                  tapBlock:nil];
-            }else
-            {
-                [UIAlertView showWithTitle:nil
-                                   message:NSLocalizedString(@"您尚未开启定位功能，无法准确获取定位消息。",nil)
-                         cancelButtonTitle:NSLocalizedString(@"忽略", nil)
-                         otherButtonTitles:@[NSLocalizedString(@"去开启", nil)]
-                                  tapBlock:
-                 ^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                     if (buttonIndex) {
-                         if (UIApplicationOpenSettingsURLString != NULL) {
-                             NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                             [[UIApplication sharedApplication] openURL:appSettings];
-                         }
-                     }
-                 }];
-            }
+            [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController]
+                                             title:nil
+                                           message:@"您尚未开启定位功能，无法准确获取定位消息。"
+                                      confirmTitle:@"去开启"
+                                    confirmHandler:^(UIAlertAction * _Nonnull action) {
+                if (UIApplicationOpenSettingsURLString != NULL) {
+                    NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    [[UIApplication sharedApplication] openURL:appSettings];
+                }
+            } cancelTitle:@"忽略" cancelHandler:nil];
         });
         
         return NO;
@@ -179,96 +137,49 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
 + (BOOL)isAllowNotification
 {
     //判断通知
-    if ([[[UIDevice currentDevice] systemVersion] integerValue] < 8) {
-        UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-        if(UIRemoteNotificationTypeNone != type) {
-            return YES;
-        } else {
-            [UIAlertView showWithTitle:NSLocalizedString(@"消息通知功能未开启", nil)
-                               message:NSLocalizedString(@"您尚未开启新消息通知功能，无法及时获得邀约等重要消息。请在设置-通知中心中，找到“空虾”并打开通知来获取最完整的服务。",nil)
-                     cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                     otherButtonTitles:nil
-                              tapBlock:nil];
-            
-            return NO;
-        }
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (UIUserNotificationTypeNone != setting.types) {
+        return YES;
     } else {
-        UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
-        if (UIUserNotificationTypeNone != setting.types) {
-            return YES;
-        } else {
-            [UIAlertView showWithTitle:nil
-                               message:NSLocalizedString(@"您尚未开启新消息通知功能，无法及时获得订单等重要消息。",nil)
-                     cancelButtonTitle:NSLocalizedString(@"忽略", nil)
-                     otherButtonTitles:@[NSLocalizedString(@"去开启", nil)]
-                              tapBlock:
-             ^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                 if (buttonIndex) {
-                     if (UIApplicationOpenSettingsURLString != NULL) {
-                         NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                         [[UIApplication sharedApplication] openURL:appSettings];
-                     }
-                 }
-             }];
-            
-            return NO;
-        }
+        [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController]
+                                         title:nil
+                                       message:@"您尚未开启新消息通知功能，无法及时获得订单等重要消息。"
+                                  confirmTitle:@"去开启"
+                                confirmHandler:^(UIAlertAction * _Nonnull action) {
+            if (UIApplicationOpenSettingsURLString != NULL) {
+                NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:appSettings];
+            }
+        } cancelTitle:@"忽略" cancelHandler:nil];
+        return NO;
     }
-    
     return YES;
 }
 
 + (void)checkContactAuthorization:(void(^)(bool isAuthorized))block
 {
-    if (IOS9_OR_LATER) {
-        CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-        if (status == CNAuthorizationStatusNotDetermined || status == CNAuthorizationStatusAuthorized) {
-            CNContactStore *store = [[CNContactStore alloc] init];
-            [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error)
-             {
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     if (error)
-                     {
-                         block(NO);
-                     }
-                     else if (!granted)
-                     {
-                         block(NO);
-                     }
-                     else
-                     {
-                         block(YES);
-                     }
-                 });
-             }];
-        } else {
-            block(NO);
-        }
+    CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if (status == CNAuthorizationStatusNotDetermined || status == CNAuthorizationStatusAuthorized) {
+        CNContactStore *store = [[CNContactStore alloc] init];
+        [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error)
+         {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 if (error)
+                 {
+                     block(NO);
+                 }
+                 else if (!granted)
+                 {
+                     block(NO);
+                 }
+                 else
+                 {
+                     block(YES);
+                 }
+             });
+         }];
     } else {
-        ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
-        if (status == kABAuthorizationStatusNotDetermined || status == kABAuthorizationStatusAuthorized) {
-            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
-            ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
-                                                     {
-                                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                                             if (error)
-                                                             {
-                                                                 NSLog(@"Error: %@", (__bridge NSError *)error);
-                                                                 block(NO);
-                                                             }
-                                                             else if (!granted)
-                                                             {
-                                                                 block(NO);
-                                                             }
-                                                             else
-                                                             {
-                                                                 block(YES);
-                                                             }
-                                                         });
-                                                     });
-        } else {
-            block(NO);
-        }
+        block(NO);
     }
 }
 
@@ -680,11 +591,13 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
             break;
         case AFNetworkReachabilityStatusReachableViaWWAN:
         {
-            [UIAlertView showWithTitle:nil message:@"没wifi啦，允许使用流量播放当前内容" cancelButtonTitle:@"允许" otherButtonTitles:@[@"不允许"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 0) {
-                    block();
-                }
-            }];
+            [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController]
+                                             title:nil
+                                           message:@"没wifi啦，允许使用流量播放当前内容"
+                                      confirmTitle:@"允许"
+                                    confirmHandler:^(UIAlertAction * _Nonnull action) {
+                block();
+            } cancelTitle:@"不允许" cancelHandler:nil];
         }
             break;
         default:

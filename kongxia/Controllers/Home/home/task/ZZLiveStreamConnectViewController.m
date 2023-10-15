@@ -963,22 +963,23 @@
     if (_acceped || [ZZLiveStreamHelper sharedInstance].during < 30) {
         [reasons removeObjectAtIndex:0];
     }
-    [UIActionSheet showInView:self.view withTitle:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:reasons tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-        WeakSelf;
-        if (buttonIndex < reasons.count) {
-            if (buttonIndex != reasons.count) {
-                NSString *reason = reasons[buttonIndex];
-                ZZLiveStreamReportAlert *alert = [[ZZLiveStreamReportAlert alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-                [self.view addSubview:alert];
-                alert.touchReport = ^{
-                    if (!weakSelf.acceped) {//用户方如果是举报方式挂断，则不需要评价弹窗，服务端自动给 2星 差评
-                        weakSelf.isCommentsNeed = NO;
-                    }
-                    [weakSelf reportRequest:reason];
-                };
-            }
-        }
-    }];
+    
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    for (NSString *reason in reasons) {
+        [actions addObject:[alertAction createWithTitle:reason style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            WeakSelf;
+            ZZLiveStreamReportAlert *alert = [[ZZLiveStreamReportAlert alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            [self.view addSubview:alert];
+            alert.touchReport = ^{
+                if (!weakSelf.acceped) {//用户方如果是举报方式挂断，则不需要评价弹窗，服务端自动给 2星 差评
+                    weakSelf.isCommentsNeed = NO;
+                }
+                [weakSelf reportRequest:reason];
+            };
+        }]];
+    }
+    
+    [self showSheetActions:nil message:nil cancelTitle:@"取消" cancelHandler:nil actions:actions.copy];
 }
 
 - (void)reportRequest:(NSString *)reason

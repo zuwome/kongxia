@@ -384,55 +384,53 @@
     if (!_model) {
         return;
     }
-    [UIActionSheet showInView:self.view
-                    withTitle:nil
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"举报", _isBan?@"取消拉黑":@"拉黑"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                         if (buttonIndex == 0) {
-                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                 ZZReportViewController *controller = [[ZZReportViewController alloc] init];
-                                 ZZNavigationController *navCtl = [[ZZNavigationController alloc] initWithRootViewController:controller];
-                                 controller.uid = _model.mmd.from.uid;
-                                 [self.navigationController presentViewController:navCtl animated:YES completion:NULL];
-                             });
-                         }
-                         if (buttonIndex == 1) {
-                             if (_isBan) {
-                                 [ZZUser removeBlackWithUid:_model.mmd.from.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                                     if (error) {
-                                         [ZZHUD showErrorWithStatus:error.message];
-                                     } else if (data) {
-                                         _isBan = NO;
-                                         
-                                         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                                         
-                                         NSMutableArray<NSString *> *muArray = [[userDefault objectForKey:@"BannedVideoPeople"] mutableCopy];
-                                         if (!muArray) {
-                                             muArray = @[].mutableCopy;
-                                         }
-                                         
-                                         if ([muArray containsObject:_model.mmd.from.uid]) {
-                                             [muArray removeObject:_model.mmd.from.uid];
-                                         }
-                                         
-                                         [userDefault setObject:muArray.copy forKey:@"BannedVideoPeople"];
-                                         [userDefault synchronize];
-                                     }
-                                 }];
-                             } else {
-                                 [ZZUser addBlackWithUid:_model.mmd.from.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                                     if (error) {
-                                         [ZZHUD showErrorWithStatus:error.message];
-                                     } else if (data) {
-                                         _isBan = YES;
-                                     }
-                                 }];
-                             }
-                         }
-                     }];
-
+    [self showSheetActions:nil
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                ZZReportViewController *controller = [[ZZReportViewController alloc] init];
+                ZZNavigationController *navCtl = [[ZZNavigationController alloc] initWithRootViewController:controller];
+                controller.uid = _model.mmd.from.uid;
+                [self.navigationController presentViewController:navCtl animated:YES completion:NULL];
+            });
+        }],
+        [alertAction createWithTitle:_isBan?@"取消拉黑":@"拉黑" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (_isBan) {
+                [ZZUser removeBlackWithUid:_model.mmd.from.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    if (error) {
+                        [ZZHUD showErrorWithStatus:error.message];
+                    } else if (data) {
+                        _isBan = NO;
+                        
+                        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                        
+                        NSMutableArray<NSString *> *muArray = [[userDefault objectForKey:@"BannedVideoPeople"] mutableCopy];
+                        if (!muArray) {
+                            muArray = @[].mutableCopy;
+                        }
+                        
+                        if ([muArray containsObject:_model.mmd.from.uid]) {
+                            [muArray removeObject:_model.mmd.from.uid];
+                        }
+                        
+                        [userDefault setObject:muArray.copy forKey:@"BannedVideoPeople"];
+                        [userDefault synchronize];
+                    }
+                }];
+            } else {
+                [ZZUser addBlackWithUid:_model.mmd.from.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+                    if (error) {
+                        [ZZHUD showErrorWithStatus:error.message];
+                    } else if (data) {
+                        _isBan = YES;
+                    }
+                }];
+            }
+        }],
+    ]];
 }
 
 - (void)headBtnClick

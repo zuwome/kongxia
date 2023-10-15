@@ -533,11 +533,9 @@
 #pragma mark - UIButtonMethod
 - (void)leftBtnClick {
     if (self.videoUrlArray.count > 0) {
-        [UIAlertView showWithTitle:@"提示" message:@"是否放弃当前录制" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self dismissView];
-            }
-        }];
+        [self showOkCancelAlert:@"提示" message:@"是否放弃当前录制" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self dismissView];
+        } cancelTitle:@"取消" cancelHandler:nil];
     }
     else {
         [self dismissView];

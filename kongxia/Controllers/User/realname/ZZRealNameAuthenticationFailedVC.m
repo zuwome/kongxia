@@ -261,20 +261,18 @@
 
 - (void)uploadImageViewWithButton:(UIButton *)sender {
     [self.view endEditing:YES];
-    [UIActionSheet showInView:self.view
-                    withTitle:@"上传照片"
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"拍照",@"从手机相册选择"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                         if (buttonIndex ==0) {
-                             [self gotoCamera];
-                         }
-                         if (buttonIndex ==1) {
-                             [self gotoAlbum];
-                         }
-                         
-                     }];
+    [self showSheetActions:@"上传照片"
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self gotoCamera];
+        }],
+        [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self gotoAlbum];
+        }],
+    ]];
 }
 
 //相册

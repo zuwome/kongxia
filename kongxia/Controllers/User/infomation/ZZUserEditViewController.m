@@ -460,15 +460,18 @@
                     [weakSelf photoFailAction];
                     
                     if ([[data objectForKey:@"tipOpen"] boolValue]) {
-                        [UIAlertView showWithTitle:@"提示" message:data[@"tip"] cancelButtonTitle:nil otherButtonTitles:@[@"更换头像",@"识别本人"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                            if (buttonIndex == 0) {
+                        [self showAlertActions:@"提示" 
+                                       message:data[@"tip"]
+                                       actions:@[
+                            [alertAction createWithTitle:@"更换头像" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                 self.headView.isReplaceHead = YES;
                                 [self.headView gotoAlbum];
-                            }
-                            if (buttonIndex == 1) {
+                            }],
+                            
+                            [alertAction createWithTitle:@"识别本人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                 [self gotoLiveCheck];
-                            }
-                        }];
+                            }],
+                        ]];
                     }
                 }
                 else {
@@ -476,7 +479,7 @@
                         // 去人脸识别
                         if ([[data objectForKey:@"tipOpen"] boolValue]) {
                             [ZZHUD dismiss];
-                            [UIAlertView showWithTitle:@"提示" message:data[@"tip"] cancelButtonTitle:nil otherButtonTitles:@[@"识别"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                            [self showOkAlert:@"提示" message:data[@"tip"] confirmTitle:@"识别" confirmHandler:^(UIAlertAction * _Nonnull action) {
                                 [self gotoLiveCheck];
                             }];
                             _isUpdatingData = NO;

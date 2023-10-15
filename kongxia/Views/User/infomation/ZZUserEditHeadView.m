@@ -297,80 +297,73 @@ static NSString *photoEmptyIdentifier = @"photoempty";
             return;
         }
         
-        UIActionSheet *sheets = [UIActionSheet showInView:_weakCtl.view
-                                                withTitle:nil
-                                        cancelButtonTitle:@"取消"
-                                   destructiveButtonTitle:nil
-                                        otherButtonTitles:@[@"拍照",@"从手机相册选择"]
-                                                 tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-                                                     switch (buttonIndex) {
-                                                         case 0:
-                                                             _isReplaceHead = YES;
-                                                             [self gotoCamera];
-                                                             break;
-                                                         case 1:
-                                                             _isReplaceHead = YES;
-                                                             [self gotoAlbum];
-                                                             break;
-                                                         default: break;
-                                                     }
-                                                 }];
-        
         ZZUploadPhotoExampleView *exampleView = [ZZUploadPhotoExampleView showPhotos:_type == EditTypeUser ? PhotoUserInfo : PhotoUserSkill showin:[UIApplication sharedApplication].keyWindow];
         [exampleView show];
         
-        sheets.willDismissBlock = ^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
+        [UIAlertController showSheetActionsIn:[UIViewController currentDisplayViewController]
+                                        title:nil
+                                      message:nil
+                                  cancelTitle:@"取消"
+                                cancelHandler:^(UIAlertAction * _Nonnull action) {
             [exampleView hide];
-        };
+        }
+                                      actions:@[
+            [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                _isReplaceHead = YES;
+                [self gotoCamera];
+                [exampleView hide];
+            }],
+            [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                _isReplaceHead = YES;
+                [self gotoAlbum];
+                [exampleView hide];
+            }],
+        ]];
     }
     else {    //其余选项：删除
-        [UIActionSheet showInView:_weakCtl.view
-                        withTitle:nil
-                cancelButtonTitle:@"取消"
-           destructiveButtonTitle:@"删除"
-                otherButtonTitles:nil
-                         tapBlock:^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-                             switch (buttonIndex) {
-                                 case 0: {
-                                     _isUpdate = YES;
-                                     if (indexPath.row < self.imgArray.count) {
-                                         [self.imgArray removeObjectAtIndex:indexPath.row];
-                                         [self.urlArray removeObjectAtIndex:indexPath.row];
-                                     }
-                        
-                                     [self.collectionView reloadData];
-                                 } break;
-                                 default: break;
-                             }
-                         }];
+        [UIAlertController showOkCancelSheetIn:[UIViewController currentDisplayViewController]
+                                         title:nil
+                                       message:nil
+                                  confirmTitle:@"删除" 
+                                confirmHandler:^(UIAlertAction * _Nonnull action) {
+            _isUpdate = YES;
+            if (indexPath.row < self.imgArray.count) {
+                [self.imgArray removeObjectAtIndex:indexPath.row];
+                [self.urlArray removeObjectAtIndex:indexPath.row];
+            }
+
+            [self.collectionView reloadData];
+        }
+                                   cancelTitle:@"取消"
+                                 cancelHandler:nil];
     }
 }
 
 - (void)addPhotoWithIndexPath:(NSIndexPath *)indexPath
 {
     [MobClick event:Event_click_edit_uploadimage];
-    UIActionSheet *sheets = [UIActionSheet showInView:_weakCtl.view
-                                            withTitle:nil
-                                    cancelButtonTitle:@"取消"
-                               destructiveButtonTitle:nil
-                                    otherButtonTitles:@[@"拍照",@"从手机相册选择"]
-                                             tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                                                 if (buttonIndex ==0) {
-                                                     [self gotoCamera];
-                                                 }
-                                                 if (buttonIndex ==1) {
-                                                     [self gotoAlbum];
-                                                 }
-                                                 
-                                             }];
-    
     ZZUploadPhotoExampleView *exampleView = [ZZUploadPhotoExampleView showPhotos:_type == EditTypeUser ? PhotoUserInfo : PhotoUserSkill showin:[UIApplication sharedApplication].keyWindow];
     [exampleView show];
-
-    sheets.willDismissBlock = ^(UIActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-        [exampleView hide];
-    };
     
+    [UIAlertController showSheetActionsIn:[UIViewController currentDisplayViewController]
+                                    title:nil
+                                  message:nil
+                              cancelTitle:@"取消"
+                            cancelHandler:^(UIAlertAction * _Nonnull action) {
+        [exampleView hide];
+    }
+                                  actions:@[
+        [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            _isReplaceHead = YES;
+            [self gotoCamera];
+            [exampleView hide];
+        }],
+        [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            _isReplaceHead = YES;
+            [self gotoAlbum];
+            [exampleView hide];
+        }],
+    ]];
 }
 
 //相册

@@ -592,66 +592,63 @@
 - (void)uploadAvatar {
     [MobClick event:Event_click_infomation_uploadhead];
     [self.view endEditing:YES];
-    [UIActionSheet showInView:self.view
-                    withTitle:@"上传真实头像"
-            cancelButtonTitle:@"取消"
-       destructiveButtonTitle:nil
-            otherButtonTitles:@[@"拍照",@"从手机相册选择"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex){
-                         if (buttonIndex ==0) {
-                             UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-                             [imgPicker setAllowsEditing:YES];
-                            WS(weakSelf);
-                             imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
-                                 IOS_11_NO_Show
-                                 [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [self showSheetActions:@"上传真实头像"
+                   message:nil
+               cancelTitle:@"取消"
+             cancelHandler:nil
+                   actions:@[
+        [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+            [imgPicker setAllowsEditing:YES];
+           WS(weakSelf);
+            imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
+                IOS_11_NO_Show
+                [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
-                                 [picker dismissViewControllerAnimated:YES completion:^{
-                                     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-                                     [weakSelf updateImg:image];
-                                 }];
-                             };
+                [picker dismissViewControllerAnimated:YES completion:^{
+                    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+                    [weakSelf updateImg:image];
+                }];
+            };
 
-                             imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
-                                 [picker dismissViewControllerAnimated:YES completion:nil];
-                             };
-                             [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-                             CGAffineTransform transform = CGAffineTransformIdentity;
+            imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
+                [picker dismissViewControllerAnimated:YES completion:nil];
+            };
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            CGAffineTransform transform = CGAffineTransformIdentity;
 
-                             imgPicker.cameraViewTransform = CGAffineTransformScale(transform, -1, 1);
-                             imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-                             [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+            imgPicker.cameraViewTransform = CGAffineTransformScale(transform, -1, 1);
+            imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }],
+        [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            IOS_11_Show
 
-                         }
-                         if (buttonIndex ==1) {
-                          IOS_11_Show
+               WeakSelf;
+               IOS_11_Show
+               UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+               //    [imgPicker setAllowsEditing:YES];
+               [imgPicker setDelegate:self];
+               [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+               imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
+                   IOS_11_NO_Show
+                   [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
-                             WeakSelf;
-                             IOS_11_Show
-                             UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-                             //    [imgPicker setAllowsEditing:YES];
-                             [imgPicker setDelegate:self];
-                             [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-                             imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
-                                 IOS_11_NO_Show
-                                 [[UIApplication sharedApplication] setStatusBarHidden:YES];
+                   [picker dismissViewControllerAnimated:YES completion:^{
+                       UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+                       [weakSelf edit:image];
 
-                                 [picker dismissViewControllerAnimated:YES completion:^{
-                                     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-                                     [weakSelf edit:image];
+                   }];
+               };
+               imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
+                   [picker dismissViewControllerAnimated:YES completion:nil];
+                   [[UIApplication sharedApplication] setStatusBarHidden:YES];
+                   IOS_11_NO_Show
 
-                                 }];
-                             };
-                             imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
-                                 [picker dismissViewControllerAnimated:YES completion:nil];
-                                 [[UIApplication sharedApplication] setStatusBarHidden:YES];
-                                 IOS_11_NO_Show
-
-                             };
-                             [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
-                         }
-
-                     }];
+               };
+               [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }],
+    ]];
 }
 
 

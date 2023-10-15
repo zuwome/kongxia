@@ -67,11 +67,10 @@
             [weakSelf authorizeSuccess];
         } else {
             if ([[UIDevice currentDevice].systemVersion integerValue] < 8) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"通讯录功能未开启", nil)
-                                   message:NSLocalizedString(@"您尚未开启通讯录功能，请在设置-通知中心中，找到“空虾”并打开通讯录来获取最完整的服务。",nil)
-                         cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                         otherButtonTitles:nil
-                                  tapBlock:nil];
+                [self showOkAlert:@"通讯录功能未开启"
+                          message:@"您尚未开启通讯录功能，请在设置-通知中心中，找到“空虾”并打开通讯录来获取最完整的服务。"
+                     confirmTitle:@"确定"
+                   confirmHandler:nil];
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.view.window addSubview:weakSelf.alert];

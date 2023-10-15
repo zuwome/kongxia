@@ -192,16 +192,14 @@
 }
 
 - (void)navigationLeftBtnClick
-{
-    [UIAlertView showWithTitle:@"提示" message:@"您确定要退出紧急求助功能吗？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            WeakSelf;
-            [_agoraKit leaveChannel:^(AgoraChannelStats * _Nonnull stat) {
-                weakSelf.agoraKit = nil;
-            }];
-            [super navigationLeftBtnClick];
-        }
-    }];
+{  
+    [self showOkCancelAlert:@"提示" message:@"您确定要退出紧急求助功能吗？" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+        WeakSelf;
+        [_agoraKit leaveChannel:^(AgoraChannelStats * _Nonnull stat) {
+            weakSelf.agoraKit = nil;
+        }];
+        [super navigationLeftBtnClick];
+    } cancelTitle:@"取消" cancelHandler:nil];
 }
 
 #pragma mark - timer

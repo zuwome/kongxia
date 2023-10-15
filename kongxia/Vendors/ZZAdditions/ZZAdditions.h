@@ -79,8 +79,6 @@
 #import "UITextView+Placeholder.h"
 
 // Block
-#import "UIActionSheet+Blocks.h"
-#import "UIAlertView+Blocks.h"
 #import "UIImagePickerController+Block.h"
 
 // UIApplication

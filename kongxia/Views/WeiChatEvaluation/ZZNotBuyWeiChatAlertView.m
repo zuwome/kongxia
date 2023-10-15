@@ -518,8 +518,11 @@
     [ZZPayManager uploadToServerData:dic];  //上传内购失败数据到服务器
     [ZZHUD dismiss];
     self.payButton.userInteractionEnabled = YES;
-    [UIAlertView showWithTitle:@"温馨提示" message:error cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-    }];
+    [UIAlertController showOkAlertIn:[UIViewController currentDisplayViewController]
+                               title:@"温馨提示"
+                             message:error
+                        confirmTitle:@"确定"
+                      confirmHandler:nil];
 }
 
 //内购 -- 支付成功

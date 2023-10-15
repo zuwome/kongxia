@@ -151,11 +151,9 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle ==UITableViewCellEditingStyleDelete) {
-        [UIAlertView showWithTitle:@"删除联系人" message:@"确定删除该紧急联系人吗？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [self deleteContact:indexPath];
-            }
-        }];
+        [self showOkCancelAlert:@"删除联系人" message:@"确定删除该紧急联系人吗？" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self deleteContact:indexPath];
+        } cancelTitle:@"取消" cancelHandler:nil];
     }
 }
 
@@ -179,11 +177,10 @@
             [weakSelf gotoContactView];
         } else {
             if ([[UIDevice currentDevice].systemVersion integerValue] < 8) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"通讯录功能未开启", nil)
-                                   message:NSLocalizedString(@"您尚未开启通讯录功能，请在设置-通知中心中，找到“空虾”并打开通讯录来获取最完整的服务。",nil)
-                         cancelButtonTitle:NSLocalizedString(@"确定", nil)
-                         otherButtonTitles:nil
-                                  tapBlock:nil];
+                [self showOkAlert:@"通讯录功能未开启"
+                          message:@"您尚未开启通讯录功能，请在设置-通知中心中，找到“空虾”并打开通讯录来获取最完整的服务。"
+                     confirmTitle:@"确定"
+                   confirmHandler:nil];
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.view.window addSubview:weakSelf.alert];

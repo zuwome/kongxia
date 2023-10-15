@@ -259,11 +259,10 @@
             if ([[data objectForKey:@"say_hi_status"] integerValue] == 0) {
                 if (loginedUser.avatar_manual_status == 1) {
                     if (![loginedUser didHaveOldAvatar]) {
-                        [UIAlertView showWithTitle:@"提示"
-                                           message:@"打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼"
-                                 cancelButtonTitle:@"知道了"
-                                 otherButtonTitles:nil
-                                          tapBlock:nil];
+                        [self showOkAlert:@"提示"
+                                  message:@"打招呼需要上传本人五官正脸清晰照，您的头像还在审核中，暂不可打招呼"
+                             confirmTitle:@"知道了"
+                           confirmHandler:nil];
                     }
                     else {
                         [self chat:user];

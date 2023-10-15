@@ -95,15 +95,12 @@
             sender.enabled = YES;
             if (error) {
                 if ([error.type isEqualToString:@"nosupport"]) {
-                     NSLog(@"PY_弹出自定义的弹窗告诉用户该银行卡不支持提现");
-                       [UIAlertView showWithTitle:@"提示" message:@"您填写的银行卡目前暂不支持提现" cancelButtonTitle:@"取消" otherButtonTitles:@[@"查看提现规则"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                           if (buttonIndex) {
-                               ZZLinkWebViewController *linkViewController = [[ZZLinkWebViewController alloc]init];
-                               linkViewController.urlString = H5Url.withdrawalRules;
-                               linkViewController.navigationItem.title = @"提现规则";
-                               [self.navigationController pushViewController:linkViewController animated:YES];
-                           }
-                       }];
+                    [self showOkCancelAlert:@"提示" message:@"您填写的银行卡目前暂不支持提现" confirmTitle:@"查看提现规则" confirmHandler:^(UIAlertAction * _Nonnull action) {
+                        ZZLinkWebViewController *linkViewController = [[ZZLinkWebViewController alloc]init];
+                        linkViewController.urlString = H5Url.withdrawalRules;
+                        linkViewController.navigationItem.title = @"提现规则";
+                        [self.navigationController pushViewController:linkViewController animated:YES];
+                    } cancelTitle:@"取消" cancelHandler:nil];
                 }else{
                 [ZZHUD showTastInfoErrorWithString:error.message];
                 }
@@ -114,7 +111,7 @@
 
                     return ;
                 }
-                [UIAlertView showWithTitle:@"提示" message:@"您的提现申请已提交，请等待审核，预计1-2日到账。" cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [self showOkAlert:@"提示" message:@"您的提现申请已提交，请等待审核，预计1-2日到账。" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
                     if (self.tiXianBlock) {
                         self.tiXianBlock();
                     }
@@ -127,7 +124,6 @@
                         }
                     }
                     [self.navigationController popToRootViewControllerAnimated:YES];
-                    
                 }];
             }
         }];
@@ -150,8 +146,8 @@
     [self.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     cell.detailClickBlock = ^(UIButton *sender){
         sender.enabled = NO;
-        [UIAlertView showWithTitle:@"提示" message:@"为了保证提现成功，只能填写实名认证一致的本人的银行卡" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-        sender.enabled = YES;
+        [self showOkAlert:@"提示" message:@"为了保证提现成功，只能填写实名认证一致的本人的银行卡" confirmTitle:@"知道了" confirmHandler:^(UIAlertAction * _Nonnull action) {
+            sender.enabled = YES;
         }];
     };
 
