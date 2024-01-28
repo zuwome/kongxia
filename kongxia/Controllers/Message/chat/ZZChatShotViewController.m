@@ -136,9 +136,7 @@
     _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [_picturePreview.layer addSublayer:_playerLayer];
     
-    if ([[UIDevice currentDevice] systemVersion].intValue >= 10) {
-        self.player.automaticallyWaitsToMinimizeStalling = NO;
-    }
+    self.player.automaticallyWaitsToMinimizeStalling = NO;
     [_player play];
     
     [self addPlayerNotifications];

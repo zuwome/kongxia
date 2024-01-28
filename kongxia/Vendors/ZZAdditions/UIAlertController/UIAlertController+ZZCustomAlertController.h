@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^UIActionControllerSheetCompletionBlock) (UIActionSheet * __nonnull actionSheet, NSInteger buttonIndex);
+
 @interface UIAlertController (ZZCustomAlertController)
 + (void)presentActionControllerWithTitle:(NSString *_Nullable)title
                                  actions:(NSArray<UIAlertAction *> *_Nullable)actions;

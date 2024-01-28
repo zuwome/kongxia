@@ -139,10 +139,8 @@
 //下载完成
 - (void)finishedDownload {
     NSInteger status = [JPVideoPlayerPlayVideoTool sharedTool].currentPlayVideoItem.player.status;
-    NSInteger  status2 = 2;
-    if (IOS10) {
-        status2 =  [JPVideoPlayerPlayVideoTool sharedTool].currentPlayVideoItem.player.timeControlStatus;
-    }
+    NSInteger  status2 = [JPVideoPlayerPlayVideoTool sharedTool].currentPlayVideoItem.player.timeControlStatus;;
+
     NSLog(@"PY_当前收到下载完毕的通知开始播放呢 %ld %ld",(long)status,(long)status2);
     WS(weakSelf);
     if (status !=1||status2 <2) {

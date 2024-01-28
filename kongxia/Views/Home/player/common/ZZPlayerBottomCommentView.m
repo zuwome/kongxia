@@ -171,16 +171,10 @@
         }];
     
     
-        if (IOS8_OR_LATER) {
-            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-            UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
-            effectview.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            [_bgView addSubview:effectview];
-        } else {
-            UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            toolbar.barStyle = UIBarStyleBlackOpaque;
-            [_bgView addSubview:toolbar];
-        }
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+        effectview.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [_bgView addSubview:effectview];
     }
     return _bgView;
 }

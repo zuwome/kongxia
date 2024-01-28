@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, SkillEditCellType) {
 //introduceCell
 @property (nonatomic, copy) void(^showIntroduceDialog)(void);
 @property (nonatomic, copy) void(^beginEditIntroduce)(void);
-- (void)hideDialog;
+
 //pictureCell
 - (void)addToParentViewController:(UIViewController *)viewController;
 

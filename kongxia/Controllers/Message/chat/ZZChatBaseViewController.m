@@ -3556,14 +3556,9 @@ static CGPoint delayOffset = {0.0};
         [_tableView addGestureRecognizer:tableViewGesture];
         
         //可以通过以下方式禁用
-        if (IOS10) {
-            UITableView.appearance.estimatedRowHeight = 0;
-            UITableView.appearance.estimatedSectionFooterHeight = 0;
-            UITableView.appearance.estimatedSectionHeaderHeight = 0;
-        }
-        else {
-            _tableView.estimatedRowHeight = 70;
-        }
+        UITableView.appearance.estimatedRowHeight = 0;
+        UITableView.appearance.estimatedSectionFooterHeight = 0;
+        UITableView.appearance.estimatedSectionHeaderHeight = 0;
         [self setTableViewInsetsWithBottomValue:54.0];
     }
     return _tableView;

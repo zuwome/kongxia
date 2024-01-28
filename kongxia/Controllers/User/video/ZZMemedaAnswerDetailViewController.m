@@ -59,7 +59,7 @@
 }
 
 - (void)initRightButton {
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightBtnClick)];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClick)];
     self.navigationItem.rightBarButtonItem = more;
 }
 

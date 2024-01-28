@@ -98,16 +98,10 @@
         _coverView.alpha = 0.8;
         [self.contentView addSubview:_coverView];
         
-        if (IOS8_OR_LATER) {
-            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-            UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
-            effectview.frame = CGRectMake(0, 0, _width, _height);
-            [_coverView addSubview:effectview];
-        } else {
-            UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, _width, _height)];
-            toolbar.barStyle = UIBarStyleBlackOpaque;
-            [_coverView addSubview:toolbar];
-        }
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+        effectview.frame = CGRectMake(0, 0, _width, _height);
+        [_coverView addSubview:effectview];
     }
     return _coverView;
 }

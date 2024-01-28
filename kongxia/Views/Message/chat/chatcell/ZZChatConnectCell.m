@@ -25,18 +25,11 @@
         [self.contentView addSubview:_bgView];
         _bgView.layer.cornerRadius = 3;
         
-        if (IOS8_OR_LATER) {
-            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-            UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
-            effectview.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            effectview.alpha = 0.3;
-            [_bgView addSubview:effectview];
-        } else {
-            UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            toolbar.barStyle = UIBarStyleBlackOpaque;
-            toolbar.alpha = 0.3;
-            [_bgView addSubview:toolbar];
-        }
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+        effectview.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        effectview.alpha = 0.3;
+        [_bgView addSubview:effectview];
         
         _topBtn = [[UIButton alloc] init];
         _topBtn.backgroundColor = [UIColor whiteColor];

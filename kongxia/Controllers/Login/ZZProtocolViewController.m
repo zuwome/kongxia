@@ -45,11 +45,7 @@
     }];
     
     NSString *urlString = H5Url.userProtocol;
-    if (IOS8_OR_LATER) {
-        [(WKWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
-    } else {
-        [(UIWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
-    }
+    [(WKWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
 }
 
 - (void)didReceiveMemoryWarning {

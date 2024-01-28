@@ -28,7 +28,6 @@
 @property (nonatomic, strong) ZZLinkWebNavigationView *navigationView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) ZZRightShareView *shareView;
-@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) WKWebView *wkWebView;
 
 @property (nonatomic, assign) BOOL pushHideBar;
@@ -183,29 +182,16 @@
 }
 
 - (void)leftBtnClick {
-    if (IOS8_OR_LATER) {
-        if (_wkWebView.canGoBack) {
-            if (_isShowedSayHiFinishedView) {
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
-            }
-            [_wkWebView goBack];
+    if (_wkWebView.canGoBack) {
+        if (_isShowedSayHiFinishedView) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
         }
-        else {
-            if (self.presentingViewController) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }
-    } else {
-        if (_webView.canGoBack) {
-            if (_isShowedSayHiFinishedView) {
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
-            }
-            [_webView goBack];
+        [_wkWebView goBack];
+    }
+    else {
+        if (self.presentingViewController) {
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         else {
             [self.navigationController popViewControllerAnimated:YES];
@@ -267,30 +253,17 @@
         [request setValue:oAuthToken forHTTPHeaderField:@"X-Api-Token"];
     }
     
-    if (IOS8_OR_LATER) {
-        _wkWebView = (WKWebView *)view;
-        _wkWebView.navigationDelegate = self;
-        _wkWebView.allowsBackForwardNavigationGestures = YES;
-        _wkWebView.scrollView.delegate = self;
-        if (@available(iOS 11.0, *)) {
-            _wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        
-        [NSObject asyncWaitingWithTime:0.5 completeBlock:^{
-            [_wkWebView loadRequest:request ];
-        }];
+    _wkWebView = (WKWebView *)view;
+    _wkWebView.navigationDelegate = self;
+    _wkWebView.allowsBackForwardNavigationGestures = YES;
+    _wkWebView.scrollView.delegate = self;
+    if (@available(iOS 11.0, *)) {
+        _wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    else {
-        _webView = (UIWebView *)view;
-        _webView.delegate = self;
-        _webView.scrollView.delegate = self;
-        if (@available(iOS 11.0, *)) {
-            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [NSObject asyncWaitingWithTime:0.5 completeBlock:^{
-            [_webView loadRequest:request];
-        }];
-    }
+    
+    [NSObject asyncWaitingWithTime:0.5 completeBlock:^{
+        [_wkWebView loadRequest:request ];
+    }];
     
     _activityIndicator = [[UIActivityIndicatorView alloc] init];
     _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -429,33 +402,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - UIWebViewDelegate
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-
-}
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSURL *URL = request.URL;
-    NSString *scheme = URL.absoluteString;
-    NSLog(@"%@",scheme);
-
-    if ([self isContainStingWithSumString:scheme]) {
-        return NO;
-    }
-    else {
-        return YES;
-    }
-}
-
 #pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
@@ -494,7 +440,7 @@
                 //先判断是否能打开该url
                 if (canOpen)
                 {   //打开微信
-                    [[UIApplication sharedApplication] openURL:url];
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:NULL];
                 }
             }
             return YES;
@@ -544,7 +490,7 @@
         [self runtimePush:[aDict objectForKey:@"vcname"] dic:[aDict objectForKey:@"dic"] push:NO];
     }
     else  if ([[aDict objectForKey:@"vcname"] isEqualToString:@"appStoreAccent"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://finance-app.itunes.apple.com/account/edit/billing-info"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://finance-app.itunes.apple.com/account/edit/billing-info"] options:@{} completionHandler:NULL];
     }
     else if ([[aDict objectForKey:@"vcname"] isEqualToString:@"savePic"]) {
         if (aDict[@"pic"] != NULL && [aDict[@"pic"] isKindOfClass: [NSString class]]) {
@@ -718,7 +664,6 @@
 }
 
 - (void)dealloc {
-    _webView.scrollView.delegate = nil;
     _wkWebView.scrollView.delegate = nil;
 }
 

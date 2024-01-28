@@ -326,7 +326,7 @@
     CLAuthorizationStatus status = [LocationMangers shared].authorizationStatus;
     if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         [self showOkCancelAlert:@"定位服务未开启" message:@"请在手机设置中开启定位服务以看到附近用户" confirmTitle:@"开启定位" confirmHandler:^(UIAlertAction * _Nonnull action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:NULL];
             [self.navigationController popViewControllerAnimated:YES];
         } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];

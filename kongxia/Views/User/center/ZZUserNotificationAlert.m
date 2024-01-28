@@ -129,7 +129,7 @@
 - (void)openNotification {
     if (UIApplicationOpenSettingsURLString != NULL) {
         NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [[UIApplication sharedApplication] openURL:appSettings];
+        [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
     }
     [self closeAlert];
 }

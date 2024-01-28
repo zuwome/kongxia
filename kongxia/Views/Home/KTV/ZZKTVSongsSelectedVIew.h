@@ -26,8 +26,5 @@
 @property (nonatomic, weak) id<ZZKTVSongsSelectedVIewDelegate> delegate;
 
 - (instancetype)initWithSongs:(NSArray<ZZKTVSongModel *> *)songs;
-
-- (void)show;
-
 @end
 

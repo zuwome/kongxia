@@ -23,13 +23,8 @@
 
  + (UIView *)createWebView
 {
-    if (IOS8_OR_LATER) {
-        UIView *webView = [[WKWebView alloc] init];
-        return webView;
-    } else {
-        UIView *webView = [[UIWebView alloc] init];
-        return webView;
-    }
+    UIView *webView = [[WKWebView alloc] init];
+    return webView;
 }
 
 @end

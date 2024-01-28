@@ -176,35 +176,22 @@
         if (granted) {
             [weakSelf gotoContactView];
         } else {
-            if ([[UIDevice currentDevice].systemVersion integerValue] < 8) {
-                [self showOkAlert:@"通讯录功能未开启"
-                          message:@"您尚未开启通讯录功能，请在设置-通知中心中，找到“空虾”并打开通讯录来获取最完整的服务。"
-                     confirmTitle:@"确定"
-                   confirmHandler:nil];
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.view.window addSubview:weakSelf.alert];
-                });
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.view.window addSubview:weakSelf.alert];
+            });
         }
     }];
 }
 
 - (void)gotoContactView
 {
-    if (IOS9_OR_LATER) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            CNContactPickerViewController *contactVc = [[CNContactPickerViewController alloc] init];
-            // 2.设置代理
-            contactVc.delegate = self;
-            // 3.弹出控制器
-            [self presentViewController:contactVc animated:YES completion:nil];
-        });
-    } else {
-        ABPeoplePickerNavigationController *controller = [[ABPeoplePickerNavigationController alloc] init];
-        controller.peoplePickerDelegate = self;
-        [self presentViewController:controller animated:YES completion:nil];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CNContactPickerViewController *contactVc = [[CNContactPickerViewController alloc] init];
+        // 2.设置代理
+        contactVc.delegate = self;
+        // 3.弹出控制器
+        [self presentViewController:contactVc animated:YES completion:nil];
+    });
 }
 
 #pragma mark - CNContactPickerDelegate

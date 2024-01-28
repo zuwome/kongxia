@@ -33,14 +33,10 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    NSNumber *timestamp = dic[@"timestamp"];
     NSString *cityId = dic[@"id"];
     if ([cityId isKindOfClass:[NSString class]] && ![ZZUtils isEmpty:cityId]) {
         _cityId = cityId;
     }
-    
-//    if (![timestamp isKindOfClass:[NSNumber class]]) return NO;
-//    _createdAt = [NSDate dateWithTimeIntervalSince1970:timestamp.floatValue];
     return YES;
 }
 

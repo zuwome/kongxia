@@ -52,11 +52,7 @@
         }];
         
         NSString *htmlSring = H5Url.mmdDesc;
-        if (IOS8_OR_LATER) {
-            [(WKWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlSring]]];
-        } else {
-            [(UIWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlSring]]];
-        }
+        [(WKWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlSring]]];
         
         UIButton *sureBtn = [[UIButton alloc] init];
         sureBtn.backgroundColor = kYellowColor;

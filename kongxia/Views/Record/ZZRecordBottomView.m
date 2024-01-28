@@ -111,7 +111,7 @@
             if (!isCancelled) {
                 if (UIApplicationOpenSettingsURLString != NULL) {
                     NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    [[UIApplication sharedApplication] openURL:appSettings];
+                    [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
                 }
             }
         }];
@@ -180,15 +180,7 @@
             PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
             fetchOptions.includeHiddenAssets = NO;
             fetchOptions.includeAllBurstAssets = NO;
-            if (IOS9_OR_LATER) {
-                /*
-                 PHAssetSourceTypeNone   都没有,就获得到就是常规的
-                 PHAssetSourceTypeUserLibrary     用户所有的
-                 PHAssetSourceTypeCloudShared     分享的
-                 PHAssetSourceTypeiTunesSynced    iTunes 同步的
-                 */
-                fetchOptions.includeAssetSourceTypes = PHAssetSourceTypeUserLibrary | PHAssetSourceTypeiTunesSynced;
-            }
+            fetchOptions.includeAssetSourceTypes = PHAssetSourceTypeUserLibrary | PHAssetSourceTypeiTunesSynced;
             fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"modificationDate" ascending:NO],
                                              [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
             PHFetchResult *fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:fetchOptions];

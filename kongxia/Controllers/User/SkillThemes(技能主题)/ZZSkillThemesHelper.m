@@ -95,7 +95,7 @@ static id _instance = nil;
     UIAlertAction *settingAction = [UIAlertAction actionWithTitle:@"设置" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         if (UIApplicationOpenSettingsURLString != NULL) {
             NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            [[UIApplication sharedApplication] openURL:appSettings];
+            [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
         }
     }];
     [alert addAction:settingAction];

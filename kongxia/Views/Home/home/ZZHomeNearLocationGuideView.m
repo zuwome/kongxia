@@ -69,16 +69,8 @@
 
 - (void)settingBtnClick
 {
-    if ([[[UIDevice currentDevice] systemVersion] integerValue]< 8) {
-        [UIAlertController showOkAlertIn:[UIViewController currentDisplayViewController]
-                                   title:@"定位服务未开启"
-                                 message:@"您尚未开启定位功能，无法准确获取定位消息。请在“设置-隐私-定位服务中”，找到“空虾”并打开来获取最完整的服务"
-                            confirmTitle:@"确定"
-                          confirmHandler:nil];
-    } else {
-        NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [[UIApplication sharedApplication] openURL:appSettings];
-    }
+    NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
 }
 
 @end

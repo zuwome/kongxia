@@ -57,22 +57,9 @@
     [_activityIndicator startAnimating];
     NSURL *url = [NSURL URLWithString:_urlString];
     
-    if (IOS8_OR_LATER) {
-        WKWebView *webview = (WKWebView *)view;
-        webview.navigationDelegate = self;
-        [webview loadRequest:[NSURLRequest requestWithURL:url]];
-    } else {
-        UIWebView *webview = (UIWebView *)view;
-        webview.delegate = self;
-        [webview loadRequest:[NSURLRequest requestWithURL:url]];
-    }
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"]; 
+    WKWebView *webview = (WKWebView *)view;
+    webview.navigationDelegate = self;
+    [webview loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation

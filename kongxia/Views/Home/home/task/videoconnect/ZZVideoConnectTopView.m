@@ -186,14 +186,7 @@ commonInitImplementationSafe(ZZVideoConnectTopView) {
     self.shadowView.layer.cornerRadius = 4.0f;
     self.shadowView.userInteractionEnabled = YES;
     
-    if (IOS11_OR_LATER) {
-        self.shadowView.layer.shadowOpacity = 0.4;//不透明度
-    } else {//ios 11以下 阴影圆角 和 毛玻璃同时使用，阴影会有问题，先用图片为阴影
-        self.shadowView.height = 162;
-        self.shadowView.layer.masksToBounds = YES;
-        self.shadowView.layer.cornerRadius = 7.0f;
-        self.shadowView.image = stretchImgFromMiddle([UIImage imageNamed:@"icon_shadowBg"]);
-    }
+    self.shadowView.layer.shadowOpacity = 0.4;//不透明度
     
     // 毛玻璃层
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];

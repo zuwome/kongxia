@@ -711,7 +711,7 @@
                 } break;
                 case 8: {
                     if ([WeiboSDK isWeiboAppInstalled]) {
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sinaweibo://userinfo?uid=%@",_user.weibo.uid]]];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sinaweibo://userinfo?uid=%@",_user.weibo.uid]] options:@{} completionHandler:NULL];
                     } else {
                         if (_pushCallBack) {
                             _pushCallBack();

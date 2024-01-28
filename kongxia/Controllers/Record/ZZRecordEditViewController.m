@@ -664,9 +664,7 @@
     playerLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:playerLayer];
-    if([[UIDevice currentDevice] systemVersion].intValue >= 10){
-        self.player.automaticallyWaitsToMinimizeStalling = NO;
-    }
+    self.player.automaticallyWaitsToMinimizeStalling = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
     
     [self.view addSubview:self.deleteBtn];
@@ -727,32 +725,15 @@
 - (void)downBtnClick
 {
     [MobClick event:Event_click_record_down];
-    if (IOS8_OR_LATER) {
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-            [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:self.exportURL];
-        } completionHandler:^(BOOL success, NSError *error) {
-            if (success) {
-                [self saveSuccess];
-            } else {
-                [ZZHUD showErrorWithStatus:@"保存失败"];
-            }
-        }];
-    } else {
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:self.exportURL]) {
-            [library writeVideoAtPathToSavedPhotosAlbum:self.exportURL completionBlock:^(NSURL *assetURL, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (error) {
-                        [ZZHUD showErrorWithStatus:@"保存失败"];
-                    } else {
-                        [self saveSuccess];
-                    }
-                });
-            }];
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:self.exportURL];
+    } completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            [self saveSuccess];
         } else {
             [ZZHUD showErrorWithStatus:@"保存失败"];
         }
-    }
+    }];
 }
 
 - (void)saveSuccess

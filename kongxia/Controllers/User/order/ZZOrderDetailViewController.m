@@ -1682,7 +1682,7 @@ NSString *identifier = @"topiccell";
                 [ZZHUD dismiss];
                 NSString *phNo = data[@"phone"];
                 NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
-                [[UIApplication sharedApplication] openURL:phoneUrl];
+                [[UIApplication sharedApplication] openURL:phoneUrl options:@{} completionHandler:NULL];
             }
         }];
 //    }

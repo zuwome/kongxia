@@ -131,7 +131,7 @@
     NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phoneNumber];
 
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:str]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:NULL];
     }
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{

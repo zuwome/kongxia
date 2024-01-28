@@ -60,7 +60,7 @@
                 } else {
                     if (UIApplicationOpenSettingsURLString != NULL) {
                         NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                        [[UIApplication sharedApplication] openURL:appSettings];
+                        [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
                     }
                 }
             }];
@@ -722,7 +722,7 @@
     if (!isOpen) {
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:NULL];
         }else{
             NSLog(@"can not open");
         }

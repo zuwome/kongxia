@@ -137,7 +137,7 @@
         _indexPath = indexPath;
     } else if (indexPath.row == 2) {
         if ([WeiboSDK isWeiboAppInstalled]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sinaweibo://userinfo?uid=%@",@"5674712231"]]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sinaweibo://userinfo?uid=%@",@"5674712231"]] options:@{} completionHandler:NULL];
         } else {
             ZZSinaShowViewController *controller = [[ZZSinaShowViewController alloc] init];
             controller.navigationItem.title = [NSString stringWithFormat:@"空虾的个人主页"];

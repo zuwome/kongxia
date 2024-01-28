@@ -221,7 +221,7 @@
     NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=name:%@|latlng:%f,%f&mode=driving&coord_type=gcj02",_name, baidu.latitude, baidu.longitude] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
 baidumap://map/direction?origin={{我的位置}}&destination=%@&mode=driving&src=kongxia&coord_type=gcj02
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:NULL];
 }
 
 - (void)openGaode
@@ -230,7 +230,7 @@ baidumap://map/direction?origin={{我的位置}}&destination=%@&mode=driving&src
 
     NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=applicationName&sid=BGVIS1&slat=%f&slon=%f&sname=我的位置&did=BGVIS2&dlat=%f&dlon=%f&dname=%@&dev=0&t=0",_currentUserLocation.latitude,_currentUserLocation.longitude,gaode.latitude, gaode.longitude,_name] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:NULL];
 }
 - (void)dealloc
 {

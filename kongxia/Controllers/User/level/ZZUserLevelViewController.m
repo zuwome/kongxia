@@ -47,15 +47,10 @@
     [self.view addSubview:view];
     view.frame = self.view.frame;
 
-    if (IOS8_OR_LATER) {
-        WKWebView *webview = (WKWebView *)view;
-        webview.navigationDelegate = self;
-        [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10]];
-    } else {
-        UIWebView *webview = (UIWebView *)view;
-        webview.delegate = self;
-        [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10]];
-    }
+    WKWebView *webview = (WKWebView *)view;
+    webview.navigationDelegate = self;
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10]];
+    
     _notNetEmptyView = [ZZNotNetEmptyView showNotNetWorKEmptyViewWithTitle:nil imageName:nil frame:view.frame viewController:self];
     _activityIndicator = [[UIActivityIndicatorView alloc] init];
     _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -71,37 +66,6 @@
     }
     _activityIndicator.hidesWhenStopped = YES;
     [_activityIndicator startAnimating];
-}
-
-#pragma mark - WKNavigationDelegate
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-    _notNetEmptyView.hidden= NO;
-
-}
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-    _notNetEmptyView.hidden = NO;
-    
-}
-
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
-        completionHandler(NSURLSessionAuthChallengeUseCredential, card);
-    }
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-    _notNetEmptyView.hidden = YES;
-
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation

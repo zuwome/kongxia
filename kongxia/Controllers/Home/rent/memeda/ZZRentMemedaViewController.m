@@ -70,7 +70,7 @@
 
 - (void)createNavigationRightBtn
 {
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(navigationRightBtnClick)];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(navigationRightBtnClick)];
     self.navigationItem.rightBarButtonItem = more;
 }
 

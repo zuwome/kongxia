@@ -122,7 +122,7 @@
                              confirmHandler:^(UIAlertAction * _Nonnull action) {
                         if (UIApplicationOpenSettingsURLString != NULL) {
                             NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                            [[UIApplication sharedApplication] openURL:appSettings];
+                            [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
                         }
                     } cancelTitle:@"取消" cancelHandler:^(UIAlertAction * _Nonnull action) {
                         

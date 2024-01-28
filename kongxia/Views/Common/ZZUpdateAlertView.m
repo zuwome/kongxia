@@ -119,7 +119,7 @@
 
 - (void)updateBtnClick
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[ZZUserHelper shareInstance].configModel.version.version.link]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[ZZUserHelper shareInstance].configModel.version.version.link] options:@{} completionHandler:NULL];
     [self cancelBtnClick];
 }
 

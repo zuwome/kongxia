@@ -37,20 +37,12 @@
     }
     NSInteger type = [[content objectForKey:@"type"] integerValue];
  
-    if (IOS10) {
-        [ZZLocalPushManager sendNotificationWhenIOS10AfterWithContent:content type:type];
-    }else {
-        [ZZLocalPushManager sendNotificationWithContent:content type:type];
-    }
+    [ZZLocalPushManager sendNotificationWhenIOS10AfterWithContent:content type:type];
 }
 
 // 取消某个本地推送通知
 + (void)cancelLocalNotificationWithKey:(NSString *)key {
-    if (IOS10) {
     [self cancelLocalNotificationWhenIOS10AfterWithKey:key];
-    }else{
-    [self cancelLocalNotificationWhenIOS10FollowingWithKey:key];
-    }
 }
 
 
@@ -58,14 +50,7 @@
  取消全部通知
  */
 + (void)cancelLocalAllNotification {
-    if (IOS10) {
-        [self cancelLocalAllNotificationWhenIOS10After];
-    }
-    else{
-        
-    [self cancelLocalAllNotificationWhenIOS10Following];
-        
-    }
+    [self cancelLocalAllNotificationWhenIOS10After];
 }
 
 /**

@@ -212,9 +212,7 @@ static NSString *JPVideoPlayerURL = @"www.newpan.com";
         [playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
         /***/
         item.player = [AVPlayer playerWithPlayerItem:playerItem];
-        if([[UIDevice currentDevice] systemVersion].intValue>=10){
-            item.player.automaticallyWaitsToMinimizeStalling = NO;
-        }
+        item.player.automaticallyWaitsToMinimizeStalling = NO;
         item.currentPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:item.player];
         {
             NSString *videoGravity = nil;
@@ -503,11 +501,7 @@ static NSString *JPVideoPlayerURL = @"www.newpan.com";
 }
 - (BOOL)isPlaying
 {
-    if([[UIDevice currentDevice] systemVersion].intValue>=10){
-        return self.currentPlayVideoItem.player.timeControlStatus == AVPlayerTimeControlStatusPlaying;
-    }else{
-        return self.currentPlayVideoItem.player.rate==1;
-    }
+    return self.currentPlayVideoItem.player.timeControlStatus == AVPlayerTimeControlStatusPlaying;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{

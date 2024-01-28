@@ -15,32 +15,18 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 CGSize getTextSize(UIFont *font, NSString *text, CGFloat maxWidth) {
-    if (IOS7_OR_LATER) {
-        CGSize textSize = [text boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT)
-                                             options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                          attributes:@{ NSFontAttributeName : font }
-                                             context:nil].size;
-        return textSize;
-    }
-    
-    CGSize textSize = [text sizeWithFont:font
-                       constrainedToSize:CGSizeMake(maxWidth, MAXFLOAT)
-                           lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT)
+                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                      attributes:@{ NSFontAttributeName : font }
+                                         context:nil].size;
     return textSize;
 }
 
 CGSize getTextWidth(UIFont *font, NSString *text, CGFloat maxHeight) {
-    if (IOS7_OR_LATER) {
-        CGSize textSize = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, maxHeight)
-                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                          attributes:@{ NSFontAttributeName : font }
-                                             context:nil].size;
-        return textSize;
-    }
-    
-    CGSize textSize = [text sizeWithFont:font
-                       constrainedToSize:CGSizeMake(MAXFLOAT, maxHeight)
-                           lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, maxHeight)
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{ NSFontAttributeName : font }
+                                         context:nil].size;
     return textSize;
 }
 

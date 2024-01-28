@@ -30,45 +30,6 @@
     return self;
 }
 
-//- (void)show {
-//    [self layoutIfNeeded];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        _bgView.alpha = 0.5;
-//        [_contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.mas_bottom).offset(-_contentView.height);
-//        }];
-//        [self layoutIfNeeded];
-//    }];
-//}
-//
-//- (void)hide {
-//    [self layoutIfNeeded];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        _bgView.alpha = 0.0;
-//        [_contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.mas_bottom);
-//        }];
-//        [self layoutIfNeeded];
-//    } completion:^(BOOL finished) {
-//        [self removeAllSubviews];
-//        [self removeFromSuperview];
-//    }];
-//}
-
-
-#pragma mark - response method
-//- (void)hideViews {
-//    [self hide];
-//}
-//
-//- (void)confirmSelect {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(view:confirmSelection:)]) {
-//        [self.delegate view:self confirmSelection:_songsArr];
-//    }
-//    [self hide];
-//}
-
-
 #pragma mark - ZZKTVSongListViewDelegate
 - (void)view:(ZZKTVSongListView *)view addSong:(ZZKTVSongModel *)songModel {
     NSMutableArray<ZZKTVSongModel *> *songsM = _songsArr.mutableCopy;

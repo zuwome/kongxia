@@ -38,27 +38,17 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
 
 + (BOOL)isAllowPhotoLibrary
 {
-    if ([UIDevice currentDevice].systemVersion.floatValue < 8.0) {
-        //8一下的不支持 就不做未授权时候的判断了
-        ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
-        if (authStatus == ALAuthorizationStatusDenied || authStatus == ALAuthorizationStatusRestricted) {
-            [[UIViewController currentDisplayViewController] showOKAlertWithTitle:NSLocalizedString(@"无法打开照相机", nil) message:NSLocalizedString(@"请在“设置-隐私-相册”选项中允许《空虾》访问你的相册",nil) okTitle:NSLocalizedString(@"确定", nil) okBlock:nil];
-            return NO;
-        }
-        return YES;
-    } else {
-        PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
-        if (authStatus == PHAuthorizationStatusDenied || authStatus == PHAuthorizationStatusRestricted) {
-            [[UIViewController currentDisplayViewController] showOKCancelAlertWithTitle:nil message:NSLocalizedString(@"是否开启相册权限",nil) cancelTitle:NSLocalizedString(@"取消", nil) cancelBlock:nil okTitle:NSLocalizedString(@"确定", nil) okBlock:^{
-                if (UIApplicationOpenSettingsURLString != NULL) {
-                    NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    [[UIApplication sharedApplication] openURL:appSettings];
-                }
-            }];
-            return NO;
-        }
-        return YES;
+    PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
+    if (authStatus == PHAuthorizationStatusDenied || authStatus == PHAuthorizationStatusRestricted) {
+        [[UIViewController currentDisplayViewController] showOKCancelAlertWithTitle:nil message:NSLocalizedString(@"是否开启相册权限",nil) cancelTitle:NSLocalizedString(@"取消", nil) cancelBlock:nil okTitle:NSLocalizedString(@"确定", nil) okBlock:^{
+            if (UIApplicationOpenSettingsURLString != NULL) {
+                NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
+            }
+        }];
+        return NO;
     }
+    return YES;
 }
 
 + (BOOL)isAllowCamera
@@ -72,7 +62,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
             [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController] title:@"开启相机权限" message:@"在“设置-空虾”中开启相机就可以开始使用本功能哦~" confirmTitle:@"设置" confirmHandler:^(UIAlertAction * _Nonnull action) {
                 if (UIApplicationOpenSettingsURLString != NULL) {
                     NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    [[UIApplication sharedApplication] openURL:appSettings];
+                    [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
                 }
             } cancelTitle:@"取消" cancelHandler:nil];
         });
@@ -98,7 +88,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
                                     confirmHandler:^(UIAlertAction * _Nonnull action) {
                 if (UIApplicationOpenSettingsURLString != NULL) {
                     NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    [[UIApplication sharedApplication] openURL:appSettings];
+                    [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
                 }
             } cancelTitle:@"取消" cancelHandler:nil];
         });
@@ -123,7 +113,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
                                     confirmHandler:^(UIAlertAction * _Nonnull action) {
                 if (UIApplicationOpenSettingsURLString != NULL) {
                     NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    [[UIApplication sharedApplication] openURL:appSettings];
+                    [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:NULL];
                 }
             } cancelTitle:@"忽略" cancelHandler:nil];
         });
@@ -131,28 +121,6 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
         return NO;
     }
     
-    return YES;
-}
-
-+ (BOOL)isAllowNotification
-{
-    //判断通知
-    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
-    if (UIUserNotificationTypeNone != setting.types) {
-        return YES;
-    } else {
-        [UIAlertController showOkCancelAlertIn:[UIViewController currentDisplayViewController]
-                                         title:nil
-                                       message:@"您尚未开启新消息通知功能，无法及时获得订单等重要消息。"
-                                  confirmTitle:@"去开启"
-                                confirmHandler:^(UIAlertAction * _Nonnull action) {
-            if (UIApplicationOpenSettingsURLString != NULL) {
-                NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                [[UIApplication sharedApplication] openURL:appSettings];
-            }
-        } cancelTitle:@"忽略" cancelHandler:nil];
-        return NO;
-    }
     return YES;
 }
 

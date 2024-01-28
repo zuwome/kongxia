@@ -234,11 +234,6 @@
     WeakSelf
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //收起主题介绍示例
-    NSIndexPath *index = [NSIndexPath indexPathForRow:1 inSection:2];
-    if ([[tableView cellForRowAtIndexPath:index] isKindOfClass:[ZZSkillEditIntroduceCell class]]) {
-        ZZSkillEditIntroduceCell *cell = [tableView cellForRowAtIndexPath:index];
-        [cell hideDialog];
-    }
     
     ZZSkill *skill = self.currentTopicModel.skills[0];
     if (indexPath.section == 2 && indexPath.row == 0) {

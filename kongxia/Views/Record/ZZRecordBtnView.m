@@ -248,14 +248,10 @@
         _grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 78, 78)];
         _grayView.layer.cornerRadius = 39;
         _grayView.clipsToBounds = YES;
-        if (IOS8_OR_LATER) {
-            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-            UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
-            effectview.frame = _grayView.frame;
-            [_grayView addSubview:effectview];
-        } else {
-            _grayView.backgroundColor = [UIColor whiteColor];
-        }
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+        effectview.frame = _grayView.frame;
+        [_grayView addSubview:effectview];
     }
     
     return _grayView;

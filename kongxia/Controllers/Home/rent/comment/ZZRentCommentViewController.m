@@ -13,7 +13,6 @@
 @interface ZZRentCommentViewController () <UIWebViewDelegate,WKNavigationDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, assign) BOOL isPush;
 @property (nonatomic, assign) BOOL pushHideBar;
@@ -102,18 +101,11 @@
         make.top.mas_equalTo(self.view.mas_top).offset(64);
     }];
     
-    if (IOS8_OR_LATER) {
-        _wkWebView = (WKWebView *)view;
-        _wkWebView.navigationDelegate = self;
-        _wkWebView.allowsBackForwardNavigationGestures = YES;
-        _wkWebView.scrollView.delegate = self;
-        [_wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]]];
-    } else {
-        _webView = (UIWebView *)view;
-        _webView.delegate = self;
-        _webView.scrollView.delegate = self;
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]]];
-    }
+    _wkWebView = (WKWebView *)view;
+    _wkWebView.navigationDelegate = self;
+    _wkWebView.allowsBackForwardNavigationGestures = YES;
+    _wkWebView.scrollView.delegate = self;
+    [_wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]]];
     
     _activityIndicator = [[UIActivityIndicatorView alloc] init];
     _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -127,33 +119,6 @@
     
     _activityIndicator.hidesWhenStopped = YES;
     [_activityIndicator startAnimating];
-}
-
-#pragma mark - UIWebViewDelegate
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-}
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-{
-    [_activityIndicator stopAnimating];
-    _activityIndicator.hidden = YES;
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSURL *URL = request.URL;
-    NSString *scheme = URL.absoluteString;
-    NSLog(@"%@",scheme);
-    if ([self isContainStingWithSumString:scheme]) {
-        return NO;
-    } else {
-        return YES;
-    }
 }
 
 #pragma mark - WKNavigationDelegate
@@ -257,24 +222,15 @@
 
 - (void)leftBtnClick
 {
-    if (IOS8_OR_LATER) {
-        if (_wkWebView.canGoBack) {
-            [_wkWebView goBack];
-        } else {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+    if (_wkWebView.canGoBack) {
+        [_wkWebView goBack];
     } else {
-        if (_webView.canGoBack) {
-            [_webView goBack];
-        } else {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)dealloc
 {
-    _webView.scrollView.delegate = nil;
     _wkWebView.scrollView.delegate = nil;
 }
 

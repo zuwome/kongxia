@@ -315,26 +315,6 @@ userInfo:aUserInfo]
 // 十六进制颜色设置
 #define HEXACOLOR(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
-// 判断iOS7 或者7 之后
-#define IOS7_OR_LATER   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-
-//判断是否是iOS8及以上
-#define IOS8_OR_LATER   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-
-//判断是否是iOS9及以上
-#define IOS9_OR_LATER   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
-
-//判断是否是iOS10及以上
-#define IOS10_OR_LATER   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-
-//判断是否是iOS11及以上
-#define IOS11_OR_LATER   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)
-
-
-#define IOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0 && [[UIDevice currentDevice].systemVersion doubleValue] < 9.0)
-#define IOS8_10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [[UIDevice currentDevice].systemVersion doubleValue] < 10.0)
-#define IOS10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-
 // 判断iPhone4
 #define ISiPhone4       CGSizeEqualToSize([[UIScreen mainScreen] preferredMode].size, CGSizeMake(640, 960))
 

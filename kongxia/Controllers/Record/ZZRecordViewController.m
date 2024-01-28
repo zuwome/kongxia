@@ -821,13 +821,8 @@
 
 - (void)selectVideo:(PHAsset *)asset {
     long long size = 0;
-    if (IOS10) {
-       PHAssetResource *resource = [[PHAssetResource assetResourcesForAsset:asset] firstObject];
-       size = [[resource valueForKey:@"fileSize"] longLongValue];
-   } else {//ios 10 以下获取视频大小
-       size = [NSData dataWithContentsOfURL:[asset movieURL]].length;
-   }
-
+    PHAssetResource *resource = [[PHAssetResource assetResourcesForAsset:asset] firstObject];
+    size = [[resource valueForKey:@"fileSize"] longLongValue];
    if ([asset movieURL] ==nil) {
        [ZZHUD showErrorWithStatus:@"该视频无法编辑"];
        return;

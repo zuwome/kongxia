@@ -34,11 +34,7 @@
         make.edges.mas_equalTo(self.view);
     }];
     
-    if (IOS8_OR_LATER) {
-        [(WKWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://xy.alipay.com/auth/whatszhima.htm?view=mobile&__md_hiddentoolbar=1"]]];
-    } else {
-        [(UIWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://xy.alipay.com/auth/whatszhima.htm?view=mobile&__md_hiddentoolbar=1"]]];
-    }
+    [(WKWebView *)webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://xy.alipay.com/auth/whatszhima.htm?view=mobile&__md_hiddentoolbar=1"]]];
 }
 
 - (void)didReceiveMemoryWarning {

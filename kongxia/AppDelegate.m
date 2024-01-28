@@ -563,10 +563,6 @@
         [application registerUserNotificationSettings:settings];
     }
     
-    if (IOS10) {
-//        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-    }
-    
     // 加载的头像 不进行解压
     SDImageCache *canche = [SDImageCache sharedImageCache];
     canche.config.shouldDecompressImages = NO;
@@ -730,7 +726,7 @@
     
     if (!isNullString(urlString) && [type isEqualToString:@"app"]) {
         // 下载的
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:NULL];
     }
     else if ([urlString containsString:@"zwmscheme://"]) {
         NSString *jsonString = [urlString stringByReplacingOccurrencesOfString:@"zwmscheme://" withString:@""];

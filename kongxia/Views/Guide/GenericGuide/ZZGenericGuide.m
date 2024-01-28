@@ -133,7 +133,7 @@
         [self runtimePush:[aDict objectForKey:@"vcname"] dic:[aDict objectForKey:@"dic"] push:NO];
         
     }else  if ([[aDict objectForKey:@"vcname"] isEqualToString:@"appStoreAccent"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://finance-app.itunes.apple.com/account/edit/billing-info"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://finance-app.itunes.apple.com/account/edit/billing-info"] options:@{} completionHandler:NULL];
         [self dissMissCurrent];
     }else if ([pushmethod rangeOfString:@"tabbar-"].location != NSNotFound) {
         [self dissMissCurrent];

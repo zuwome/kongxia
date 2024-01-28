@@ -267,12 +267,8 @@
         self.timeLabel.text = dateString;
         
         long long size = 0;
-        if (IOS10) {
-            PHAssetResource *resource = [[PHAssetResource assetResourcesForAsset:asset] firstObject];
-            size = [[resource valueForKey:@"fileSize"] longLongValue];
-        } else {//ios 10 以下获取视频大小
-            size = [NSData dataWithContentsOfURL:[asset movieURL]].length;
-        }
+        PHAssetResource *resource = [[PHAssetResource assetResourcesForAsset:asset] firstObject];
+        size = [[resource valueForKey:@"fileSize"] longLongValue];
         self.maskView.hidden = YES;
 
         if ([asset movieURL] ==nil) {
@@ -517,15 +513,7 @@ static NSString * const reuseIdentifier = @"Cell";
         PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
         fetchOptions.includeHiddenAssets = NO;
         fetchOptions.includeAllBurstAssets = NO;
-        if (IOS9_OR_LATER) {
-            /*
-             PHAssetSourceTypeNone   都没有,就获得到就是常规的
-             PHAssetSourceTypeUserLibrary     用户所有的
-             PHAssetSourceTypeCloudShared     分享的
-             PHAssetSourceTypeiTunesSynced    iTunes 同步的
-             */
-            fetchOptions.includeAssetSourceTypes = PHAssetSourceTypeUserLibrary | PHAssetSourceTypeCloudShared |PHAssetSourceTypeiTunesSynced;
-        }
+        fetchOptions.includeAssetSourceTypes = PHAssetSourceTypeUserLibrary | PHAssetSourceTypeCloudShared |PHAssetSourceTypeiTunesSynced;
         fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"modificationDate" ascending:NO],
                                          [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
         PHFetchResult *fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:fetchOptions];
@@ -561,7 +549,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:NULL];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -609,13 +597,8 @@ static NSString * const reuseIdentifier = @"Cell";
             //现在只需要单选视频直接编辑
             //视频过大或时长过长不允许下一步
             long long size = 0;
-            if (IOS10) {
-                PHAssetResource *resource = [[PHAssetResource assetResourcesForAsset:asset] firstObject];
-                size = [[resource valueForKey:@"fileSize"] longLongValue];
-            } else {//ios 10 以下获取视频大小
-                size = [NSData dataWithContentsOfURL:[asset movieURL]].length;
-            }
-     
+            PHAssetResource *resource = [[PHAssetResource assetResourcesForAsset:asset] firstObject];
+            size = [[resource valueForKey:@"fileSize"] longLongValue];
             if ([asset movieURL] ==nil) {
                 [ZZHUD showErrorWithStatus:@"该视频无法编辑"];
                 return;

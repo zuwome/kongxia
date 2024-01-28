@@ -33,10 +33,7 @@
  *  是否允许定位
  */
 + (BOOL)isAllowLocation;
-/**
- *  是否允许通知
- */
-+ (BOOL)isAllowNotification;
+
 /**
  *  是否允许访问通讯录
  */
