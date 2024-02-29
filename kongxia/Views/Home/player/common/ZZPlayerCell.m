@@ -21,6 +21,7 @@
 @interface ZZPlayerCell ()<TTTAttributedLabelDelegate>
 
 @property (nonatomic, copy) NSString *readString;
+@property (nonatomic, copy) NSString *ipOriginString;
 @property (nonatomic, copy) NSString *timeString;
 @property (nonatomic, strong) ZZCommentModel *currentModel;
 @property (nonatomic, strong) ZZMenuView *menuView;
@@ -202,6 +203,7 @@
     }
  
     _readString = [NSString stringWithFormat:@"%ld人看过",skDataModel.browser_count];
+    _ipOriginString = [NSString stringWithFormat:@"归属地: %@", skDataModel.origin];
     _timeString = [NSString stringWithFormat:@"%@",skDataModel.created_at_text];
     if ([skDataModel.user.uid isEqualToString:[ZZUserHelper shareInstance].loginer.uid]) {
         _isMySelf = YES;
@@ -300,6 +302,7 @@
         self.firstInto(_isLongVideo);
     }
     _readString = [NSString stringWithFormat:@"%ld人看过",(long)_mMDDataModel.browser_count];
+    _ipOriginString = [NSString stringWithFormat:@"归属地: %@", _mMDDataModel.origin];
     _timeString = [NSString stringWithFormat:@"%@",answerModel.created_at_text];
     
     /***话题**/
@@ -450,7 +453,7 @@
 {
     ZZPlayerCellHeaderView *headerView = (ZZPlayerCellHeaderView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZZPlayerCellHeaderViewID"];
     headerView.topicModel = _topicModel;
-    [headerView setReadLabtitle:_readString andTimeLab:_timeString];
+    [headerView setReadLabtitle:_readString andTimeLab:_timeString andIpOrigin:_ipOriginString];
     self.currentHeaderView = headerView;
     return headerView;
 }

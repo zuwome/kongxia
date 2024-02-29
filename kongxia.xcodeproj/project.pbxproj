@@ -12435,7 +12435,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12525,7 +12525,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.6;
+				MARKETING_VERSION = 4.7.7;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12658,7 +12658,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12748,7 +12748,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.6;
+				MARKETING_VERSION = 4.7.7;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12882,7 +12882,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12972,7 +12972,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.6;
+				MARKETING_VERSION = 4.7.7;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13105,7 +13105,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13193,7 +13193,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.6;
+				MARKETING_VERSION = 4.7.7;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

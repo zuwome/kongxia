@@ -59,6 +59,7 @@
 @interface ZZMMDModel : JSONModel
 
 @property (nonatomic, strong) NSString *mid;
+@property (nonatomic, strong) NSString *origin;
 @property (nonatomic, strong) ZZUser *from;//发起问题的人
 @property (nonatomic, strong) ZZUser *to;//回答问题的人
 @property (nonatomic, strong) NSString *content;

@@ -20,6 +20,7 @@
     if (self) {
         [self addSubview:self.readLabel];
         [self addSubview:self.bgView];
+        [self addSubview:self.ipLabel];
         [self.bgView addSubview:self.headImgView];
         [self.bgView addSubview:self.contentLabel];
 
@@ -36,8 +37,15 @@
     
     return self;
 }
-- (void)setReadLabtitle:(NSString *)readTitleLab andTimeLab:(NSString *)timeLab {
+- (void)setReadLabtitle:(NSString *)readTitleLab andTimeLab:(NSString *)timeLab andIpOrigin:(NSString *)origin {
     self.readLabel.text = readTitleLab;
+    if ([ZZUtils isEmpty:origin] || [origin containsString:@"null"]) {
+        [self.ipLabel setHidden:YES];
+    } else {
+        [self.ipLabel setHidden:NO];
+        self.ipLabel.text = origin;
+    }
+    
     self.timeLabel.text = timeLab;
 }
 - (void)setUpConstraints {
@@ -45,15 +53,23 @@
         make.left.mas_equalTo(self.mas_left).offset(15);
         make.centerY.mas_equalTo(_timeLabel.mas_centerY);
         make.height.mas_equalTo(30);
-        make.width.mas_equalTo(150);
+        make.width.mas_equalTo(100);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).with.offset(AdaptedHeight(3));
-        make.right.mas_equalTo(self.mas_right).offset(-15);
         make.height.mas_equalTo(30);
-        make.left.mas_equalTo(_readLabel.mas_right).offset(15);
-
+        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.width.mas_equalTo(120);
+    }];
+    
+    
+    [_ipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(15);
+        make.centerY.mas_equalTo(_timeLabel.mas_centerY);
+        make.height.mas_equalTo(30);
+        make.right.mas_equalTo(_timeLabel.mas_left).offset(-5);
+        make.left.mas_equalTo(_timeLabel.mas_right).offset(5);
     }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,6 +79,15 @@
     }];
 }
 
+- (UILabel *)ipLabel {
+    if (!_ipLabel) {
+        _ipLabel = [[UILabel alloc] init];
+        _ipLabel.textColor = kGrayCommentColor;
+        _ipLabel.font = [UIFont systemFontOfSize:12];
+        _ipLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _ipLabel;
+}
 
 - (UILabel *)readLabel {
     if (!_readLabel) {

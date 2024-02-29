@@ -13,6 +13,7 @@
 //播放的顶部view
 @interface ZZPlayerCellHeaderView : UITableViewHeaderFooterView
 @property (nonatomic,strong) UILabel *readLabel;
+@property (nonatomic,strong) UILabel *ipLabel;
 @property (nonatomic,strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIView *bgView;
 
@@ -22,6 +23,6 @@
 @property (nonatomic, strong) TTTAttributedLabel *contentLabel;
 @property (nonatomic, copy) dispatch_block_t touchHead;
 @property (nonatomic,strong) id topicModel;//话题model;
-- (void)setReadLabtitle:(NSString *)readTitleLab andTimeLab:(NSString *)timeLab;
+- (void)setReadLabtitle:(NSString *)readTitleLab andTimeLab:(NSString *)timeLab andIpOrigin:(NSString *)origin;
 
 @end
