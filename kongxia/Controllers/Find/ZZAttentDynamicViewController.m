@@ -19,7 +19,7 @@ static NSString *TextIdentifier = @"textcell";
 #import "ZZDynamicTextCell.h"
 
 #import "ZZMessageAttentDynamicModel.h"
-#import <NJKScrollFullScreen.h>
+#import "NJKScrollFullScreen.h"
 //网络占位图
 #import "ZZNotNetEmptyView.h"
 #import "ZZAlertNotNetEmptyView.h"

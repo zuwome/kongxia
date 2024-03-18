@@ -24,7 +24,7 @@
 #import "ZZFindModel.h"
 #import "ZZFindGroupModel.h"
 
-#import <NJKScrollFullScreen.h>
+#import "NJKScrollFullScreen.h"
 #import "VideoPlayer.h"
 #import "ZZAFNHelper.h"
 #import "UIScrollView+Direction.h"

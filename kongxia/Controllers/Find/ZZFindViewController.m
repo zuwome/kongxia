@@ -16,7 +16,7 @@
 #import "ZZListScrollView.h"
 #import "ZZFindAttentGuideView.h"
 #import "ZZNotNetEmptyView.h"
-#import <UIViewController+NJKFullScreenSupport.h>
+#import "UIViewController+NJKFullScreenSupport.h"
 
 @interface ZZFindViewController () <UIScrollViewDelegate>
 

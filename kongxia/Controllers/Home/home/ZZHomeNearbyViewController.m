@@ -13,7 +13,7 @@
 #import "ZZHomeHelper.h"
 #import "ZZHomeNearLocationGuideView.h"
 
-#import <NJKScrollFullScreen.h>
+#import "NJKScrollFullScreen.h"
 #import <Underscore.h>
 #import "ZZNotNetEmptyView.h" //没网络的占位图
 #import "ZZAlertNotNetEmptyView.h" // 已经加载过数据下拉加载的时候显示的

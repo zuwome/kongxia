@@ -12,7 +12,7 @@
 
 #import "ZZHomeHelper.h"
 
-#import <NJKScrollFullScreen.h>
+#import "NJKScrollFullScreen.h"
 #import <Underscore.h>
 #import "ZZNotNetEmptyView.h"
 #import "ZZAlertNotNetEmptyView.h"

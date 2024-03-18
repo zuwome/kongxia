@@ -832,6 +832,10 @@
 		ACFF24F2206B7F4600F29F11 /* ZZActivityUrlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F1206B7F4500F29F11 /* ZZActivityUrlModel.m */; };
 		ACFF24F6206B8C6A00F29F11 /* ZZActivityUrlNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */; };
 		ACFF24F9206BA6C300F29F11 /* ZZBanStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */; };
+		B64AB3BA2BA874F7006392D2 /* NJKScrollFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */; };
+		B64AB3BB2BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */; };
+		B64AB3C02BA88588006392D2 /* ATAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B64AB3BE2BA88588006392D2 /* ATAuthSDK.bundle */; };
+		B64AB3C12BA88588006392D2 /* ATAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3BF2BA88588006392D2 /* ATAuthSDK.framework */; };
 		B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */; };
 		B6DA46D72ADA5CDA0051A1C3 /* UIAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */; };
 		B6FA4CBB2ADA2FF600A4B44F /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */; };
@@ -1109,8 +1113,6 @@
 		BD5227FA226021E200340A6A /* ZZBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5227F8226021E200340A6A /* ZZBeautyManager.m */; };
 		BD5227FE2260220200340A6A /* ZZCameraFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5227FD2260220200340A6A /* ZZCameraFilterView.m */; };
 		BD522801226023C400340A6A /* ZZSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5227FF226023C300340A6A /* ZZSlider.m */; };
-		BD52A8C6253C835F0099759E /* ATAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD52A8C5253C835F0099759E /* ATAuthSDK.framework */; };
-		BD52A8C8253C83AD0099759E /* ATAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD52A8C7253C83AD0099759E /* ATAuthSDK.bundle */; };
 		BD58097722126406007CC77A /* ZZUUIDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD58097622126406007CC77A /* ZZUUIDManager.m */; };
 		BD580979221266DB007CC77A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BD580978221266DB007CC77A /* libsqlite3.0.tbd */; };
 		BD594D3C21E0628900259D20 /* ZZChatIDPhotoPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD594D3B21E0628900259D20 /* ZZChatIDPhotoPayCell.m */; };
@@ -3157,6 +3159,12 @@
 		ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZActivityUrlNetManager.m; sourceTree = "<group>"; };
 		ACFF24F7206BA6C300F29F11 /* ZZBanStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBanStateModel.h; sourceTree = "<group>"; };
 		ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBanStateModel.m; sourceTree = "<group>"; };
+		B64AB3B52BA874F7006392D2 /* NJKScrollFullScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKScrollFullScreen.h; sourceTree = "<group>"; };
+		B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKScrollFullScreen.m; sourceTree = "<group>"; };
+		B64AB3B72BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NJKFullScreenSupport.h"; sourceTree = "<group>"; };
+		B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NJKFullScreenSupport.m"; sourceTree = "<group>"; };
+		B64AB3BE2BA88588006392D2 /* ATAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATAuthSDK.bundle; sourceTree = "<group>"; };
+		B64AB3BF2BA88588006392D2 /* ATAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATAuthSDK.framework; sourceTree = "<group>"; };
 		B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarHelper.swift; sourceTree = "<group>"; };
 		B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertHelper.swift; sourceTree = "<group>"; };
 		B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingppcore.a; sourceTree = "<group>"; };
@@ -3632,8 +3640,6 @@
 		BD5227FD2260220200340A6A /* ZZCameraFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCameraFilterView.m; sourceTree = "<group>"; };
 		BD5227FF226023C300340A6A /* ZZSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZSlider.m; sourceTree = "<group>"; };
 		BD522800226023C400340A6A /* ZZSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZSlider.h; sourceTree = "<group>"; };
-		BD52A8C5253C835F0099759E /* ATAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATAuthSDK.framework; sourceTree = "<group>"; };
-		BD52A8C7253C83AD0099759E /* ATAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATAuthSDK.bundle; sourceTree = "<group>"; };
 		BD56589727A047150068CACF /* kongxia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kongxia.entitlements; sourceTree = "<group>"; };
 		BD58097522126406007CC77A /* ZZUUIDManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZUUIDManager.h; sourceTree = "<group>"; };
 		BD58097622126406007CC77A /* ZZUUIDManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZUUIDManager.m; sourceTree = "<group>"; };
@@ -4424,6 +4430,7 @@
 				BDA5007322FA785A00BCB48E /* libopencore-amrwb.a in Frameworks */,
 				BDA245F12334BB990039704B /* libcrypto.a in Frameworks */,
 				BD5227E4225ADFF000340A6A /* CoreML.framework in Frameworks */,
+				B64AB3C12BA88588006392D2 /* ATAuthSDK.framework in Frameworks */,
 				BD580979221266DB007CC77A /* libsqlite3.0.tbd in Frameworks */,
 				BDBD557721DC5412004FB608 /* CoreLocation.framework in Frameworks */,
 				BDA500F222FA785B00BCB48E /* UMSocialNetwork.framework in Frameworks */,
@@ -4444,7 +4451,6 @@
 				913841D31D36451500370348 /* AVFoundation.framework in Frameworks */,
 				B6FA4CBD2ADA2FF600A4B44F /* libpingpp+network.a in Frameworks */,
 				BDA500F822FA785B00BCB48E /* libSocialSina.a in Frameworks */,
-				BD52A8C6253C835F0099759E /* ATAuthSDK.framework in Frameworks */,
 				BD69E9E7243B1C9500AA2D8A /* AuthenticationServices.framework in Frameworks */,
 				BDA500FD22FA785B00BCB48E /* TencentOpenAPI.framework in Frameworks */,
 				33F7EF3D1C4BE01D00B76F08 /* CoreGraphics.framework in Frameworks */,
@@ -8137,6 +8143,17 @@
 			name = ActivityUrlManager;
 			sourceTree = "<group>";
 		};
+		B64AB3B92BA874F7006392D2 /* NJKScrollFullScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B64AB3B52BA874F7006392D2 /* NJKScrollFullScreen.h */,
+				B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */,
+				B64AB3B72BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.h */,
+				B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */,
+			);
+			path = NJKScrollFullScreen;
+			sourceTree = "<group>";
+		};
 		B6FA4CA72ADA2FF600A4B44F /* pingpp */ = {
 			isa = PBXGroup;
 			children = (
@@ -9144,6 +9161,7 @@
 		BDA5FCA522FA785800BCB48E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B64AB3B92BA874F7006392D2 /* NJKScrollFullScreen */,
 				B6FA4CA72ADA2FF600A4B44F /* pingpp */,
 				BD8417E2290CC97D00968D25 /* LocationManager */,
 				BD8417DE290CC72300968D25 /* TianMap */,
@@ -10272,8 +10290,8 @@
 		BDE2DE232532EC7D003C6D7A /* AliAuthSDK */ = {
 			isa = PBXGroup;
 			children = (
-				BD52A8C7253C83AD0099759E /* ATAuthSDK.bundle */,
-				BD52A8C5253C835F0099759E /* ATAuthSDK.framework */,
+				B64AB3BE2BA88588006392D2 /* ATAuthSDK.bundle */,
+				B64AB3BF2BA88588006392D2 /* ATAuthSDK.framework */,
 			);
 			path = AliAuthSDK;
 			sourceTree = "<group>";
@@ -10552,7 +10570,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD52A8C8253C83AD0099759E /* ATAuthSDK.bundle in Resources */,
 				B73DFCEC1F9F290C00D02104 /* btn_close_sound@3x.png in Resources */,
 				B73DFD041F9F290C00D02104 /* cut_bar_progress@3x.png in Resources */,
 				B73DFD0F1F9F290C00D02104 /* icon_trim.png in Resources */,
@@ -10583,6 +10600,7 @@
 				BD9EE35723D40257005BC7E9 /* KTV_playing.gif in Resources */,
 				B73DFCD81F9F290C00D02104 /* btn_banner_a@3x.png in Resources */,
 				B73DFD081F9F290C00D02104 /* delete.png in Resources */,
+				B64AB3C02BA88588006392D2 /* ATAuthSDK.bundle in Resources */,
 				B73DFCFD1F9F290C00D02104 /* btn_sound@2x.png in Resources */,
 				B73DFD161F9F290C00D02104 /* Time_Machine_No_Reverser.png in Resources */,
 				BDA500F922FA785B00BCB48E /* WeiboSDK.bundle in Resources */,
@@ -10973,6 +10991,7 @@
 				044FA63E217D7AB600BB22B9 /* ZZRentCollectionView.m in Sources */,
 				91DBA2961F613CF700013F4C /* ZZDynamicTextCell.m in Sources */,
 				91DB9DA31F6129E600013F4C /* ZZTaskChooseViewController.m in Sources */,
+				B64AB3BB2BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m in Sources */,
 				BD358A6826FF044D00CE843B /* TZAlbumView.m in Sources */,
 				91DBA2E91F613CF700013F4C /* ZZOrderOptionTextViewCell.m in Sources */,
 				BDA500BE22FA785B00BCB48E /* PPPersonModel.m in Sources */,
@@ -12073,6 +12092,7 @@
 				91DBA4BC1F613D3500013F4C /* ZZMenuView.m in Sources */,
 				04D5858B212C0644008EC039 /* ZZNewHomeSubjectCellItem.m in Sources */,
 				91DB9E201F6129E600013F4C /* ZZWXViewController.m in Sources */,
+				B64AB3BA2BA874F7006392D2 /* NJKScrollFullScreen.m in Sources */,
 				AC3927EA202074EB00A0109C /* ZZOrderNotificationHelper.m in Sources */,
 				AC62036720A534FA0033243D /* ZZNotNetEmptyView.m in Sources */,
 				91DBA5CE1F6151F500013F4C /* ZZSnatchReceiveModel.m in Sources */,
@@ -12541,7 +12561,6 @@
 					"-l\"MJRefresh\"",
 					"-l\"Masonry\"",
 					"-l\"MuseProcessor\"",
-					"-l\"NJKScrollFullScreen\"",
 					"-l\"NMRangeSlider\"",
 					"-l\"Qiniu\"",
 					"-l\"RegexKitLite-NoWarning\"",
@@ -12764,7 +12783,6 @@
 					"-l\"MJRefresh\"",
 					"-l\"Masonry\"",
 					"-l\"MuseProcessor\"",
-					"-l\"NJKScrollFullScreen\"",
 					"-l\"NMRangeSlider\"",
 					"-l\"Qiniu\"",
 					"-l\"RegexKitLite-NoWarning\"",
@@ -12988,7 +13006,6 @@
 					"-l\"MJRefresh\"",
 					"-l\"Masonry\"",
 					"-l\"MuseProcessor\"",
-					"-l\"NJKScrollFullScreen\"",
 					"-l\"NMRangeSlider\"",
 					"-l\"Qiniu\"",
 					"-l\"RegexKitLite-NoWarning\"",
@@ -13210,7 +13227,6 @@
 					"-l\"MJRefresh\"",
 					"-l\"Masonry\"",
 					"-l\"MuseProcessor\"",
-					"-l\"NJKScrollFullScreen\"",
 					"-l\"NMRangeSlider\"",
 					"-l\"Qiniu\"",
 					"-l\"RegexKitLite-NoWarning\"",

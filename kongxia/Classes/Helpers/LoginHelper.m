@@ -24,6 +24,7 @@
 @implementation LoginHelper
 
 + (void)setAliAuthenSDK {
+    NSString *version = [[TXCommonHandler sharedInstance] getVersion];
      [[TXCommonHandler sharedInstance] setAuthSDKInfo:AliAuthKey complete:nil];
 }
 

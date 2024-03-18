@@ -10,7 +10,7 @@
 #import "ZZPlayerViewController.h"
 #import "ZZRecordViewController.h"
 #import "ZZTopicDetailViewController.h"
-#import <NJKScrollFullScreen.h>
+#import "NJKScrollFullScreen.h"
 
 #import "ZZRecommendVideoCell.h"
 #import "ZZFindTopicCell.h"
