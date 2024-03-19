@@ -834,8 +834,8 @@
 		ACFF24F9206BA6C300F29F11 /* ZZBanStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */; };
 		B64AB3BA2BA874F7006392D2 /* NJKScrollFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */; };
 		B64AB3BB2BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */; };
-		B64AB3C02BA88588006392D2 /* ATAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B64AB3BE2BA88588006392D2 /* ATAuthSDK.bundle */; };
-		B64AB3C12BA88588006392D2 /* ATAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3BF2BA88588006392D2 /* ATAuthSDK.framework */; };
+		B64AB3C72BA886C6006392D2 /* ATAuthSDK_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */; };
+		B64AB3C82BA886C6006392D2 /* ATAuthSDK_D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */; };
 		B6DA46D72ADA5CDA0051A1C3 /* UIAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */; };
 		B6FA4CBB2ADA2FF600A4B44F /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */; };
@@ -1539,6 +1539,20 @@
 		BDFDD62021DBAA9D0024C028 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFDD61F21DBAA9D0024C028 /* MediaPlayer.framework */; };
 		BDFFB4952535E29D0062CC2C /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFFB4942535E29D0062CC2C /* LoginHelper.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B64AB3C92BA886C6006392D2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B64AB3C82BA886C6006392D2 /* ATAuthSDK_D.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		040C94C42111678900FD4E94 /* ZZSkillEditPressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZSkillEditPressCell.h; sourceTree = "<group>"; };
@@ -3163,8 +3177,7 @@
 		B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKScrollFullScreen.m; sourceTree = "<group>"; };
 		B64AB3B72BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NJKFullScreenSupport.h"; sourceTree = "<group>"; };
 		B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NJKFullScreenSupport.m"; sourceTree = "<group>"; };
-		B64AB3BE2BA88588006392D2 /* ATAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATAuthSDK.bundle; sourceTree = "<group>"; };
-		B64AB3BF2BA88588006392D2 /* ATAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATAuthSDK.framework; sourceTree = "<group>"; };
+		B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATAuthSDK_D.framework; sourceTree = "<group>"; };
 		B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarHelper.swift; sourceTree = "<group>"; };
 		B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertHelper.swift; sourceTree = "<group>"; };
 		B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingppcore.a; sourceTree = "<group>"; };
@@ -4430,7 +4443,6 @@
 				BDA5007322FA785A00BCB48E /* libopencore-amrwb.a in Frameworks */,
 				BDA245F12334BB990039704B /* libcrypto.a in Frameworks */,
 				BD5227E4225ADFF000340A6A /* CoreML.framework in Frameworks */,
-				B64AB3C12BA88588006392D2 /* ATAuthSDK.framework in Frameworks */,
 				BD580979221266DB007CC77A /* libsqlite3.0.tbd in Frameworks */,
 				BDBD557721DC5412004FB608 /* CoreLocation.framework in Frameworks */,
 				BDA500F222FA785B00BCB48E /* UMSocialNetwork.framework in Frameworks */,
@@ -4444,6 +4456,7 @@
 				BDE95A2823273AE2004F05C9 /* libfaceTrackerSDK.a in Frameworks */,
 				33F7EF371C4BDFD400B76F08 /* SystemConfiguration.framework in Frameworks */,
 				911160B91F6689FE00752532 /* VideoToolbox.framework in Frameworks */,
+				B64AB3C72BA886C6006392D2 /* ATAuthSDK_D.framework in Frameworks */,
 				33EC7FCC1C5E6E75001D157F /* CoreMotion.framework in Frameworks */,
 				B76E8ABD1FBAEFD60081EB48 /* CoreMedia.framework in Frameworks */,
 				BD5DB5BB27B53ABC00BBBDEA /* MGFaceIDLiveDetect.framework in Frameworks */,
@@ -10290,8 +10303,7 @@
 		BDE2DE232532EC7D003C6D7A /* AliAuthSDK */ = {
 			isa = PBXGroup;
 			children = (
-				B64AB3BE2BA88588006392D2 /* ATAuthSDK.bundle */,
-				B64AB3BF2BA88588006392D2 /* ATAuthSDK.framework */,
+				B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */,
 			);
 			path = AliAuthSDK;
 			sourceTree = "<group>";
@@ -10503,6 +10515,7 @@
 				332759F61C478137002ABF2B /* Resources */,
 				A42A0EE4F43854431C0D6766 /* [CP] Copy Pods Resources */,
 				58B66A65150D7C85B54A2370 /* [CP] Embed Pods Frameworks */,
+				B64AB3C92BA886C6006392D2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -10600,7 +10613,6 @@
 				BD9EE35723D40257005BC7E9 /* KTV_playing.gif in Resources */,
 				B73DFCD81F9F290C00D02104 /* btn_banner_a@3x.png in Resources */,
 				B73DFD081F9F290C00D02104 /* delete.png in Resources */,
-				B64AB3C02BA88588006392D2 /* ATAuthSDK.bundle in Resources */,
 				B73DFCFD1F9F290C00D02104 /* btn_sound@2x.png in Resources */,
 				B73DFD161F9F290C00D02104 /* Time_Machine_No_Reverser.png in Resources */,
 				BDA500F922FA785B00BCB48E /* WeiboSDK.bundle in Resources */,
@@ -12455,7 +12467,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 58;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12677,7 +12689,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 58;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12900,7 +12912,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 58;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13122,7 +13134,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 58;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;

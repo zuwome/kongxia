@@ -6,7 +6,7 @@
 //
 
 #import "LoginHelper.h"
-#import <ATAuthSDK/ATAuthSDK.h>
+#import <ATAuthSDK_D/ATAuthSDK.h>
 #import "ZZPasswordSetViewController.h"
 #import "ZZSignUpS1ViewController.h"
 #import "ZZActivityUrlNetManager.h"
