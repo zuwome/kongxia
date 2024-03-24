@@ -97,7 +97,8 @@
     
     if ([textField.text doubleValue]>=([ZZUserHelper shareInstance].configModel.min_bankcard_transfer) && [textField.text doubleValue] <= (long)[ZZUserHelper shareInstance].configModel.max_bankcard_transfer) {
         
-        if ([self.tiXianTextField.text doubleValue] > self.user.balance.doubleValue) {
+        double value = [self.tiXianTextField.text doubleValue];
+        if (value == 0 || value > self.user.balance.doubleValue) {
             [self.footView changeTiXianButtonStateIsEnable:NO];
         }
         else {

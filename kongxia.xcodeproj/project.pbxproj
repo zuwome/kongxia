@@ -12467,7 +12467,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12557,7 +12557,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.7;
+				MARKETING_VERSION = 4.7.8;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12669,6 +12669,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -12689,7 +12692,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12779,7 +12782,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.7;
+				MARKETING_VERSION = 4.7.8;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12891,6 +12894,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -12912,7 +12918,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13002,7 +13008,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.7;
+				MARKETING_VERSION = 4.7.8;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13113,6 +13119,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -13134,7 +13143,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13222,7 +13231,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.7;
+				MARKETING_VERSION = 4.7.8;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -13334,6 +13343,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuwome.zuwomekongxia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
