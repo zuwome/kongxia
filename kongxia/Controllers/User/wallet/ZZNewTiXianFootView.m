@@ -101,7 +101,7 @@
  @param isEnable 是否可以点击
  */
 - (void)changeTiXianButtonStateIsEnable:(BOOL) isEnable {
-    self.tiXianButton.enabled = isEnable;
+    self.tiXianButton.enabled = YES;
     if (isEnable) {
         self.tiXianButton.backgroundColor = RGBCOLOR(244, 203, 7);
     }else{

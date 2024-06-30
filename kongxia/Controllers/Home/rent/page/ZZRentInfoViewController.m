@@ -730,16 +730,35 @@
                     if (_pushBarHide) {
                         _pushBarHide();
                     }
-                    ZZRentCommentViewController *controller = [[ZZRentCommentViewController alloc] init];
-                    controller.urlString = [NSString stringWithFormat:@"%@/user/%@/comment/page",kBase_URL,self.user.uid];
-                    controller.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:controller animated:YES];
+                    
+                    [self GetUrl:^(NSString *url) {
+                        ZZRentCommentViewController *controller = [[ZZRentCommentViewController alloc] init];
+                        controller.urlString = [NSString stringWithFormat:@"%@/user/%@/comment/page",kBase_URL,self.user.uid];
+                        controller.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:controller animated:YES];
+                    }];
+                    
                 } break;
                 default: break;
             }
         } break;
         default: break;
     }
+}
+
+- (void)GetUrl:(void(^)(NSString*))handler {
+    NSURL *backendURL = [[NSURL alloc] initWithString:kBase_URL];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    });
+    // 获取IP
+    [ZZRequest getIP:backendURL handler:^(NSError *error, NSString *ip) {
+        if (handler) {
+            NSString *newHost = error? backendURL.host: ip;
+            handler(newHost);
+        }
+    }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

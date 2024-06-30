@@ -13,6 +13,14 @@
 
 @implementation ZZRequest
 
++ (void)getIP:(NSURL *)url handler:(IpHandler)handler {
+    [[HttpDNS shareInstance] getIpByHost:url.host next:^(NSError *error, NSString *ip) {
+        if (handler) {
+            handler(error, ip);
+        }
+    }];
+}
+
 + (void)verifyWithParam:(NSMutableDictionary *)params
                  verify:(NSData *)megliveData
                 success:(RequestSuccess)successBlock
@@ -90,6 +98,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     // 获取IP
     [[HttpDNS shareInstance] getIpByHost:backendURL.host next:^(NSError *error, NSString *ip) {
         NSString *newHost = error? backendURL.host: ip;//当欠费的时候IP 返回的是一串的乱码  这个时候会崩溃的
+#ifdef DEBUG
+        newHost = [NSString stringWithFormat:@"%@:5000", backendURL.host];
+#endif
         ZZAFNHelper *manager = [ZZAFNHelper shareInstance];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -142,8 +153,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         if (!URLString) {
             return ;
         }
+        
+        if ([URLString containsString:@"/api/"]) {
+            NSString *a = @"1";
+        }
         NSMutableURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:URLString parameters:params error:nil];
-
+        
         NSLog(@"当前请求的%@", request);
         NSURLSessionDataTask *operation = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             

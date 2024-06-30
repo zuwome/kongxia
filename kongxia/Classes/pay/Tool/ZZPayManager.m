@@ -37,21 +37,21 @@
 +(void)downloadInAppPurchase:(void (^)(NSArray *payArray))completionCall {
     
     //判断如果半小时内重复请求的话就直接返回上次请求的结果
-    NSDate *date = [[NSUserDefaults standardUserDefaults]  objectForKey:InAppPurchaseRequestTimeKey];
-    if (date ) {
-     NSDate *overdueDate =   [date initWithTimeIntervalSinceNow:30*60];
-        if ([overdueDate compare:[NSDate date]] ==NSOrderedDescending) {
-            NSArray *array = [[NSUserDefaults standardUserDefaults]  objectForKey:InAppPurchaseKey];
-            if (array) {
-                NSArray *modelArray = [ZZMeBiModel arrayOfModelsFromDictionaries:array error:nil];
-                if (completionCall) {
-                    completionCall(modelArray);
-                }
-                NSLog(@"PY_半小时内重复请求的话就直接返回上次请求的结果");
-                return;
-            }
-        }
-    }
+//    NSDate *date = [[NSUserDefaults standardUserDefaults]  objectForKey:InAppPurchaseRequestTimeKey];
+//    if (date ) {
+//     NSDate *overdueDate =   [date initWithTimeIntervalSinceNow:30*60];
+//        if ([overdueDate compare:[NSDate date]] ==NSOrderedDescending) {
+//            NSArray *array = [[NSUserDefaults standardUserDefaults]  objectForKey:InAppPurchaseKey];
+//            if (array) {
+//                NSArray *modelArray = [ZZMeBiModel arrayOfModelsFromDictionaries:array error:nil];
+//                if (completionCall) {
+//                    completionCall(modelArray);
+//                }
+//                NSLog(@"PY_半小时内重复请求的话就直接返回上次请求的结果");
+//                return;
+//            }
+//        }
+//    }
     
     // 租我么 内购:/system/in_app_purchase/list
     // 空虾  内购: /system/in_app_purchase/listkx

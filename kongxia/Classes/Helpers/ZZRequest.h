@@ -14,8 +14,11 @@
 typedef void (^requestCallback)(ZZError *error, id data, NSURLSessionDataTask *task);
 typedef void(^RequestSuccess)(NSInteger statusCode, NSDictionary* responseObject);
 typedef void(^RequestFailure)(NSInteger statusCode, NSError* error);
+typedef void (^IpHandler)(NSError *error, NSString *ip);
 
 @interface ZZRequest : NSObject
+
++ (void)getIP:(NSURL *)url handler:(IpHandler)handler;
 
 + (void)getBizToken:(NSDictionary *)params
           userImage:(UIImage *)userImage

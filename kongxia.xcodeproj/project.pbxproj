@@ -837,6 +837,7 @@
 		B64AB3C72BA886C6006392D2 /* ATAuthSDK_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */; };
 		B64AB3C82BA886C6006392D2 /* ATAuthSDK_D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B66DB29C2A50706500403CD4 /* UserAvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */; };
+		B6C2B9492BC42A0B00F45596 /* refundTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C2B9482BC42A0B00F45596 /* refundTest.swift */; };
 		B6DA46D72ADA5CDA0051A1C3 /* UIAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */; };
 		B6FA4CBB2ADA2FF600A4B44F /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */; };
 		B6FA4CBC2ADA2FF600A4B44F /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B6FA4CAB2ADA2FF600A4B44F /* Pingpp.bundle */; };
@@ -3179,6 +3180,7 @@
 		B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NJKFullScreenSupport.m"; sourceTree = "<group>"; };
 		B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATAuthSDK_D.framework; sourceTree = "<group>"; };
 		B66DB29B2A50706500403CD4 /* UserAvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarHelper.swift; sourceTree = "<group>"; };
+		B6C2B9482BC42A0B00F45596 /* refundTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = refundTest.swift; sourceTree = "<group>"; };
 		B6DA46D62ADA5CDA0051A1C3 /* UIAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertHelper.swift; sourceTree = "<group>"; };
 		B6FA4CA92ADA2FF600A4B44F /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingppcore.a; sourceTree = "<group>"; };
 		B6FA4CAA2ADA2FF600A4B44F /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pingpp.h; sourceTree = "<group>"; };
@@ -5082,6 +5084,7 @@
 			children = (
 				BD32B3A323ACB6FF002A8419 /* ZZNewHomeViewController.h */,
 				BD32B3A423ACB6FF002A8419 /* ZZNewHomeViewController.m */,
+				B6C2B9482BC42A0B00F45596 /* refundTest.swift */,
 				BD784D3523B5A037003D13FD /* KTV */,
 				BD67828D229698ED00E5B917 /* Ranking */,
 				041FA47321352C8F00278317 /* newHome(新版首页) */,
@@ -11583,6 +11586,7 @@
 				91DB9DD21F6129E600013F4C /* ZZChatMemeViewController.m in Sources */,
 				91DBA1A01F613CF600013F4C /* ZZBanAlertView.m in Sources */,
 				91DBA2E21F613CF700013F4C /* ZZOrderStatusView.m in Sources */,
+				B6C2B9492BC42A0B00F45596 /* refundTest.swift in Sources */,
 				BD37E1492234DAEB0043234E /* ZZWxCouponModel.swift in Sources */,
 				91DBA2B31F613CF700013F4C /* ZZSelfOrderButton.m in Sources */,
 				BDA5007522FA785A00BCB48E /* amrFileCodec.mm in Sources */,
@@ -12467,7 +12471,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12692,7 +12696,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12918,7 +12922,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13143,7 +13147,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;

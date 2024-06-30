@@ -163,7 +163,7 @@ singleton_implementation(ZZPayHelper)
             {
                 [self getReceipt]; //获取交易成功后的购买凭证
                 [self saveReceiptwithstate:@(transaction.transactionState) date:transaction.transactionDate transactionIdentifier:transaction.transactionIdentifier productIdentifier:transaction.payment.productIdentifier];//存储交易凭证
-                
+                [[NSUserDefaults standardUserDefaults] setObject:transaction.transactionIdentifier  forKey:@"refund"];
                 [self checkIAPFiles];
                 
                 [self completeTransaction:transaction];
@@ -236,6 +236,39 @@ singleton_implementation(ZZPayHelper)
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptUrl];
     
     self.receipt = [receiptData base64EncodedStringWithOptions:0];
+//    [self getrr];
+}
+
+- (void)getrr {
+    NSDictionary *requestContents = @{@"receipt-data" : self.receipt};
+    NSLog(@"%@", requestContents);
+
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:nil];
+    NSLog(@"%@", requestData);
+
+    NSString *serverURL = @"https://sandbox.itunes.apple.com/verifyReceipt"; // TODO:change this in production with https://buy.itunes.apple.com/verifyReceipt
+    NSURL *url = [NSURL URLWithString:serverURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:requestData];
+
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (data && error == nil) {
+            NSError *jsonError;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            if (jsonError == nil) {
+                NSDictionary *receipt = json[@"receipt"];
+                NSDictionary *inApp = receipt[@"in_app"][0];
+                NSNumber *transaction_id = ((NSNumber *)inApp[@"transaction_id"]) ;
+//                [[NSUserDefaults standardUserDefaults] setObject:[transaction_id stringValue]  forKey:@"refund"];
+//                [[NSUserDefaults standardUserDefaults] synchronize];
+            } else {
+            }
+        } else {
+        }
+    }];
+    [task resume];
+
 }
 
 
