@@ -136,6 +136,15 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             [p setObject:phoneVersion forKey:@"dev_version"];
         }
         
+        if ([path containsString:@"/api/"]) {
+            NSString *city = [ZZUserDefaultsHelper objectForDestKey:@"current_city_name"];
+            NSString *province = [ZZUserDefaultsHelper objectForDestKey:@"current_province"];
+            if (![ZZUtils isEmpty:city] && ![ZZUtils isEmpty:province]) {
+                [p setObject:city forKey:@"current_city_name"];
+                [p setObject:province forKey:@"current_province"];
+            }
+        }
+        
         NSString *URLString = ({
             NSString *sURL = [NSString stringWithFormat:@"%@://%@", backendURL.scheme,newHost];
             if (backendURL.port) {
@@ -154,9 +163,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             return ;
         }
         
-        if ([URLString containsString:@"/api/"]) {
-            NSString *a = @"1";
-        }
         NSMutableURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:URLString parameters:params error:nil];
         
         NSLog(@"当前请求的%@", request);

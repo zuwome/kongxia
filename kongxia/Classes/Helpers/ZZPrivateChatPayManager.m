@@ -213,6 +213,11 @@
     if (mutableParam[@"bio_status"]) {
         [mutableParam removeObjectForKey:@"bio_status"];
     }
+    
+    NSString *city = [ZZUserDefaultsHelper objectForDestKey:@"current_city_name"];
+    if (![ZZUtils isEmpty:city]) {
+        [mutableParam setObject:city forKey:@"app_current_city"];
+    }
     [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/user2"] params:mutableParam next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (data) {
             ZZUser *user = [ZZUser yy_modelWithJSON:data];

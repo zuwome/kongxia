@@ -691,6 +691,7 @@
         [ZZUserHelper shareInstance].isAbroad = YES;
         cityName = placemark.country;
     }
+    
     if (!isNullString(cityName)) {
         self.viewModel.haveGetLocation = YES;
         if (haveCity && ![cityName isEqualToString:[ZZUserHelper shareInstance].cityName]) {    //与之前记录的城市不同时
@@ -722,6 +723,14 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self configViewWithData];
         });
+    }
+    
+    if (![ZZUtils isEmpty:cityName]) {
+        [ZZUserDefaultsHelper setObject:cityName forDestKey:@"current_city_name"];
+    }
+    
+    if (![ZZUtils isEmpty:placemark.administrativeArea]) {
+        [ZZUserDefaultsHelper setObject:placemark.administrativeArea forDestKey:@"current_province"];
     }
 }
 

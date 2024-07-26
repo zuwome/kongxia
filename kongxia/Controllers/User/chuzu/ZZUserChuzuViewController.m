@@ -353,9 +353,12 @@
                 if (placemark.locality) {
                     cityName = placemark.locality;
                 }
-//                else if (placemark.province) {
-//                    cityName = placemark.province;
-//                }
+                
+                if (![placemark.ISOcountryCode isEqualToString:@"CN"]) {
+                    [ZZUserHelper shareInstance].isAbroad = YES;
+                    cityName = placemark.country;
+                }
+
                 if (!isNullString(cityName)) {
                     ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
                     userHelper.cityName = cityName;
@@ -367,39 +370,18 @@
                         weakSelf.user.rent.city.name = [ZZUserHelper shareInstance].cityName;
                     }
                 }
+                
+                if (![ZZUtils isEmpty:cityName]) {
+                    [ZZUserDefaultsHelper setObject:cityName forDestKey:@"current_city_name"];
+                }
+                
+                if (![ZZUtils isEmpty:placemark.administrativeArea]) {
+                    [ZZUserDefaultsHelper setObject:placemark.administrativeArea forDestKey:@"current_province"];
+                }
             } else {
                 [ZZHUD showErrorWithStatus:@"地址获取失败..."];
             }
         }];
-//        _locationManger = [[AMapLocationManager alloc] init];
-//        _locationManger.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-//        [_locationManger requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-//            weakSelf.tableView.userInteractionEnabled = YES;
-//            if (!error) {
-//                [ZZHUD showSuccessWithStatus:@"城市更新成功!"];
-//                [weakSelf.locationManger stopUpdatingLocation];
-//
-//                NSString *cityName = @"";
-//                if (regeocode.city) {
-//                    cityName = regeocode.city;
-//                } else if (regeocode.province) {
-//                    cityName = regeocode.province;
-//                }
-//                if (!isNullString(cityName)) {
-//                    ZZUserHelper *userHelper = [ZZUserHelper shareInstance];
-//                    userHelper.cityName = cityName;
-//                }
-//
-//                //如果已登录就上传
-//                if ([ZZUserHelper shareInstance].isLogin) {
-//                    if ([ZZUserHelper shareInstance].cityName) {
-//                        weakSelf.user.rent.city.name = [ZZUserHelper shareInstance].cityName;
-//                    }
-//                }
-//            } else {
-//                [ZZHUD showErrorWithStatus:@"地址获取失败..."];
-//            }
-//        }];
     }
 }
 

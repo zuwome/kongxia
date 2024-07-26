@@ -187,6 +187,14 @@
     
     weakSelf.requestLocation = YES;
     [weakSelf.tableView reloadData];
+    
+    if (![ZZUtils isEmpty:cityName]) {
+        [ZZUserDefaultsHelper setObject:cityName forDestKey:@"current_city_name"];
+    }
+    
+    if (![ZZUtils isEmpty:placemark.administrativeArea]) {
+        [ZZUserDefaultsHelper setObject:placemark.administrativeArea forDestKey:@"current_province"];
+    }
 }
 
 - (BOOL)isSpecailProvince:(NSString *)province

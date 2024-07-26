@@ -644,6 +644,13 @@
     if (mutableParam[@"bio_status"]) {
         [mutableParam removeObjectForKey:@"bio_status"];
     }
+    
+    NSString *city = [ZZUserDefaultsHelper objectForDestKey:@"current_city_name"];
+    if (![ZZUtils isEmpty:city]) {
+        [mutableParam setObject:city forKey:@"app_current_city"];
+    }
+    
+    
     [ZZRequest method:@"POST" path:@"/api/user2" params:mutableParam next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (next) {
             next(error, data, task);
@@ -717,6 +724,11 @@
         
         // 保存一下旧的城市
         self.oldCityName = self.loginer.current_city_name;
+        
+        NSString *city = [ZZUserDefaultsHelper objectForDestKey:@"current_city_name"];
+        if (![ZZUtils isEmpty:city]) {
+            [params setObject:city forKey:@"app_current_city"];
+        }
         [ZZRequest method:@"POST" path:@"/api/user2" params:params next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (!error && data) {
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
