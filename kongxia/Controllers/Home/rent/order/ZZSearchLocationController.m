@@ -38,6 +38,8 @@
 
 @property (nonatomic, copy) NSArray *pois;
 
+@property (nonatomic, assign) CLLocationCoordinate2D selectedCoordinate;
+
 @end
 
 @implementation ZZSearchLocationController
@@ -115,23 +117,38 @@
     model.name = poi.name;
     model.location = [[CLLocation alloc] initWithLatitude:poi.latitude longitude:poi.longitude];
     model.detaiString = poi.address;
-    model.city = _currentSelectCity.name;
+    if (poi.city.length != 0) {
+        model.city = poi.city;
+    } else if (poi.city.length != 0) {
+        model.city = poi.province;
+    }
     
-    if (_isFromTaskFree) {
-        if (_currentSelectCity && ![_currentSelectCity.name isEqualToString:model.city]) {
-            [ZZHUD showErrorWithStatus:@"该地点不在所选的城市中"];
-            return;
+    [SVProgressHUD show];
+    [[LocationMangers shared] reverseWithCoordinate:_selectedCoordinate completeHandler:^(CLPlacemark * placemark, NSError * error) {
+        [SVProgressHUD dismiss];
+        if (error != NULL) {
+            model.city = _currentSelectCity.name ? _currentSelectCity.name: @"厦门";
+        } else {
+            model.city = placemark.locality;
         }
-    }
-    
-    if (_selectPoiDone) {
-        _selectPoiDone(model);
-    } else if (_selectPoi) {
-        UIImage *image = [_mapView snapShot];
-        _selectPoi(model, image);
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
+        
+        if (_isFromTaskFree) {
+            if (_currentSelectCity && ![_currentSelectCity.name isEqualToString:model.city]) {
+                [ZZHUD showErrorWithStatus:@"该地点不在所选的城市中"];
+                return;
+            }
+        }
+        
+        if (_selectPoiDone) {
+            _selectPoiDone(model);
+        } else if (_selectPoi) {
+            UIImage *image = [_mapView snapShot];
+            _selectPoi(model, image);
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+
 }
 
 - (void)initMapView {
@@ -197,18 +214,13 @@
 
 #pragma mark - POI Search
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
-//    CLLocationCoordinate2D transCoor = [LocationUtil transformGCJToWGSWithLocation:coordinate];
+    _selectedCoordinate = coordinate;
     
-    [[POIManager shared] getGDPoiWithCoordinate:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+    [POIManager getPoisssWithLocation:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         _pois = pois;
         [_listTableView reloadData];
     }];
-//    [POIManager getPoisWithLocation:transCoor completion:^(NSArray<PoiModel *> * poiModels) {
-//        _pois = poiModels;
-//        [_listTableView reloadData];
-//    }];
 }
-
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

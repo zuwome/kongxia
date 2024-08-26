@@ -155,49 +155,49 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([self shouldShowRentEntry]) {
             
-            // 显示快捷出租的入口
-            ZZHomeRecommendDetailModel *model = [[ZZHomeRecommendDetailModel alloc] init];
-            model.modelType = 2;
-            
-            __block BOOL didHave = NO;
-            [_dataArray enumerateObjectsUsingBlock:^(ZZHomeRecommendDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (obj.modelType == 2) {
-                    *stop = YES;
-                    didHave = YES;
-                }
-            }];
-            
-            if (!didHave) {
-                NSInteger index = 7;
-                if (index < self.dataArray.count) {
-                    [self.dataArray insertObject:model atIndex:index];
-                }
-                else {
-                    [self.dataArray addObject:model];
-                }
-            }
+//            // 显示快捷出租的入口
+//            ZZHomeRecommendDetailModel *model = [[ZZHomeRecommendDetailModel alloc] init];
+//            model.modelType = 2;
+//            
+//            __block BOOL didHave = NO;
+//            [_dataArray enumerateObjectsUsingBlock:^(ZZHomeRecommendDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (obj.modelType == 2) {
+//                    *stop = YES;
+//                    didHave = YES;
+//                }
+//            }];
+//            
+//            if (!didHave) {
+//                NSInteger index = 7;
+//                if (index < self.dataArray.count) {
+//                    [self.dataArray insertObject:model atIndex:index];
+//                }
+//                else {
+//                    [self.dataArray addObject:model];
+//                }
+//            }
         }
         else if ([self shouldShowTaskFree]) {
-            // 显示活动的入口
-            ZZHomeRecommendDetailModel *model = [[ZZHomeRecommendDetailModel alloc] init];
-            model.modelType = 1;
-            __block BOOL didHave = NO;
-            [_dataArray enumerateObjectsUsingBlock:^(ZZHomeRecommendDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (obj.modelType == 1) {
-                    *stop = YES;
-                    didHave = YES;
-                }
-            }];
-            
-            if (!didHave) {
-                NSInteger index = arc4random() % 10;
-                if (index < self.dataArray.count) {
-                    [self.dataArray insertObject:model atIndex:index];
-                }
-                else {
-                    [self.dataArray addObject:model];
-                }
-            }
+//            // 显示活动的入口
+//            ZZHomeRecommendDetailModel *model = [[ZZHomeRecommendDetailModel alloc] init];
+//            model.modelType = 1;
+//            __block BOOL didHave = NO;
+//            [_dataArray enumerateObjectsUsingBlock:^(ZZHomeRecommendDetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (obj.modelType == 1) {
+//                    *stop = YES;
+//                    didHave = YES;
+//                }
+//            }];
+//            
+//            if (!didHave) {
+//                NSInteger index = arc4random() % 10;
+//                if (index < self.dataArray.count) {
+//                    [self.dataArray insertObject:model atIndex:index];
+//                }
+//                else {
+//                    [self.dataArray addObject:model];
+//                }
+//            }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [_tableview reloadData];

@@ -263,6 +263,8 @@
                             if ([ZZUserHelper shareInstance].location) {
                                 [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
                             }
+                            
+                            [[ZZUserHelper shareInstance] UpdateUserSettings:nil];
                         }];
                     });
             }];
@@ -273,6 +275,8 @@
                             if ([ZZUserHelper shareInstance].location) {
                                 [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
                             }
+                            
+                            [[ZZUserHelper shareInstance] UpdateUserSettings:nil];
                         }];
                     });
             }

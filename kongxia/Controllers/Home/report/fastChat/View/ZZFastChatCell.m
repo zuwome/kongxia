@@ -251,6 +251,10 @@ commonInitImplementationSafe(ZZFastChatCell) {
 
 - (void)setupWithModel:(ZZFastChatModel *)model {
     
+    if (model.user == nil) {
+        return;
+    }
+    
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[model.user displayAvatar]] placeholderImage:nil options:(SDWebImageRetryFailed)];
     self.highPraise.text = [NSString stringWithFormat:@"%@好评", [model.user.link_mic_good_comments_count integerValue] > 999 ? @"999+" : model.user.link_mic_good_comments_count];
     

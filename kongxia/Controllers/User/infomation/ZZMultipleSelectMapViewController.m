@@ -136,7 +136,8 @@
 //        [self.mapView setCenterCoordinate:(CLLocationCoordinate2D){poi.location.latitude, poi.location.longitude} animated:YES];
     }
     _selectLocations = selectedPoisArr.copy;
-    [_tableView reloadData];
+//    [_tableView reloadData];
+    [self rightDoneClick];
 }
 
 - (void)searchTipsWithKey:(NSString *)key searchLimited:(BOOL)searchLimited {
@@ -187,10 +188,14 @@
 
 #pragma mark - POI Search
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
-    [[POIManager shared] getGDPoiWithCoordinate:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+    [POIManager getPoisssWithLocation:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         _poisArray = pois;
         [_tableView reloadData];
     }];
+//    [[POIManager shared] getGDPoiWithCoordinate:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+//        _poisArray = pois;
+//        [_tableView reloadData];
+//    }];
 //
 //    [POIManager getPoisWithLocation:coordinate completion:^(NSArray<PoiModel *> * poiModels) {
 //        _poisArray = poiModels;

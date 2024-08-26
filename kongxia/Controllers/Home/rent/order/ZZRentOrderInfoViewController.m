@@ -163,6 +163,28 @@
 }
 
 - (void)getLocationModel:(ZZRentDropdownModel *)model {
+    if (isNull(_order.city.name)) {
+        [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
+        return;
+    }
+    BOOL contain = NO;
+
+    if (isNull(model.city)) {
+        [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
+        return;
+    }
+    NSRange range = [model.city rangeOfString:_order.city.name];
+    if (range.location != NSNotFound) {
+        contain = YES;
+    }
+    range = [_order.city.name rangeOfString:model.city];
+    if (range.location != NSNotFound) {
+        contain = YES;
+    }
+    if (!contain) {
+        [ZZHUD showErrorWithStatus:[NSString stringWithFormat:@"邀约地点请选择在%@内 ^_^",_order.city.name]];
+        return;
+    }
     _order.address = model.name;
     ZZOrderLocation *orderLocation = [[ZZOrderLocation alloc] init];
     orderLocation.lat = [NSString stringWithFormat:@"%f",model.location.coordinate.latitude];
@@ -263,7 +285,7 @@
         contain = YES;
     }
     if (!contain) {
-        [ZZHUD showErrorWithStatus:[NSString stringWithFormat:@"出租地点请选择在%@内 ^_^",_order.city.name]];
+        [ZZHUD showErrorWithStatus:[NSString stringWithFormat:@"邀约地点请选择在%@内 ^_^",_order.city.name]];
         return;
     }
     _order.address = model.name;

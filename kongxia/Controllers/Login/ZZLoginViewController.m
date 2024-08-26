@@ -695,7 +695,7 @@
            //登录成功开启内购漏单检测
         [ZZPayHelper startManager];
         [ZZActivityUrlNetManager requestHtmlActivityUrlDetailInfo];//h5活动页
-
+        [[ZZUserHelper shareInstance] UpdateUserSettings:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_UserLogin object:self];
      
         

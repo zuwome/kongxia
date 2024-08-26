@@ -88,6 +88,19 @@ extension LocationMangers {
             self.getPlacemarkHandler?(placemark, nil)
         }
     }
+    
+    @objc func reverse(coordinate: CLLocationCoordinate2D, completeHandler: @escaping (_ placemark: CLPlacemark?, _ error: Error?) -> Void) {
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+
+            guard error == nil, let placemark = placemarks?.first else {
+                completeHandler(nil, error)
+                return
+            }
+            
+           completeHandler(placemark, nil)
+        }
+    }
 }
 
 extension LocationMangers: CLLocationManagerDelegate {

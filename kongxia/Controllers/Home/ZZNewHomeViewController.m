@@ -141,17 +141,16 @@
     
     [self showUserPrivateTerms];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame: CGRectMake(100, 100, 100, 50)];
-    [btn setBackgroundColor:[UIColor systemGreenColor]];
-    [btn setTitle:@"refund" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(refund) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+//    UIButton *btn = [[UIButton alloc] initWithFrame: CGRectMake(100, 100, 100, 50)];
+//    [btn setBackgroundColor:[UIColor systemGreenColor]];
+//    [btn setTitle:@"refund" forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(refund) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:btn];
     
 }
 
 - (void)refund {
-    [RefundTest Refund];
-//    [RefundTest refundWithCompletionHandler:<#^(void)completionHandler#>];
+//    [RefundTest Refund];
 }
 
 - (void)dealloc {

@@ -42,8 +42,14 @@
         if (error) {
             BLOCK_SAFE_CALLS(completed, error, [NSMutableArray new], task);
         } else {
-            NSMutableArray<ZZFastChatModel *> *array = [ZZFastChatModel arrayOfModelsFromDictionaries:data error:nil];
-            BLOCK_SAFE_CALLS(completed, error, array, task);
+            NSArray<ZZFastChatModel *> *array = [ZZFastChatModel arrayOfModelsFromDictionaries:data error:nil];
+            NSMutableArray *models = [NSMutableArray new];
+            for (ZZFastChatModel *model in array) {
+                if (model.user != nil) {
+                    [models addObject:model];
+                }
+            }
+            BLOCK_SAFE_CALLS(completed, error, models, task);
         }
     }];
 }

@@ -9,6 +9,8 @@
 import Foundation
 
 @objc class PoiModel: NSObject {
+    @objc var province: String?
+    @objc var city: String?
     @objc var address: String?
     @objc var distance: String?
     @objc var phone: String?

@@ -12,6 +12,48 @@ import Foundation
     
     static let token: String = "de7f361b604d6920d9a761f7ee04f87e"
     static let defaultKeyword: String = "休闲餐饮"//"公园"
+    
+    @objc public static func searchPoi(keyword: String, completion: @escaping ([PoiModel]) -> Void) {
+        let urlstr = "http://api.tianditu.gov.cn/v2/search?postStr={\"keyWord\":\"\(keyword)\",\"level\":12,\"mapBound\":\"-180,-90,180,90\",\"queryType\":1,\"count\":100,\"start\":0,\"show\":2}&type=query&tk=\(token)"
+        
+        guard let urlstr = urlstr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        
+        guard let url = URL(string:urlstr) else {
+            return
+        }
+        
+        //2、创建URLRequest
+        let request: URLRequest = URLRequest(url: url)
+        
+        //3、创建URLSession
+        let configration = URLSessionConfiguration.default
+        let session =  URLSession(configuration: configration)
+
+        //4、URLSessionTask子类
+        let task: URLSessionDataTask = session.dataTask(with: request) { (data, response, error) in
+            if error == nil {
+                do {
+                    let result: NSDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+                    if let pois = result["pois"],
+                       let poiModelArr: [PoiModel] = NSArray.yy_modelArray(with: PoiModel.self, json: pois) as? [PoiModel] {
+                        DispatchQueue.main.async {
+                            completion(poiModelArr)
+                        }
+                    } else {
+                        completion([])
+                    }
+
+                }catch{
+
+                }
+          }
+        }
+        //5、启动任务
+        task.resume()
+    }
+    
     @objc public static func getPoisss(keyword: String, location: CLLocationCoordinate2D, completion: @escaping ([PoiModel]) -> Void) {
         let keywords = keyword.isEmpty ? defaultKeyword : keyword
         let urlstr = "http://api.tianditu.gov.cn/v2/search?postStr={\"keyWord\":\"\(keywords)\",\"level\":12,\"pointLonlat\":\"\(location.longitude),\(location.latitude)\",\"queryType\":3,\"start\":0,\"count\":50,\"queryRadius\":10000}&type=query&tk=\(token)"
@@ -36,7 +78,6 @@ import Foundation
             if error == nil {
                 do {
                     let result: NSDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
-                        print(result)
                     if let pois = result["pois"],
                        let poiModelArr: [PoiModel] = NSArray.yy_modelArray(with: PoiModel.self, json: pois) as? [PoiModel] {
                         DispatchQueue.main.async {

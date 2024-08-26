@@ -818,6 +818,31 @@
     }];
 }
 
+- (void)UpdateUserSettings:(void (^)(BOOL))completeHandler {
+    [ZZRequest method:@"GET" path:[NSString stringWithFormat:@"/system/config"] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        if (data) {
+            ZZSystemConfigModel* model = [[ZZSystemConfigModel alloc] initWithDictionary:data error:nil];
+            //            model.wechat_new = YES;
+            model.open_rent_need_pay_module = NO;
+            [ZZUserDefaultsHelper setObject:model.wechat forDestKey:@"WeiXinPingJia"];//存储微信评价的差评理由
+            self.configModel = model;
+            
+            // 下载价格配置信息
+            [self.configModel fetchPriceConfig:NO
+                              inViewController:nil
+                                         block:^(BOOL isComplete) {
+                if (completeHandler) {
+                    completeHandler(YES);
+                }
+            }];
+            return ;
+        }
+        if (completeHandler) {
+            completeHandler(NO);
+        }
+    }];
+}
+
 #pragma mark - Setter&Getter
 - (BOOL)isLogin {
     return self.oAuthToken ? YES : NO;

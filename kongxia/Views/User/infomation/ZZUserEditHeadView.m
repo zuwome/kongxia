@@ -345,6 +345,8 @@ static NSString *photoEmptyIdentifier = @"photoempty";
     ZZUploadPhotoExampleView *exampleView = [ZZUploadPhotoExampleView showPhotos:_type == EditTypeUser ? PhotoUserInfo : PhotoUserSkill showin:[UIApplication sharedApplication].keyWindow];
     [exampleView show];
     
+    _isReplaceHead = indexPath.row == 0;
+    
     [UIAlertController showSheetActionsIn:[UIViewController currentDisplayViewController]
                                     title:nil
                                   message:nil
@@ -354,12 +356,10 @@ static NSString *photoEmptyIdentifier = @"photoempty";
     }
                                   actions:@[
         [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            _isReplaceHead = YES;
             [self gotoCamera];
             [exampleView hide];
         }],
         [alertAction createWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            _isReplaceHead = YES;
             [self gotoAlbum];
             [exampleView hide];
         }],
@@ -368,29 +368,86 @@ static NSString *photoEmptyIdentifier = @"photoempty";
 
 //相册
 - (void)gotoAlbum {
-    WeakSelf;
-   IOS_11_Show
-    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-    [imgPicker setDelegate:self];
-    [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
-      IOS_11_NO_Show
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
-        [picker dismissViewControllerAnimated:YES completion:^{
-            UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-             [weakSelf edit:image];
-
+    // 检查相册访问权限
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) {
+        // 用户未授权，处理相应逻辑
+        NSLog(@"用户未授权访问相册");
+        return;
+    } else if (status == PHAuthorizationStatusNotDetermined) {
+        // 请求访问权限
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+                // 用户同意授权，打开相册
+                [self presentImagePicker];
+            }
         }];
-    };
-    imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
-        [picker dismissViewControllerAnimated:YES completion:nil];
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-        IOS_11_NO_Show
-
-    };
-    [_weakCtl.navigationController presentViewController:imgPicker animated:YES completion:nil];
+    } else {
+        // 已经授权，直接打开相册
+        [self presentImagePicker];
+    }
+    
+//    WeakSelf;
+//   IOS_11_Show
+//    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+//    [imgPicker setDelegate:self];
+//    [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+//    imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
+//      IOS_11_NO_Show
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//
+//        [picker dismissViewControllerAnimated:YES completion:^{
+//            UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//             [weakSelf edit:image];
+//
+//        }];
+//    };
+//    imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
+//        [picker dismissViewControllerAnimated:YES completion:nil];
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//        IOS_11_NO_Show
+//
+//    };
+//    [_weakCtl.navigationController presentViewController:imgPicker animated:YES completion:nil];
 }
+
+- (void)presentImagePicker {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        NSLog(@"设备不支持访问相册");
+        return;
+    }
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.delegate = self;
+        imagePicker.allowsEditing = NO; // 如果需要允许编辑，可以设置为 YES
+        [self.weakCtl.navigationController presentViewController:imagePicker animated:YES completion:nil];
+    });
+    
+    
+}
+
+// UIImagePickerControllerDelegate 方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info {
+    UIImage *selectedImage = info[UIImagePickerControllerOriginalImage];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self edit:selectedImage];
+        }];
+    });
+    
+   
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    });
+}
+
 //编辑相册
 -(void)edit:(UIImage *)originalImage{
     
@@ -464,8 +521,18 @@ static NSString *photoEmptyIdentifier = @"photoempty";
     __weak typeof(photo)weakPhoto = photo;
     __block NSInteger index = 0;
     if (_isReplaceHead) {
-        [self.imgArray replaceObjectAtIndex:0 withObject:image];
-        [self.urlArray replaceObjectAtIndex:0 withObject:image];
+        if (self.imgArray.count == 0) {
+            [self.imgArray addObject:image];
+        } else {
+            [self.imgArray replaceObjectAtIndex:0 withObject:image];
+        }
+        
+        if (self.urlArray.count == 0) {
+            [self.urlArray addObject:image];
+        } else {
+            [self.urlArray replaceObjectAtIndex:0 withObject:image];
+        }
+        
         weakPhoto = self.imgArray[0];
     } else {
         [self.imgArray addObject:image];

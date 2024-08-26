@@ -41,17 +41,26 @@
     NSString *key = searchBar.text;
     _searchString = searchBar.text;
     
-    NSString *city = @"";
-    if (_currentCity) {
-        city = _currentCity.name ? _currentCity.name: @"厦门";
-    }
-    else if ([ZZUserHelper shareInstance].cityName) {
-        city = [ZZUserHelper shareInstance].cityName;
-    }
+//    NSString *city = @"";
+//    if (_currentCity) {
+//        city = _currentCity.name ? _currentCity.name: @"厦门";
+//    }
+//    else if ([ZZUserHelper shareInstance].cityName) {
+//        city = [ZZUserHelper shareInstance].cityName;
+//    }
     
-    [[POIManager shared] getGDPoiWithKeyword:key city:city cityLimited:_isCityLimited completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+    [POIManager searchPoiWithKeyword:_searchString completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         [self filterResults:pois];
+        if (pois.count == 0) {
+            [SVProgressHUD showInfoWithStatus:@"请在地点前加上城市"];
+        }
     }];
+//    [POIManager getPoisssWithKeyword:key location:_location.coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+//        [self filterResults:pois];
+//    }];
+//    [[POIManager shared] getGDPoiWithKeyword:key city:city cityLimited:_isCityLimited completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+//        [self filterResults:pois];
+//    }];
 //    [POIManager getPoisWithKeyword:key location:_location.coordinate completion:^(NSArray<PoiModel *> * pois) {
 //        [self filterResults:pois];
 //    }];

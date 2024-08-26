@@ -330,4 +330,5 @@ static dispatch_once_t ZZUserhelperOnce = 0;
  */
 + (void)requestMeBiAndMoneynext:(requestCallback)next;
 
+- (void)UpdateUserSettings:(void (^)(BOOL))completeHandler;
 @end
