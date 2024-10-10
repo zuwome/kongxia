@@ -16,8 +16,6 @@
 
 @interface ZZLocationSearchedController : UITableViewController <UISearchBarDelegate, UISearchResultsUpdating>
 
-@property (nonatomic, assign) BOOL isCityLimited;
-
 @property (strong, nonatomic) ZZCity *currentCity;
 
 @property (nonatomic, weak) id<ZZLocationSearchedControllerDelegate> delegate;

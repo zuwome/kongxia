@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) ZZCity *currentSelectCity;
 
-@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, copy) NSString *selectedLocation;
 
 @property (nonatomic, copy) void (^presentBlock)(void);
 
@@ -24,8 +24,6 @@
 @property (nonatomic, copy) void (^selectPoi)(ZZRentDropdownModel *model, UIImage *image);
 
 @property (nonatomic, assign) BOOL isFromTaskFree;
-
-@property (nonatomic, assign) BOOL isCityLimited;
 
 - (instancetype)initWithSelectCity:(ZZCity *)city;
 

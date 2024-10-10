@@ -64,7 +64,7 @@ class UserPrivateTermsHelper: NSObject {
     
     func abortApp() {
 //        UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
-        exit(0)
+//        exit(0)
     }
 }
 

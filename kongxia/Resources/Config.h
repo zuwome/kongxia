@@ -396,11 +396,11 @@ userInfo:aUserInfo]
 
 #define ZWM_YELLOW @"#F4CB07"
 
-#ifdef DEBUG
-#define NSLog(format, ...) printf("[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
-#else
-#define NSLog(format, ...)
-#endif
+//#ifdef DEBUG
+//#define NSLog(format, ...) printf("[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+//#else
+//#define NSLog(format, ...)
+//#endif
 
 //弱引用申明
 #define WS(weakSelf) __weak typeof(self)weakSelf = self

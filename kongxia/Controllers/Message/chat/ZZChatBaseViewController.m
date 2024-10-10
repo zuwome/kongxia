@@ -1912,14 +1912,12 @@
                 model.message.sentStatus = SentStatus_READ;
                 //阅后即焚
                 if ([ZZChatUtil isBurnAfterReadMessage:model]) {
-                    NSLog(@"是否是阅后即焚%d",[ZZChatUtil isBurnAfterReadMessage:model]);
                     model.count = BurnMaxCount;
                     [self checkBurnAfterReading];
                     [weakSelf.countDownArray addObject:model];
                 }
             }
         }
-        NSLog(@"已经发送的消息的状态%lu",(unsigned long)model.message.sentStatus)
     }];
 }
 

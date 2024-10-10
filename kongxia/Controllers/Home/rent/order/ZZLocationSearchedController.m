@@ -37,8 +37,6 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-
-    NSString *key = searchBar.text;
     _searchString = searchBar.text;
     
 //    NSString *city = @"";
@@ -55,16 +53,6 @@
             [SVProgressHUD showInfoWithStatus:@"请在地点前加上城市"];
         }
     }];
-//    [POIManager getPoisssWithKeyword:key location:_location.coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
-//        [self filterResults:pois];
-//    }];
-//    [[POIManager shared] getGDPoiWithKeyword:key city:city cityLimited:_isCityLimited completion:^(NSArray<PoiModel *> * _Nonnull pois) {
-//        [self filterResults:pois];
-//    }];
-//    [POIManager getPoisWithKeyword:key location:_location.coordinate completion:^(NSArray<PoiModel *> * pois) {
-//        [self filterResults:pois];
-//    }];
- 
 }
 
 - (void)filterResults:(NSArray<PoiModel *> *)pois {

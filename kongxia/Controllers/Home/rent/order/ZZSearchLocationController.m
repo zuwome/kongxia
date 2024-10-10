@@ -67,7 +67,6 @@
     [self createTimer];
     [self initMapView];
     [self initSearch];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,28 +107,21 @@
         return;
     }
     PoiModel *poi = _pois[_selectIndex];
-    [self getSearchLocation:poi];
+    [self getSearchLocation:poi bySearch:NO];
 }
 
-- (void)getSearchLocation:(PoiModel *)poi {
+- (void)getSearchLocation:(PoiModel *)poi bySearch:(BOOL)isBySearch {
     
     ZZRentDropdownModel *model = [[ZZRentDropdownModel alloc] init];
     model.name = poi.name;
     model.location = [[CLLocation alloc] initWithLatitude:poi.latitude longitude:poi.longitude];
     model.detaiString = poi.address;
-    if (poi.city.length != 0) {
-        model.city = poi.city;
-    } else if (poi.city.length != 0) {
-        model.city = poi.province;
-    }
     
-    [SVProgressHUD show];
-    [[LocationMangers shared] reverseWithCoordinate:_selectedCoordinate completeHandler:^(CLPlacemark * placemark, NSError * error) {
-        [SVProgressHUD dismiss];
-        if (error != NULL) {
-            model.city = _currentSelectCity.name ? _currentSelectCity.name: @"厦门";
+    if (isBySearch) {
+        if (poi.city.length != 0) {
+            model.city = poi.city;
         } else {
-            model.city = placemark.locality;
+            model.city = poi.province;
         }
         
         if (_isFromTaskFree) {
@@ -147,7 +139,35 @@
         }
         
         [self.navigationController popViewControllerAnimated:YES];
-    }];
+        
+    } else {
+        [SVProgressHUD show];
+        [[LocationMangers shared] reverseWithCoordinate:_selectedCoordinate completeHandler:^(CLPlacemark * placemark, NSError * error) {
+            [SVProgressHUD dismiss];
+            if (error != NULL) {
+                model.city = _currentSelectCity.name ? _currentSelectCity.name: @"厦门";
+            } else {
+                model.city = placemark.locality;
+            }
+            
+            if (_isFromTaskFree) {
+                if (_currentSelectCity && ![_currentSelectCity.name isEqualToString:model.city]) {
+                    [ZZHUD showErrorWithStatus:@"该地点不在所选的城市中"];
+                    return;
+                }
+            }
+            
+            if (_selectPoiDone) {
+                _selectPoiDone(model);
+            } else if (_selectPoi) {
+                UIImage *image = [_mapView snapShot];
+                _selectPoi(model, image);
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
+    
 
 }
 
@@ -162,7 +182,6 @@
         else {
             [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
         }
-        weakSelf.regionDidChangeWithoutReload = NO;
     }];
     [_mapView setRegionDidChange:^(CLLocationCoordinate2D centerCoorDinate) {
         if (weakSelf.regionDidChangeWithoutReload || weakSelf.regionFirstDidChangeWithoutReload) {
@@ -171,8 +190,6 @@
         else {
             [weakSelf searchPoiByCenterCoordinate:centerCoorDinate];
         }
-        weakSelf.regionDidChangeWithoutReload = NO;
-
     }];
     _regionFirstDidChangeWithoutReload = YES;
     
@@ -198,18 +215,23 @@
 
 #pragma mark - MapviewDelegate
 - (void)regionDidChangedWithCoordinate:(CLLocationCoordinate2D)coordinate {
+    _selectedCoordinate = coordinate;
+    
     if (self.regionDidChangeWithoutReload || self.regionFirstDidChangeWithoutReload) {
         self.regionFirstDidChangeWithoutReload = NO;
+        self.regionDidChangeWithoutReload = NO;
     }
     else {
         [self searchPoiByCenterCoordinate:coordinate];
     }
-    self.regionDidChangeWithoutReload = NO;
+    
 }
 
 #pragma mark - SearchResultTableVCDelegate
 - (void)setSelectedLocationWithLocation:(PoiModel *)poi {
-    [self getSearchLocation:poi];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self getSearchLocation:poi bySearch:YES];
+    }];
 }
 
 #pragma mark - POI Search
@@ -239,8 +261,10 @@
     PoiModel *poi = _pois[indexPath.row];
     cell.titleLabel.text = poi.name;
     cell.contentLabel.text = poi.address;
-    
-    if (indexPath.row == _selectIndex) {
+
+    if (poi.name == _selectedLocation) {
+        cell.selectImgView.image = [UIImage imageNamed:@"btn_report_p"];
+    } else if (indexPath.row == _selectIndex && _selectedLocation == nil) {
         cell.selectImgView.image = [UIImage imageNamed:@"btn_report_p"];
     } else {
         cell.selectImgView.image = [UIImage imageNamed:@"btn_report_n"];
@@ -251,7 +275,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    _regionDidChangeWithoutReload = YES;
+    
     PoiModel *poi = _pois[indexPath.row];
     
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(poi.latitude, poi.longitude);
@@ -260,8 +285,6 @@
     [_mapView.mapView setCenterCoordinate:transCoor animated:YES];
     _selectIndex = indexPath.row;
     [_listTableView reloadData];
-    
-    _regionDidChangeWithoutReload = YES;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -325,7 +348,6 @@
     _searchResultTableVC.delegate = self;
     _searchResultTableVC.location = [ZZUserHelper shareInstance].location;
     _searchResultTableVC.currentCity = _currentSelectCity;
-    _searchResultTableVC.isCityLimited = _isCityLimited;
     _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchResultTableVC];
     
     _searchController.searchResultsUpdater = _searchResultTableVC;

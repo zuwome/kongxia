@@ -71,7 +71,7 @@ class UserPrivateTermsController: UIViewController {
         let button = UIButton();
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(UIColor.rgbColor(151, 151, 151), for: .normal)
-        button.setTitle("不同意并退出", for: .normal)
+        button.setTitle("不同意", for: .normal)
         button.addTarget(self, action: #selector(DisagreeAction), for: .touchUpInside)
         return button
     }()
@@ -129,6 +129,7 @@ class UserPrivateTermsController: UIViewController {
     }
     
     @objc func DisagreeAction() {
+        dismiss(animated: true, completion: nil)
         delegate?.disagreedAction(viewController: self)
     }
     

@@ -668,12 +668,10 @@
     if ((!deviceToken && token) || (token && ![deviceToken isEqualToString:token])) {
         [ZZRequest method:@"POST" path:@"/api/user" params:@{@"deviceToken": token}  next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (!error && data) {
-                NSLog(@"保存 device token 到本地")
                 [UIApplication setObject:token forKey:[NSString stringWithFormat:@"%@_DeviceToken", uid]];
             }
         }];
     } else {
-        NSLog(@"无需保存 device token")
     }
 }
 

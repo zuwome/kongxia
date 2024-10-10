@@ -53,7 +53,6 @@
         ZZOptionTiXianCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZZOptionTiXianCellID"];
         WS(weakSelf);
         cell.goTiXianBlock = ^(NSString *tiXianType) {
-           NSLog(@"PY_ 提现方式  %@",tiXianType)
             if ([tiXianType isEqualToString:@"微信"]) {
                 weakSelf.isWeixinTixian = YES;
                 [weakSelf.footView changeTiXianButtonIsWeiXianTiXianType:YES];

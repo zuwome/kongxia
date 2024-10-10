@@ -59,9 +59,7 @@
         model.message.targetId  = uidString;
         NSDictionary *aDict = @{@"message":model};
         [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_SendMessage object:nil userInfo:aDict];
-        NSLog(@"PY_发送成功,插入聊天列表数据")
     } error:^(RCErrorCode nErrorCode, long messageId) {
-        NSLog(@"PY_发送失败");
     }];
 }
 /**

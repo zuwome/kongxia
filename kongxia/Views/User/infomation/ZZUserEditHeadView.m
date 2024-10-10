@@ -371,8 +371,30 @@ static NSString *photoEmptyIdentifier = @"photoempty";
     // 检查相册访问权限
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) {
-        // 用户未授权，处理相应逻辑
-        NSLog(@"用户未授权访问相册");
+        // 弹出提示框让用户去设置打开权限
+       UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"开启相册权限"
+                                                                                message:@"为了您能正常使用编辑头像，发布动态、发送聊天图片/视频等功能，空虾需要申请相册权限。"
+                                                                         preferredStyle:UIAlertControllerStyleAlert];
+       
+       UIAlertAction *settingsAction = [UIAlertAction actionWithTitle:@"去设置"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+           // 跳转到应用设置页面
+           NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+           if ([[UIApplication sharedApplication] canOpenURL:settingsURL]) {
+               [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:nil];
+           }
+       }];
+       
+       UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                              style:UIAlertActionStyleCancel
+                                                            handler:nil];
+       
+       [alertController addAction:settingsAction];
+       [alertController addAction:cancelAction];
+       
+       // 在当前视图控制器中呈现提示框
+       [self.weakCtl.navigationController presentViewController:alertController animated:YES completion:nil];
         return;
     } else if (status == PHAuthorizationStatusNotDetermined) {
         // 请求访问权限
@@ -386,29 +408,6 @@ static NSString *photoEmptyIdentifier = @"photoempty";
         // 已经授权，直接打开相册
         [self presentImagePicker];
     }
-    
-//    WeakSelf;
-//   IOS_11_Show
-//    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-//    [imgPicker setDelegate:self];
-//    [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//    imgPicker.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {
-//      IOS_11_NO_Show
-//        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-//
-//        [picker dismissViewControllerAnimated:YES completion:^{
-//            UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//             [weakSelf edit:image];
-//
-//        }];
-//    };
-//    imgPicker.cancellationBlock = ^(UIImagePickerController *picker) {
-//        [picker dismissViewControllerAnimated:YES completion:nil];
-//        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-//        IOS_11_NO_Show
-//
-//    };
-//    [_weakCtl.navigationController presentViewController:imgPicker animated:YES completion:nil];
 }
 
 - (void)presentImagePicker {

@@ -451,7 +451,7 @@
         return;
     }
     [MobClick event:Event_rent_choose_location];
-//    [self touchMyTableView];
+
     if ([ZZUserHelper shareInstance].isAbroad) {
         ZZRentAbroadLocationViewController *controller = [[ZZRentAbroadLocationViewController alloc] init];
         controller.currentSelectCity = _order.city;
@@ -461,8 +461,8 @@
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         ZZSearchLocationController *vc = [[ZZSearchLocationController alloc] initWithSelectCity:_order.city];
-        vc.isCityLimited = YES;
         vc.title = @"选择邀约地点";
+        vc.selectedLocation = _model.name;
         vc.selectPoiDone = ^(ZZRentDropdownModel *model) {
             [self getLocationModel:model];
         };
