@@ -36,11 +36,11 @@
         
         [self addSubview:self.bgBtn];
         self.bgView.hidden = NO;
-        self.topView.hidden = NO;
-        self.infoLabel.text = @" ";
-        self.localBtn.hidden = NO;
-        self.notificationBtn.hidden = NO;
-        self.sureBtn.hidden = NO;
+//        self.topView.hidden = NO;
+//        self.infoLabel.text = @" ";
+//        self.localBtn.hidden = NO;
+//        self.notificationBtn.hidden = NO;
+//        self.sureBtn.hidden = NO;
     }
     
     return self;

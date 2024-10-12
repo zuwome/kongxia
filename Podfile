@@ -15,8 +15,8 @@ target 'kongxia' do
     pod 'UMengAnalytics', '~> 4.2.4'
     
 #   融云
-  pod 'RongCloudIM/IMLib', '~> 5.2.4.1'
-  pod 'RongCloudIM/IMKit', '~> 5.2.4.1'
+    pod 'RongCloudIM/IMLib', '~> 5.2.4.1'
+    pod 'RongCloudIM/IMKit', '~> 5.2.4.1'
     
 #   智齿
     pod 'SobotKit', '~> 3.2.0'
@@ -61,4 +61,26 @@ target 'kongxia' do
     
 #   Swift
     pod 'ObjectMapper', '~> 4.2.0'
+    
+    post_install do |installer|
+
+     bitcode_strip_path = `xcrun --find bitcode_strip`.chop!
+       def strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+         framework_path = File.join(Dir.pwd, framework_relative_path)
+         command = "#{bitcode_strip_path} #{framework_path} -r -o #{framework_path}"
+         puts "Stripping bitcode: #{command}"
+         system(command)
+       end
+
+       framework_paths = [
+         "Pods/LogRocket/LogRocket.xcframework/ios-arm64/LogRocket.framework/LogRocket",
+         "Pods/hermes-engine/destroot/Library/Frameworks/macosx/hermes.framework/hermes",
+         "Pods/hermes-engine/destroot/Library/Frameworks/macosx/hermes.framework/Versions/Current/hermes",
+         "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/ios-arm64/hermes.framework/hermes",
+         "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/ios-arm64_x86_64-maccatalyst/hermes.framework/hermes"
+       ]
+
+       framework_paths.each do |framework_relative_path|
+         strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+       end
 end

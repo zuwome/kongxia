@@ -164,7 +164,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>空虾需要访问您的相机，以便您正常使用录制视频、拍摄照片等功能</string>
+	<string>为了使您能正常的使用编辑头像资料,录制视频,拍摄照片, 发送聊天图片,视频咨询等功能,空虾需要申请相机权限</string>
 	<key>NSContactsUsageDescription</key>
 	<string>空虾将上传手机通讯录至空虾服务器用来屏蔽您通讯录中的朋友，不会保存您的通讯录内容。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

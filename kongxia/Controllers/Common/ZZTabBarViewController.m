@@ -1546,8 +1546,16 @@
     
     if ([LocationMangers shared].authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            ZZAuthorityView *authorityView = [[ZZAuthorityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            [weakSelf.view.window addSubview:authorityView];
+            [[LocationMangers shared] requestLocationAuthorizaitonWithHandler:^(BOOL hasPermission) {
+                if (hasPermission) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_LocationConfirm object:nil];
+                }
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_AuthorityConfirm object:nil];
+                
+            }];
+//            ZZAuthorityView *authorityView = [[ZZAuthorityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//            [weakSelf.view.window addSubview:authorityView];
         });
     }
 }
