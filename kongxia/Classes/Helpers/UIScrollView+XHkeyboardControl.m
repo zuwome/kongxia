@@ -281,12 +281,20 @@ static NSString * const MessageInputBarHeightKey = @"MessageInputBarHeightKey";
 }
 
 - (void)keyboardWillShowHide:(NSNotification *)notification {
-    CGRect keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSDictionary *info = notification.userInfo;
+        
+        CGRect curkeyBoardRect = [info[@"UIKeyboardBoundsUserInfoKey"] CGRectValue];
+        CGFloat curkeyBoardHeight = curkeyBoardRect.size.height;
+        
+        CGRect beginRect = [info[@"UIKeyboardFrameBeginUserInfoKey"] CGRectValue];
+        CGRect endRect = [info[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+        
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
 	UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
 	double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
+     
     if (self.keyboardWillChange) {
-        self.keyboardWillChange(keyboardRect, [self animationOptionsForCurve:curve], duration, (([notification.name isEqualToString:UIKeyboardWillShowNotification]) ? YES : NO));
+        self.keyboardWillChange(curkeyBoardRect, [self animationOptionsForCurve:curve], duration, (([notification.name isEqualToString:UIKeyboardWillShowNotification]) ? YES : NO));
     }
 }
 

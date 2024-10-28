@@ -62,25 +62,42 @@ target 'kongxia' do
 #   Swift
     pod 'ObjectMapper', '~> 4.2.0'
     
-    post_install do |installer|
-
-     bitcode_strip_path = `xcrun --find bitcode_strip`.chop!
-       def strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
-         framework_path = File.join(Dir.pwd, framework_relative_path)
-         command = "#{bitcode_strip_path} #{framework_path} -r -o #{framework_path}"
-         puts "Stripping bitcode: #{command}"
-         system(command)
-       end
-
-       framework_paths = [
-         "Pods/LogRocket/LogRocket.xcframework/ios-arm64/LogRocket.framework/LogRocket",
-         "Pods/hermes-engine/destroot/Library/Frameworks/macosx/hermes.framework/hermes",
-         "Pods/hermes-engine/destroot/Library/Frameworks/macosx/hermes.framework/Versions/Current/hermes",
-         "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/ios-arm64/hermes.framework/hermes",
-         "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/ios-arm64_x86_64-maccatalyst/hermes.framework/hermes"
-       ]
-
-       framework_paths.each do |framework_relative_path|
-         strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
-       end
+#    post_install do |installer|
+#
+#      bitcode_strip_path = `xcrun --find bitcode_strip`.chop!
+#      def strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+#        framework_path = File.join(Dir.pwd, framework_relative_path)
+#        command = "#{bitcode_strip_path} #{framework_path} -r -o #{framework_path}"
+#        puts "Stripping bitcode: #{command}"
+#        system(command)
+#      end
+#
+#      framework_paths = [
+#        "Pods/LibraryA/LibraryA/dynamic/LibraryA.xcframework/ios-arm64_armv7/LibraryA.framework/LibraryA",
+#        "Pods/LibraryB/LibraryB.xcframework/ios-arm64_armv7/LibraryB.framework/LibraryB"
+#      ]
+#
+#      framework_paths.each do |framework_relative_path|
+#        strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+#      end
+#    end
 end
+
+# workaround
+# https://stackoverflow.com/questions/79018593/asset-validation-failed-invalid-executable-the-executable-myapp-app-frameworks
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongChatRoom.xcframework/ios-arm64_armv7/RongChatRoom.framework/RongChatRoom -o Pods/RongCloudIM/RongCloudIM/RongChatRoom.xcframework/ios-arm64_armv7/RongChatRoom.framework/RongChatRoom
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongCustomerService.xcframework/ios-arm64_armv7/RongCustomerService.framework/RongCustomerService -o Pods/RongCloudIM/RongCloudIM/RongCustomerService.xcframework/ios-arm64_armv7/RongCustomerService.framework/RongCustomerService
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongDiscussion.xcframework/ios-arm64_armv7/RongDiscussion.framework/RongDiscussion -o Pods/RongCloudIM/RongCloudIM/RongDiscussion.xcframework/ios-arm64_armv7/RongDiscussion.framework/RongDiscussion
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongIMKit.xcframework/ios-arm64_armv7/RongIMKit.framework/RongIMKit -o Pods/RongCloudIM/RongCloudIM/RongIMKit.xcframework/ios-arm64_armv7/RongIMKit.framework/RongIMKit
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongIMLib.xcframework/ios-arm64_armv7/RongIMLib.framework/RongIMLib -o Pods/RongCloudIM/RongCloudIM/RongIMLib.xcframework/ios-arm64_armv7/RongIMLib.framework/RongIMLib
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongIMLibCore.xcframework/ios-arm64_armv7/RongIMLibCore.framework/RongIMLibCore -o Pods/RongCloudIM/RongCloudIM/RongIMLibCore.xcframework/ios-arm64_armv7/RongIMLibCore.framework/RongIMLibCore
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongLocation.xcframework/ios-arm64_armv7/RongLocation.framework/RongLocation -o Pods/RongCloudIM/RongCloudIM/RongLocation.xcframework/ios-arm64_armv7/RongLocation.framework/RongLocation
+
+#xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongPublicService.xcframework/ios-arm64_armv7/RongPublicService.framework/RongPublicService -o Pods/RongCloudIM/RongCloudIM/RongPublicService.xcframework/ios-arm64_armv7/RongPublicService.framework/RongPublicService

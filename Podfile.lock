@@ -23,20 +23,22 @@ PODS:
   - AMapSearch (7.1.0):
     - AMapFoundation (~> 1.4)
   - Bugly (2.5.93)
-  - FLAnimatedImage (1.0.12)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
+  - FLAnimatedImage (1.0.17)
+  - FMDB (2.7.12):
+    - FMDB/standard (= 2.7.12)
+  - FMDB/Core (2.7.12)
+  - FMDB/standard (2.7.12):
+    - FMDB/Core
   - GPUImage (0.1.7)
   - HappyDNS (0.3.17)
-  - IQKeyboardManager (6.5.6)
+  - IQKeyboardManager (6.5.19)
   - JSONModel (1.8.0)
   - LCActionSheet (3.3.3):
     - Masonry (~> 1.1.0)
-  - libOpenInstallSDK (2.8.0)
+  - libOpenInstallSDK (2.8.3)
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
-  - MGSwipeTableCell (1.6.11)
+  - MGSwipeTableCell (1.6.14)
   - MJRefresh (3.2.3)
   - NMRangeSlider (1.2.1)
   - ObjectMapper (4.2.0)
@@ -78,8 +80,8 @@ PODS:
     - SDWebImage/Core (= 4.4.8)
   - SDWebImage/Core (4.4.8)
   - SKTagView (0.9.2)
-  - SobotKit (3.2.0)
-  - SSZipArchive (2.2.2)
+  - SobotKit (3.2.9)
+  - SSZipArchive (2.2.3)
   - SVProgressHUD (2.2.5)
   - TMCache (2.1.0)
   - "UITableView+FDTemplateLayoutCell (1.6)"
@@ -197,17 +199,17 @@ SPEC CHECKSUMS:
   AMapLocation: 5248aec2455ebb5d104b367813c946430a2ee033
   AMapSearch: 6bd6d361c5eb00110e0bffa4acf88b7bb9f7e059
   Bugly: b8715e6ec4004b7f7fbffab0643ba80545aee3da
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  FLAnimatedImage: bbf914596368867157cc71b38a8ec834b3eeb32b
+  FMDB: 728731dd336af3936ce00f91d9d8495f5718a0e6
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
-  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
+  IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   LCActionSheet: b111d036a2323a580e51facfe57c0440bb374f52
-  libOpenInstallSDK: 3c24ebe6cc0eb7856918023f07b2e8d3202c7db8
+  libOpenInstallSDK: 5c5802d1bb5759d5509b0ce660461c6846b56f7b
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  MGSwipeTableCell: d99ed6466f393b71cd488c6f798ba112ff5d1d01
   MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
@@ -218,8 +220,8 @@ SPEC CHECKSUMS:
   RongCloudIM: f060895085d4e16c907c55f0b0a47e16b8e9b5b9
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SKTagView: 59cdadcd16e4a09300746ad1811a72371e1327f7
-  SobotKit: 8f8c42fbdcb826d83ccae5731a45726711c83053
-  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  SobotKit: 98569d546a9d1a4ca6c0860238e1137f101e6c40
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
@@ -231,6 +233,6 @@ SPEC CHECKSUMS:
   YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: fbe16c1d2c04103df2d3ce660be2d38f71c8f0ac
+PODFILE CHECKSUM: ac4cadfdeb3249285538d674646916dfbe4b3c5c
 
 COCOAPODS: 1.15.2

@@ -10768,11 +10768,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-kongxia/Pods-kongxia-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB_Privacy.bundle",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/NMRangeSlider/NMRangeSlider/DefaultTheme/slider-default-handle-highlighted.png",
 				"${PODS_ROOT}/NMRangeSlider/NMRangeSlider/DefaultTheme/slider-default-handle-highlighted@2x.png",
@@ -10810,15 +10812,18 @@
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 				"${PODS_ROOT}/SobotKit/SobotKit.bundle",
 				"${PODS_ROOT}/YBImageBrowser/YBImageBrowser/YBImageBrowser.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/libOpenInstallSDK/OPPrivacy.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FMDB_Privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/slider-default-handle-highlighted.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/slider-default-handle-highlighted@2x.png",
@@ -10856,6 +10861,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SobotKit.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YBImageBrowser.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OPPrivacy.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -12471,7 +12477,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 81;
+				CURRENT_PROJECT_VERSION = 84;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12561,7 +12567,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.10;
+				MARKETING_VERSION = 4.7.11;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12675,6 +12681,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -12697,7 +12704,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 81;
+				CURRENT_PROJECT_VERSION = 84;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12787,7 +12794,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.10;
+				MARKETING_VERSION = 4.7.11;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12901,6 +12908,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -12924,7 +12932,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 81;
+				CURRENT_PROJECT_VERSION = 84;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13014,7 +13022,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.10;
+				MARKETING_VERSION = 4.7.11;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13127,6 +13135,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -13149,7 +13158,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 81;
+				CURRENT_PROJECT_VERSION = 84;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13237,7 +13246,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/pingpp/lib/Channels/Wx",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.10;
+				MARKETING_VERSION = 4.7.11;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -13351,6 +13360,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "kongxia/Resources/kongxia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

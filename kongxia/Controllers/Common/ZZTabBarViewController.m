@@ -1539,7 +1539,6 @@
 
 //权限弹窗
 - (void)showAuthorityView {
-    WEAK_SELF();
     if (![ZZUserHelper shareInstance].firstHomeGuide) {
         return;
     }
@@ -1554,8 +1553,6 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMsg_AuthorityConfirm object:nil];
                 
             }];
-//            ZZAuthorityView *authorityView = [[ZZAuthorityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//            [weakSelf.view.window addSubview:authorityView];
         });
     }
 }

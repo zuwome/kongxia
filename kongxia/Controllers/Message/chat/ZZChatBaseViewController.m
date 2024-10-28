@@ -676,12 +676,14 @@
     
     self.tableView.keyboardWillChange = ^(CGRect keyboardRect, UIViewAnimationOptions options, double duration, BOOL showKeyboard) {
         if (weakSelf.boxView.topView.status == ChatBoxStatusShowKeyboard) {
+            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+            CGFloat keyBoardTop = screenHeight - keyboardRect.size.height - 89;
             [UIView animateWithDuration:duration
                                   delay:0.0
                                 options:options
                              animations:^{
                 [weakSelf showViewsWithAnimationWithShowKeyboard:showKeyboard
-                                                       keyboardY:[weakSelf.view convertRect:keyboardRect fromView:nil].origin.y];
+                                                       keyboardY:keyBoardTop];
                              }
                              completion:nil];
         }
