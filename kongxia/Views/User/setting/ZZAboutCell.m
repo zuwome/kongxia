@@ -99,7 +99,7 @@
             _numberLabel.hidden = NO;
             _lineView.hidden = YES;
             _titleLabel.text = @"客服热线";
-            NSString *str = @"4008-520-272";
+            NSString *str = @"0592-208-8595";
             _numberLabel.text = str;
             [_numberLabel addLinkToPhoneNumber:str withRange:NSMakeRange(0, str.length)];
         }

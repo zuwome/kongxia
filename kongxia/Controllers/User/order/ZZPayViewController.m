@@ -321,7 +321,7 @@
     thirLabel.textAlignment = NSTextAlignmentCenter;
     thirLabel.textColor = kGrayContentColor;
     thirLabel.font = [UIFont systemFontOfSize:12];
-    thirLabel.text = @"如果有疑问可联系客服电话 4008-520-272";
+    thirLabel.text = @"如果有疑问可联系客服电话 0592-208-8595";
     [bottomView addSubview:thirLabel];
     
     [thirLabel mas_makeConstraints:^(MASConstraintMaker *make) {
