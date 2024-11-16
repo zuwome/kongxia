@@ -13,10 +13,11 @@
 #import "ZZNewTiXianFootView.h"//确认提现footView
 #import "ZZFillBankViewController.h"//银行卡填写
 #import "ZZLinkWebViewController.h"
-#import <UMSocialCore/UMSocialCore.h>
+//#import "UMSocialCore/UMSocialCore.h"
 #import "ZZTransfer.h"
 #import "ZZRechargeViewController.h"
 #import "ZZCommissionShareToastView.h"
+#import <UMShare/UMShare.h>
 
 @interface ZZNewTiXianViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic,strong)UITextField *tiXianTextField;
@@ -59,7 +60,7 @@
             }else{
                 [weakSelf.footView changeTiXianButtonIsWeiXianTiXianType:NO];
                 weakSelf.isWeixinTixian = NO;
-                [MobClick event:Event_click_choose_bank];
+               // [MobClick event:Event_click_choose_bank];
             }
         };
         return cell;
@@ -179,7 +180,7 @@
 
 - (void)withdrawInWeChat:(UIButton *)sender photo:(NSString *)url checkStatus:(NSInteger)status {
     WS(weakSelf);
-    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_WechatSession currentViewController:self completion:^(id result, NSError *error) {
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_WechatSession in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         if (!error) {
             UMSocialAuthResponse *response = result;
             if (response.uid) {
@@ -218,13 +219,52 @@
             [ZZHUD showErrorWithStatus:@"获取信息错误"];
         }
     }];
+//    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_WechatSession currentViewController:self completion:^(id result, NSError *error) {
+//        if (!error) {
+//            UMSocialAuthResponse *response = result;
+//            if (response.uid) {
+//                ZZTransfer *transfer = [[ZZTransfer alloc] init];
+//                transfer.channel = @"wx";
+//                NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+//                f.numberStyle = NSNumberFormatterDecimalStyle;
+//                NSNumber *myNumber = [f numberFromString:weakSelf.tiXianTextField.text];
+//                transfer.amount = myNumber;//[NSNumber numberWithFloat:[weakSelf.tiXianTextField.text floatValue]];
+//                transfer.recipient = response.openid;
+////                transfer.pic = url;
+////                transfer.face_status = status;
+//                [transfer add:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+//                    sender.userInteractionEnabled = YES;
+//                    if (error) {
+//                        [ZZHUD showErrorWithStatus:error.message];
+//                    } else if (data) {
+//                        [ZZCommissionShareToastView show];
+//                        if (weakSelf.tiXianBlock) {
+//                            weakSelf.tiXianBlock();
+//                        }
+//                        if (weakSelf.isTiXian) {
+//                            for (UIViewController* vc in self.navigationController.viewControllers) {
+//                                if ([vc isKindOfClass:[ZZRechargeViewController class]]) {
+//                                    [self.navigationController popToViewController:vc animated:YES];
+//                                    return;
+//                                }
+//                            }
+//                        }
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                    }
+//                }];
+//            }
+//        } else {
+//            sender.userInteractionEnabled = YES;
+//            [ZZHUD showErrorWithStatus:@"获取信息错误"];
+//        }
+//    }];
 }
 
 /**
  去完善银行卡
  */
 - (void)goToBank {
-     [MobClick event:Event_click_withdraw_next];
+    // [MobClick event:Event_click_withdraw_next];
     if ([self.tiXianTextField.text floatValue]>5000) {
         [ZZHUD showTastInfoErrorWithString:@"单次提现金额不得大于5000"];
         return ;

@@ -844,7 +844,7 @@
  *  发布闪租任务
  */
 - (void)publishTask {
-    [MobClick event:Event_click_publish];
+   // [MobClick event:Event_click_publish];
     NSMutableDictionary *param = @{
                                    @"address":           self.location.name,
                                    @"address_city_name": self.location.city ?: UserHelper.cityName,

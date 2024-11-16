@@ -254,7 +254,7 @@
 
 // 申请成为闪聊达人
 - (IBAction)agreeClick:(UIButton *)sender {
-    [MobClick event:Event_click_Open_FastChat];
+   // [MobClick event:Event_click_Open_FastChat];
     if (![ZZUserHelper shareInstance].isLogin) {
         [self gotoLoginView];
         return;

@@ -24,9 +24,7 @@
 #define OpenString  @"收到每条私信可获得收益，24小时内回复自动领取"      //开启的文案
 #define CloseString @"开启后收到私信可获得咨询收益"                   //关闭的文案
 
-#import "WXApi.h"
-
-@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource, ZZSkillThemeFooterViewDelegate, WXApiDelegate>
+@interface ZZSkillThemeManageViewController () <UITableViewDelegate, UITableViewDataSource, ZZSkillThemeFooterViewDelegate>
 
 @property (nonatomic, strong) ZZTableView *tableview;
 
@@ -192,7 +190,7 @@
         [self updatePayChat:openSwitch];
     }
     else {
-        [MobClick event:Event_click_PayChat_Set_Switch];
+       // [MobClick event:Event_click_PayChat_Set_Switch];
         [ZZPrivateChatPayManager modifyPrivateChatPayState:openSwitch.on callBack:^(NSInteger state) {
             if (state != -1) {
                 openSwitch.on = [ZZUserHelper shareInstance].loginer.open_charge;

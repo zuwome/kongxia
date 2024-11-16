@@ -95,7 +95,7 @@
     [_ctlArray addObject:sysCtl];
     
     if (_selectIndex == 1) {
-        [MobClick event:Event_click_system_message];
+       // [MobClick event:Event_click_system_message];
         
         _lastViewController = _ctlArray[1];
         _bigScrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
@@ -103,7 +103,7 @@
         [_headView setLineViewOffset:SCREEN_WIDTH/2];
         _headView.rightRedPointView.hidden = YES;
     } else {
-        [MobClick event:Event_click_dynamic_self];
+       // [MobClick event:Event_click_dynamic_self];
         
         _lastViewController = _ctlArray[0];
     }
@@ -130,9 +130,9 @@
     }
     
     if (index == 0) {
-        [MobClick event:Event_click_dynamic_self];
+       // [MobClick event:Event_click_dynamic_self];
     } else {
-        [MobClick event:Event_click_system_message];
+       // [MobClick event:Event_click_system_message];
     }
     if (newController.view.superview) return;
     

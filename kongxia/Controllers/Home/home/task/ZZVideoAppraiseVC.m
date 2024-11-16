@@ -269,7 +269,7 @@
 //    }];
     
     self.view.userInteractionEnabled = NO;
-    [MobClick event:Event_click_Video_Appraise];
+    //[MobClick event:Event_click_Video_Appraise];
     WEAK_SELF();
     [ZZHUD showWithStatus:@""];
     NSMutableDictionary *dict = [NSMutableDictionary new];

@@ -119,12 +119,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0: {
-            [MobClick event:Event_click_shield_phone_contact];
+          //  [MobClick event:Event_click_shield_phone_contact];
             ZZContactViewController *controller = [[ZZContactViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
         } break;
         case 1: {
-            [MobClick event:Event_click_privacy_black];
+           // [MobClick event:Event_click_privacy_black];
             ZZBlackManagerViewController *controller = [[ZZBlackManagerViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
         } break;

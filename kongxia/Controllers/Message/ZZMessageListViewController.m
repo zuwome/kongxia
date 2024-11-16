@@ -53,7 +53,7 @@
     [super viewWillAppear:animated];
     NSLog(@"PY_会话%s",__func__);
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
+   // [MobClick beginLogPageView:NSStringFromClass([self class])];
     
     // 获取聊天消息列表
     if ([ZZUserHelper shareInstance].updateMessageList) {
@@ -94,7 +94,7 @@
     [_tableView setEditing:NO animated:YES];
     _viewDisappear = YES;
       NSLog(@"PY_会话%s",__func__);
-    [MobClick endLogPageView:NSStringFromClass([self class])];
+   // [MobClick endLogPageView:NSStringFromClass([self class])];
     
 }
 

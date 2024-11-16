@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的积分";
-    [MobClick event:Event_click_myIntegral];
+   // [MobClick event:Event_click_myIntegral];
 
     /**
      接到通知去刷新 积分
@@ -236,7 +236,7 @@
     switch ([model.type intValue]) {
         case 2:
         {
-            [MobClick event:Event_click_newTask_uploadHeaderImg];
+           // [MobClick event:Event_click_newTask_uploadHeaderImg];
 
             //上传真实头像
             [self uploadUserHeaderImage];
@@ -244,7 +244,7 @@
             break;
         case 3:
         {
-            [MobClick event:Event_click_newTask_publish];
+           // [MobClick event:Event_click_newTask_publish];
 
             //发布一条视频
             [self gotoRecordCell:currentCell];
@@ -253,7 +253,7 @@
         case 4:
             //绑定微博
         {
-            [MobClick event:Event_click_newTask_binding];
+           // [MobClick event:Event_click_newTask_binding];
 
             [self gotoUnbindAccountcell:currentCell];
         }
@@ -261,7 +261,7 @@
         case 5:
             //关注公众号
         {
-            [MobClick event:Event_click_newTask_attention];
+           // [MobClick event:Event_click_newTask_attention];
 
             NSString *urlH5Str = [NSString stringWithFormat:@"%@api/jifen/follow_wxpub.html",kQNPrefix_url_h5];
             [self goToLinkWebNavTitle:@"关注公众号" urlTitle:urlH5Str isUploadToken:YES];
@@ -271,7 +271,7 @@
         case 6:
             //实名认证
         {
-            [MobClick event:Event_click_newTask_realName];
+           // [MobClick event:Event_click_newTask_realName];
 
             [self gotoReaNamecell:currentCell];
         }
@@ -279,7 +279,7 @@
             
         case 7:
         {
-            [MobClick event:Event_click_dayTask_share];
+           // [MobClick event:Event_click_dayTask_share];
 
             //分享快照
             [self goToLinkWebNavTitle:@"分享快照" urlTitle:H5Url.sharePhoto isUploadToken:NO];
@@ -288,7 +288,7 @@
         case 8:
             //评论视频 -- 到发现界面
         {
-            [MobClick event:Event_click_dayTask_comments];
+           // [MobClick event:Event_click_dayTask_comments];
 
             [self jumpToTabbarWithSelectIndex:1];
         }
@@ -296,7 +296,7 @@
         case 9:
             //点赞视频
         {
-            [MobClick event:Event_click_dayTask_giveLike];
+           // [MobClick event:Event_click_dayTask_giveLike];
 
             [self jumpToTabbarWithSelectIndex:1];
 
@@ -305,7 +305,7 @@
         case 10:
             //查看微信号
         {
-            [MobClick event:Event_click_dayTask_lookWeiXin];
+           // [MobClick event:Event_click_dayTask_lookWeiXin];
 
             [self jumpToTabbarWithSelectIndex:0];
 
@@ -314,7 +314,7 @@
         case 11:
             //完成线下邀约
         {
-            [MobClick event:Event_click_dayTask_invitation];
+          //  [MobClick event:Event_click_dayTask_invitation];
 
             [self jumpToTabbarWithSelectIndex:0];
         }

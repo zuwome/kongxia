@@ -285,7 +285,7 @@
 }
 
 - (void)proceed {
-    [MobClick event:Event_click_scan_starts];
+   // [MobClick event:Event_click_scan_starts];
     if (self.type == NavigationTypeUserLogin || self.type == NavigationTypeChangePwd) {
         [self startLivenessCheck];
         return;

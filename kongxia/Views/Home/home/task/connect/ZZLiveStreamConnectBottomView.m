@@ -151,7 +151,7 @@
     }
     
     if (self.isEnableVideo) {//关闭操作
-        [MobClick event:Event_click_Video_Close_Lens];
+      //  [MobClick event:Event_click_Video_Close_Lens];
         [self.enableVideoBtn setTitle:@"开启镜头" forState:(UIControlStateNormal)];
         [self.enableVideoBtn setImage:[UIImage imageNamed:@"icConnectingOpen"] forState:UIControlStateNormal];
 

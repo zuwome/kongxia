@@ -704,7 +704,7 @@
 
 - (void)rechargeBtnClick
 {
-    [MobClick event:Event_click_Video_TopUp];
+    //[MobClick event:Event_click_Video_TopUp];
     if ([ZZLiveStreamHelper sharedInstance].isUseMcoin) {
         
         [ZZConnectFloatWindow shareInstance].rechargeing = YES;

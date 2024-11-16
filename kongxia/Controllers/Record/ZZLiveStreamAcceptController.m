@@ -242,7 +242,7 @@
         return;
     }
 
-    [MobClick event:Event_click_Other_Video_Through];
+    //[MobClick event:Event_click_Other_Video_Through];
     if (self.isAccept) {
         return;
     }
@@ -268,7 +268,7 @@
         [ZZHUD showErrorWithStatus:@"网络异常，请检查"];
         return;
     }
-    [MobClick event:Event_click_Other_Video_Refused];
+   // [MobClick event:Event_click_Other_Video_Refused];
     [self.view addSubview:self.cancelAlert];
 }
 

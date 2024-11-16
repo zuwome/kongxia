@@ -106,7 +106,7 @@
  
 - (void)nextBtnClick
 {
-    [MobClick event:Event_click_register_next];
+   // [MobClick event:Event_click_register_next];
     NSString *phone = [_phoneView.textField.text trimmedString];
     if (isNullString(phone)) {
         [self.alertView showAlertMsg:@"手机号不能为空"];
@@ -289,7 +289,7 @@
 
 - (void)sendBtnClick:(UIButton *)sender
 {
-    [MobClick event:Event_click_register_getcode];
+   // [MobClick event:Event_click_register_getcode];
     NSString *phone = [_phoneView.textField.text trimmedString];
     if (isNullString(phone)) {
         [self.alertView showAlertMsg:@"手机号不能为空"];

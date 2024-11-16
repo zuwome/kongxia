@@ -5,7 +5,7 @@
 #import <Masonry.h>
 
 // 统计
-#import <UMMobClick/MobClick.h>
+//#import <UMMobClick/MobClick.h>
 
 // json模型转换
 #import <JSONModel/JSONModel.h>
@@ -90,7 +90,6 @@
 // 新人
 #import "ZZHomeStatusView.h"
 
-//
 #import "ZZAutoCreateDesModel.h"
 #import "ZZChooseTagViewController.h"
 
@@ -103,11 +102,10 @@
 #import "AppleIDSignInHelper.h"
 #import "LoginHelper.h"
 #import "ZZNavigationController.h"
-#import "WXApi.h"
+
 #import "UIView+Helpers.h"
 #import "ZZChatBaseModel.h"
 #import "ZZVideoInviteModel.h"
-#import <UMSocialCore/UMSocialCore.h>
 #import "ZZDeleteAccountViewController.h"
 #import <RongIMLib/RongIMLib.h>
 
@@ -115,3 +113,12 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+
+#import "WXApi.h"
+#import "Pingpp.h"
+
+// U-Share核心SDK
+#import <UMShare/UMShare.h>
+
+// U-Share分享面板SDK，未添加分享面板SDK可将此行去掉
+#import <UShareUI/UShareUI.h>

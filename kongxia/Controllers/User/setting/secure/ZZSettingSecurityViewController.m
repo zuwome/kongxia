@@ -87,14 +87,14 @@
     switch (indexPath.row) {
         case 0:
         {
-            [MobClick event:Event_click_change_password];
+           // [MobClick event:Event_click_change_password];
             ZZChangePwdViewController *controller = [[ZZChangePwdViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
         }
             break;
         case 1:
         {
-            [MobClick event:Event_click_bind_account];
+           // [MobClick event:Event_click_bind_account];
             ZZBindViewController *controller = [[ZZBindViewController alloc] init];
             controller.user = _user;
             [self.navigationController pushViewController:controller animated:YES];
@@ -103,7 +103,7 @@
         case 2:
         {
 //            if ([ZZUtils isIdentifierAuthority:_user]) {
-                [MobClick event:Event_click_me_realname];
+              //  [MobClick event:Event_click_me_realname];
                 ZZRealNameListViewController *controller = [[ZZRealNameListViewController alloc] init];
                 controller.hidesBottomBarWhenPushed = YES;
                 controller.user = _user;

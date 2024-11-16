@@ -7,7 +7,7 @@
 //
 
 #import "ZZCommissionShareToastView.h"
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 
 #import "ZZCommissionShareView.h"
 

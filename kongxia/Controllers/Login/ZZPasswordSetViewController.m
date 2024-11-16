@@ -90,7 +90,7 @@
 
 - (void)nextBtnClick
 {
-    [MobClick event:Event_click_code_next];
+   // [MobClick event:Event_click_code_next];
 
     if (_pwdView.textField.text.length < 6) {
         [self.alertView showAlertMsg:@"密码至少为6位字符"];

@@ -52,7 +52,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [MobClick event:Event_click_myIntegral_exChange];
+   // [MobClick event:Event_click_myIntegral_exChange];
 
     [self setUI];
     [self loadData];
@@ -107,7 +107,7 @@
 
     self.exChangeModel.selectIntegral = [NSString stringWithFormat:@"%ld",model.integral];
     NSString *eventClick = [NSString stringWithFormat:@"click_integralExChange_%ld",model.integral];
-    [MobClick event:eventClick];
+   // [MobClick event:eventClick];
 
     [self showAlerView];
 }
@@ -192,7 +192,7 @@
         _footView = [[ZZfootIntegralExchangeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 66.5)];
         WS(weakSelf);
         _footView.exChangeBlock = ^(UIButton *sender) {
-            [MobClick event:Event_click_integralExChange_customNumber];
+           // [MobClick event:Event_click_integralExChange_customNumber];
             weakSelf.exChangeModel.selectIntegral = nil;
             [weakSelf showAlerView];
         };

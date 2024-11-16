@@ -341,21 +341,21 @@
         [aDict setObject:[_model.heightStr stringByReplacingOccurrencesOfString:@"cm" withString:@""] forKey:@"height"];
     }
     if (![_model.moneyStr isEqualToString:@"全部"]) {
-        [MobClick event:Event_search_price];
+        //[MobClick event:Event_search_price];
         [aDict setObject:[_model.moneyStr stringByReplacingOccurrencesOfString:@"元" withString:@""] forKey:@"price"];
     }
     if (![[_model.sexTypeStr trimmedString] isEqualToString:@"全部"]) {
         if ([[_model.sexTypeStr trimmedString] isEqualToString:@"男"]) {
-            [MobClick event:Event_search_man];
+          //  [MobClick event:Event_search_man];
             [aDict setObject:@"1" forKey:@"gender"];
         }
         if ([[_model.sexTypeStr trimmedString] isEqualToString:@"女"]) {
-            [MobClick event:Event_search_woman];
+          //  [MobClick event:Event_search_woman];
             [aDict setObject:@"2" forKey:@"gender"];
         }
     }
     if (_model.timeArray.count != 0) {
-        [MobClick event:Event_search_time];
+       // [MobClick event:Event_search_time];
         NSString *str = [_model.timeArray componentsJoinedByString:@","];;
         [aDict setObject:str forKey:@"time"];
     }
@@ -367,7 +367,7 @@
 
 - (void)inputBtnClick
 {
-    [MobClick event:Event_search_account];
+   // [MobClick event:Event_search_account];
     ZZFilterInputViewController *controller = [[ZZFilterInputViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }

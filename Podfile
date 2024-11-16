@@ -2,6 +2,10 @@ platform :ios, '12.0'
 inhibit_all_warnings!
 
 target 'kongxia' do
+  
+  pod 'Pingpp'
+  pod 'Pingpp/Alipay'
+  
   #   高德地图
       pod 'AMap2DMap', '~> 5.6.1'
       pod 'AMapLocation', '~> 2.10.0'
@@ -12,7 +16,7 @@ target 'kongxia' do
     pod 'Qiniu', '~> 7.2.5'
     
 #   友盟
-    pod 'UMengAnalytics', '~> 4.2.4'
+#    pod 'UMengAnalytics', '~> 4.2.4'
     
 #   融云
     pod 'RongCloudIM/IMLib', '~> 5.2.4.1'
@@ -29,7 +33,6 @@ target 'kongxia' do
     pod 'AgoraRtcEngine_iOS' , '~> 3.6.1.1'
     pod 'GPUImage', '~> 0.1.7'
     
-#   openInstall
     pod 'libOpenInstallSDK', '~> 2.8.0'
     pod 'SDWebImage', '~> 4.4.6'
     pod 'AFNetworking', '~> 3.2.1'
@@ -41,7 +44,6 @@ target 'kongxia' do
     pod 'SKTagView', '~> 0.9.2'
     pod 'MGSwipeTableCell', '~> 1.6.11'
     pod 'MJRefresh', '~> 3.2.3'
-#    pod 'NJKScrollFullScreen', '~> 0.2.6'
     pod 'SVProgressHUD', '~> 2.2.5'
     pod 'Masonry', '~> 1.1.0'
     pod 'YTKKeyValueStore', '~> 0.1.2'
@@ -85,6 +87,38 @@ end
 
 # workaround
 # https://stackoverflow.com/questions/79018593/asset-validation-failed-invalid-executable-the-executable-myapp-app-frameworks
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.xcframework/ios-arm64_armv7/AgoraAIDenoiseExtension.framework/AgoraAIDenoiseExtension -o Pods/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.xcframework/ios-arm64_armv7/AgoraAIDenoiseExtension.framework/AgoraAIDenoiseExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraCIExtension.xcframework/ios-arm64_armv7/AgoraCIExtension.framework/AgoraCIExtension -o Pods/AgoraRtcEngine_iOS/AgoraCIExtension.xcframework/ios-arm64_armv7/AgoraCIExtension.framework/AgoraCIExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraCore.xcframework/ios-arm64_armv7/AgoraCore.framework/AgoraCore -o Pods/AgoraRtcEngine_iOS/AgoraCore.xcframework/ios-arm64_armv7/AgoraCore.framework/AgoraCore
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraDav1dExtension.xcframework/ios-arm64_armv7/AgoraDav1dExtension.framework/AgoraDav1dExtension -o Pods/AgoraRtcEngine_iOS/AgoraDav1dExtension.xcframework/ios-arm64_armv7/AgoraDav1dExtension.framework/AgoraDav1dExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraFDExtension.xcframework/ios-arm64_armv7/AgoraFDExtension.framework/AgoraFDExtension -o Pods/AgoraRtcEngine_iOS/AgoraFDExtension.xcframework/ios-arm64_armv7/AgoraFDExtension.framework/AgoraFDExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraJNDExtension.xcframework/ios-arm64_armv7/AgoraJNDExtension.framework/AgoraJNDExtension -o Pods/AgoraRtcEngine_iOS/AgoraJNDExtension.xcframework/ios-arm64_armv7/AgoraJNDExtension.framework/AgoraJNDExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraMediaPlayerPlugin.xcframework/ios-arm64_armv7/AgoraMediaPlayerPlugin.framework/AgoraMediaPlayerPlugin -o Pods/AgoraRtcEngine_iOS/AgoraMediaPlayerPlugin.xcframework/ios-arm64_armv7/AgoraMediaPlayerPlugin.framework/AgoraMediaPlayerPlugin
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraRtcKit.xcframework/ios-arm64_armv7/AgoraRtcKit.framework/AgoraRtcKit -o Pods/AgoraRtcEngine_iOS/AgoraRtcKit.xcframework/ios-arm64_armv7/AgoraRtcKit.framework/AgoraRtcKit
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraSoundTouch.xcframework/ios-arm64_armv7/AgoraSoundTouch.framework/AgoraSoundTouch -o Pods/AgoraRtcEngine_iOS/AgoraSoundTouch.xcframework/ios-arm64_armv7/AgoraSoundTouch.framework/AgoraSoundTouch
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraSuperResolutionExtension.xcframework/ios-arm64_armv7/AgoraSuperResolutionExtension.framework/AgoraSuperResolutionExtension -o Pods/AgoraRtcEngine_iOS/AgoraSuperResolutionExtension.xcframework/ios-arm64_armv7/AgoraSuperResolutionExtension.framework/AgoraSuperResolutionExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraVideoProcessExtension.xcframework/ios-arm64_armv7/AgoraVideoProcessExtension.framework/AgoraVideoProcessExtension -o Pods/AgoraRtcEngine_iOS/AgoraVideoProcessExtension.xcframework/ios-arm64_armv7/AgoraVideoProcessExtension.framework/AgoraVideoProcessExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.xcframework/ios-arm64_armv7/AgoraVideoSegmentationExtension.framework/AgoraVideoSegmentationExtension -o Pods/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.xcframework/ios-arm64_armv7/AgoraVideoSegmentationExtension.framework/AgoraVideoSegmentationExtension
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/Agorafdkaac.xcframework/ios-arm64_armv7/Agorafdkaac.framework/Agorafdkaac -o Pods/AgoraRtcEngine_iOS/Agorafdkaac.xcframework/ios-arm64_armv7/Agorafdkaac.framework/Agorafdkaac
+
+#xcrun bitcode_strip -r Pods/AgoraRtcEngine_iOS/Agoraffmpeg.xcframework/ios-arm64_armv7/Agoraffmpeg.framework/Agoraffmpeg -o Pods/AgoraRtcEngine_iOS/Agoraffmpeg.xcframework/ios-arm64_armv7/Agoraffmpeg.framework/Agoraffmpeg
+
+#xcrun bitcode_strip -r Pods/PLPlayerKit/Pod/Library/PLPlayerKit.framework/PLPlayerKit -o Pods/PLPlayerKit/Pod/Library/PLPlayerKit.framework/PLPlayerKit
+
+#xcrun bitcode_strip -r Pods/PLPlayerKit/Pod/Library/PLPlayerKit.framework/PLPlayerKit -o Pods/PLPlayerKit/Pod/Library/PLPlayerKit.framework/PLPlayerKit
 
 #xcrun bitcode_strip -r Pods/RongCloudIM/RongCloudIM/RongChatRoom.xcframework/ios-arm64_armv7/RongChatRoom.framework/RongChatRoom -o Pods/RongCloudIM/RongCloudIM/RongChatRoom.xcframework/ios-arm64_armv7/RongChatRoom.framework/RongChatRoom
 

@@ -112,7 +112,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     [self initConfig];
-    [MobClick event:Event_user_detail_info_tab];
+   // [MobClick event:Event_user_detail_info_tab];
     [self initControllers];
     [self createView];
     [self addObserver];
@@ -455,7 +455,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)naviBarRightClick {
-    [MobClick event:Event_click_user_detail_more];
+   // [MobClick event:Event_click_user_detail_more];
     [self.shareView show];
 }
 
@@ -510,7 +510,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_user_detail_follow];
+   // [MobClick event:Event_user_detail_follow];
     if (_user.follow_status == 0) {
         [_user followWithUid:_user.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (error) { [ZZHUD showErrorWithStatus:error.message]; }
@@ -541,7 +541,7 @@
         [self gotoLoginView];
         return;
     }
-    [MobClick event:Event_click_me_icon];
+   // [MobClick event:Event_click_me_icon];
     
     WeakSelf;
     ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
@@ -556,7 +556,7 @@
     if (_isFromLive) {
         return;
     }
-    [MobClick event:Event_user_detail_following_tab];
+   // [MobClick event:Event_user_detail_following_tab];
     ZZRentAttentionViewController *controller = [[ZZRentAttentionViewController alloc] init];
     controller.user = self.user;
     controller.hidesBottomBarWhenPushed = YES;
@@ -566,7 +566,7 @@
     if (_isFromLive) {
         return;
     }
-    [MobClick event:Event_user_detail_follower_tab];
+   // [MobClick event:Event_user_detail_follower_tab];
     ZZRentFansViewController *controller = [[ZZRentFansViewController alloc] init];
     controller.user = self.user;
     controller.hidesBottomBarWhenPushed = YES;
@@ -628,7 +628,7 @@
             return;
         }
     }
-    [MobClick event:Event_user_detail_chat];
+   // [MobClick event:Event_user_detail_chat];
     
     [ZZRequest method:@"GET" path:[NSString stringWithFormat:@"/api/user/%@/say_hi_status",_uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         _bottomView.chatBtn.userInteractionEnabled = YES;
@@ -739,7 +739,7 @@
         return;
     }
     
-    [MobClick event:Event_user_detail_add_order];
+   // [MobClick event:Event_user_detail_add_order];
     if ([ZZUserHelper shareInstance].loginer && [ZZUserHelper shareInstance].loginer.avatarStatus == 0) {
         [self showOkCancelAlert:@"提示"
                         message:@"本人头像不是自己的照片，请先去修改"
@@ -835,13 +835,13 @@
 }
 //fastChatView Actions
 - (void)videoConnectClick {
-    [MobClick event:Event_click_other_Detail_FastCaht];
+   // [MobClick event:Event_click_other_Detail_FastCaht];
     if ([self isOpenCamera]) {
         [self callIphoneVideo];
     }
 }
 - (void)rentClick {
-    [MobClick event:Event_click_other_Detail_Rent];
+   // [MobClick event:Event_click_other_Detail_Rent];
     [self goToChat];
 }
 #pragma mark -- chat
@@ -888,7 +888,7 @@
     if ([[ZZUserHelper shareInstance].loginer.mcoin integerValue] < [ZZUserHelper shareInstance].configModel.priceConfig.one_card_to_mcoin.integerValue * [ZZUserHelper shareInstance].configModel.priceConfig.per_unit_cost_card.integerValue) {
         [UIAlertController presentAlertControllerWithTitle:kMsg_Mebi_NO message:nil doneTitle:@"充值" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
             if (!isCancelled) {
-                [MobClick event:Event_click_OneToOneChat_TopUp];
+               // [MobClick event:Event_click_OneToOneChat_TopUp];
                 ZZMeBiViewController *vc = [ZZMeBiViewController new];
                 [vc setPaySuccess:^(ZZUser *paySuccesUser) {
                 }];
@@ -978,7 +978,7 @@
         WS(weakSelf);
         [UIAlertController presentAlertControllerWithTitle:kMsg_Mebi_NO message:nil doneTitle:@"充值" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
             if (!isCancelled) {
-                [MobClick event:Event_click_OneToOneChat_TopUp];
+               // [MobClick event:Event_click_OneToOneChat_TopUp];
                 ZZMeBiViewController *vc = [ZZMeBiViewController new];
                 [vc setPaySuccess:^(ZZUser *paySuccesUser) {
                     NSMutableArray<ZZViewController *> *vcs = [weakSelf.navigationController.viewControllers mutableCopy];

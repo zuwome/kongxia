@@ -60,7 +60,7 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 
 //UMMobClick
-#import <UMMobClick/MobClick.h>
+//#import <UMMobClick/MobClick.h>
 
 #import <TMCache.h>
 

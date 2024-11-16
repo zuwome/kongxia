@@ -237,12 +237,12 @@
     switch (_currentIndex) {
         case 0:
         {
-            [MobClick event:Event_click_latest_mmd];
+           // [MobClick event:Event_click_latest_mmd];
         }
             break;
         case 1:
         {
-            [MobClick event:Event_click_hot_mmd];
+           // [MobClick event:Event_click_hot_mmd];
         }
             break;
         default:

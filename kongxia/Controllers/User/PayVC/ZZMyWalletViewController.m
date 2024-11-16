@@ -18,8 +18,8 @@
 #import "ZZGeneralOpenSanChatGuide.h"//开通女性闪聊引导
 #import "ZZActivityUrlModel.h"
 #import <UIButton+WebCache.h>
-#import "WXApi.h"
 #import "ZZActivityUrlNetManager.h"
+
 @interface ZZMyWalletViewController ()<TYAttributedLabelDelegate>
 @property (nonatomic,strong) UILabel *userNameLab;
 @property (nonatomic,strong) UILabel *userNumberLab;//么么号
@@ -38,7 +38,7 @@
     [super viewWillAppear:animated];
 //    [self startAnimotion];
       [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
+   // [MobClick beginLogPageView:NSStringFromClass([self class])];
 
 }
 - (void)viewDidLoad {
@@ -277,12 +277,6 @@
  活动的点击事件
  */
 - (void)h5ActiveButtonClick {
-    
-//    JumpToBizProfileReq *req = [[JumpToBizProfileReq alloc]init];
-//    req.profileType =WXBizProfileType_Device;
-//    req.username = @"gh_b67b9b4e7aec";
-//    [WXApi sendReq:req];
-//dl/business/?ticket=
 
     NSString *currentVCName = NSStringFromClass([self class]);
     ZZActivityUrlModel *model = [ZZActivityUrlNetManager shareInstance].h5_activity.h5_activityDic[currentVCName];

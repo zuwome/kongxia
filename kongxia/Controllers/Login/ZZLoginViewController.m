@@ -12,10 +12,8 @@
 #import "ZZForgetS1ViewController.h"
 #import "ZZInternationalCityViewController.h"
 #import "ZZProtocolViewController.h"
-#import <UMSocialCore/UMSocialCore.h>
-#import "WXApi.h"
-#import "WeiboSDK.h"
-#import <TencentOpenAPI/TencentOAuth.h>
+//#import "WeiboSDK.h"
+//#import <TencentOpenAPI/TencentOAuth.h>
 #import "ZZLoginAlertView.h"
 #import "ZZPhoneInputView.h"
 #import "ZZPasswordInputView.h"
@@ -212,7 +210,7 @@
         [weakSelf gotoInternationalCityView];
     };
     
-    if (![WXApi isWXAppInstalled]) {
+    if (![WxHelper IsWechatInstalled]) {
         self.wxBtn.hidden = YES;
     }
 }
@@ -226,7 +224,7 @@
 
 - (void)rightBtnClick
 {
-    [MobClick event:Event_click_login_register];
+   // [MobClick event:Event_click_login_register];
     [self.view endEditing:YES];
     ZZSignUpS1ViewController *controller = [[ZZSignUpS1ViewController alloc] init];
     controller.phoneString = _phoneView.textField.text;
@@ -237,13 +235,13 @@
 }
 
 - (void)codeLoginBtnClick {
-    [MobClick event:Event_click_login_codelogin];
+   // [MobClick event:Event_click_login_codelogin];
     [self gotoCodeSignView:YES];
 }
 
 - (void)forgetBtnClick
 {
-    [MobClick event:Event_click_login_forget];
+   // [MobClick event:Event_click_login_forget];
     [self.view endEditing:YES];
     ZZForgetS1ViewController *controller = [[ZZForgetS1ViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
@@ -251,15 +249,10 @@
 
 - (void)wxBtnClick
 {
-    [MobClick event:Event_click_login_wx];
+    //[MobClick event:Event_click_login_wx];
     [self.view endEditing:YES];
     
-//    if (!_protocalView.isSelected) {
-//        [self.alertView showAlertMsg:@"没有同意使用条款"];
-//        return;
-//    }
-    
-    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_WechatSession currentViewController:self completion:^(id result, NSError *error) {
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_WechatSession in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         if (!error) {
             UMSocialAuthResponse *response = result;
             if (response.openid && response.uid) {
@@ -319,16 +312,10 @@
 
 - (void)wbBtnClick
 {
-    [MobClick event:Event_click_login_wb];
+  //  [MobClick event:Event_click_login_wb];
     [self.view endEditing:YES];
-
-//    if (!_protocalView.isSelected) {
-//        [self.alertView showAlertMsg:@"没有同意使用条款"];
-//        return;
-//    }
     
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:self completion:^(id result, NSError *error) {
-        
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_Sina in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         UMSocialUserInfoResponse *userInfo = result;
         if (userInfo.iconurl) {
             [[ZZUser new] loginWithWeibo:userInfo.uid token:userInfo.accessToken nick:userInfo.name avatar:userInfo.iconurl profileURL:[NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid] next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
@@ -403,19 +390,15 @@
             [ZZHUD showErrorWithStatus:@"登录错误"];
         }
     }];
+    
 }
 
 - (void)qqBtnClick
 {
-    [MobClick event:Event_click_login_qq];
+   // [MobClick event:Event_click_login_qq];
     [self.view endEditing:YES];
     
-//    if (!_protocalView.isSelected) {
-//        [self.alertView showAlertMsg:@"没有同意使用条款"];
-//        return;
-//    }
-    
-    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_QQ currentViewController:self completion:^(id result, NSError *error) {
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_QQ in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         if (!error) {
             UMSocialAuthResponse *response = result;
             if (response.openid) {
@@ -557,7 +540,7 @@
 
 - (void)loginBtnClick
 {
-    [MobClick event:Event_click_login_login];
+   // [MobClick event:Event_click_login_login];
     if (_phoneView.textField.text.length == 0) {
         [self.alertView showAlertMsg:@"手机号不能为空"];
         return;

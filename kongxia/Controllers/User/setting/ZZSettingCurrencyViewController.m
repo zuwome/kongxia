@@ -112,10 +112,10 @@
         case 0:
         {
             if (sender.on) {
-                [MobClick event:Event_click_currency_wifi_on];
+              //  [MobClick event:Event_click_currency_wifi_on];
                 [ZZUserHelper shareInstance].allow3GPlay = nil;
             } else {
-                [MobClick event:Event_click_currency_wifi_off];
+               // [MobClick event:Event_click_currency_wifi_off];
                 [ZZUserHelper shareInstance].allow3GPlay = @"allow3GPlay";
             }
         }

@@ -81,7 +81,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
+   // [MobClick beginLogPageView:NSStringFromClass([self class])];
     [ZZUtils managerUnread];
     [self manageRedView];
     if (_canLoad) {
@@ -118,7 +118,7 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         _pushHideBar = NO;
     }
-    [MobClick endLogPageView:NSStringFromClass([self class])];
+   // [MobClick endLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewDidLoad {
@@ -674,7 +674,7 @@
  客服
  */
 - (void)gotoChatServerView {
-    [MobClick event:Event_click_zhichikefu];
+   // [MobClick event:Event_click_zhichikefu];
     
     //    //配置UI
     //    ZCKitInfo *uiInfo = [ZCKitInfo new];
@@ -720,7 +720,7 @@
  */
 - (void)goToMyIntegral {
     ZZMyIntegralViewController *vc = [[ZZMyIntegralViewController alloc]init];
-    [MobClick event:Event_click_user_my_sign_in];
+   // [MobClick event:Event_click_user_my_sign_in];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -741,7 +741,7 @@
  */
 - (void)gotoSettingView {
     _canLoad = NO;
-    [MobClick event:Event_click_me_setting];
+  //  [MobClick event:Event_click_me_setting];
     ZZSettingViewController *controller = [[ZZSettingViewController alloc] init];
     controller.user = _loginer;
     controller.hidesBottomBarWhenPushed = YES;
@@ -779,7 +779,7 @@
 
 // 我的钱包
 - (void)gotoWallet {
-    [MobClick event:Event_click_me_money];
+   // [MobClick event:Event_click_me_money];
     ZZMyWalletViewController *controller = [[ZZMyWalletViewController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     controller.user = _loginer;
@@ -804,7 +804,7 @@
         return;
     }
     
-    [MobClick event:Event_click_usercenter_wx];
+   // [MobClick event:Event_click_usercenter_wx];
     ZZWXViewController *controller = [[ZZWXViewController alloc] init];
     controller.user = _loginer;
     controller.hidesBottomBarWhenPushed = YES;
@@ -819,7 +819,7 @@
 
 // 实名认证
 - (void)gotoRealName {
-    [MobClick event:Event_click_me_realname];
+   // [MobClick event:Event_click_me_realname];
     ZZRealNameListViewController *controller = [[ZZRealNameListViewController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     controller.user = _loginer;
@@ -828,7 +828,7 @@
 
 // 我的视频
 - (void)gotoMemeda {
-    [MobClick event:Event_click_usercenter_video];
+  //  [MobClick event:Event_click_usercenter_video];
     ZZVideoViewController *controller = [[ZZVideoViewController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
@@ -865,7 +865,7 @@
  出租信息
  */
 - (void)gotoUserChuZuVC {
-    [MobClick event:Event_click_me_rent];
+  //  [MobClick event:Event_click_me_rent];
     WeakSelf
     //未出租状态前往申请达人，其余状态进入主题管理
     if (self.loginer.rent.status == 0) {
@@ -983,15 +983,15 @@
     OrderListType _type = OrderListTypeAll;
     switch (index) {
         case 0: {
-            [MobClick event:Event_click_me_order_ing];
+           // [MobClick event:Event_click_me_order_ing];
             _type = OrderListTypeIng;
         } break;
         case 1: {
             _type = OrderListTypeComment;
-            [MobClick event:Event_click_me_order_commenting];
+           // [MobClick event:Event_click_me_order_commenting];
         } break;
         case 2: {
-            [MobClick event:Event_click_me_order_completed];
+          //  [MobClick event:Event_click_me_order_completed];
             _type = OrderListTypeDone;
         } break;
         default: {

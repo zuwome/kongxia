@@ -818,7 +818,7 @@
         [self updatePayChat:openSwitch];
         
     }else{
-        [MobClick event:Event_click_PayChat_Set_Switch];
+       // [MobClick event:Event_click_PayChat_Set_Switch];
         [ZZPrivateChatPayManager modifyPrivateChatPayState:_isOpenPrivChat callBack:^(NSInteger state) {
             if (state!=-1) {
                 _user.open_charge =  [ZZUserHelper shareInstance].loginer.open_charge;
@@ -904,10 +904,10 @@
         } else {
             
             self.isFirstOpen = [ZZUserHelper shareInstance].loginer.rent.status == 0;
-            [MobClick event:Event_chuzu_apply];
+           // [MobClick event:Event_chuzu_apply];
             [ZZHUD showWithStatus:@"正在提交..."];
             //第一次开启出租业务,同时拥有私聊资格的
-            [MobClick event:Event_click_PayChat_Set_Switch];
+           // [MobClick event:Event_click_PayChat_Set_Switch];
             [ZZPrivateChatPayManager modifyPrivateChatPayState:_isOpenPrivChat callBack:^(NSInteger state) {
                 if (state!=-1) {
                     _user.open_charge =  [ZZUserHelper shareInstance].loginer.open_charge;
@@ -1116,7 +1116,7 @@
                             message:@"确定隐身吗？隐身之后将无法在首页、附近看到您的信息。"
                        confirmTitle:@"确定"
                      confirmHandler:^(UIAlertAction * _Nonnull action) {
-                [MobClick event:Event_chuzu_down];
+               // [MobClick event:Event_chuzu_down];
                 [ZZHUD showWithStatus:@"正在保存"];
                 [_user.rent enable:NO next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
                     NSLog(@"========%@", data);
@@ -1136,7 +1136,7 @@
             } cancelTitle:@"取消" cancelHandler:nil];
         }
         else{
-            [MobClick event:Event_chuzu_up];
+           // [MobClick event:Event_chuzu_up];
             [_user.rent enable:YES next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
                 [ZZHUD dismiss];
                 if (error) {

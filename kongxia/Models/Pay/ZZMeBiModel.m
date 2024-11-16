@@ -17,7 +17,7 @@
 
 
 #import "ZZMeBiModel.h"
-#import "Pingpp.h"
+//#import "Pingpp.h"
 @interface ZZMeBiModel()
 
 
@@ -122,24 +122,41 @@
                         
                         NSDictionary *paymentData = @{@"id":data[@"id"], @"type":@(999), @"pingxxtype": @"kxp",};
                         [ZZUserDefaultsHelper setObject:paymentData forDestKey:kPaymentData];
-                        [Pingpp createPayment:data
-                               viewController:[UIApplication sharedApplication].keyWindow.rootViewController
-                                 appURLScheme:@"kongxia"
-                               withCompletion:^(NSString *result, PingppError *error) {
-                                   if ([result isEqualToString:@"success"]) {
-                                       
-                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                           if (next) {
-                                               next(YES);
-                                           }
-                                           [ZZHUD showSuccessWithStatus:@"充值成功"];
-                                       });
-                                   } else {
-                                       // 支付失败或取消
-                                       [ZZHUD showErrorWithStatus:@"支付失败"];
-                                       NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
-                                   }
-                               }];
+                        [PingppHelper payWithPayment:data
+                                     completeHandler:^(NSString * _Nullable result, PingppError * _Nullable error) {
+                            [ZZUserDefaultsHelper removeObjectForDestKey:kPaymentData];
+                            if ([result isEqualToString:@"success"]) {
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    if (next) {
+                                        next(YES);
+                                    }
+                                    [ZZHUD showSuccessWithStatus:@"充值成功"];
+                                });
+                            } else {
+                                // 支付失败或取消
+                                [ZZHUD showErrorWithStatus:@"支付失败"];
+                                NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
+                            }
+                        }];
+//                        [Pingpp createPayment:data
+//                               viewController:[UIApplication sharedApplication].keyWindow.rootViewController
+//                                 appURLScheme:@"kongxia"
+//                               withCompletion:^(NSString *result, PingppError *error) {
+//                                   if ([result isEqualToString:@"success"]) {
+//                                       
+//                                       dispatch_async(dispatch_get_main_queue(), ^{
+//                                           if (next) {
+//                                               next(YES);
+//                                           }
+//                                           [ZZHUD showSuccessWithStatus:@"充值成功"];
+//                                       });
+//                                   } else {
+//                                       // 支付失败或取消
+//                                       [ZZHUD showErrorWithStatus:@"支付失败"];
+//                                       NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
+//                                   }
+//                               }];
                     }
                 }];
             }

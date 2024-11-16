@@ -11,7 +11,7 @@
 #import "ZZReportViewController.h"
 #import "ZZUserHelper.h"
 
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 
 typedef NS_ENUM(NSInteger, ShareItemType) {
     ShareItemTypeWechatMoment,
@@ -325,7 +325,7 @@ typedef NS_ENUM(NSInteger, ShareItemType) {
             
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatTimeLine messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_friendcircle];
+//                    [MobClick event:Event_share_to_friendcircle];
                     if (weakSelf.successCallBack) {
                         weakSelf.successCallBack(result);
                     }
@@ -338,7 +338,7 @@ typedef NS_ENUM(NSInteger, ShareItemType) {
             
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_wechat];
+//                    [MobClick event:Event_share_to_wechat];
                     if (weakSelf.successCallBack) {
                         weakSelf.successCallBack(result);
                     }
@@ -351,7 +351,7 @@ typedef NS_ENUM(NSInteger, ShareItemType) {
             
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_QQ messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_qq];
+//                    [MobClick event:Event_share_to_qq];
                     if (weakSelf.successCallBack) {
                         weakSelf.successCallBack(result);
                     }
@@ -367,7 +367,7 @@ typedef NS_ENUM(NSInteger, ShareItemType) {
             
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Sina messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_weibo];
+//                    [MobClick event:Event_share_to_weibo];
                     if (weakSelf.successCallBack) {
                         weakSelf.successCallBack(result);
                     }

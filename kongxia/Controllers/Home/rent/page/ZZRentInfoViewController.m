@@ -834,7 +834,7 @@
         return;
     }
     
-    [MobClick event:Event_click_userpage_IDPhoto_check];
+   // [MobClick event:Event_click_userpage_IDPhoto_check];
     
     // 当前证件照免费!!
     [SVProgressHUD show];
@@ -971,7 +971,7 @@
         if ([self isReturnWithType:NavigationTypeApplyTalent]) {
             return;
         }
-        [MobClick event:Event_click_user_detail_chuzu_up];
+      //  [MobClick event:Event_click_user_detail_chuzu_up];
         ZZUser *user = [ZZUserHelper shareInstance].loginer;
         [user.rent enable:YES next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             [ZZHUD dismiss];
@@ -990,7 +990,7 @@
     if ([self isReturnWithType:NavigationTypeApplyTalent]) {
         return;
     }
-    [MobClick event:Event_click_user_detail_chuzu_apply];
+   // [MobClick event:Event_click_user_detail_chuzu_apply];
     if ([ZZUserHelper shareInstance].configModel.open_rent_need_pay_module) {   // 有开启出租收费
         if (_user.gender_status == 2) {// 需要先去完善身份证信息
             WEAK_SELF();
@@ -1032,7 +1032,7 @@
 }
 
 - (void)gotoUserChuZuVC {
-    [MobClick event:Event_click_me_rent];
+    //[MobClick event:Event_click_me_rent];
     //未出租状态前往申请达人，其余状态进入主题管理
     if (_user.rent.status == 0) {
         WeakSelf

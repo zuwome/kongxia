@@ -254,7 +254,7 @@
 
 - (void)done:(UIButton *)sender {
     [self.view endEditing:YES];
-    [MobClick event:Event_click_infomation_complete];
+   // [MobClick event:Event_click_infomation_complete];
     NSString *nickname = [_nameField.text trimmedString];
     if (_avatarImage == NULL) {
         [ZZHUD showErrorWithStatus:@"头像不能为空"];
@@ -590,7 +590,7 @@
 }
 
 - (void)uploadAvatar {
-    [MobClick event:Event_click_infomation_uploadhead];
+   // [MobClick event:Event_click_infomation_uploadhead];
     [self.view endEditing:YES];
     [self showSheetActions:@"上传真实头像"
                    message:nil

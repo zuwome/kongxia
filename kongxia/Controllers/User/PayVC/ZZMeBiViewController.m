@@ -50,7 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
+   // [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
  
 - (void)viewDidLoad {
@@ -407,7 +407,7 @@
 
 #pragma mark - 充值
 - (void)payClick:(UIButton *)sender {
-    [MobClick event:Event_click_MeBi_TopUp];
+   // [MobClick event:Event_click_MeBi_TopUp];
     sender.enabled = NO;
     WeakSelf;
     if (!self.payAgreementBtn.selected) {

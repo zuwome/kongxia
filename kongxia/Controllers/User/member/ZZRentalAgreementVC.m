@@ -194,7 +194,7 @@
 }
 
 - (void)gotoUserChuZuVC {
-    [MobClick event:Event_click_me_rent];
+   // [MobClick event:Event_click_me_rent];
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    ZZUserChuzuViewController *controller = [sb instantiateViewControllerWithIdentifier:@"rentStart"];
 //    controller.user = _loginer;

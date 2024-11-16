@@ -369,9 +369,9 @@
         self.isMinpromptLab.hidden = NO;
     }
     if (_type == RecordTypeSK) {
-        [MobClick event:Event_click_record_record_sk];
+       // [MobClick event:Event_click_record_record_sk];
     } else {
-        [MobClick event:Event_click_record_record_memeda];
+      //  [MobClick event:Event_click_record_record_memeda];
     }
     [self startRecord];
     [self disenableBtn];
@@ -554,7 +554,7 @@
 }
 
 - (void)rightBtnClick {
-    [MobClick event:Event_click_record_changecamera];
+   // [MobClick event:Event_click_record_changecamera];
     [self.videoCamera rotateCamera];
 }
 
@@ -604,7 +604,7 @@
 }
 
 - (void)doneBtnClick {
-    [MobClick event:Event_click_record_submit];
+  // [MobClick event:Event_click_record_submit];
     if (self.recordView.haveStartRecord) {
         _shouldFinishVideo = YES;
         [self.recordView finishRecord:YES];

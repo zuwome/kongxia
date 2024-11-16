@@ -54,7 +54,7 @@
     _haveChooseImage = YES;
     [self createViews];
     
-    [MobClick event:Event_click_report];
+   // [MobClick event:Event_click_report];
 }
 
 - (void)createViews

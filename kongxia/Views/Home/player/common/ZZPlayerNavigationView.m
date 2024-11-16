@@ -260,7 +260,7 @@
 
 - (void)wxBtnClcik
 {
-    [MobClick event:Event_click_Video_see_wx];
+   // [MobClick event:Event_click_Video_see_wx];
     if (_touchWX) {
         _touchWX(_uid);
     }

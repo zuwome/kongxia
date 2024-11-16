@@ -273,7 +273,7 @@
 - (void)publishBtnClick
 {
   
-    [MobClick event:Event_click_record_publish];
+  //  [MobClick event:Event_click_record_publish];
     ZZVideoUploadStatusView *uploadStatusView = [ZZVideoUploadStatusView sharedInstance];
     uploadStatusView.exportURL = self.exportURL;
     uploadStatusView.type = _type;
@@ -298,17 +298,17 @@
     switch (_type) {
         case RecordTypeSK:
         {
-            [MobClick event:Event_click_record_publish_sk];
+           // [MobClick event:Event_click_record_publish_sk];
         }
             break;
         case RecordTypeMemeda:
         {
-            [MobClick event:Event_click_record_publish_memda];
+           // [MobClick event:Event_click_record_publish_memda];
         }
             break;
         case RecordTypeUpdateMemeda:
         {
-            [MobClick event:Event_click_record_publish_memda];
+          //  [MobClick event:Event_click_record_publish_memda];
         }
             break;
         default:
@@ -724,7 +724,7 @@
 
 - (void)downBtnClick
 {
-    [MobClick event:Event_click_record_down];
+   // [MobClick event:Event_click_record_down];
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:self.exportURL];
     } completionHandler:^(BOOL success, NSError *error) {
@@ -750,7 +750,7 @@
 - (void)deleteBtnClick
 {
     [self showOkCancelAlert:nil message:@"是否放弃本段视频？" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
-        [MobClick event:Event_click_record_delete];
+      //  [MobClick event:Event_click_record_delete];
         if (_touchLeft) {
             _touchLeft();
         }

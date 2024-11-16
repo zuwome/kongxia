@@ -47,15 +47,15 @@
             if (self.pushCallBack) {
                 self.pushCallBack();
             }
-            [MobClick event:Event_click_message_notification];
+           // [MobClick event:Event_click_message_notification];
             [self gotoMessageMyDynamicViewController];
         } break;
         case 1: {
-            [MobClick event:Event_click_message_notification];
+           // [MobClick event:Event_click_message_notification];
             [self gotoMessageSystemViewController];
         } break;
         case 2: {
-            [MobClick event:Event_click_message_comment];
+           // [MobClick event:Event_click_message_comment];
             [self gotoCommentView];
         } break;
         default: break;

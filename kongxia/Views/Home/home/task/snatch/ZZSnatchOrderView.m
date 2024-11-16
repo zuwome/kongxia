@@ -372,7 +372,7 @@
         [ZZHUD showErrorWithStatus:@"视频正在上传"];
         return;
     }
-    [MobClick event:Event_click_Apply_talent];
+   // [MobClick event:Event_click_Apply_talent];
     
     if (_user.banStatus) {//封禁用户
         
@@ -683,7 +683,7 @@
             return;
         }
         //抢任务埋点
-        [MobClick event:Event_click_snatch_task];
+       // [MobClick event:Event_click_snatch_task];
         [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/pd_receive/%@/grab",model.pd_receive.id] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             _snatching = NO;
             if (error) {
@@ -1681,7 +1681,7 @@
 - (void)request
 {
     // 发任务埋点
-    [MobClick event:Event_click_publish];
+   // [MobClick event:Event_click_publish];
     self.publishView.publishView.userInteractionEnabled = NO;
     NSLog(@"PYL_获取缓存的城市");
     if (!isNullString(self.publishView.locationModel.city)) {

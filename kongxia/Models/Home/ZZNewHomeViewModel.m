@@ -589,7 +589,7 @@
 
 #pragma mark - 自定义事件统计
 - (void)addEventClick:(NSString *)event {
-    [MobClick event:[NSString stringWithFormat:@"click_%@_cate",event]];
+   // [MobClick event:[NSString stringWithFormat:@"click_%@_cate",event]];
 }
 
 

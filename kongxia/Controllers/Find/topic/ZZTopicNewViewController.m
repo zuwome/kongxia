@@ -173,7 +173,7 @@
 
 - (IBAction)zanClick:(NSIndexPath *)indexPath {
     
-    [MobClick event:Event_click_player_zan];
+    //[MobClick event:Event_click_player_zan];
     ZZFindVideoModel *model = _dataArray[indexPath.row];
     if (model.like_status) {
         // 取消赞

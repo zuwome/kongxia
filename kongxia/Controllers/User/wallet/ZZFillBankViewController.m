@@ -56,7 +56,7 @@
         _footView = [[ZZFillBankView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
         WS(weakSelf);
         _footView.goToTixian = ^(UIButton *sender){
-            [MobClick event:Event_click_withdraw_sure];
+           // [MobClick event:Event_click_withdraw_sure];
 
             [weakSelf goToTixian:sender isCheck:YES];
         };

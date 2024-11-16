@@ -245,7 +245,7 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    [MobClick event:Event_click_setting_sucure];
+                   // [MobClick event:Event_click_setting_sucure];
                     ZZSettingSecurityViewController *controller = [[ZZSettingSecurityViewController alloc] init];
                     controller.user = _user;
                     [self.navigationController pushViewController:controller animated:YES];
@@ -253,7 +253,7 @@
                     break;
                 case 1:
                 {
-                    [MobClick event:Event_click_setting_security];
+                   // [MobClick event:Event_click_setting_security];
                     ZZTravelSecurityViewController *controller = [[ZZTravelSecurityViewController alloc] init];
                     [self.navigationController pushViewController:controller animated:YES];
                 }
@@ -268,7 +268,7 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    [MobClick event:Event_click_setting_notification];
+                   // [MobClick event:Event_click_setting_notification];
                     ZZSettingNotificationViewController *controller = [[ZZSettingNotificationViewController alloc] init];
                     controller.user = _user;
                     [self.navigationController pushViewController:controller animated:YES];
@@ -276,7 +276,7 @@
                     break;
                 case 1:
                 {
-                    [MobClick event:Event_click_setting_privacy];
+                   // [MobClick event:Event_click_setting_privacy];
                     ZZSettingPrivacyViewController *controller = [[ZZSettingPrivacyViewController alloc] init];
                     controller.user = _user;
                     [self.navigationController pushViewController:controller animated:YES];
@@ -284,7 +284,7 @@
                     break;
                 case 2:
                 {
-                    [MobClick event:Event_click_setting_currency];
+                  //  [MobClick event:Event_click_setting_currency];
                     ZZSettingCurrencyViewController *controller = [[ZZSettingCurrencyViewController alloc] init];
                     controller.user = _user;
                     [self.navigationController pushViewController:controller animated:YES];
@@ -300,14 +300,14 @@
             switch (indexPath.row) {
                 case 1:
                 {
-                    [MobClick event:Event_click_about];
+                   // [MobClick event:Event_click_about];
                     ZZAboutViewController *controller = [[ZZAboutViewController alloc] init];
                     [self.navigationController pushViewController:controller animated:YES];
                 }
                     break;
                 case 2:
                 {
-                    [MobClick event:Event_click_setting_protocol];
+                  //  [MobClick event:Event_click_setting_protocol];
                     //免责声明
                     ZZProtocolViewController *controller = [[ZZProtocolViewController alloc] init];
                     controller.isMianZe = YES;
@@ -316,7 +316,7 @@
                     break;
                 case 3:
                 {
-                    [MobClick event:Event_click_setting_comment];
+                   // [MobClick event:Event_click_setting_comment];
                     //应用评分
 //                    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1081895050"]];
                 }
@@ -328,7 +328,7 @@
             break;
         case 3:
         {
-            [MobClick event:Event_click_setting_clear];
+           // [MobClick event:Event_click_setting_clear];
             tableView.userInteractionEnabled =  NO;
             [self showOkCancelAlert:@"提示" message:@"是否清除缓存？" confirmTitle:@"确定" confirmHandler:^(UIAlertAction * _Nonnull action) {
                 [self clearCache];
@@ -417,7 +417,7 @@
     }];
     sender.enabled = NO;
     //退出
-    [MobClick event:Event_click_logout];
+   // [MobClick event:Event_click_logout];
     
     [UIAlertController presentAlertControllerWithTitle:@"提示" message:@"确定退出登录吗？" doneTitle:@"确定" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
         if (isCancelled) {

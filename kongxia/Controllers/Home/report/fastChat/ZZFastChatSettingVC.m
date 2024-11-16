@@ -125,7 +125,7 @@
 
 - (void)switchDidChange:(UISwitch *)openSwitch {
     
-    [MobClick event:Event_click_FastChat_Set_Switch];
+   // [MobClick event:Event_click_FastChat_Set_Switch];
     WEAK_SELF();
     if (!openSwitch.on) {//关闭时给弹窗提示
         
@@ -254,7 +254,7 @@
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {    //通话记录
-            [MobClick event:Event_click_FastChat_CallRecords];
+           // [MobClick event:Event_click_FastChat_CallRecords];
             ZZCallRecordsVC *vc = [ZZCallRecordsVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }

@@ -232,7 +232,7 @@
 }
 
 - (void)canCompareFace:(void(^)(BOOL canCompare))completion {
-    [MobClick event:Event_click_scan_starts];
+    //[MobClick event:Event_click_scan_starts];
     if (self.type == NavigationTypeUserLogin || self.type == NavigationTypeChangePwd) {
         if (completion) {
             completion(YES);

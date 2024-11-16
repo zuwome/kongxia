@@ -341,7 +341,7 @@ static NSString *photoEmptyIdentifier = @"photoempty";
 
 - (void)addPhotoWithIndexPath:(NSIndexPath *)indexPath
 {
-    [MobClick event:Event_click_edit_uploadimage];
+   // [MobClick event:Event_click_edit_uploadimage];
     ZZUploadPhotoExampleView *exampleView = [ZZUploadPhotoExampleView showPhotos:_type == EditTypeUser ? PhotoUserInfo : PhotoUserSkill showin:[UIApplication sharedApplication].keyWindow];
     [exampleView show];
     

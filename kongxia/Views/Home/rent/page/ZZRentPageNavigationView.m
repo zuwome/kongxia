@@ -7,7 +7,7 @@
 //
 
 #import "ZZRentPageNavigationView.h"
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 #import "ZZIntegralHelper.h"//积分管理类
 #import "ZZCommissionShareView.h"
 #import "ZZCommissionModel.h"
@@ -149,7 +149,7 @@
         return;
     }
     
-    [MobClick event:Event_click_user_detail_codeshare];
+   // [MobClick event:Event_click_user_detail_codeshare];
     
     [ZZHUD showWithStatus:@"快照生成中..."];
     WeakSelf
@@ -190,7 +190,7 @@
             } failure:^(ZZError *error) {
                 [ZZHUD showTastInfoErrorWithString:error.message];
             }];
-            [MobClick event:Event_share_to_friendcircle];
+//            [MobClick event:Event_share_to_friendcircle];
         }else{
             [ZZHUD showTastInfoErrorWithString:error.domain];
         }

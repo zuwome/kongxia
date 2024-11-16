@@ -39,7 +39,7 @@
     
     [self managerUnread];
     
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
+   // [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -63,7 +63,7 @@
         [_guideView hideView];
     }
     
-    [MobClick endLogPageView:NSStringFromClass([self class])];
+   // [MobClick endLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewDidLoad {
@@ -152,7 +152,7 @@
     [self.scrollView addSubview:_hotCtl.view];
     [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0)];
     
-    [MobClick event:Event_click_hot_mmd];
+   // [MobClick event:Event_click_hot_mmd];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -167,11 +167,11 @@
     UIViewController *newController = self.childViewControllers[index];
     
     if (index == 2) {
-        [MobClick event:Event_click_dynamic_following];
+       // [MobClick event:Event_click_dynamic_following];
         [ZZUserHelper shareInstance].unreadModel.dynamic_following = NO;
         _typeView.rightRedPointView.hidden = YES;
     } else if (index == 1){
-        [MobClick event:Event_click_hot_mmd];
+       // [MobClick event:Event_click_hot_mmd];
     } else {//index = 0
         
     }

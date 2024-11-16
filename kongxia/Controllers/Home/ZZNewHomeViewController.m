@@ -869,7 +869,7 @@
  *  发布任务
  */
 - (void)publishTask {
-    [MobClick event:Event_click_publish];
+   // [MobClick event:Event_click_publish];
     
     self.publishView.publishView.userInteractionEnabled = NO;
     if (!isNullString(self.publishView.locationModel.city)) {
@@ -1042,7 +1042,7 @@
  * 出租信息
  */
 - (void)gotoUserChuZuVC {
-    [MobClick event:Event_click_me_rent];
+    //[MobClick event:Event_click_me_rent];
     WeakSelf
     //未出租状态前往申请达人，其余状态进入主题管理
     if ([ZZUserHelper shareInstance].loginer.rent.status == 0) {
@@ -1199,7 +1199,7 @@
  * 跳转城市选择
  */
 - (void)gotoChooseCity {
-    [MobClick event:Event_click_home_choose_city];
+    //[MobClick event:Event_click_home_choose_city];
     ZZCityViewController *controller = [[ZZCityViewController alloc] init];
     controller.selectedCity = ^(ZZCity *city) {
         if (city && ![self.naviBar.cityName isEqualToString:city.name]) {

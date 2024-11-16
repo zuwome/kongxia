@@ -9,12 +9,13 @@
 #import "AppDelegate+config.h"
 
 #import <IQKeyboardManager.h>
+#import <UMShare/UMShare.h>
+#import <UMCommon/UMCommon.h>
+//#import <UMSocialCore/UMSocialCore.h>
 
-#import <UMSocialCore/UMSocialCore.h>
+//#import <AlipaySDK/AlipaySDK.h>
 
-#import <AlipaySDK/AlipaySDK.h>
-
-#import "Pingpp.h"
+//#import "Pingpp.h"
 
 #import <RongIMKit/RongIMKit.h>
 
@@ -142,35 +143,21 @@
  友盟配置
 */
 - (void)configUM {
-    // UMeng 社会化分享
-    [[UMSocialManager defaultManager] setUmSocialAppkey:UMENG_KEY];
     
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession
-                                          appKey:WEIXIN_ID
-                                       appSecret:WEIXIN_SECRET
-                                     redirectURL:@"http://mobile.umeng.com/social"];
-    
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ
-                                          appKey:QQ_ID
-                                       appSecret:QQ_KEY
-                                     redirectURL:@"http://mobile.umeng.com/social"];
-    
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina
-                                          appKey:WEIBO_KEY
-                                       appSecret:WEIBO_SECRET
-                                     redirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
-    //友盟统计、自定义事件
-    UMConfigInstance.appKey = UMENG_KEY;
-    [MobClick startWithConfigure:UMConfigInstance];
-#ifdef DEBUG
-    [MobClick setLogEnabled:YES];
-#else
-    [MobClick setLogEnabled:NO];
-#endif
-    
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [MobClick setAppVersion:version];
+    [WxHelper register];
+    [UmengHelper configUmeng];
+
+//    //友盟统计、自定义事件
+//    UMConfigInstance.appKey = UMENG_KEY;
+//    [MobClick startWithConfigure:UMConfigInstance];
+//#ifdef DEBUG
+//    [MobClick setLogEnabled:YES];
+//#else
+//    [MobClick setLogEnabled:NO];
+//#endif
+//    
+//    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    [MobClick setAppVersion:version];
 }
 
 /*

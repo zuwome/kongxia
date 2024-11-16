@@ -178,7 +178,7 @@
                 CallBack();
             }
             if (!isCancelled) {
-                [MobClick event:Event_click_OneToOneChat_TopUp];
+                //[MobClick event:Event_click_OneToOneChat_TopUp];
                 ZZMeBiViewController *vc = [ZZMeBiViewController new];
                 __strong typeof(nav)weakNav =nav;
                 [vc setPaySuccess:^(ZZUser *paySuccesUser) {

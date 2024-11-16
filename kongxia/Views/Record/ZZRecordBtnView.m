@@ -92,7 +92,7 @@
 
 - (void)recordClick
 {
-    [MobClick event:Event_click_record_record];
+   // [MobClick event:Event_click_record_record];
     if (_haveStartRecord) {
         [self finishRecord:YES];
     } else {

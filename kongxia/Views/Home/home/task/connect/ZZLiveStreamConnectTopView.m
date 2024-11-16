@@ -144,7 +144,7 @@
 - (void)reportBtnClick
 {
     if (_touchReport) {
-        [MobClick event:Event_click_Video_Report];
+       // [MobClick event:Event_click_Video_Report];
         _touchReport();
     }
 }

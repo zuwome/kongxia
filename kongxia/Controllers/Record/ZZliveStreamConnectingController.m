@@ -407,7 +407,7 @@
 }
 
 - (void)cancelBtnClick {
-    [MobClick event:Event_click_User_Video_Cancel];
+   // [MobClick event:Event_click_User_Video_Cancel];
     WeakSelf;
     _alert = [[ZZLiveStreamConnectCancelAlert alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:_alert];
@@ -513,7 +513,7 @@
 
 #pragma mark - UIButtonMethod
 - (void)stickerBtnClick {
-    [MobClick event:Event_click_record_sticker];
+   // [MobClick event:Event_click_record_sticker];
     [self hideViews];
     [self.chooseView viewUp];
     [self hideStickerRedPoint];
@@ -542,7 +542,7 @@
 
 
     } else {//关闭镜头操作
-        [MobClick event:Event_click_Video_Close_Lens];
+       // [MobClick event:Event_click_Video_Close_Lens];
         self.stickerBtn.selected = YES;
         self.titleLabel.text = @"开启镜头";
         self.cameraBtnImageView.image = [UIImage imageNamed:@"icConnectOpenCamera"];

@@ -109,7 +109,7 @@
 
 - (void)gotoTixian
 {
-    [MobClick event:Event_click_money_transfer];
+   // [MobClick event:Event_click_money_transfer];
     
     ZZNewTiXianViewController *controller = [[ZZNewTiXianViewController alloc] init];
     controller.isTiXian = YES;
@@ -339,22 +339,35 @@
             [ZZHUD showErrorWithStatus:error.message];
         } else {
             WeakSelf;
-            [Pingpp createPayment:data
-                   viewController:self
-                     appURLScheme:@"kongxia"
-                   withCompletion:^(NSString *result, PingppError *error) {
-                       if ([result isEqualToString:@"success"]) {
-                         
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               [weakSelf loadDataWithRechargeStyle:YES];
-                               [ZZHUD showSuccessWithStatus:@"充值成功"];
-                           });
-                       } else {
-                           // 支付失败或取消
-                           [ZZHUD showErrorWithStatus:@"支付失败"];
-                           NSLog(@"Error: code=%lu msg=%@", (unsigned long)error.code, [error getMsg]);
-                       }
-                   }];
+            [PingppHelper payWithPayment:data completeHandler:^(NSString * _Nullable result, PingppError * _Nullable error) {
+                if ([result isEqualToString:@"success"]) {
+                  
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf loadDataWithRechargeStyle:YES];
+                        [ZZHUD showSuccessWithStatus:@"充值成功"];
+                    });
+                } else {
+                    // 支付失败或取消
+                    [ZZHUD showErrorWithStatus:@"支付失败"];
+                    NSLog(@"Error: code=%lu msg=%@", (unsigned long)error.code, [error getMsg]);
+                }
+            }];
+//            [Pingpp createPayment:data
+//                   viewController:self
+//                     appURLScheme:@"kongxia"
+//                   withCompletion:^(NSString *result, PingppError *error) {
+//                       if ([result isEqualToString:@"success"]) {
+//                         
+//                           dispatch_async(dispatch_get_main_queue(), ^{
+//                               [weakSelf loadDataWithRechargeStyle:YES];
+//                               [ZZHUD showSuccessWithStatus:@"充值成功"];
+//                           });
+//                       } else {
+//                           // 支付失败或取消
+//                           [ZZHUD showErrorWithStatus:@"支付失败"];
+//                           NSLog(@"Error: code=%lu msg=%@", (unsigned long)error.code, [error getMsg]);
+//                       }
+//                   }];
         }
     }];
 }

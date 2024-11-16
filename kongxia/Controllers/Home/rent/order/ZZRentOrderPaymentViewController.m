@@ -14,7 +14,7 @@
 #import "ZZRentOrderHeaderView.h"
 #import "ZZRentOrderPayCell.h"
 #import "ZZHelpCenterVC.h"
-#import "Pingpp.h"
+//#import "Pingpp.h"
 #import "ZZRentDropdownModel.h"
 
 @interface ZZRentOrderPaymentViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -205,7 +205,7 @@
         return;
     }
     
-    [MobClick event:Event_add_order];
+   // [MobClick event:Event_add_order];
     WeakSelf;
     sender.enabled = NO;
     if (_isEdit) {
@@ -275,7 +275,7 @@
 #pragma mark - Request
 - (void)gotoRechargeView {
     WeakSelf;
-    [MobClick event:Event_click_money_recharge];
+   // [MobClick event:Event_click_money_recharge];
     ZZRechargeViewController *controller = [[ZZRechargeViewController alloc] init];
     controller.rechargeCallBack = ^{
         [ZZHUD showWithStatus:@"充值成功，余额更新中..."];
@@ -321,7 +321,7 @@
     }
     
     if (_order.dated_at_type == 1) {
-        [MobClick event:Event_choose_rent_quickly];
+       // [MobClick event:Event_choose_rent_quickly];
     }
     [ZZHUD showWithStatus:@"正在准备付款"];
     [_order advancePay:channel status:_order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
@@ -333,7 +333,7 @@
                 ZZUser *user = [ZZUserHelper shareInstance].loginer;
                 user.balance = [NSNumber numberWithInt:([user.balance doubleValue] - _price)];
                 [[ZZUserHelper shareInstance] saveLoginer:user postNotif:NO];
-                [MobClick event:Event_pay_deposit_success];
+               // [MobClick event:Event_pay_deposit_success];
                 
                 // 目前只有当优享邀约打开之后才需要通知个人页刷洗一下下
                 if (_order.wechat_service) {
@@ -351,20 +351,32 @@
                 WeakSelf;
                 NSDictionary *paymentData = @{@"id":data[@"id"]};
                 [ZZUserDefaultsHelper setObject:paymentData forDestKey:kPaymentData];
-                [Pingpp createPayment:data
-                       viewController:self
-                         appURLScheme:@"kongxia"
-                       withCompletion:^(NSString *result, PingppError *error) {
-                           if ([result isEqualToString:@"success"]) {
-                               [MobClick event:Event_pay_deposit_success];
-                               dispatch_async(dispatch_get_main_queue(), ^{
-                                   [weakSelf payComplete];
-                               });
-                           } else {
-                               // 支付失败或取消
-                               NSLog(@"Error: code=%lu msg=%@", (unsigned long)error.code, [error getMsg]);
-                           }
-                       }];
+                [PingppHelper payWithPayment:data
+                             completeHandler:^(NSString * _Nullable result, PingppError * _Nullable error) {
+                    if ([result isEqualToString:@"success"]) {
+                      //  [MobClick event:Event_pay_deposit_success];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [weakSelf payComplete];
+                        });
+                    } else {
+                        // 支付失败或取消
+                        NSLog(@"Error: code=%lu msg=%@", (unsigned long)error.code, [error getMsg]);
+                    }
+                }];
+//                [Pingpp createPayment:data
+//                       viewController:self
+//                         appURLScheme:@"kongxia"
+//                       withCompletion:^(NSString *result, PingppError *error) {
+//                           if ([result isEqualToString:@"success"]) {
+//                             //  [MobClick event:Event_pay_deposit_success];
+//                               dispatch_async(dispatch_get_main_queue(), ^{
+//                                   [weakSelf payComplete];
+//                               });
+//                           } else {
+//                               // 支付失败或取消
+//                               NSLog(@"Error: code=%lu msg=%@", (unsigned long)error.code, [error getMsg]);
+//                           }
+//                       }];
             }
         }
     }];

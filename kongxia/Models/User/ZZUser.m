@@ -398,7 +398,7 @@
 
 + (void)addBlackWithUid:(NSString *)uid next:(requestCallback)next
 {
-    [MobClick event:Event_click_add_to_blacklist];
+   // [MobClick event:Event_click_add_to_blacklist];
     [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/user/%@/black/add",uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             if (next) {
@@ -421,7 +421,7 @@
 
 + (void)removeBlackWithUid:(NSString *)uid next:(requestCallback)next
 {
-    [MobClick event:Event_click_add_to_blacklist];
+   // [MobClick event:Event_click_add_to_blacklist];
     [ZZRequest method:@"POST" path:[NSString stringWithFormat:@"/api/user/%@/black/remove",uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
             if (next) {

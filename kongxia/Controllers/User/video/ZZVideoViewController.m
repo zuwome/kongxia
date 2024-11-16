@@ -252,7 +252,7 @@
     [self replaceTempHeaderView];
     [self replaceTableViewHeaderView];
     
-    [MobClick event:Event_my_mmd_answer];
+   // [MobClick event:Event_my_mmd_answer];
 }
 
 #pragma mark - UIScrollViewMethod
@@ -349,12 +349,12 @@
             break;
         case 1:
         {
-            [MobClick event:Event_my_mmd_answer];
+          //  [MobClick event:Event_my_mmd_answer];
         }
             break;
         case 2:
         {
-            [MobClick event:Event_my_mmd_ask];
+          //  [MobClick event:Event_my_mmd_ask];
         }
             break;
         default:

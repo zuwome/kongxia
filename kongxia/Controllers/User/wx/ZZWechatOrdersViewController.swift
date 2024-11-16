@@ -58,7 +58,7 @@ extension ZZWechatOrdersViewController {
     
     // 跳转到我的微信界面
     @objc func goToMyWeChatView() {
-        MobClick.event(Event_click_usercenter_wx)
+      //  MobClick.event(Event_click_usercenter_wx)
         let myWXViewController = ZZWXViewController()
         myWXViewController.user = ZZUserHelper.shareInstance()?.loginer!
         self.navigationController?.pushViewController(myWXViewController, animated: true)

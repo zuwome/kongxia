@@ -515,7 +515,7 @@ extension ZZWXOrderDetailViewController {
     
     // 聊天页面
     func goToChatView() {
-        MobClick.event(Event_user_detail_chat)
+//        MobClick.event(Event_user_detail_chat)
         
         guard ZZUserHelper.shareInstance()!.isLogin else {
             goTologinView()

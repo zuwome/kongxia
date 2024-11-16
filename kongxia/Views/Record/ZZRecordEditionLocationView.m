@@ -33,7 +33,7 @@
 }
 - (void)btnClick
 {
-    [MobClick event:Event_click_record_topic_location];
+   // [MobClick event:Event_click_record_topic_location];
     if (_tapSelf) {
         _tapSelf();
     }

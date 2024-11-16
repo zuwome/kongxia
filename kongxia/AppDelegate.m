@@ -8,9 +8,7 @@
 
 #import "APIKey.h"
 #import "AppDelegate.h"
-#import <UMSocialCore/UMSocialCore.h>
 #import <AlipaySDK/AlipaySDK.h>
-#import "Pingpp.h"
 #import <RongIMKit/RongIMKit.h>
 #import <Bugly/Bugly.h>
 #import "WBReachabilityManager.h"
@@ -167,20 +165,14 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-//    if ([WXApi handleOpenURL:url delegate:self]) {
-//        return YES;
-//    }
-    
     if ([OpenInstallSDK handLinkURL:url]) {
         return YES;
     }
     
     WEAK_SELF();
-    
-//    NSString *urlString = [url.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlString = [url.absoluteString stringByRemovingPercentEncoding];
-    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
-    [Pingpp handleOpenURL:url withCompletion:nil];
+    BOOL result = [UmengHelper handleWithUrl:url];
+    [PingppHelper handleWithUrl:url];
     if (result == NO) {
         NSRange range = [urlString rangeOfString:@"iOSZuwomeAppOpenApp://"];
         if (range.location != NSNotFound) {

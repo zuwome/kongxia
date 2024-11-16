@@ -676,7 +676,7 @@ static CGFloat itemMargin = 5;
                         NSString *error = tzImagePickerVc.selectedModels.count == 0 ? @"么币余额不足，充值后再继续和TA私信" : @"您当前么币余额不足，请充值后再尝试勾选、发送更多消息";
                         [UIAlertController presentAlertControllerWithTitle:error message:nil doneTitle:@"立即充值" cancelTitle:@"取消" showViewController:self.navigationController completeBlock:^(BOOL isCancelled) {
                             if (!isCancelled) {
-                                [MobClick event:Event_click_OneToOneChat_TopUp];
+                               // [MobClick event:Event_click_OneToOneChat_TopUp];
                                 ZZMeBiViewController *vc = [ZZMeBiViewController new];
                                 WeakSelf
                                 [vc setPaySuccess:^(ZZUser *paySuccesUser) {

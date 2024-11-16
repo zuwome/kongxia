@@ -76,7 +76,7 @@
             return;
         }
     }
-    [MobClick event:Event_user_detail_chat];
+   // [MobClick event:Event_user_detail_chat];
     
     [ZZRequest method:@"GET" path:[NSString stringWithFormat:@"/api/user/%@/say_hi_status",_user.uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {

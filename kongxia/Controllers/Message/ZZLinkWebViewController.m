@@ -17,12 +17,11 @@
 #import "ZZTabBarViewController.h"
 #import "ZZChatServerViewController.h"
 #import "ZZIntegralNaVView.h"
-#import "WXApi.h"
 #import "ZZUserEditViewController.h"
 #import "ZZIDPhotoManagerViewController.h"
 #import "ZZPrivateChatPayManager.h"
-
 #import "kongxia-Swift.h"
+
 @interface ZZLinkWebViewController () <UIWebViewDelegate,WKNavigationDelegate,UIScrollViewDelegate, UIGestureRecognizerDelegate, NSURLSessionDelegate>
 
 @property (nonatomic, strong) ZZLinkWebNavigationView *navigationView;
@@ -211,7 +210,7 @@
 }
 
 - (void)rightBtnClick {
-    [MobClick event:Event_click_activity_right_share];
+   // [MobClick event:Event_click_activity_right_share];
     WeakSelf;
     if (!_shareView) {
         _shareView = [[ZZRightShareView alloc] initWithFrame:[UIScreen mainScreen].bounds withController:weakSelf];
@@ -431,17 +430,11 @@
     if (range.location == NSNotFound) {
         if ([string isEqualToString:@"weixin://"]) {
             //判断是否安装了微信
-            if (![WXApi isWXAppInstalled]) {
+            if (![WxHelper IsWechatInstalled]) {
                 [UIAlertController presentAlertControllerWithTitle:@"当前设备尚未安装微信" message:nil doneTitle:@"我知道了" cancelTitle:nil completeBlock:nil];
             }
             else{
-                NSURL * url = [NSURL URLWithString:@"weixin://"];
-                BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
-                //先判断是否能打开该url
-                if (canOpen)
-                {   //打开微信
-                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:NULL];
-                }
+                [WxHelper openWechat];
             }
             return YES;
         }

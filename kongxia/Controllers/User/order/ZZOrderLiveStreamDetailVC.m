@@ -145,7 +145,7 @@
 
 - (void)navigationRightBtnClick
 {
-    [MobClick event:Event_click_order_detail_more];
+   // [MobClick event:Event_click_order_detail_more];
     if (!_order) {
         return;
     }
@@ -392,7 +392,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_chat_order];
+   // [MobClick event:Event_chat_order];
     if (_isFromChat) {
         [self.navigationController popViewControllerAnimated:YES];
         return;

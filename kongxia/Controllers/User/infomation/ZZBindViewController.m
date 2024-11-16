@@ -10,7 +10,7 @@
 #import "ZZBindCell.h"
 #import "ZZChangePhoneViewController.h"
 
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 
 @interface ZZBindViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -128,7 +128,7 @@
             break;
         case 1:
         {
-            [MobClick event:Event_click_bind_qq];
+           // [MobClick event:Event_click_bind_qq];
             if (_user.qq.openid) {
                 NSDictionary *param = @{@"platform":@"qq",
                                         @"qq":[_user.qq toDictionary]};
@@ -140,7 +140,7 @@
             break;
         case 2:
         {
-            [MobClick event:Event_click_bind_wx];
+          // [MobClick event:Event_click_bind_wx];
             if (_user.wechat.unionid) {
                 NSDictionary *param = @{@"platform":@"wechat",
                                         @"wechat":[_user.wechat toDictionary]};
@@ -152,7 +152,7 @@
             break;
         case 3:
         {
-            [MobClick event:Event_click_bind_wb];
+          //  [MobClick event:Event_click_bind_wb];
             if (_user.weibo.uid) {
                 NSDictionary *param = @{@"platform":@"weibo",
                                         @"weibo":[_user.weibo toDictionary]};
@@ -171,7 +171,7 @@
 
 - (void)qqBind
 {
-    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_QQ currentViewController:self completion:^(id result, NSError *error) {
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_QQ in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         if (!error) {
             UMSocialAuthResponse *response = result;
             if (response.openid) {
@@ -186,11 +186,26 @@
             [ZZHUD showErrorWithStatus:@"绑定失败，请重新绑定"];
         }
     }];
+//    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_QQ currentViewController:self completion:^(id result, NSError *error) {
+//        if (!error) {
+//            UMSocialAuthResponse *response = result;
+//            if (response.openid) {
+//                NSDictionary *aDict = @{@"access_token":response.accessToken,
+//                                              @"openid":response.openid};
+//                NSDictionary *param = @{@"platform":@"qq",
+//                                            @"qq":aDict};
+//                [self sendBindWithType:1 param:param];
+//            }
+//        }
+//        if (error) {
+//            [ZZHUD showErrorWithStatus:@"绑定失败，请重新绑定"];
+//        }
+//    }];
 }
 
 - (void)wxBind
 {
-    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_WechatSession currentViewController:self completion:^(id result, NSError *error) {
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_WechatSession in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         if (!error) {
             UMSocialAuthResponse *response = result;
             if (response.uid) {
@@ -206,12 +221,27 @@
             [ZZHUD showErrorWithStatus:@"绑定失败，请重新绑定"];
         }
     }];
+//    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_WechatSession currentViewController:self completion:^(id result, NSError *error) {
+//        if (!error) {
+//            UMSocialAuthResponse *response = result;
+//            if (response.uid) {
+//                NSDictionary *aDict = @{@"access_token":response.accessToken,
+//                                        @"openid":response.openid,
+//                                        @"unionid":response.uid};
+//                NSDictionary *param = @{@"platform":@"wechat",
+//                                        @"wechat":aDict};
+//                [self sendBindWithType:2 param:param];
+//            }
+//        }
+//        if (error) {
+//            [ZZHUD showErrorWithStatus:@"绑定失败，请重新绑定"];
+//        }
+//    }];
 }
 
 - (void)wbBind
 {
-    
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:self completion:^(id result, NSError *error) {
+    [UmengHelper authenWithPlatform:UMSocialPlatformType_Sina in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         UMSocialUserInfoResponse *userInfo = result;
         if (userInfo.uid) {
             NSDictionary *aDict = @{@"access_token":userInfo.accessToken,
@@ -227,6 +257,22 @@
             [ZZHUD showErrorWithStatus:@"绑定失败，请重新绑定"];
         }
     }];
+//    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:self completion:^(id result, NSError *error) {
+//        UMSocialUserInfoResponse *userInfo = result;
+//        if (userInfo.uid) {
+//            NSDictionary *aDict = @{@"access_token":userInfo.accessToken,
+//                                    @"uid":userInfo.uid,
+//                                    @"userName":userInfo.name,
+//                                    @"iconURL":userInfo.iconurl,
+//                                    @"profileURL":[NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid]};
+//            NSDictionary *param = @{@"platform":@"weibo",
+//                                    @"weibo":aDict};
+//            [self sendBindWithType:3 param:param];
+//        }
+//        if (error) {
+//            [ZZHUD showErrorWithStatus:@"绑定失败，请重新绑定"];
+//        }
+//    }];
 }
 
 // 1:QQ 2:微信 3:新浪

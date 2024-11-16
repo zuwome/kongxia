@@ -8,7 +8,7 @@
 
 #import "ZZChuzuApplyShareView.h"
 
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 #import "ZZUserHelper.h"
 #import "ZZChuzuBubbleView.h"
 #import "ZZRentShareSnapshotView.h"
@@ -232,7 +232,7 @@
 
 - (void)hiddenViews
 {
-    [MobClick event:Event_chuzu_share_cancel];
+   // [MobClick event:Event_chuzu_share_cancel];
     self.hidden = YES;
     if (!_finish) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(animation) object:nil];
@@ -353,7 +353,7 @@
 
 - (void)shareBtnClick
 {
-    [MobClick event:Event_chuzu_share_perfect];
+    //[MobClick event:Event_chuzu_share_perfect];
     if (!_selectBtn) {
         [self hiddenViews];
         if (_shareCallBack) {
@@ -390,7 +390,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:_shareCtl completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_wechat];
+//                    [MobClick event:Event_share_to_wechat];
                     [weakSelf callBack];
                 }
             }];
@@ -400,7 +400,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_QQ messageObject:messageObject currentViewController:_shareCtl completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_qq];
+//                    [MobClick event:Event_share_to_qq];
                     [weakSelf callBack];
                 }
             }];
@@ -410,7 +410,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Sina messageObject:messageObject currentViewController:_shareCtl completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_weibo];
+//                    [MobClick event:Event_share_to_weibo];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"分享成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alert show];
                     [weakSelf callBack];
@@ -422,7 +422,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatTimeLine messageObject:messageObject currentViewController:_shareCtl completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_friendcircle];
+//                    [MobClick event:Event_share_to_friendcircle];
                     [weakSelf callBack];
                 }
             }];

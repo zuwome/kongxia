@@ -293,7 +293,7 @@
         user = listModel.tip.from;
     }
     
-    [MobClick event:Event_user_detail_follow];
+   // [MobClick event:Event_user_detail_follow];
     if (user.follow_status == 0) {
         [user followWithUid:user.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (error) {

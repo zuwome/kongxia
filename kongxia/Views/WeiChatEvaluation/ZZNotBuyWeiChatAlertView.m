@@ -7,7 +7,7 @@
 //
 
 #import "TTTAttributedLabel.h"
-#import "Pingpp.h"
+//#import "Pingpp.h"
 #import "ZZRechargeViewController.h"
 #import "ZZNotBuyWeiChatAlertView.h"
 #import "ZZLinkWebViewController.h"
@@ -421,10 +421,10 @@
 //购买微信
 - (void)buy {
     if (_model.type == PaymentTypeWX) {
-        [MobClick event:Event_click_userpage_wx_buy];
+       // [MobClick event:Event_click_userpage_wx_buy];
     }
     else if (_model.type == PaymentTypeIDPhoto) {
-        [MobClick event:Event_click_userpage_IDPhoto_buy];
+       // [MobClick event:Event_click_userpage_IDPhoto_buy];
     }
     
     [ZZHUD showWithStatus:@"支付中..."];
@@ -475,7 +475,7 @@
 }
 
 - (void)rechargeByPayments {
-    [MobClick event:Event_click_MeBi_TopUp];
+   // [MobClick event:Event_click_MeBi_TopUp];
     if (self.currentRechargeModel && (_currentSelectRechargeType == 1 || _currentSelectRechargeType == 2)) {
         [_currentRechargeModel rechargeBy:_currentSelectRechargeType model:_currentRechargeModel next:^(BOOL isSuccess) {
             if (isSuccess) {
@@ -497,7 +497,7 @@
 }
 
 - (void)rechargeByIAP {
-    [MobClick event:Event_click_MeBi_TopUp];
+    //[MobClick event:Event_click_MeBi_TopUp];
     if (self.currentRechargeModel) {
         ZZPayHelper *request =   [ZZPayHelper shared];
         request.delegate = self;

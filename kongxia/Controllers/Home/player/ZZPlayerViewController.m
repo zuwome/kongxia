@@ -341,7 +341,7 @@
     if (self.isBaseVideo) {
         return;
     }
-    [MobClick event:Event_click_player_doubleclick];
+   // [MobClick event:Event_click_player_doubleclick];
     if (![self canDoThings]) {
         return;
     }
@@ -589,13 +589,13 @@
 
 - (void)leftBtnClick
 {
-    [MobClick event:Event_click_player_cancel];
+    //[MobClick event:Event_click_player_cancel];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)zanBtnClick
 {
-    [MobClick event:Event_click_player_zan];
+    //[MobClick event:Event_click_player_zan];
     if (![self canDoThings]) {
         return;
     }
@@ -631,7 +631,7 @@
  */
 - (void)moreBtnClick
 {
-    [MobClick event:Event_click_player_more];
+    //[MobClick event:Event_click_player_more];
     if (![self canDoThings]) {
         return;
     }
@@ -659,7 +659,7 @@
 
 - (void)packetBtnClick
 {
-    [MobClick event:Event_click_player_packet];
+   // [MobClick event:Event_click_player_packet];
     if ([ZZUtils isConnecting]) {
         return;
     }
@@ -674,7 +674,7 @@
 - (void)attentBtnClick
 {
     NSIndexPath *indexPath = _currentVideoPath;
-    [MobClick event:Event_click_player_attent];
+   // [MobClick event:Event_click_player_attent];
     if (![self canDoThings]) {
         return;
     }
@@ -1257,7 +1257,7 @@
     self.wxCopyView.wxNumber = self.rentUser.wechat.no;
     [self.wxCopyView setCopyWXBlock:^{
         [weakSelf showOkCancelAlert:@"复制微信号" message:nil confirmTitle:@"复制" confirmHandler:^(UIAlertAction * _Nonnull action) {
-            [MobClick event:Event_click_userpage_wx_copy];
+            //[MobClick event:Event_click_userpage_wx_copy];
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = weakSelf.rentUser.wechat.no;
             [ZZHUD showSuccessWithStatus:@"已保存至粘贴板"];
@@ -1351,7 +1351,7 @@
         };
         _navigationView.touchWX = ^(NSString *uid){
             //查看微信
-            [MobClick event:Event_click_player_wx];
+           // [MobClick event:Event_click_player_wx];
             if (weakSelf.isShowWXCopyView) {
                 return ;
             }

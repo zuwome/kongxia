@@ -85,7 +85,7 @@
 {
     
     
-    [MobClick event:Event_click_record_topic];
+    //[MobClick event:Event_click_record_topic];
     if (_tapSelf) {
         _tapSelf();
     }

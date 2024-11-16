@@ -238,7 +238,7 @@
                         message:nil
                    confirmTitle:@"复制微信号"
                  confirmHandler:^(UIAlertAction * _Nonnull action) {
-            [MobClick event:Event_click_userpage_wx_copy];
+           //[MobClick event:Event_click_userpage_wx_copy];
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = weakSelf.user.wechat.no;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -444,7 +444,7 @@
 }
 
 - (void)addWeChat {
-    [MobClick event:Event_click_usercenter_wx];
+   // [MobClick event:Event_click_usercenter_wx];
     ZZWXViewController *controller = [[ZZWXViewController alloc] init];
     controller.wxUpdate = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -976,7 +976,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_cancel_order];
+   // [MobClick event:Event_cancel_order];
     if (_isFrom && _statusView.detailType == OrderDetailTypePaying) {
         ZZNewOrderRefundOptionsViewController *controller = [[ZZNewOrderRefundOptionsViewController alloc]init];
         controller.order = self.order;
@@ -1009,7 +1009,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_refuse_order];
+   // [MobClick event:Event_refuse_order];
     ZZOrderTalentShowViewController *vc = [[ZZOrderTalentShowViewController alloc] init];
     if ([[ZZUserHelper shareInstance].loginer.uid isEqualToString:self.order.from.uid]) {
         vc.uid = self.order.to.uid;
@@ -1033,7 +1033,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_modify_order];
+   // [MobClick event:Event_modify_order];
     ZZRentChooseSkillViewController *controller = [[ZZRentChooseSkillViewController alloc] init];
     controller.isEdit = YES;
     controller.order = self.order;
@@ -1058,7 +1058,7 @@
 }
 
 - (void)accept {
-    [MobClick event:Event_accept_order];
+   // [MobClick event:Event_accept_order];
     [ZZHUD showWithStatus:nil];
     WS(weakSelf);
     [self.order accept:self.order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
@@ -1075,7 +1075,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_pay_order];
+   // [MobClick event:Event_pay_order];
     ZZPayViewController *vc = [[ZZPayViewController alloc] init];
     vc.order = self.order;
     WS(weakSelf);
@@ -1091,7 +1091,7 @@
         return;
     }
     if (_isFrom) {
-        [MobClick event:Event_from_click_met_order];
+       // [MobClick event:Event_from_click_met_order];
         [self showOKCancelAlertWithTitle:@"提示"
                                  message:@"邀约是否已顺利完成，确定后款项将会支付给对方"
                              cancelTitle:@"取消"
@@ -1101,7 +1101,7 @@
             [self metRequest];
         }];
     } else {
-        [MobClick event:Event_to_click_met_order];
+       // [MobClick event:Event_to_click_met_order];
         [self showOKCancelAlertWithTitle:@"提示"
                                  message:@"确认已到达见面地点？"
                              cancelTitle:@"取消"
@@ -1134,7 +1134,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_comment_order];
+   // [MobClick event:Event_comment_order];
     ZZOrderCommentViewController *controller = [[ZZOrderCommentViewController alloc] init];
     controller.order = self.order;
     WS(weakSelf);
@@ -1149,7 +1149,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_refund_order];
+   // [MobClick event:Event_refund_order];
 
     ZZNewOrderRefundOptionsViewController *vc = [[ZZNewOrderRefundOptionsViewController alloc]init];
     vc.order = self.order;
@@ -1205,7 +1205,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_user_detail_add_mmd];
+   // [MobClick event:Event_user_detail_add_mmd];
     WeakSelf;
     ZZRentMemedaViewController *controller = [[ZZRentMemedaViewController alloc] init];
     controller.uid = self.uid;
@@ -1227,7 +1227,7 @@
     }
     
     [self endEditing];
-    [MobClick event:Event_user_detail_add_order];
+   // [MobClick event:Event_user_detail_add_order];
     if ([ZZUserHelper shareInstance].loginer && [ZZUserHelper shareInstance].loginer.avatarStatus == 0) {
         [self showOkCancelAlert:@"提示"
                         message:@"本人头像不是自己的照片，请先去修改"

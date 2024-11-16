@@ -11,8 +11,8 @@ import Foundation
 @objc class ZZServerHelper: NSObject {
     @objc public static func showServer() {
         let req = WXOpenCustomerServiceReq()
-        req.corpid = "ww1066becb2c99e97b";    //企业ID
-        req.url = "https://work.weixin.qq.com/kfid/kfc934ce09454760ab7";            //客服URL
+        req.corpid = Const.enterprice_wechat_id;
+        req.url = Const.enterprice_wechat_url;
         WXApi.send(req, completion: nil)
     }
 }

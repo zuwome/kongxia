@@ -503,7 +503,7 @@
     if ([ZZUtils isConnecting]) {
         return;
     }
-    [MobClick event:Event_click_ask_ask];
+   // [MobClick event:Event_click_ask_ask];
 //    if (isNullString(_topicView.questionTV.text)) {
 //        [ZZHUD showErrorWithStatus:@"请输入问题"];
 //        return;

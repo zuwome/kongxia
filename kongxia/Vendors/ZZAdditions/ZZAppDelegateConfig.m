@@ -10,9 +10,6 @@
 #import "ZZMessageChatWechatPayModel.h"
 #import "ZZGifMessageModel.h"
 
-#import <UMSocialCore/UMSocialCore.h>
-#import <AlipaySDK/AlipaySDK.h>
-#import "Pingpp.h"
 #import <RongIMKit/RongIMKit.h>
 #import <SobotKit/SobotKit.h>
 #import "MiPushSDK.h"
@@ -29,7 +26,6 @@
 #import "ZZChatGiftModel.h"
 #import "ZZChatKTVModel.h"
 #import "ZZVideoInviteModel.h"
-#import "WXApi.h"
 
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
@@ -40,33 +36,25 @@
 
 + (void)config
 {
-    [WXApi registerApp:WEIXIN_ID universalLink:@"https://active.zuwome.com/app/"];
-
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    
+    [WxHelper register];
+    [UmengHelper configUmeng];
     
     // 高德
     [AMapServices sharedServices].apiKey = @"ddbc9ec789eb08c4f18c4232e7732446";
     
-    // UMeng 社会化分享
-    [[UMSocialManager defaultManager] setUmSocialAppkey:UMENG_KEY];
-    
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WEIXIN_ID appSecret:WEIXIN_SECRET redirectURL:@"http://mobile.umeng.com/social"];
-    
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQ_ID  appSecret:QQ_KEY redirectURL:@"http://mobile.umeng.com/social"];
-    
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WEIBO_KEY  appSecret:WEIBO_SECRET redirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
     //友盟统计、自定义事件
-    UMConfigInstance.appKey = UMENG_KEY;
-    [MobClick startWithConfigure:UMConfigInstance];
+//    UMConfigInstance.appKey = UMENG_KEY;
+   // [MobClick startWithConfigure:UMConfigInstance];
 #ifdef DEBUG
-    [MobClick setLogEnabled:YES];
+   // [MobClick setLogEnabled:YES];
 #else
-    [MobClick setLogEnabled:NO];
+   // [MobClick setLogEnabled:NO];
 #endif
     
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [MobClick setAppVersion:version];
+//    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+   // [MobClick setAppVersion:version];
     
     //融云
     [[RCIM sharedRCIM] initWithAppKey:[kBase_URL containsString:@"zuwome.com"] ? RONGCLOUD_IM_APPKEY : RONGCLOUD_IM_TEST_APPKEY];

@@ -308,7 +308,7 @@
  忘记密码
  */
 - (void)forgetPassWordBtnPassWord {
-    [MobClick event:Event_click_login_forget];
+   // [MobClick event:Event_click_login_forget];
     [self.view endEditing:YES];
     ZZForgetS1ViewController *controller = [[ZZForgetS1ViewController alloc] init];
     

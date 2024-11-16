@@ -1640,7 +1640,7 @@
 - (void)gotoChongZhiVCWhenUnderbalance {
     [UIAlertController presentAlertControllerWithTitle:kMsg_Mebi_NO message:nil doneTitle:@"充值" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
         if (!isCancelled) {
-            [MobClick event:Event_click_OneToOneChat_TopUp];
+           // [MobClick event:Event_click_OneToOneChat_TopUp];
             [self showRechargeView];
         }
     }];
@@ -3278,7 +3278,7 @@
 }
 
 - (void)gotoWXView {
-    [MobClick event:Event_click_chat_wx];
+   // [MobClick event:Event_click_chat_wx];
     [ZZRequest method:@"POST" path:@"/api/mag_click/click" params:@{@"type":@"wechat"} next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         NSLog(@"success");
     }];

@@ -237,7 +237,7 @@
 }
 
 - (void)gotoPayPriceWithIndexPath:(NSIndexPath *)indexPath {
-    [MobClick event:Event_click_ServiceCharge_Open];
+   // [MobClick event:Event_click_ServiceCharge_Open];
     WEAK_SELF();
     ZZAuditFeeModel *model = _dataSource[indexPath.row];
 
@@ -253,7 +253,7 @@
 
 - (void)uploadRentInfo {
     
-    [MobClick event:Event_chuzu_apply];
+   // [MobClick event:Event_chuzu_apply];
     [ZZHUD showWithStatus:@"正在提交..."];
     WeakSelf;
     [ZZUser rent:[_user toDictionary] next:^(ZZError *error, id data, NSURLSessionDataTask *task) {

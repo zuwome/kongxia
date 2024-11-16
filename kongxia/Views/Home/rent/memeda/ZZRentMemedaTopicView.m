@@ -277,7 +277,7 @@
 
 - (void)privateStatus
 {
-    [MobClick event:Event_click_ask_private];
+   // [MobClick event:Event_click_ask_private];
     _infoImgView.hidden = YES;
     _anonymousBtn.hidden = YES;
     _publicBtn.selected = NO;
@@ -298,7 +298,7 @@
 
 - (void)publicStatus
 {
-    [MobClick event:Event_click_ask_public];
+   // [MobClick event:Event_click_ask_public];
     _anonymousBtn.hidden = NO;
     _publicBtn.selected = YES;
     _privateBtn.selected = NO;

@@ -482,7 +482,7 @@
 
 - (void)gotoRecord
 {
-    [MobClick event:Event_click_video_record];
+  //  [MobClick event:Event_click_video_record];
     ZZRecordViewController *controller = [[ZZRecordViewController alloc] init];
     controller.type = RecordTypeMemeda;
     controller.model = _model.mmd;

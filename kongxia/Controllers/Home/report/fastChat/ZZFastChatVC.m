@@ -439,7 +439,7 @@
         return;
     }
     
-    [MobClick event:Event_click_FastChat_VideoConnect];
+   // [MobClick event:Event_click_FastChat_VideoConnect];
     WEAK_SELF();
     if (![ZZUserHelper shareInstance].isLogin) {
         [self gotoLoginView];
@@ -492,7 +492,7 @@
     if ([[ZZUserHelper shareInstance].loginer.mcoin integerValue] < totalMoney) {
         [UIAlertController presentAlertControllerWithTitle:kMsg_Mebi_NO message:nil doneTitle:@"充值" cancelTitle:@"取消" showViewController:self.navigationController completeBlock:^(BOOL isCancelled) {
             if (!isCancelled) {
-                [MobClick event:Event_click_FastChat_TopUp];
+               // [MobClick event:Event_click_FastChat_TopUp];
                 ZZMeBiViewController *vc = [ZZMeBiViewController new];
                 WS(weakSelf);
                 [vc setPaySuccess:^(ZZUser *paySuccesUser) {
@@ -610,10 +610,10 @@
         if (isOpen) {
             [weakSelf connectWithIndePath:indexPath];
         }
-        [MobClick event:Event_click_FastChat_VideoCompleted];
+        //[MobClick event:Event_click_FastChat_VideoCompleted];
     };
     _fastConfirmAlert.touchCancel =^{
-        [MobClick event:Event_click_FastChat_VideoRefused];
+        //[MobClick event:Event_click_FastChat_VideoRefused];
     };
     [self.view addSubview:_fastConfirmAlert];
 }
@@ -691,7 +691,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [MobClick event:Event_click_other_Detail];
+   // [MobClick event:Event_click_other_Detail];
     if ([ZZUtils isBan]) {
         return;
     }

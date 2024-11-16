@@ -406,7 +406,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else if (type == CellTypeStartTime) {
-        [MobClick event:Event_rent_choose_time];
+       // [MobClick event:Event_rent_choose_time];
         ZZDatePicker *datePicker = [[ZZDatePicker alloc] initWithFrame:[UIScreen mainScreen].bounds];
         datePicker.delegate = self;
         [self.view.window addSubview:datePicker];
@@ -416,7 +416,7 @@
         [datePicker showDatePickerWithDate:_order.dated_at];
     }
     else if (type == CellTypeDuration) {
-        [MobClick event:Event_rent_choose_hours];
+       // [MobClick event:Event_rent_choose_hours];
         ZZHoursPicker *hourPicker= [[ZZHoursPicker alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         hourPicker.delegate = self;
         [self.view.window addSubview:hourPicker];
@@ -450,7 +450,7 @@
         [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
         return;
     }
-    [MobClick event:Event_rent_choose_location];
+  //  [MobClick event:Event_rent_choose_location];
 
     if ([ZZUserHelper shareInstance].isAbroad) {
         ZZRentAbroadLocationViewController *controller = [[ZZRentAbroadLocationViewController alloc] init];

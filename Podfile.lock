@@ -42,6 +42,19 @@ PODS:
   - MJRefresh (3.2.3)
   - NMRangeSlider (1.2.1)
   - ObjectMapper (4.2.0)
+  - Pingpp (2.2.34):
+    - Pingpp/Alipay (= 2.2.34)
+    - Pingpp/Core (= 2.2.34)
+    - Pingpp/UnionPay (= 2.2.34)
+  - Pingpp/Alipay (2.2.34):
+    - Pingpp/Core
+    - PingppAlipaySDK
+  - Pingpp/Core (2.2.34)
+  - Pingpp/UnionPay (2.2.34):
+    - Pingpp/Core
+    - PingppUnionPaySDK
+  - PingppAlipaySDK (15.8.3)
+  - PingppUnionPaySDK (3.4.7)
   - PLPlayerKit (3.4.9):
     - PLPlayerKit/iphoneos (= 3.4.9)
   - PLPlayerKit/iphoneos (3.4.9)
@@ -85,7 +98,6 @@ PODS:
   - SVProgressHUD (2.2.5)
   - TMCache (2.1.0)
   - "UITableView+FDTemplateLayoutCell (1.6)"
-  - UMengAnalytics (4.2.4)
   - Underscore.m (0.3.0)
   - XHLaunchAd (3.9.12):
     - FLAnimatedImage (~> 1.0.12)
@@ -119,6 +131,8 @@ DEPENDENCIES:
   - MJRefresh (~> 3.2.3)
   - NMRangeSlider (~> 1.2.1)
   - ObjectMapper (~> 4.2.0)
+  - Pingpp
+  - Pingpp/Alipay
   - PLPlayerKit (~> 3.4.7)
   - PLShortVideoKit (~> 3.0.0)
   - Qiniu (~> 7.2.5)
@@ -132,7 +146,6 @@ DEPENDENCIES:
   - SVProgressHUD (~> 2.2.5)
   - TMCache (~> 2.1.0)
   - "UITableView+FDTemplateLayoutCell (~> 1.6)"
-  - UMengAnalytics (~> 4.2.4)
   - Underscore.m (~> 0.3.0)
   - XHLaunchAd (~> 3.9.12)
   - YBImageBrowser (~> 2.1.5)
@@ -163,6 +176,9 @@ SPEC REPOS:
     - MJRefresh
     - NMRangeSlider
     - ObjectMapper
+    - Pingpp
+    - PingppAlipaySDK
+    - PingppUnionPaySDK
     - PLPlayerKit
     - PLShortVideoKit
     - Qiniu
@@ -175,7 +191,6 @@ SPEC REPOS:
     - SVProgressHUD
     - TMCache
     - "UITableView+FDTemplateLayoutCell"
-    - UMengAnalytics
     - Underscore.m
     - XHLaunchAd
     - YBImageBrowser
@@ -213,6 +228,9 @@ SPEC CHECKSUMS:
   MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  Pingpp: 8e59ff77bf59069ee8461002d39de93ce0dd3e9d
+  PingppAlipaySDK: ae632e43eb97c03e171e426cebb4228aaceb9d39
+  PingppUnionPaySDK: a4eb46fdbb1ea1cb437f99dbc44ce6aeb6876084
   PLPlayerKit: 6d377f241918be3737c811b84f8366de385c1f91
   PLShortVideoKit: 901da81b11ae8e397f530bf3d4014921426cbf4c
   Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
@@ -225,7 +243,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
-  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
   Underscore.m: dc9ca06fe2c9a79d01ce20c3d2c1e8f91f2d92dc
   XHLaunchAd: 6320f9c68732667323072fc3a5f104e40fbe9cfe
   YBImageBrowser: 549bc0f8bc7df723381e1516db240d827ded3673
@@ -233,6 +250,6 @@ SPEC CHECKSUMS:
   YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: e84202d3b1e783cea1a9e069f445a6481f15e415
+PODFILE CHECKSUM: 71bd9a2cb97cd2b6ed859dfd89ba0efca4fc0247
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

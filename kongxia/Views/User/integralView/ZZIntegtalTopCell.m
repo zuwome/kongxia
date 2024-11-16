@@ -165,7 +165,7 @@
 #pragma mark - 签到请求网络接口
 
 - (void)requestSign {
-    [MobClick event:Event_click_myIntegral_sign_in];
+   // [MobClick event:Event_click_myIntegral_sign_in];
 
 //       [self flipAnimation];
     [ZZIntegralHelper signInSuccess:^{

@@ -356,23 +356,23 @@
         
         switch (sender.tag - 100) {
             case 0: {
-                [MobClick event:Event_click_home_tab];
+              //  [MobClick event:Event_click_home_tab];
             }
                 break;
             case 1: {
-                [MobClick event:Event_click_discovery_tab];
+              //  [MobClick event:Event_click_discovery_tab];
             }
                 break;
             case 2: {
                 if ([ZZUserHelper shareInstance].oAuthToken && ![ZZUserHelper shareInstance].IMToken) {
                     [weakSelf userDidLogin:nil];
                 }
-                [MobClick event:Event_click_chat_tab];
+              //  [MobClick event:Event_click_chat_tab];
             }
                 break;
             case 3: {
                 [self getUnread];
-                [MobClick event:Event_click_me_tab];
+              //  [MobClick event:Event_click_me_tab];
             }
                 break;
             default:
@@ -451,7 +451,7 @@
 
 //中间菜单按钮
 - (void)menuBtnClick {
-    [MobClick event:Event_click_menu_tab];
+    //[MobClick event:Event_click_menu_tab];
     if (![self canClickBtn]) {
         return;
     }

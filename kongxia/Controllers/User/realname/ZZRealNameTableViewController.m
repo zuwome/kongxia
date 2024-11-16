@@ -103,7 +103,7 @@
 }
 
 - (IBAction)done:(UIButton *)sender {
-    [MobClick event:Event_click_realname_confirm];
+   // [MobClick event:Event_click_realname_confirm];
     if (_nameTextField.text.length == 0) {
         [ZZHUD showErrorWithStatus:@"请输入真实姓名!"];
         return;
@@ -262,7 +262,7 @@
         [vcs removeObjectsInRange:NSMakeRange(1, vcs.count - 1)];
     }
 
-    [MobClick event:Event_click_me_rent];
+   // [MobClick event:Event_click_me_rent];
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    ZZUserChuzuViewController *controller = [sb instantiateViewControllerWithIdentifier:@"rentStart"];
 //    controller.user = _user;

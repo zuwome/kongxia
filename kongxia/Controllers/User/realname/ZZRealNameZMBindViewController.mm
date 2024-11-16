@@ -168,7 +168,7 @@
             if (error) {
                 [ZZHUD showErrorWithStatus:error.message];
             } else {
-                [MobClick event:Event_click_realname_confirm];
+               // [MobClick event:Event_click_realname_confirm];
                 [ZZHUD showSuccessWithStatus:@"绑定成功"];
                 ZZUser *user = [ZZUser yy_modelWithJSON:data];
                 _user.zmxy = user.zmxy;

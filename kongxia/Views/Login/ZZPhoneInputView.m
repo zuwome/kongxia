@@ -103,7 +103,7 @@
 
 - (void)btnClick
 {
-    [MobClick event:Event_click_choose_countrycode];
+   // [MobClick event:Event_click_choose_countrycode];
     if (_touchCode) {
         _touchCode();
     }

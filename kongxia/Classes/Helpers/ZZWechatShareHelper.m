@@ -7,7 +7,6 @@
 //
 
 #import "ZZWechatShareHelper.h"
-#import <UMSocialCore/UMSocialCore.h>
 
 @implementation ZZWechatShareHelper
 

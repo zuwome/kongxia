@@ -82,7 +82,7 @@
 
 - (void)sendCode:(UIButton *)sender
 {
-    [MobClick event:Event_click_codelogin_getcode];
+    //[MobClick event:Event_click_codelogin_getcode];
     if (isNullString(_phoneView.textField.text)) {
         [self.alertView showAlertMsg:@"手机号不能为空"];
         return;
@@ -124,7 +124,7 @@
 
 - (void)loginBtnClick
 {
-    [MobClick event:Event_click_codelogin_login];
+   // [MobClick event:Event_click_codelogin_login];
     [self.view endEditing:YES];
     _loginer = [[ZZUser alloc] init];
     _loginer.phone = _phoneView.textField.text;

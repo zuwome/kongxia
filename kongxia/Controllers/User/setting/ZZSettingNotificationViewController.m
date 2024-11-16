@@ -483,7 +483,7 @@
                 case 0: {
                     _user.push_config.chat = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_private_on];
+                      //  [MobClick event:Event_click_notification_private_on];
                         if (_user.push_config.no_push) {
                             [self disableIMWithString:_timeString];
                         } else {
@@ -491,7 +491,7 @@
                         }
                     }
                     else {
-                        [MobClick event:Event_click_notification_private_off];
+                       // [MobClick event:Event_click_notification_private_off];
                         [self disableRCIMWithStarTime:@"00:00:00" mins:1439];
                     }
                     
@@ -501,50 +501,50 @@
                 case 1: {
                     _user.push_config.following = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_attent_on];
+                       // [MobClick event:Event_click_notification_attent_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_attent_off];
+                      //  [MobClick event:Event_click_notification_attent_off];
                     }
                     break;
                 }
                 case 2: {
                     _user.push_config.reply = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_comment_on];
+                      //  [MobClick event:Event_click_notification_comment_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_comment_off];
+                      //  [MobClick event:Event_click_notification_comment_off];
                     }
                     break;
                 }
                 case 3: {
                     _user.push_config.like = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_zan_on];
+                       // [MobClick event:Event_click_notification_zan_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_zan_off];
+                      //  [MobClick event:Event_click_notification_zan_off];
                     }
                     break;
                 }
                 case 4: {
                     _user.push_config.tip = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_tip_on];
+                       // [MobClick event:Event_click_notification_tip_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_tip_off];
+                       // [MobClick event:Event_click_notification_tip_off];
                     }
                     break;
                 }
                 case 5: {
                     _user.push_config.system_msg = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_sysmsg_on];
+                       // [MobClick event:Event_click_notification_sysmsg_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_sysmsg_off];
+                       // [MobClick event:Event_click_notification_sysmsg_off];
                     }
                     break;
                 }
@@ -561,20 +561,20 @@
                 case 6: {
                     _user.push_config.mmd_following = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_mmd_following_on];
+                       // [MobClick event:Event_click_notification_mmd_following_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_mmd_following_off];
+                       // [MobClick event:Event_click_notification_mmd_following_off];
                     }
                     break;
                 }
                 case 7: {
                     _user.push_config.sk_following = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_sk_on];
+                       // [MobClick event:Event_click_notification_sk_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_sk_off];
+                       // [MobClick event:Event_click_notification_sk_off];
                     }
                     break;
                 }
@@ -591,13 +591,13 @@
                 case 8: {
                     _user.push_config.no_push = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_nopush_on];
+                       // [MobClick event:Event_click_notification_nopush_on];
                         if (_user.push_config.chat) {
                             [self disableIMWithString:_timeString];
                         }
                     }
                     else {
-                        [MobClick event:Event_click_notification_nopush_off];
+                       // [MobClick event:Event_click_notification_nopush_off];
                         if (_user.push_config.chat) {
                             [self enableRCIM];
                         }
@@ -608,30 +608,30 @@
                 case 100: {
                     _user.push_config.push_hide_name = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_pushhidename_on];
+                       // [MobClick event:Event_click_notification_pushhidename_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_pushhidename_off];
+                       // [MobClick event:Event_click_notification_pushhidename_off];
                     }
                     break;
                 }
                 case 200: {
                     _user.push_config.need_sound = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_sound_on];
+                       // [MobClick event:Event_click_notification_sound_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_sound_off];
+                       // [MobClick event:Event_click_notification_sound_off];
                     }
                     break;
                 }
                 case 201: {
                     _user.push_config.need_shake = isOn;
                     if (isOn) {
-                        [MobClick event:Event_click_notification_shake_on];
+                       // [MobClick event:Event_click_notification_shake_on];
                     }
                     else {
-                        [MobClick event:Event_click_notification_shake_off];
+                       // [MobClick event:Event_click_notification_shake_off];
                     }
                     break;
                 }

@@ -120,7 +120,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatTimeLine messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_friendcircle];
+//                    [MobClick event:Event_share_to_friendcircle];
                 }
             }];
         }
@@ -129,7 +129,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_wechat];
+//                    [MobClick event:Event_share_to_wechat];
                 }
             }];
         }
@@ -138,7 +138,7 @@
         {
             [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_QQ messageObject:messageObject currentViewController:_shareViewController completion:^(id result, NSError *error) {
                 if (!error) {
-                    [MobClick event:Event_share_to_qq];
+//                    [MobClick event:Event_share_to_qq];
                 }
             }];
         }
@@ -152,7 +152,7 @@
                 if (!error) {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"分享成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alert show];
-                    [MobClick event:Event_share_to_weibo];
+//                    [MobClick event:Event_share_to_weibo];
                 }
             }];
         }

@@ -274,7 +274,7 @@
 - (void)request
 {
     // 发任务埋点
-    [MobClick event:Event_click_publish];
+   // [MobClick event:Event_click_publish];
     self.publishView.publishView.userInteractionEnabled = NO;
     NSLog(@"PYL_获取缓存的城市");
     if (!isNullString(self.publishView.locationModel.city)) {

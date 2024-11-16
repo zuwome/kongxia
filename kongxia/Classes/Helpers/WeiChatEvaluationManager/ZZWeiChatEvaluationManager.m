@@ -41,10 +41,10 @@
         viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     }
     if (model.type == PaymentTypeIDPhoto) {
-        [MobClick event:Event_click_userpage_IDPhoto_check];
+        //[MobClick event:Event_click_userpage_IDPhoto_check];
     }
     else if (model.type == PaymentTypeWX) {
-        [MobClick event:Event_click_userpage_wx_check];
+       // [MobClick event:Event_click_userpage_wx_check];
     }
     
     /*没有购买的弹窗*/

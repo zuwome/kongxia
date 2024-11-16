@@ -110,10 +110,10 @@ import UIKit
     // 统计是查看微信还是查看证件照
     func payItemClicked(type: PaymentType) {
         if type == .idPhoto {
-            MobClick.event(Event_click_userpage_IDPhoto_check)
+            //MobClick.event(Event_click_userpage_IDPhoto_check)
         }
         else if type == .WX {
-            MobClick.event(Event_click_userpage_wx_check)
+           // MobClick.event(Event_click_userpage_wx_check)
         }
     }
 }
@@ -241,7 +241,7 @@ extension ZZPaymentManager {
     // 购买微信
     func buyWeChat(view: ZZPaymentView, paymentModel: ZZWeiChatEvaluationModel) {
         
-        MobClick.event(Event_click_userpage_wx_buy)
+       // MobClick.event(Event_click_userpage_wx_buy)
         
         weak var weakSelf = self
         ZZMeBiModel.buyWeChat(paymentModel.user.uid,
@@ -273,7 +273,7 @@ extension ZZPaymentManager {
         guard let payItem = payItem, let couponID = paymentModel._id, let toId = payItem.user.uid, let userId = ZZUserHelper.shareInstance()!.loginerId else {
             return
         }
-        MobClick.event(Event_click_userpage_wx_buy)
+        //MobClick.event(Event_click_userpage_wx_buy)
         
         let params: [String : Any] = [
             "voucherId": couponID,
@@ -310,7 +310,7 @@ extension ZZPaymentManager {
     
     // 购买证件照
     func buyIDPhoto(view: ZZPaymentView, paymentModel: ZZWeiChatEvaluationModel) {
-        MobClick.event(Event_click_userpage_IDPhoto_buy)
+       // MobClick.event(Event_click_userpage_IDPhoto_buy)
         
         weak var weakSelf = self
         ZZMeBiModel.buyIDPhoto(paymentModel.user.uid, byMcoin: String(format: "%.0f", paymentModel.mcoinForItem)) { (error, data, task) in
@@ -339,7 +339,7 @@ extension ZZPaymentManager {
 // MARK: - ZZIAPPayViewDelegate
 extension ZZPaymentManager: ZZIAPPayViewDelegate {
     func recharge(view: ZZIAPPayView, selectedItem: ZZMeBiModel?, paymentModel: ZZWeiChatEvaluationModel) {
-        MobClick.event(Event_click_MeBi_TopUp)
+       // MobClick.event(Event_click_MeBi_TopUp)
         
         guard selectedItem != nil else {
             return
@@ -405,7 +405,7 @@ extension ZZPaymentManager: ZZPaymentViewDelegate {
     // 内购充值
     func recharge(view: ZZPaymentView, selectedItem: ZZMeBiModel?, paymentModel: ZZWeiChatEvaluationModel) {
         
-        MobClick.event(Event_click_MeBi_TopUp)
+       // MobClick.event(Event_click_MeBi_TopUp)
         
         guard selectedItem != nil else {
             return
@@ -420,7 +420,7 @@ extension ZZPaymentManager: ZZPaymentViewDelegate {
 
     // 使用微信或者支付宝充值
     func recharge(view: ZZPaymentView, selectedItem: ZZMeBiModel?, paymentModel: ZZWeiChatEvaluationModel, selectedType: Int) {
-        MobClick.event(Event_click_MeBi_TopUp)
+       // MobClick.event(Event_click_MeBi_TopUp)
         
         guard let selectedItem = selectedItem else {
             return

@@ -184,7 +184,7 @@
         [self gotoLoginView];
         return;
     }
-    [MobClick event:Event_click_me_icon];
+   // [MobClick event:Event_click_me_icon];
     WeakSelf;
     ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
     controller.gotoUserPage = YES;
@@ -286,7 +286,7 @@
     if (![self verifyUserInfo:@"chat"]) {   //验证不通过
         return;
     }
-    [MobClick event:Event_user_detail_chat];
+   // [MobClick event:Event_user_detail_chat];
     [ZZRequest method:@"GET" path:[NSString stringWithFormat:@"/api/user/%@/say_hi_status",self.user.uid] params:nil next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         _bottomView.chatBtn.userInteractionEnabled = YES;
         if (error) {
@@ -342,7 +342,7 @@
         return;
     }
     
-    [MobClick event:Event_user_detail_add_order];
+   // [MobClick event:Event_user_detail_add_order];
     if ([ZZUserHelper shareInstance].loginer && [ZZUserHelper shareInstance].loginer.avatarStatus == 0) {
         [self showOkCancelAlert:@"提示" message:@"本人头像不是自己的照片，请先去修改" confirmTitle:@"去修改" confirmHandler:^(UIAlertAction * _Nonnull action) {
             ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
@@ -357,7 +357,7 @@
     }
 }
 - (void)gotoRentOrderView {
-    [MobClick event:Event_rent_choose_skill];
+   // [MobClick event:Event_rent_choose_skill];
     
     ZZRentOrderInfoViewController *vc = [[ZZRentOrderInfoViewController alloc] init];
     ZZSkill *skill = _topic.skills[0];
@@ -422,7 +422,7 @@
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_user_detail_follow];
+   // [MobClick event:Event_user_detail_follow];
     if (self.user.follow_status == 0) {
         [self.user followWithUid:self.user.uid next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
             if (error) {

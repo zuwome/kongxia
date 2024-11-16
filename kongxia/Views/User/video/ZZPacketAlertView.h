@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 /**
  *  收到红包的alertview
  */

@@ -121,7 +121,7 @@
 
 // 上传头像
 - (IBAction)uploadPictureClick {
-    [MobClick event:Event_click_infomation_uploadhead];
+   // [MobClick event:Event_click_infomation_uploadhead];
     [self.view endEditing:YES];
     [self showSheetActions:@"上传真实头像"
                    message:nil
@@ -556,7 +556,7 @@
 
 // 申请达人(出租自己)页面
 - (void)createUserChuzuViewController {
-    [MobClick event:Event_click_me_rent];
+  // [MobClick event:Event_click_me_rent];
     //未出租状态前往申请达人，其余状态进入主题管理
     ZZViewController *controller = nil;
     if (_user.rent.status == 0) {
@@ -585,7 +585,7 @@
 
 // 我的微信号页面
 - (ZZWXViewController *)createWXViewController {
-    [MobClick event:Event_click_usercenter_wx];
+   // [MobClick event:Event_click_usercenter_wx];
     ZZWXViewController *controller = [[ZZWXViewController alloc] init];
     controller.user = _user;
     controller.hidesBottomBarWhenPushed = YES;
@@ -594,7 +594,7 @@
 
 // 实名认证页面
 - (ZZRealNameListViewController *)createRealNameListViewController {
-    [MobClick event:Event_click_me_realname];
+   // [MobClick event:Event_click_me_realname];
     ZZRealNameListViewController *controller = [[ZZRealNameListViewController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     controller.user = _user;

@@ -7,7 +7,7 @@
 //
 
 #import "ZZCommissionShareView.h"
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
 
 #import "ZZCommissionModel.h"
 

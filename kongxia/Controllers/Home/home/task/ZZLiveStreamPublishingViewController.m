@@ -729,7 +729,7 @@
         WeakSelf
         [UIAlertController presentAlertControllerWithTitle:kMsg_Mebi_NO message:nil doneTitle:@"充值" cancelTitle:@"取消" completeBlock:^(BOOL isCancelled) {
             if (!isCancelled) {
-                [MobClick event:Event_click_OneToOneChat_TopUp];
+               // [MobClick event:Event_click_OneToOneChat_TopUp];
                 ZZMeBiViewController *vc = [ZZMeBiViewController new];
                 [vc setPaySuccess:^(ZZUser *paySuccesUser) {
                     __strong typeof(weakSelf)strongSelf =weakSelf;

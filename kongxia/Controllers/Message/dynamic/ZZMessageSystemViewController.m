@@ -294,7 +294,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ZZSystemMessageModel *model = _dataArray[_dataArray.count - 1 - indexPath.row];
     if (model.message.media_type == 4) {
-        [MobClick event:Event_click_me_icon];
+       // [MobClick event:Event_click_me_icon];
         ZZUserEditViewController *controller = [[ZZUserEditViewController alloc] init];
         controller.gotoUserPage = YES;
         controller.hidesBottomBarWhenPushed = YES;

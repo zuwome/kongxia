@@ -475,7 +475,7 @@
 
 - (IBAction)zanClick:(NSIndexPath *)indexPath {
     
-    [MobClick event:Event_click_player_zan];
+   // [MobClick event:Event_click_player_zan];
     ZZFindVideoModel *model = _dataArray[indexPath.row];
     if (model.like_status) {
         // 取消赞
@@ -573,7 +573,7 @@
 
 - (void)banerSelectIndex:(NSInteger)index
 {
-    [MobClick event:Event_click_find_banner];
+   // [MobClick event:Event_click_find_banner];
     ZZFindModel *model = _bannerDataArray[index];
     
     if (model.link) {

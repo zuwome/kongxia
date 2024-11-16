@@ -209,7 +209,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [MobClick event:Event_rent_choose_skill];
+   // [MobClick event:Event_rent_choose_skill];
     WeakSelf;
     ZZRentOrderInfoViewController *vc = [[ZZRentOrderInfoViewController alloc] init];
     vc.isEdit = _isEdit;

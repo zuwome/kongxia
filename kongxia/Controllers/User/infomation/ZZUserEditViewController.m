@@ -886,7 +886,7 @@
         case 1: {
             if (indexPath.row == 0) {
                 // 证件照
-                [MobClick event:Event_click_edit_IDPhoto];
+               // [MobClick event:Event_click_edit_IDPhoto];
                 if (_loginer.id_photo.status == 1) {
                     [ZZHUD showTaskInfoWithStatus:@"证件照审核中，暂不可操作，请等待审核结果"];
                     return;
@@ -908,7 +908,7 @@
             }
             else if (indexPath.row == 1) {
                 // 达人视频
-                [MobClick event:Event_click_detail_Apply_talent];
+               // [MobClick event:Event_click_detail_Apply_talent];
                 [self gotoStarVideoView];
             }
             break;
@@ -916,22 +916,22 @@
         case 2: {
             if (indexPath.row == 0) {
                 // 用户名
-                [MobClick event:Event_click_edit_name];
+               // [MobClick event:Event_click_edit_name];
                 [self gotoEditViewWithIndexPath:indexPath];
             }
             else if (indexPath.row == 1) {
                 // 年龄
-                [MobClick event:Event_click_edit_age];
+               // [MobClick event:Event_click_edit_age];
                 [self gotoAgeEdit];
             }
             else if (indexPath.row == 2) {
                 // 身高
-                [MobClick event:Event_click_edit_height];
+              //  [MobClick event:Event_click_edit_height];
                 [self gotoHeightEdit];
             }
             else if (indexPath.row == 3) {
                 // 体重
-                [MobClick event:Event_click_edit_weight];
+               // [MobClick event:Event_click_edit_weight];
                 [self gotoWeightEdit];
             }
             break;
@@ -939,17 +939,17 @@
         case 3: {
             if (indexPath.row == 0) {
                 // 自我介绍
-                [MobClick event:Event_click_edit_introduce];
+               // [MobClick event:Event_click_edit_introduce];
                 [self gotoSignEditViewWithIndexPath:indexPath];
             }
             else if (indexPath.row == 1) {
                 // 职业
-                [MobClick event:Event_click_edit_work];
+               // [MobClick event:Event_click_edit_work];
                 [self gotoWorkEdit];
             }
             else if (indexPath.row == 2) {
                 // 常住地
-                [MobClick event:Event_click_edit_location];
+               // [MobClick event:Event_click_edit_location];
                 [self gotoLocationEdit];
             }
             break;
@@ -963,7 +963,7 @@
             }
             else if (indexPath.row == 1) {
                 // 个人标签
-                [MobClick event:Event_click_edit_personlabel];
+               // [MobClick event:Event_click_edit_personlabel];
                 ZZAddPersonalLabelViewController *controller = [[ZZAddPersonalLabelViewController alloc] init];
                 controller.user = _loginer;
                 controller.updateLabel = ^{
@@ -980,7 +980,7 @@
             }
             else if (indexPath.row == 2) {
                 // 兴趣爱好
-                [MobClick event:Event_click_edit_interest];
+               // [MobClick event:Event_click_edit_interest];
                 ZZAddLabelViewController *controller = [[ZZAddLabelViewController alloc] init];
                 controller.user = _loginer;
                 controller.type = RentLabelTypeInterest;
@@ -1002,7 +1002,7 @@
         }
         case 5: {
             // 账号绑定
-            [MobClick event:Event_click_bind_account];
+          //  [MobClick event:Event_click_bind_account];
             ZZBindViewController *controller = [[ZZBindViewController alloc] init];
             controller.user = _loginer;
             controller.updateBind = ^{

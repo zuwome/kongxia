@@ -199,7 +199,7 @@ NSString *identifier = @"topiccell";
 
 - (void)navigationRightBtnClick
 {
-    [MobClick event:Event_click_order_detail_more];
+   // [MobClick event:Event_click_order_detail_more];
     if (!_order) {
         return;
     }
@@ -1320,7 +1320,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_cancel_order];
+   // [MobClick event:Event_cancel_order];
     if (_isFrom && _detailType == OrderDetailTypePaying) {
         ZZNewOrderRefundOptionsViewController *controller = [[ZZNewOrderRefundOptionsViewController alloc]init];
         controller.order = self.order;
@@ -1359,7 +1359,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_refuse_order];
+   // [MobClick event:Event_refuse_order];
     ZZOrderTalentShowViewController *vc = [[ZZOrderTalentShowViewController alloc] init];
     vc.order = self.order;
     vc.isRefusedInvitation = YES;
@@ -1381,7 +1381,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_modify_order];
+   // [MobClick event:Event_modify_order];
     ZZRentChooseSkillViewController *controller = [[ZZRentChooseSkillViewController alloc] init];
     controller.isEdit = YES;
     controller.order = _order;
@@ -1407,7 +1407,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_chat_order];
+   // [MobClick event:Event_chat_order];
     if (_isFromChat) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -1431,7 +1431,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_accept_order];
+   // [MobClick event:Event_accept_order];
     [ZZHUD showWithStatus:nil];
     [_order accept:_order.status next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
         if (error) {
@@ -1454,7 +1454,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_pay_order];
+   // [MobClick event:Event_pay_order];
     ZZPayViewController *vc = [[ZZPayViewController alloc] init];
     vc.order = _order;
     vc.type = PayTypeOrder;
@@ -1475,7 +1475,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_refund_order];
+   // [MobClick event:Event_refund_order];
     ZZNewOrderRefundOptionsViewController *vc = [[ZZNewOrderRefundOptionsViewController alloc] init];
     vc.order = _order;
     vc.callBack = ^(NSString *status) {
@@ -1493,7 +1493,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_refund_yes_order];
+   // [MobClick event:Event_refund_yes_order];
     WS(weakSelf);
     if ([self.order.reason_type intValue] == 2 ) {
         ZZARRentAlertView *alertView =   [[ZZARRentAlertView alloc]init];
@@ -1545,7 +1545,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_refund_no_order];
+   // [MobClick event:Event_refund_no_order];
     
     ZZNewOrderRefuseReasonViewController *controller = [[ZZNewOrderRefuseReasonViewController alloc] init];
     
@@ -1610,7 +1610,7 @@ NSString *identifier = @"topiccell";
         return;
     }
     if (_isFrom) {
-        [MobClick event:Event_from_click_met_order];
+       // [MobClick event:Event_from_click_met_order];
         [self showOkCancelAlert:@"提示"
                         message:@"邀约是否已顺利完成，确定后款项将会支付给对方"
                    confirmTitle:@"确认"
@@ -1618,7 +1618,7 @@ NSString *identifier = @"topiccell";
             [self metRequest];
         } cancelTitle:@"取消" cancelHandler:nil];
     } else {
-        [MobClick event:Event_to_click_met_order];
+       // [MobClick event:Event_to_click_met_order];
         [self showOkCancelAlert:@"提示"
                         message:@"确认已到达见面地点？"
                    confirmTitle:@"确认"
@@ -1654,7 +1654,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_phone_order];
+   // [MobClick event:Event_phone_order];
     
 //    BOOL canPlayAudio = YES;
 //    NSString *targetId = @"";
@@ -1693,7 +1693,7 @@ NSString *identifier = @"topiccell";
     if ([ZZUtils isBan]) {
         return;
     }
-    [MobClick event:Event_comment_order];
+   // [MobClick event:Event_comment_order];
     ZZOrderCommentViewController *controller = [[ZZOrderCommentViewController alloc] init];
     controller.order = _order;
     controller.successCallBack = ^{

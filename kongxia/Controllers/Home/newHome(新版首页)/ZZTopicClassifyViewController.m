@@ -261,7 +261,7 @@
 }
 
 - (void)showRent {  //跳转设置中的隐私页面
-    [MobClick event:Event_click_setting_privacy];
+    //[MobClick event:Event_click_setting_privacy];
     ZZSettingPrivacyViewController *controller = [[ZZSettingPrivacyViewController alloc] init];
     controller.user = [ZZUserHelper shareInstance].loginer;
     [self.navigationController pushViewController:controller animated:YES];

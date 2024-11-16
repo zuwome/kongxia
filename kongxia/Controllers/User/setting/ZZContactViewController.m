@@ -436,7 +436,7 @@
 
 - (void)blcokPhone:(NSArray *)array
 {
-    [MobClick event:Event_click_privacy_contact_block];
+   // [MobClick event:Event_click_privacy_contact_block];
     [ZZHUD showWithStatus:@"加载中..."];
     NSString *string = [array componentsJoinedByString:@","];
     NSDictionary *param = @{@"contacts":string};
@@ -459,7 +459,7 @@
 
 - (void)unblcokPhone:(NSArray *)array
 {
-    [MobClick event:Event_click_privacy_contact_unblock];
+   // [MobClick event:Event_click_privacy_contact_unblock];
     [ZZHUD showWithStatus:@"加载中..."];
     NSString *string = [array componentsJoinedByString:@","];
     NSDictionary *param = @{@"contacts":string};
@@ -552,7 +552,7 @@
 }
 
 - (void)blcokPhone:(NSArray *)array {
-    [MobClick event:Event_click_privacy_contact_block];
+   // [MobClick event:Event_click_privacy_contact_block];
     [ZZHUD showWithStatus:@"加载中..."];
     NSString *string = [array componentsJoinedByString:@","];
     NSDictionary *param = @{@"contacts":string};
@@ -578,7 +578,7 @@
 
 - (void)unblcokPhone:(NSArray *)array
 {
-    [MobClick event:Event_click_privacy_contact_unblock];
+   // [MobClick event:Event_click_privacy_contact_unblock];
     [ZZHUD showWithStatus:@"加载中..."];
     NSString *string = [array componentsJoinedByString:@","];
     NSDictionary *param = @{@"contacts":string};

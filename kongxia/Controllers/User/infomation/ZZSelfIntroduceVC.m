@@ -274,7 +274,7 @@
 
 - (void)selectFromTheAlbum {
     if (_reviewStatus == ZZVideoReviewStatusNoRecord) {
-        [MobClick event:Event_click_Record_video];
+       // [MobClick event:Event_click_Record_video];
     }
     [ZZUtils checkRecodeAuth:^(BOOL authorized) {
         if (authorized) {
@@ -438,7 +438,7 @@
 
 - (void)recordVideo {
     if (_reviewStatus == ZZVideoReviewStatusNoRecord) {
-        [MobClick event:Event_click_Record_video];
+       // [MobClick event:Event_click_Record_video];
     }
     
     [ZZUtils checkRecodeAuth:^(BOOL authorized) {

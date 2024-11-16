@@ -126,13 +126,11 @@ class ZZUserCustomsViewController: ZZViewController {
     
     @objc func shareToWechat() {
         if let image = customImageView.image {
-            if WXApi.isWXAppInstalled() {
+            if WxHelper.IsWechatInstalled() {
                 ZZWechatShareHelper.share(image, controller: self)
-            }
-            else {
+            } else {
                 ZZHUD.showError(withStatus: "分享失败，您尚未安装微信。")
             }
-            
         }
     }
     
