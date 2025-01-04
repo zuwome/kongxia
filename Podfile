@@ -13,7 +13,7 @@ target 'kongxia' do
       pod 'AMapFoundation', '~> 1.8.2'
       
 #   七牛
-    pod 'Qiniu', '~> 7.2.5'
+    pod 'Qiniu', '~> 8.2.0'
     
 #   友盟
 #    pod 'UMengAnalytics', '~> 4.2.4'
@@ -26,7 +26,7 @@ target 'kongxia' do
     pod 'SobotKit', '~> 3.2.0'
     
 #   七牛短视频
-    pod 'PLShortVideoKit', '~> 3.0.0'
+pod 'PLShortVideoKit', :podspec => 'https://raw.githubusercontent.com/pili-engineering/PLShortVideoKit/master/PLShortVideoKit-Smart.podspec'
     pod 'PLPlayerKit', '~> 3.4.7'
     
 #   美颜

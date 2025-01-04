@@ -859,58 +859,58 @@
             __strong typeof(weakSelf)strongSelf = weakSelf;
             
             NSFileManager *manager = [NSFileManager defaultManager];
-                NSError *error = nil;
-                NSLog(@"PY_进入到这一步2");
-                NSInteger timeInterval = [[NSDate date] timeIntervalSince1970]*1000*1000;
-                NSString *pathToExport = [NSString stringWithFormat:@"%@/%ld.mp4",[ZZFileHelper createPathWithChildPath:video_savepath],timeInterval];
-                strongSelf.exportURL = [NSURL fileURLWithPath:pathToExport];
+            NSError *error = nil;
+            NSLog(@"PY_进入到这一步2");
+            NSInteger timeInterval = [[NSDate date] timeIntervalSince1970]*1000*1000;
+            NSString *pathToExport = [NSString stringWithFormat:@"%@/%ld.mp4",[ZZFileHelper createPathWithChildPath:video_savepath],timeInterval];
+            strongSelf.exportURL = [NSURL fileURLWithPath:pathToExport];
 
-                if ([manager copyItemAtURL:url toURL:strongSelf.exportURL error:&error]) {
-                    NSLog(@"PY_进入到这一步3");
-                    
-                    [manager removeItemAtURL:url error:nil];
+            if ([manager copyItemAtURL:url toURL:strongSelf.exportURL error:&error]) {
+                NSLog(@"PY_进入到这一步3");
+                
+                [manager removeItemAtURL:url error:nil];
 
-                    ZZRecordEditViewController *controller = [[ZZRecordEditViewController alloc] init];
-                    controller.exportURL = strongSelf.exportURL;
-                    controller.type = strongSelf.type;
-                    controller.isFastChat = strongSelf.isFastChat;
-                    controller.leftCallBack = ^{
-                        [[NSFileManager defaultManager] removeItemAtURL:strongSelf.exportURL error:nil];
-                    };
+                ZZRecordEditViewController *controller = [[ZZRecordEditViewController alloc] init];
+                controller.exportURL = strongSelf.exportURL;
+                controller.type = strongSelf.type;
+                controller.isFastChat = strongSelf.isFastChat;
+                controller.leftCallBack = ^{
+                    [[NSFileManager defaultManager] removeItemAtURL:strongSelf.exportURL error:nil];
+                };
 
-                    controller.is_base_sk = strongSelf.is_base_sk;
-                    controller.isRecordVideo = NO;
-                    controller.pixelWidth = SCREEN_WIDTH;
-                    controller.pixelHeight = SCREEN_HEIGHT;
-                    controller.isIntroduceVideo = strongSelf.is_base_sk;
-                    controller.showType = strongSelf.showType;
-                    controller.isShowTopUploadStatus = strongSelf.isShowTopUploadStatus;
-                    controller.isUploadAfterCompleted = strongSelf.isUploadAfterCompleted;
-                    controller.isIntroduceVideo = strongSelf.isIntroduceVideo;
-                    controller.selectAlbumsDirectly = YES;//直接选的相册
-                    
-                    if (_type == RecordTypeMemeda || _type == RecordTypeUpdateMemeda) {
-                        controller.model = strongSelf.model;
-                    }
-                    
-                    if ([weakSelf.presentingViewController isKindOfClass:[ZZNavigationController class]]) {
-                        ZZNavigationController *parentVC = (ZZNavigationController*)weakSelf.presentingViewController;
-                        [strongSelf dismissViewControllerAnimated:NO completion:^{
-                            [parentVC pushViewController:controller animated:YES];
-                        }];
-                    }
-                    else {
-                        ZZTabBarViewController *tabs =(ZZTabBarViewController*)weakSelf.presentingViewController;
-                        [strongSelf dismissViewControllerAnimated:NO completion:^{
-                            ZZNavigationController *nav = [[ZZNavigationController alloc] initWithRootViewController:controller];
-                            [tabs presentViewController:nav animated:YES completion:nil];
-                        }];
-                    }
+                controller.is_base_sk = strongSelf.is_base_sk;
+                controller.isRecordVideo = NO;
+                controller.pixelWidth = SCREEN_WIDTH;
+                controller.pixelHeight = SCREEN_HEIGHT;
+                controller.isIntroduceVideo = strongSelf.is_base_sk;
+                controller.showType = strongSelf.showType;
+                controller.isShowTopUploadStatus = strongSelf.isShowTopUploadStatus;
+                controller.isUploadAfterCompleted = strongSelf.isUploadAfterCompleted;
+                controller.isIntroduceVideo = strongSelf.isIntroduceVideo;
+                controller.selectAlbumsDirectly = YES;//直接选的相册
+                
+                if (_type == RecordTypeMemeda || _type == RecordTypeUpdateMemeda) {
+                    controller.model = strongSelf.model;
+                }
+                
+                if ([weakSelf.presentingViewController isKindOfClass:[ZZNavigationController class]]) {
+                    ZZNavigationController *parentVC = (ZZNavigationController*)weakSelf.presentingViewController;
+                    [strongSelf dismissViewControllerAnimated:NO completion:^{
+                        [parentVC pushViewController:controller animated:YES];
+                    }];
                 }
                 else {
-                    [weakSelf removeActivityIndicatorView];
-                    [ZZHUD showErrorWithStatus:@"视频处理失败"];
+                    ZZTabBarViewController *tabs =(ZZTabBarViewController*)weakSelf.presentingViewController;
+                    [strongSelf dismissViewControllerAnimated:NO completion:^{
+                        ZZNavigationController *nav = [[ZZNavigationController alloc] initWithRootViewController:controller];
+                        [tabs presentViewController:nav animated:YES completion:nil];
+                    }];
                 }
+            }
+            else {
+                [weakSelf removeActivityIndicatorView];
+                [ZZHUD showErrorWithStatus:@"视频处理失败"];
+            }
         });
     }];
     

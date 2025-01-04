@@ -58,16 +58,16 @@ PODS:
   - PLPlayerKit (3.4.9):
     - PLPlayerKit/iphoneos (= 3.4.9)
   - PLPlayerKit/iphoneos (3.4.9)
-  - PLShortVideoKit (3.0.0):
-    - PLShortVideoKit/ex-libMuseProcessor (= 3.0.0)
-    - PLShortVideoKit/libMuseProcessor (= 3.0.0)
-    - Qiniu (= 7.2.5)
-  - PLShortVideoKit/ex-libMuseProcessor (3.0.0):
-    - Qiniu (= 7.2.5)
-  - PLShortVideoKit/libMuseProcessor (3.0.0):
-    - Qiniu (= 7.2.5)
-  - Qiniu (7.2.5):
-    - HappyDNS (~> 0.3)
+  - PLShortVideoKit (3.2.5):
+    - PLShortVideoKit/ex-libMuseProcessor (= 3.2.5)
+    - PLShortVideoKit/libMuseProcessor (= 3.2.5)
+    - Qiniu (= 8.2.0)
+  - PLShortVideoKit/ex-libMuseProcessor (3.2.5):
+    - Qiniu (= 8.2.0)
+  - PLShortVideoKit/libMuseProcessor (3.2.5):
+    - Qiniu (= 8.2.0)
+  - Qiniu (8.2.0):
+    - HappyDNS (~> 0.3.17)
   - RegexKitLite-NoWarning (1.1.0)
   - RongCloudIM/ChatRoom (5.2.4.2):
     - RongCloudIM/IMLibCore
@@ -134,8 +134,8 @@ DEPENDENCIES:
   - Pingpp
   - Pingpp/Alipay
   - PLPlayerKit (~> 3.4.7)
-  - PLShortVideoKit (~> 3.0.0)
-  - Qiniu (~> 7.2.5)
+  - PLShortVideoKit (from `https://raw.githubusercontent.com/pili-engineering/PLShortVideoKit/master/PLShortVideoKit-Smart.podspec`)
+  - Qiniu (~> 8.2.0)
   - RegexKitLite-NoWarning (~> 1.1.0)
   - RongCloudIM/IMKit (~> 5.2.4.1)
   - RongCloudIM/IMLib (~> 5.2.4.1)
@@ -180,7 +180,6 @@ SPEC REPOS:
     - PingppAlipaySDK
     - PingppUnionPaySDK
     - PLPlayerKit
-    - PLShortVideoKit
     - Qiniu
     - RegexKitLite-NoWarning
     - RongCloudIM
@@ -198,6 +197,8 @@ SPEC REPOS:
     - YYModel
 
 EXTERNAL SOURCES:
+  PLShortVideoKit:
+    :podspec: https://raw.githubusercontent.com/pili-engineering/PLShortVideoKit/master/PLShortVideoKit-Smart.podspec
   YYImage:
     :git: https://github.com/QiuYeHong90/YYImage.git
 
@@ -232,8 +233,8 @@ SPEC CHECKSUMS:
   PingppAlipaySDK: ae632e43eb97c03e171e426cebb4228aaceb9d39
   PingppUnionPaySDK: a4eb46fdbb1ea1cb437f99dbc44ce6aeb6876084
   PLPlayerKit: 6d377f241918be3737c811b84f8366de385c1f91
-  PLShortVideoKit: 901da81b11ae8e397f530bf3d4014921426cbf4c
-  Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
+  PLShortVideoKit: 073bde75c9b886d1d958216133584942bb115187
+  Qiniu: 95e913e7ab91f6c4dff643164e8d66a7f79c5c5e
   RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
   RongCloudIM: f060895085d4e16c907c55f0b0a47e16b8e9b5b9
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
@@ -250,6 +251,6 @@ SPEC CHECKSUMS:
   YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 71bd9a2cb97cd2b6ed859dfd89ba0efca4fc0247
+PODFILE CHECKSUM: ad4c6cd388473f0a8181574fad8e9d4439761680
 
 COCOAPODS: 1.16.2
