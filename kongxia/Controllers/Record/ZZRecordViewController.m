@@ -800,23 +800,30 @@
 
 #pragma mark - Navigator
 - (void)showPhotoAlbum {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil pushPhotoPickerVc:YES isFromChat:NO];
-    imagePickerVc.allowTakePicture = NO; // 在内部显示拍照按钮
-    imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
-
-    imagePickerVc.allowPickingVideo = YES;
-    imagePickerVc.allowPickingImage = NO;
-    imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
-
-    imagePickerVc.showSelectBtn = NO;
-    imagePickerVc.allowCrop = NO;
-    imagePickerVc.needCircleCrop = NO;
-    imagePickerVc.navigationController.navigationBar.translucent = NO;
-    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
-        [self selectVideo:asset];
+    [VideoHelper fetchVideoAssetFrom:self completion:^(PHAsset *asset, NSError *error) {
+        if (asset) {
+            [self selectVideo:asset];
+        } else {
+//            NSLog(@"发生错误: %@", error.localizedDescription);
+        }
     }];
-    imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
+//    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil pushPhotoPickerVc:YES isFromChat:NO];
+//    imagePickerVc.allowTakePicture = NO; // 在内部显示拍照按钮
+//    imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
+//
+//    imagePickerVc.allowPickingVideo = YES;
+//    imagePickerVc.allowPickingImage = NO;
+//    imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
+//
+//    imagePickerVc.showSelectBtn = NO;
+//    imagePickerVc.allowCrop = NO;
+//    imagePickerVc.needCircleCrop = NO;
+//    imagePickerVc.navigationController.navigationBar.translucent = NO;
+//    [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+//        [self selectVideo:asset];
+//    }];
+//    imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
 - (void)selectVideo:(PHAsset *)asset {

@@ -33,7 +33,7 @@
         inputLabel.textAlignment = NSTextAlignmentLeft;
         inputLabel.textColor = kGrayTextColor;
         inputLabel.font = [UIFont systemFontOfSize:14];
-        inputLabel.text = @"请输入用户名或么么号";
+        inputLabel.text = @"请输入么么号";
         inputLabel.userInteractionEnabled = YES;
         [topBgView addSubview:inputLabel];
         
@@ -63,7 +63,7 @@
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.textColor = kBlackTextColor;
         titleLabel.font = [UIFont systemFontOfSize:14];
-        titleLabel.text = @"高级筛选";
+        titleLabel.text = @"性别筛选";
         [self addSubview:titleLabel];
         
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

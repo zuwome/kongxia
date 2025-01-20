@@ -602,10 +602,11 @@
         [ZZKeyValueStore saveValue:@"haveloadguide" key:key];
     }
     else {
-        if (![ZZUserHelper shareInstance].firstHomeGuide) {
-            [[ZZTabBarViewController sharedInstance] showGuideView];
-        }
-        [weakSelf showAdViews];
+//        if (![ZZUserHelper shareInstance].firstHomeGuide) {
+//            [[ZZTabBarViewController sharedInstance] showGuideView];
+//        }
+//        [weakSelf showAdViews];
+        [weakSelf createRootViewController];
         [weakSelf.window makeKeyAndVisible];
     }
 }
