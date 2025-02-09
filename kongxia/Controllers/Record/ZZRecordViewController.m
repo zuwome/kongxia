@@ -800,13 +800,15 @@
 
 #pragma mark - Navigator
 - (void)showPhotoAlbum {
-    [VideoHelper fetchVideoAssetFrom:self completion:^(PHAsset *asset, NSError *error) {
-        if (asset) {
-            [self selectVideo:asset];
-        } else {
-//            NSLog(@"发生错误: %@", error.localizedDescription);
-        }
-    }];
+    if (@available(iOS 14, *)) {
+        [VideoHelper fetchVideoAssetFrom:self completion:^(PHAsset *asset, NSError *error) {
+            if (asset) {
+                [self selectVideo:asset];
+            } else {
+                //            NSLog(@"发生错误: %@", error.localizedDescription);
+            }
+        }];
+    }
 //    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil pushPhotoPickerVc:YES isFromChat:NO];
 //    imagePickerVc.allowTakePicture = NO; // 在内部显示拍照按钮
 //    imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按

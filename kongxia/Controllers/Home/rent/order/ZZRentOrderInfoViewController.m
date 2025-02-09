@@ -162,30 +162,41 @@
     self.tableViewCellTypes = array.copy;
 }
 
-- (void)getLocationModel:(ZZRentDropdownModel *)model {
-    if (isNull(_order.city.name)) {
-        [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
-        return;
+- (NSString *)getCityID:(NSString *)targetCity province:(NSString *)targetProvince {
+    NSArray *cities = [[NSUserDefaults standardUserDefaults] objectForKey:@"cities"];
+    
+    NSString *cityID = nil;
+    for (NSDictionary *city in cities) {
+        NSString *name = city[@"name"];
+//        NSString *province = city[@"province"];
+        
+        if ([name isEqualToString:targetCity]) {
+            cityID = city[@"id"];
+            break;
+        }
     }
-    BOOL contain = NO;
+    
+    return cityID;
+}
+
+- (void)getLocationModel:(ZZRentDropdownModel *)model {
+//    if (isNull(_order.city.name)) {
+//        [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
+//        return;
+//    }
 
     if (isNull(model.city)) {
         [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
         return;
     }
-    NSRange range = [model.city rangeOfString:_order.city.name];
-    if (range.location != NSNotFound) {
-        contain = YES;
-    }
-    range = [_order.city.name rangeOfString:model.city];
-    if (range.location != NSNotFound) {
-        contain = YES;
-    }
-    if (!contain) {
-        [ZZHUD showErrorWithStatus:[NSString stringWithFormat:@"邀约地点请选择在%@内 ^_^",_order.city.name]];
-        return;
-    }
+
     _order.address = model.name;
+    ZZCity *city = [[ZZCity alloc] init];
+    city.province = model.province;
+    city.name = model.city;
+    city.cityId = [self getCityID:model.city province:model.province];
+    _order.city = city;
+    
     ZZOrderLocation *orderLocation = [[ZZOrderLocation alloc] init];
     orderLocation.lat = [NSString stringWithFormat:@"%f",model.location.coordinate.latitude];
     orderLocation.lng = [NSString stringWithFormat:@"%f",model.location.coordinate.longitude];
@@ -266,36 +277,20 @@
 
 #pragma mark - ZZRentDropdownMenuDelegate
 - (void)selectLocation:(ZZRentDropdownModel *)model {
-    if (isNull(_order.city.name)) {
-        [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
-        return;
-    }
-    BOOL contain = NO;
-
-    if (isNull(model.city)) {
-        [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
-        return;
-    }
-    NSRange range = [model.city rangeOfString:_order.city.name];
-    if (range.location != NSNotFound) {
-        contain = YES;
-    }
-    range = [_order.city.name rangeOfString:model.city];
-    if (range.location != NSNotFound) {
-        contain = YES;
-    }
-    if (!contain) {
-        [ZZHUD showErrorWithStatus:[NSString stringWithFormat:@"邀约地点请选择在%@内 ^_^",_order.city.name]];
-        return;
-    }
     _order.address = model.name;
-    _model = model;
+    ZZCity *city = [[ZZCity alloc] init];
+    city.province = model.province;
+    city.name = model.city;
+    city.cityId = [self getCityID:model.city province:model.province];
+    _order.city = city;
+    
     ZZOrderLocation *orderLocation = [[ZZOrderLocation alloc] init];
     orderLocation.lat = [NSString stringWithFormat:@"%f",model.location.coordinate.latitude];
     orderLocation.lng = [NSString stringWithFormat:@"%f",model.location.coordinate.longitude];
     _order.loc = orderLocation;
+    [self.tableView reloadData];
     _model = model;
-    [_tableView reloadData];
+    
     [self hideRecommendLocationView];
 }
 
@@ -374,6 +369,7 @@
     else if (type == CellTypeLocation) {
         ZZRentOrderLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZZRentOrderLocationCell" forIndexPath:indexPath];
         cell.delegate = self;
+        cell.defaultCity = _user.rent.city.name;
          if ((_isFromTask && _taskType == TaskFree)) {
              cell.task = _taskModel;
          }
@@ -446,7 +442,7 @@
 }
 
 - (void)locationBtnClick {
-    if (!_order.city.name) {
+    if (!_user.rent.city.name) {
         [ZZHUD showErrorWithStatus:@"该用户城市名有误，请联系客服！"];
         return;
     }
@@ -454,13 +450,14 @@
 
     if ([ZZUserHelper shareInstance].isAbroad) {
         ZZRentAbroadLocationViewController *controller = [[ZZRentAbroadLocationViewController alloc] init];
-        controller.currentSelectCity = _order.city;
+        controller.currentSelectCity = _user.rent.city;
         controller.selectPoiDone = ^(ZZRentDropdownModel *model) {
             [self getLocationModel:model];
         };
         [self.navigationController pushViewController:controller animated:YES];
     } else {
-        ZZSearchLocationController *vc = [[ZZSearchLocationController alloc] initWithSelectCity:_order.city];
+        ZZSearchLocationController *vc = [[ZZSearchLocationController alloc] initWithSelectCity:_user.rent.city];
+        vc.isRent = YES;
         vc.title = @"选择邀约地点";
         vc.selectedLocation = _model.name;
         vc.selectPoiDone = ^(ZZRentDropdownModel *model) {

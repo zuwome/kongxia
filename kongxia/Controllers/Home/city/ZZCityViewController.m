@@ -150,6 +150,7 @@
     _getLocatio = YES;
     
     [ZZUserHelper shareInstance].location = location;
+    [ZZUserHelper shareInstance].placemark = placemark;
     
     __block BOOL haveCity = NO;
     if ([ZZUserHelper shareInstance].cityName) {
@@ -220,9 +221,33 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
+            
+            [self saveCities:[_dataArray mutableCopy]];
         }
     }];
 }
+
+- (void)saveCities:(NSArray *)cities {
+    if (![cities isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    
+    NSMutableArray *citiesM = [cities mutableCopy];
+    [citiesM removeObjectAtIndex:0];
+    
+    NSMutableArray *cityArray = [NSMutableArray array];
+    for (NSDictionary *cityD in citiesM) {
+        for (id key in cityD) {
+            id value = [cityD objectForKey:key];
+            if ([value isKindOfClass:[NSArray class]]) {
+                [cityArray addObjectsFromArray: value];
+            }
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[cityArray copy] forKey:@"cities"];
+}
+
 
 - (void)managerHotCityHeight
 {

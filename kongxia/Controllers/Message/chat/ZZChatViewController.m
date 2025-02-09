@@ -102,6 +102,9 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.viewDisappear = YES;
+    
+    [self endEditing];
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

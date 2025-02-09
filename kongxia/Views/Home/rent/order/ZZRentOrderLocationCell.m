@@ -106,12 +106,18 @@
 
 #pragma mark - getters and setters
 - (void)setOrder:(ZZOrder *)order {
-    _titleLabel.text = order.city.name;
+    NSString *cityName;
+    if (order.city) {
+        cityName = order.city.name;
+    } else {
+        cityName = _defaultCity != nil ? _defaultCity : @"选择城市";
+    }
+    _titleLabel.text = cityName;
     if (order.address) {
         _locationTF.text = order.address;
     }
     _downBtn.hidden = NO;
-    CGFloat width = [NSString findWidthForText:order.city.name havingWidth:SCREEN_WIDTH andFont:self.titleLabel.font];
+    CGFloat width = [NSString findWidthForText:_titleLabel.text havingWidth:SCREEN_WIDTH andFont:self.titleLabel.font];
     [_titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(width);
     }];

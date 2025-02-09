@@ -66,12 +66,10 @@ extension OpenMapKit {
     static func openBaiduMap(name: String, latitudde: Double, longtitude: Double) {
         let coordinate = CLLocationCoordinate2DMake(latitudde, longtitude)
                 
-                // 将高德的经纬度转为百度的经纬度
+        // 将高德的经纬度转为百度的经纬度
         let baiduCoordinate = LocationUtil.transformFromWGSToBaidu(location: coordinate)
         let destination = "\(baiduCoordinate.latitude),\(baiduCoordinate.longitude)"
         
-        // baidumap://map/place/search?query=%E9%A4%90%E9%A6%86&location=31.204055632862,121.41117785465&radius=1000&region=上海&src=ios.baidu.openAPIdemo
-//        let urlString = "baidumap://map/place/search?query=\(name)&location=\(latitudde),\(longtitude)&radius=1000&region=\()&src=kongxia"
         let urlString = "baidumap://map/show?zoom=16&center=\(latitudde),\(longtitude)&src=kongxia"
         let str = urlString as String
         

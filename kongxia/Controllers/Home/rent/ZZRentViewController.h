@@ -43,8 +43,6 @@ typedef NS_ENUM(NSInteger, EntryTarget) {
 @property (nonatomic, assign) BOOL isFromLive;      //只显示底部跟她视频 或 选择线下达人
 @property (nonatomic, assign) BOOL isFromFastChat;  //闪聊列表进入
 @property (nonatomic, assign) BOOL showWX;          //是否是聊天界面里面点查看微信
-//@property (nonatomic, assign) BOOL showSignUpBtn;
-//@property (nonatomic, assign) BOOL showPickUp;     // 选它
 
 
 @property (nonatomic, strong) ZZTaskModel *task;

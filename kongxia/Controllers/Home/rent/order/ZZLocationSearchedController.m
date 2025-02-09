@@ -39,17 +39,17 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     _searchString = searchBar.text;
     
-//    NSString *city = @"";
-//    if (_currentCity) {
-//        city = _currentCity.name ? _currentCity.name: @"厦门";
-//    }
-//    else if ([ZZUserHelper shareInstance].cityName) {
-//        city = [ZZUserHelper shareInstance].cityName;
-//    }
+    NSString *city = @"";
+    if (_currentCity) {
+        city = _currentCity.name ? _currentCity.name: @"厦门";
+    }
+    else if ([ZZUserHelper shareInstance].cityName) {
+        city = [ZZUserHelper shareInstance].cityName;
+    }
     
     [POIManager searchPoiWithKeyword:_searchString completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         [self filterResults:pois];
-        if (pois.count == 0) {
+        if (_searchResultArray.count == 0) {
             [SVProgressHUD showInfoWithStatus:@"请在地点前加上城市"];
         }
     }];
@@ -67,7 +67,10 @@
     }];
     
     _searchResultArray = filterdPois;
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    
 }
 
 #pragma mark - UISearchResultsUpdating

@@ -371,7 +371,6 @@
     order.dated_at = [[ZZDateHelper shareInstance] getNextHours:2];
     order.price = [NSNumber numberWithDouble:[skill.price doubleValue]];
     order.skill = skill;
-    order.city = _user.rent.city;
     order.to = [ZZUser yy_modelWithJSON:@{@"uid": _user.uid}]; //[[ZZUser alloc] initWithDictionary:@{@"uid":_user.uid} error:nil];
     order.from = [ZZUserHelper shareInstance].loginer;
     vc.order = order;
@@ -379,39 +378,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)chooseBtnClick {        //TODO
-//    if (![ZZUserHelper shareInstance].isLogin) {
-//        [self gotoLoginView];
-//        return;
-//    }
-//    if ([ZZUtils isBan]) {
-//        return;
-//    }
-//    if (_chooseType == 0) {
-//        if ([ZZUtils isConnecting]) {
-//            return;
-//        }
-//        if (_publishId) {
-//            if (_canConnect) {
-//                [self checkAuthorized];
-//            } else {
-//                [ZZHUD showErrorWithStatus:@"TA的选择时间已到，无法与对方视频"];
-//            }
-//        } else {
-//            if (![ZZKeyValueStore getValueWithKey:[ZZStoreKey sharedInstance].firstConnectAlert]) {
-//                [self.view addSubview:self.requestAlertView];
-//            } else {
-//                [self checkAuthorized];
-//            }
-//        }
-//    } else {
-//        if (_chooseType == 1) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//        if (_chooseSnatcher) {
-//            _chooseSnatcher();
-//        }
-//    }
+- (void)chooseBtnClick {
 }
 
 - (void)attentClick {

@@ -262,15 +262,15 @@
 #pragma mark - UITableViewMethod
 // NEW: 0.微博认证,1.微信号, 2.证件照, 3.自我介绍, 4.达人视频, 5.技能, 6.常去地点, 7.兴趣爱好, 8.个人标签, 9.个人资料
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 10;
+    return 9;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0: return _user.weibo.verified ? 1 : 0;
         case 3: return isNullString(_user.bio) ? 0 : 1;
-        case 5: return self.skillsArray.count;
-        case 9: return 10;
+        case 4: return self.skillsArray.count;
+        case 8: return 10;
         default: return 1;
     }
 }
@@ -324,13 +324,6 @@
             return cell;
         } break;
         case 4: {
-            // 达人视频
-//            ZZUserEditVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videocell"];
-//            cell.user = _user;
-//            return cell;
-            return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-        } break;
-        case 5: {
             // 技能
             ZZRentSkillCell *cell = [tableView dequeueReusableCellWithIdentifier:@"skill"];
             if (!cell) {
@@ -340,7 +333,7 @@
             [cell setData:topic indexPath:indexPath];
             return cell;
         } break;
-        case 6: {
+        case 5: {
             // 常去地点
             if (!_user.userGooToAddress.count) {
                 return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
@@ -351,7 +344,7 @@
              [self setupModelOfCell:cell atIndexPath:indexPath];
             return cell;
         } break;
-        case 7: {
+        case 6: {
             // 兴趣爱好
             
             if (!_user.interests_new.count) {
@@ -363,7 +356,7 @@
             return cell;
             break;
         }
-        case 8: {
+        case 7: {
             // 个人标签
             if (!_user.tags_new.count) {
                return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
@@ -373,7 +366,7 @@
             [self setupModelOfCell:cell atIndexPath:indexPath];
             return cell;
         } break;
-        case 9: {
+        case 8: {
             // 个人资料
             if (!_user.birthday && indexPath.row == 2) {
                 return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
@@ -436,10 +429,10 @@
 }
 
 - (void)setupModelOfCell:(ZZRentLabelCell *)cell atIndexPath:(NSIndexPath *) indexPath {
-    if (indexPath.section == 7) {
+    if (indexPath.section == 6) {
         [cell setUser:_user labelType:LabelTypeInterest];
     }
-    else if (indexPath.section == 6) {
+    else if (indexPath.section == 5) {
         [cell setUser:_user labelType:LabelTypeLocation];
     }
     else {
@@ -506,34 +499,32 @@
             [weakSelf setupBriefCell:cell];
         }];
     }
+
     if (indexPath.section == 4) {
-        return 0;//个人资料不再显示达人视频/达人问答，显示在上面的banner
-    }
-    if (indexPath.section == 5) {
         return UITableViewAutomaticDimension;
     }
-    if (indexPath.section == 6) {
+    if (indexPath.section == 5) {
         if (!_user.userGooToAddress.count) {
             return 0;
         } else {
             return _myLocationHeight;
         }
     }
-    if (indexPath.section == 7) {
+    if (indexPath.section == 6) {
         if (!_user.interests_new.count) {
             return 0;
         } else {
             return _interestHeight;
         }
     }
-    if (indexPath.section == 8) {
+    if (indexPath.section == 7) {
         if (!_user.tags_new.count) {
             return 0;
         } else {
             return _personalHeight;
         }
     }
-    if (indexPath.section == 9) {
+    if (indexPath.section == 8) {
         if (!_user.birthday && indexPath.row == 2)
             return 0;
         if (_user.works_new.count == 0 && indexPath.row == 3)
@@ -562,16 +553,14 @@
     if (![_user isUsersAvatarReal] && section == 2) {
         return 0.1;
     }
-    
-    if (section == 4)   //(isNullString(_user.base_sk.skId) && section == 3)
+
+    if (self.skillsArray.count == 0 && section == 4)
         return 0.1;
-    if (self.skillsArray.count == 0 && section == 5)
+    if (!_user.userGooToAddress.count && section == 5)
         return 0.1;
-    if (!_user.userGooToAddress.count && section == 6)
+    if (!_user.interests_new.count && section == 6)
         return 0.1;
-    if (!_user.interests_new.count && section == 7)
-        return 0.1;
-    if (!_user.tags_new.count && section == 8)
+    if (!_user.tags_new.count && section == 7)
         return 0.1;
     if (isNullString(_user.bio) && section == 3)
         return 0.1;
@@ -588,19 +577,16 @@
     if ([_user isUsersAvatarReal] && section == 2) {
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
     }
-    if (section == 4) {   //(isNullString(_user.base_sk.skId) && section == 3) {
+    if (self.skillsArray.count == 0 && section == 4) {
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
     }
-    if (self.skillsArray.count == 0 && section == 5) {
+    if (!_user.userGooToAddress.count && section == 5) {
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
     }
-    if (!_user.userGooToAddress.count && section == 6) {
+    if (!_user.interests_new.count && section == 6) {
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
     }
-    if (!_user.interests_new.count && section == 7) {
-        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
-    }
-    if (!_user.works_new.count && section == 8) {
+    if (!_user.works_new.count && section == 7) {
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
     }
     if (isNullString(_user.bio) && section == 3) {
@@ -679,31 +665,10 @@
             break;
         }
         case 4: {
-            if (_pushBarHide) {
-                _pushBarHide();
-            }
-            WeakSelf;
-            ZZPlayerViewController *controller = [[ZZPlayerViewController alloc] init];
-            controller.fromLiveStream = _fromLiveStream;
-            controller.skId = _user.base_sk.id;
-            controller.canPop = YES;
-            controller.hidesBottomBarWhenPushed = YES;
-            controller.deleteCallBack = ^{
-                weakSelf.user.base_sk = nil;
-                [[ZZUserHelper shareInstance] saveLoginer:weakSelf.user postNotif:NO];
-                [weakSelf.tableView reloadData];
-            };
-            controller.buyWxCallBack = ^{
-                weakSelf.showWX = YES;
-            };
-            [self.navigationController pushViewController:controller animated:YES];
-            controller.firstSkModel = _user.base_sk;
-        } break;
-        case 5: {
             ZZTopic *topic = self.skillsArray[indexPath.row];
             !self.gotoSkillDetail ? : self.gotoSkillDetail(topic);
         } break;
-        case 9: {
+        case 8: {
             switch (indexPath.row) {
                 case 0: {
                     ZZRentNormalCell *cell = (ZZRentNormalCell *)[tableView cellForRowAtIndexPath:indexPath];

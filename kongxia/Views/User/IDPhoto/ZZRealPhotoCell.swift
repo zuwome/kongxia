@@ -107,7 +107,7 @@ class ZZRealPhotoCell: ZZTableViewCell {
                     actionButton.setTitle("解锁达人", for: .normal)
                 }
                 else {
-                    if user.id_photo.status == 2 {
+                    if (user.id_photo != nil && user.id_photo.status == 2) {
                         titleLabel.text = "您已认证真实头像，证件照与头像确认为本人"
                         if let avatar = user.id_photo.pic, avatar.hasSuffix("/blur/70x70") {
                             let pic = avatar.replacingOccurrences(of: "/blur/70x70", with: "", options: .caseInsensitive, range: Range(NSRange(location: 0, length: avatar.count), in: avatar))
@@ -172,7 +172,7 @@ extension ZZRealPhotoCell {
         iconImageView.frame = CGRect(x: 15, y: 15, width: 58, height: 24)
         
         if ZZUserHelper.shareInstance()?.loginerId == user.uid {
-            if user.didHaveRealAvatar() && user.rent.status == 2 && user.faces.count != 0 {
+            if user.didHaveRealAvatar() && user.rent.status == 2 && (user.faces != nil && user.faces.count != 0) {
                 if user.id_photo.status == 2 {
                     userIconImageView.isHidden = false
                     userIconImageView.frame = CGRect(x: contentView.frame.width - 40 - 15, y: 16, width: 40, height: 60)

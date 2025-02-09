@@ -16,6 +16,8 @@
 
 @interface ZZLocationSearchedController : UITableViewController <UISearchBarDelegate, UISearchResultsUpdating>
 
+@property (assign, nonatomic) BOOL isFromSkill;
+
 @property (strong, nonatomic) ZZCity *currentCity;
 
 @property (nonatomic, weak) id<ZZLocationSearchedControllerDelegate> delegate;

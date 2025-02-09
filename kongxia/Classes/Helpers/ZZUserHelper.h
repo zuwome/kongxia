@@ -50,6 +50,7 @@ static dispatch_once_t ZZUserhelperOnce = 0;
 @property (strong, nonatomic) NSString *cityName;
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) CLLocation *selectedLocation;
+@property (strong, nonatomic) CLPlacemark *placemark;
 @property (assign, nonatomic) BOOL isAbroad;//是否是国外
 
 @property (nonatomic, strong) NSString *charge_id;//支付的id

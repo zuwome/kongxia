@@ -2252,20 +2252,25 @@
     // 如果是从KTV过来的要显示一个提示来源文案
     [self sendNotificationFromKTV];
     
-    WeakSelf;
     ZZChatBaseModel *model = [[ZZChatBaseModel alloc] init];
+    NSInteger index = [self.dataArray indexOfObject:model];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.dataArray.count-1-index inSection:0];
+    ZZChatImageCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    WeakSelf;
     RCMessage *message = [[RCIMClient sharedRCIMClient] sendMediaMessage:ConversationType_PRIVATE targetId:self.uid content:messageContent pushContent:[ZZChatUtil getPushContent:_showPushName] pushData:[self getPushData] progress:^(int progress, long messageId) {
-        NSInteger index = [weakSelf.dataArray indexOfObject:model];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.dataArray.count-1-index inSection:0];
         dispatch_async(dispatch_get_main_queue(), ^{
-            ZZChatImageCell *cell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
             if (cell) {
                 cell.process = progress;
             }
         });
     } success:^(long messageId) {
+        
         [weakSelf reloadCell:model];
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (cell) {
+                cell.process = 100;
+            }
             [weakSelf showTodayAnimation];
         });
         

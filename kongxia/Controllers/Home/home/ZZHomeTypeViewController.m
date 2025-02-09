@@ -44,7 +44,6 @@
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *skillIntroHArray;
 @property (nonatomic, assign) BOOL isRecommend;//是否是推荐页面
 @property (nonatomic, assign) BOOL haveLoad;
-@property (nonatomic, assign) BOOL viewDidAppear;
 @property (nonatomic, strong) ZZHomeRecommendModel *recommendModel;
 @property (nonatomic, assign) BOOL hideRefresh;//隐藏新鲜
 @property (nonatomic, assign) BOOL isShowGuide;
@@ -59,16 +58,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.tableview reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    _viewDidAppear = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    _viewDidAppear = NO;
 }
 
 - (void)viewDidLoad {

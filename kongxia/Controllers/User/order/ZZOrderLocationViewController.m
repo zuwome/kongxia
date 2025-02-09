@@ -53,6 +53,7 @@
     if (isNullString(_naviTitle)) {
         self.navigationItem.title = @"邀约地点";
     }
+    [self configureLocation];
     [self getNavAppsData];
     [self.view addSubview:self.mapView];
 }
@@ -89,10 +90,11 @@
     [self.view bringSubviewToFront:self.mapViewNav];
 }
 
-- (void)configureLocation:(CLLocation *)location placeMark:(CLPlacemark *)placemark {
-    _currentUserLocation.latitude = location.coordinate.latitude;
-    _currentUserLocation.longitude = location.coordinate.longitude;
-    _riginAddressString = placemark.addressDictionary[@"Name"];
+- (void)configureLocation {
+    
+    _currentUserLocation.latitude = [ZZUserHelper shareInstance].location.coordinate.latitude;
+    _currentUserLocation.longitude = [ZZUserHelper shareInstance].location.coordinate.longitude;
+    _riginAddressString = [ZZUserHelper shareInstance].placemark.addressDictionary[@"Name"];
     if (!_riginAddressString) {
         NSLog(@"无法定位");
     }
@@ -227,10 +229,13 @@ baidumap://map/direction?origin={{我的位置}}&destination=%@&mode=driving&src
 - (void)openGaode
 {
     CLLocationCoordinate2D gaode = _location.coordinate;
-
-    NSString *urlString = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=applicationName&sid=BGVIS1&slat=%f&slon=%f&sname=我的位置&did=BGVIS2&dlat=%f&dlon=%f&dname=%@&dev=0&t=0",_currentUserLocation.latitude,_currentUserLocation.longitude,gaode.latitude, gaode.longitude,_name] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:NULL];
+    NSString *urlString = [NSString stringWithFormat:
+            @"iosamap://path?sourceApplication=kongxia&sid=BGVIS1&slat=%f&slon=%f&dlat=%f&dlon=%f&dname=终点&dev=0&t=%@",
+                           _currentUserLocation.latitude, _currentUserLocation.longitude, gaode.latitude, gaode.longitude, @"0"];
+    NSURL *url = [NSURL URLWithString:urlString];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
 - (void)dealloc
 {

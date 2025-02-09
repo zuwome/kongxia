@@ -40,11 +40,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
-    if (_shouldUpdateData) {
-        [self refresh];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

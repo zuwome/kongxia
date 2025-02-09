@@ -409,7 +409,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     [ZZLocalPushManager cancelLocalAllNotification];
     
-    [self getLocation];
+//    [self getLocation];
     [[ZZTabBarViewController sharedInstance] getUnread];
 }
 
@@ -959,7 +959,14 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application willContinueUserActivityWithType:(NSString *)userActivityType {
+    NSLog(@"dasdasdqwe");
+    return YES;
+}
 
+- (void)application:(UIApplication *)application didFailToContinueUserActivityWithType:(NSString *)userActivityType error:(NSError *)error {
+    NSLog(@"ads error = %@", error);
+}
 
 // Universal Links 通用链接
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {

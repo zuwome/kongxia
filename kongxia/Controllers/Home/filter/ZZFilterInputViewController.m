@@ -101,7 +101,7 @@
     }];
     
     _textField = [[UITextField alloc] init];
-    _textField.placeholder = @"请输入用户名或么么号";
+    _textField.placeholder = @"请输入用户名";
     _textField.textAlignment = NSTextAlignmentLeft;
     _textField.textColor = kBlackTextColor;
     _textField.font = [UIFont systemFontOfSize:14];
@@ -231,7 +231,6 @@
     
     _isSearching = YES;
     NSString *highString = _textField.text;
-    NSLog(@"PY_搜索数据为%@",highString);
     NSMutableDictionary *param = [@{@"nickname":highString} mutableCopy];
     [ZZHUD showWithStatus:@"正在搜索中"];
     ZZRentHelper *rentHelper = [[ZZRentHelper alloc] init];

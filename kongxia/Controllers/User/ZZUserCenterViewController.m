@@ -511,14 +511,11 @@
         case 3: {
             if (indexPath.row == 0 && _loginer.rent.status == 0) { // 没有出租信息不显示人气值
                 return 0;
-            }
-            if (indexPath.row == 1) {
-                return 50;
-            }
-            if (indexPath.row == 4) {
+            } else if (indexPath.row == 1) {
                 return 0;
-            }
-            if (indexPath.row == 6 && [ZZUtils isIdentifierAuthority:_loginer]) {
+            } else if (indexPath.row == 4) {
+                return 0;
+            } else if (indexPath.row == 6 && [ZZUtils isIdentifierAuthority:_loginer]) {
                 return 0;
             }
         } break;

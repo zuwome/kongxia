@@ -395,7 +395,7 @@
             [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
         }],
     
-        [alertAction createWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertAction createWithTitle:@"上传照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             IOS_11_Show
                UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
                [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];

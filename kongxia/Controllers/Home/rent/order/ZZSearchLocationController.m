@@ -47,6 +47,7 @@
 - (instancetype)initWithSelectCity:(ZZCity *)city {
     self = [super init];
     if (self) {
+        _isRent = NO;
         _isFromTaskFree = NO;
         _currentSelectCity = city;
     }
@@ -73,12 +74,40 @@
     [super viewDidAppear: animated];
     CLLocation *location = [ZZUserHelper shareInstance].location;
 
+    if (_isRent) {
+        NSArray *components = [_currentSelectCity.center componentsSeparatedByString:@","];
+                
+        if (components.count == 2) {
+            NSString *longitudeString = components[0];
+            NSString *latitudeString = components[1];
+        
+            double longitude = [longitudeString doubleValue];
+            double latitude = [latitudeString doubleValue];
+            location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        }
+    }
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 100, 500);
     
     [_mapView setRegion:region animated:NO];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_mapView.mapView setCenterCoordinate:location.coordinate animated:YES];
     });
+}
+
+- (NSString *)getCityID:(NSString *)targetCity province:(NSString *)targetProvince {
+    NSArray *cities = [[NSUserDefaults standardUserDefaults] objectForKey:@"cities"];
+    
+    NSString *cityID = nil;
+    for (NSDictionary *city in cities) {
+        NSString *name = city[@"name"];
+
+        if ([name isEqualToString:targetCity]) {
+            cityID = city[@"id"];
+            break;
+        }
+    }
+    
+    return cityID;
 }
 
 - (void)createTimer {
@@ -111,14 +140,18 @@
 }
 
 - (void)getSearchLocation:(PoiModel *)poi bySearch:(BOOL)isBySearch {
+
+    if (poi == nil) {
+        return;
+    }
     
     ZZRentDropdownModel *model = [[ZZRentDropdownModel alloc] init];
     model.name = poi.name;
     model.location = [[CLLocation alloc] initWithLatitude:poi.latitude longitude:poi.longitude];
     model.detaiString = poi.address;
-    
+    model.province = poi.province;
     if (isBySearch) {
-        if (poi.city.length != 0) {
+        if (![poi.city isEqualToString:@""]) {
             model.city = poi.city;
         } else {
             model.city = poi.province;
@@ -149,6 +182,7 @@
             } else {
                 model.city = placemark.locality;
             }
+            model.province = placemark.administrativeArea;
             
             if (_isFromTaskFree) {
                 if (_currentSelectCity && ![_currentSelectCity.name isEqualToString:model.city]) {
@@ -238,7 +272,7 @@
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
     _selectedCoordinate = coordinate;
     
-    [POIManager getPoisssWithLocation:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+    [POIManager searchPoiWithLocation:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         _pois = pois;
         [_listTableView reloadData];
     }];

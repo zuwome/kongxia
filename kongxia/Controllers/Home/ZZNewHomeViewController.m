@@ -115,7 +115,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self getSecurityStatus];   //是否需要显示紧急求助按钮
-    [self.viewModel getTask];
+    
     [self showSayHiView];
 }
 
@@ -141,16 +141,9 @@
     
     [self showUserPrivateTerms];
     
-//    UIButton *btn = [[UIButton alloc] initWithFrame: CGRectMake(100, 100, 100, 50)];
-//    [btn setBackgroundColor:[UIColor systemGreenColor]];
-//    [btn setTitle:@"refund" forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(refund) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:btn];
+    [self.viewModel getTask];
     
-}
-
-- (void)refund {
-//    [RefundTest Refund];
+    [self getCities];
 }
 
 - (void)dealloc {
@@ -160,6 +153,38 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)getCities {
+    [[ZZCity new] list:^(ZZError *error, NSArray *data, NSURLSessionDataTask *task) {
+        if (error) {
+            [ZZHUD showErrorWithStatus:error.message];
+        } else if (data) {
+            [self saveCities:data];
+            
+        }
+    }];
+}
+
+- (void)saveCities:(NSArray *)cities {
+    if (![cities isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    
+    NSMutableArray *citiesM = [cities mutableCopy];
+    [citiesM removeObjectAtIndex:0];
+    
+    NSMutableArray *cityArray = [NSMutableArray array];
+    for (NSDictionary *cityD in citiesM) {
+        for (id key in cityD) {
+            id value = [cityD objectForKey:key];
+            if ([value isKindOfClass:[NSArray class]]) {
+                [cityArray addObjectsFromArray: value];
+            }
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[cityArray copy] forKey:@"cities"];
 }
 
 - (void)scrollToTop {
@@ -564,7 +589,6 @@
 }
 
 - (void)applicationBecomeActive {
-    [self getLocation];
     [self uploadUserNotificionStatus];
 }
 
@@ -669,6 +693,7 @@
     }
     
     [ZZUserHelper shareInstance].location = location;
+    [ZZUserHelper shareInstance].placemark = placemark;
     
     __block BOOL haveCity = NO;
     if ([ZZUserHelper shareInstance].cityName) {
@@ -1132,16 +1157,12 @@
  * 跳转他人资料页
  */
 - (void)gotoUserPageWithModel:(ZZUser *)user imgView:(UIImageView *)imgView {
+    ZZRent *rent = user.rent;
     ZZRentViewController *controller = [[ZZRentViewController alloc] init];
     controller.isFromHome = YES;
     controller.user = user;
     controller.uid = user.uid;
     [self.navigationController pushViewController:controller animated:YES];
-//    [self.navigationController wxs_pushViewController:controller makeTransition:^(WXSTransitionProperty *transition) {
-//        transition.animationType = WXSTransitionAnimationTypeCustomZoom;
-//        transition.animationTime = 0.4;
-//        transition.startView  = imgView;
-//    }];
 }
 
 /**

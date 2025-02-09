@@ -25,6 +25,8 @@
 
 @property (nonatomic, assign) BOOL isFromTaskFree;
 
+@property (nonatomic, assign) BOOL isRent;
+
 - (instancetype)initWithSelectCity:(ZZCity *)city;
 
 @end

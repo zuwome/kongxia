@@ -51,7 +51,12 @@
             urlStr = isFullScreenDevice ? H5Url.registerRentComplete_AvatarReviewing_fullScreen : H5Url.registerRentComplete_AvatarReviewing;
         }
         else {
+#ifdef DEBUG
+            urlStr = [NSString stringWithFormat:@"%@:5000%@?uid=%@&type=%@",kBase_URL,RentCompleteUrl,[ZZUserHelper shareInstance].loginer.uid,self.addType];
+#else
             urlStr = [NSString stringWithFormat:@"%@%@?uid=%@&type=%@",kBase_URL,RentCompleteUrl,[ZZUserHelper shareInstance].loginer.uid,self.addType];
+#endif
+            
         }
     }
     NSURL *url = [NSURL URLWithString:urlStr];

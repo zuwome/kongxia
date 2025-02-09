@@ -276,28 +276,38 @@
     if (_reviewStatus == ZZVideoReviewStatusNoRecord) {
        // [MobClick event:Event_click_Record_video];
     }
-    [ZZUtils checkRecodeAuth:^(BOOL authorized) {
-        if (authorized) {
-            TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil pushPhotoPickerVc:YES isFromChat:NO];
-            imagePickerVc.allowTakePicture = NO; // 在内部显示拍照按钮
-            imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
-
-            imagePickerVc.allowPickingVideo = YES;
-            imagePickerVc.allowPickingImage = NO;
-            imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
-
-            imagePickerVc.showSelectBtn = NO;
-            imagePickerVc.allowCrop = NO;
-            imagePickerVc.needCircleCrop = NO;
-
-            [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+    
+    if (@available(iOS 14, *)) {
+        [VideoHelper fetchVideoAssetFrom:self completion:^(PHAsset *asset, NSError *error) {
+            if (asset) {
                 [self selectVideo:asset];
-            }];
-            imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
-            [self presentViewController:imagePickerVc animated:YES completion:nil];
-            
-        }
-    }];
+            } else {
+                //            NSLog(@"发生错误: %@", error.localizedDescription);
+            }
+        }];
+    }
+//    [ZZUtils checkRecodeAuth:^(BOOL authorized) {
+//        if (authorized) {
+//            TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil pushPhotoPickerVc:YES isFromChat:NO];
+//            imagePickerVc.allowTakePicture = NO; // 在内部显示拍照按钮
+//            imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
+//
+//            imagePickerVc.allowPickingVideo = YES;
+//            imagePickerVc.allowPickingImage = NO;
+//            imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
+//
+//            imagePickerVc.showSelectBtn = NO;
+//            imagePickerVc.allowCrop = NO;
+//            imagePickerVc.needCircleCrop = NO;
+//
+//            [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+//                [self selectVideo:asset];
+//            }];
+//            imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
+//            [self presentViewController:imagePickerVc animated:YES completion:nil];
+//            
+//        }
+//    }];
 }
 
 - (void)selectVideo:(PHAsset *)asset {

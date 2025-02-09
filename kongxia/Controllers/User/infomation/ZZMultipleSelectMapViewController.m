@@ -188,19 +188,10 @@
 
 #pragma mark - POI Search
 - (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate {
-    [POIManager getPoisssWithLocation:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
+    [POIManager searchPoiWithLocation:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
         _poisArray = pois;
         [_tableView reloadData];
     }];
-//    [[POIManager shared] getGDPoiWithCoordinate:coordinate completion:^(NSArray<PoiModel *> * _Nonnull pois) {
-//        _poisArray = pois;
-//        [_tableView reloadData];
-//    }];
-//
-//    [POIManager getPoisWithLocation:coordinate completion:^(NSArray<PoiModel *> * poiModels) {
-//        _poisArray = poiModels;
-//        [_tableView reloadData];
-//    }];
 }
 
 #pragma mark - UITextFieldMethod

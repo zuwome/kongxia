@@ -31,4 +31,6 @@
 
 @property (nonatomic, strong) ZZTaskModel *task;
 
+@property (nonatomic, assign) NSString *defaultCity;
+
 @end
