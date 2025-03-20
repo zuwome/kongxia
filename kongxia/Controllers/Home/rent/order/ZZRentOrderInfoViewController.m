@@ -41,6 +41,8 @@
 
 @property (nonatomic, strong) UIButton *confirmEditBtn;
 
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *cityMap;
+
 @end
 
 @implementation ZZRentOrderInfoViewController
@@ -51,6 +53,42 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self defaultConfig];
     [self layout];
+    [self loadCities];
+}
+
+- (void)loadCities {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cities" ofType:@"json"];
+    if (!filePath) {
+        NSLog(@"Error: cities.json 文件未找到");
+        return;
+    }
+
+    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
+    if (!jsonData) {
+        NSLog(@"Error: 无法读取 cities.json 数据");
+        return;
+    }
+
+    NSError *error;
+    NSArray *citiesArray = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+    if (error) {
+        NSLog(@"Error: JSON 解析失败 - %@", error.localizedDescription);
+        return;
+    }
+
+    // 创建可变字典
+    NSMutableDictionary<NSString *, NSString *> *tempCityMap = [NSMutableDictionary dictionary];
+    for (NSDictionary *cityDict in citiesArray) {
+        NSString *enName = cityDict[@"en"];
+        NSString *cnName = cityDict[@"cn"];
+        if (enName && cnName) {
+            // 英文键转为小写，映射到中文
+            tempCityMap[[enName lowercaseString]] = cnName;
+            // 中文键保持不变，映射到自身（支持中文输入直接返回中文）
+            tempCityMap[cnName] = cnName;
+        }
+    }
+    self.cityMap = [tempCityMap copy]; // 转为不可变字典
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -163,20 +201,34 @@
 }
 
 - (NSString *)getCityID:(NSString *)targetCity province:(NSString *)targetProvince {
+    NSString *chinesecity = [self getChineseCityNameFrom:targetCity];
     NSArray *cities = [[NSUserDefaults standardUserDefaults] objectForKey:@"cities"];
     
     NSString *cityID = nil;
     for (NSDictionary *city in cities) {
-        NSString *name = city[@"name"];
+        NSString *name = city[@"name"];　
 //        NSString *province = city[@"province"];
         
-        if ([name isEqualToString:targetCity]) {
+        if ([name isEqualToString:chinesecity]) {
             cityID = city[@"id"];
             break;
         }
     }
     
     return cityID;
+}
+
+- (NSString *)getChineseCityNameFrom:(NSString *)input {
+    if (!input || input.length == 0) {
+        return input;
+    }
+    
+    if (!self.cityMap) {
+        return input;
+    }
+    NSString *lowercaseInput = [input lowercaseString];
+    NSString *result = self.cityMap[lowercaseInput];
+    return result ?: input;
 }
 
 - (void)getLocationModel:(ZZRentDropdownModel *)model {

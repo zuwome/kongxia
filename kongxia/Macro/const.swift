@@ -21,7 +21,7 @@ struct Const {
 extension Const {
     public static let wechat_id = "wxb712a8b40aed6d29"
     public static let wechat_secret = "fec73d5eaab29d326ecc735f9c5d76be"
-    public static let wechat_universal_link = "https://active.zuwome.com/app/"
+    public static let wechat_universal_link = "https://zuwome.com/app/"
     
     public static let enterprice_wechat_id = "ww1066becb2c99e97b" // 企业ID
     public static let enterprice_wechat_url = "https://work.weixin.qq.com/kfid/kfc934ce09454760ab7" // 客服URL

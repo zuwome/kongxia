@@ -833,6 +833,7 @@
 		ACFF24F6206B8C6A00F29F11 /* ZZActivityUrlNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F5206B8C6A00F29F11 /* ZZActivityUrlNetManager.m */; };
 		ACFF24F9206BA6C300F29F11 /* ZZBanStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */; };
 		B61638C82D37ED3C0072342B /* VideoPickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61638C72D37ED3C0072342B /* VideoPickerHelper.swift */; };
+		B637E9382D81D1FB001B8D98 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = B637E9372D81D1FA001B8D98 /* cities.json */; };
 		B64AB3BA2BA874F7006392D2 /* NJKScrollFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */; };
 		B64AB3BB2BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B64AB3B82BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.m */; };
 		B64AB3C72BA886C6006392D2 /* ATAuthSDK_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64AB3C22BA885DC006392D2 /* ATAuthSDK_D.framework */; };
@@ -3176,6 +3177,7 @@
 		ACFF24F7206BA6C300F29F11 /* ZZBanStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZBanStateModel.h; sourceTree = "<group>"; };
 		ACFF24F8206BA6C300F29F11 /* ZZBanStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZBanStateModel.m; sourceTree = "<group>"; };
 		B61638C72D37ED3C0072342B /* VideoPickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPickerHelper.swift; sourceTree = "<group>"; };
+		B637E9372D81D1FA001B8D98 /* cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		B64AB3B52BA874F7006392D2 /* NJKScrollFullScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKScrollFullScreen.h; sourceTree = "<group>"; };
 		B64AB3B62BA874F7006392D2 /* NJKScrollFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKScrollFullScreen.m; sourceTree = "<group>"; };
 		B64AB3B72BA874F7006392D2 /* UIViewController+NJKFullScreenSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NJKFullScreenSupport.h"; sourceTree = "<group>"; };
@@ -4852,6 +4854,7 @@
 		33275A161C478137002ABF2B /* Macro */ = {
 			isa = PBXGroup;
 			children = (
+				B637E9372D81D1FA001B8D98 /* cities.json */,
 				3348034B1C4B88A3001DAE3C /* APIKey.h */,
 				916F59D11CF46A9B00E3B728 /* Config.h */,
 				BD1E5AA1222634CB00635E59 /* ConfigSwift.swift */,
@@ -10575,6 +10578,7 @@
 				B73DFD131F9F290C00D02104 /* progressbar_front.png in Resources */,
 				B73DFD001F9F290C00D02104 /* cut_bar_left@2x.png in Resources */,
 				BDA5005422FA785A00BCB48E /* PEPhotoCropEditor.bundle in Resources */,
+				B637E9382D81D1FB001B8D98 /* cities.json in Resources */,
 				B73DFCE01F9F290C00D02104 /* btn_bar_next_b@3x.png in Resources */,
 				BD6BF6AF229E7FC8002C3320 /* Alibaba-PuHuiTi-Light.ttf in Resources */,
 				B73DFCD61F9F290C00D02104 /* btn_banner_a.png in Resources */,
@@ -12437,7 +12441,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 106;
+				CURRENT_PROJECT_VERSION = 113;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12546,7 +12550,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/UmSocial/share/SocialLibraries/WeChat/WechatSDK",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.15;
+				MARKETING_VERSION = 4.8.1;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12676,7 +12680,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 106;
+				CURRENT_PROJECT_VERSION = 113;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -12785,7 +12789,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/UmSocial/share/SocialLibraries/WeChat/WechatSDK",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.15;
+				MARKETING_VERSION = 4.8.1;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -12916,7 +12920,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 106;
+				CURRENT_PROJECT_VERSION = 113;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
@@ -13025,7 +13029,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/UmSocial/share/SocialLibraries/WeChat/WechatSDK",
 				);
 				LLVM_LTO = YES_THIN;
-				MARKETING_VERSION = 4.7.15;
+				MARKETING_VERSION = 4.8.1;
 				MiSDKRun = online;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13154,7 +13158,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 106;
+				CURRENT_PROJECT_VERSION = 113;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GTQV48M3S3;
@@ -13261,7 +13265,7 @@
 					"$(PROJECT_DIR)/kongxia/Vendors/UmSocial/share/SocialLibraries/WeChat/WechatSDK",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = 4.7.15;
+				MARKETING_VERSION = 4.8.1;
 				MiSDKRun = debug;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

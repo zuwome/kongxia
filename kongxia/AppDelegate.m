@@ -454,14 +454,12 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     if ([ZZLiveStreamHelper sharedInstance].connecting) {
         [ZZUserDefaultsHelper setObject:@"内存占用过多" forDestKey:@"内存占用过多"];
         [[ZZLiveStreamHelper sharedInstance] disconnect];
     }
-    //结束内购
-    [[ZZPayHelper shared] stopManager];
 
+    [[ZZPayHelper shared] stopManager];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -960,12 +958,10 @@
 }
 
 - (BOOL)application:(UIApplication *)application willContinueUserActivityWithType:(NSString *)userActivityType {
-    NSLog(@"dasdasdqwe");
     return YES;
 }
 
 - (void)application:(UIApplication *)application didFailToContinueUserActivityWithType:(NSString *)userActivityType error:(NSError *)error {
-    NSLog(@"ads error = %@", error);
 }
 
 // Universal Links 通用链接
@@ -984,10 +980,17 @@
 }
 
 - (void)onReq:(BaseReq *)req {
-
 }
 
 - (void)onResp:(BaseResp *)resp {
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *res = (SendAuthResp *)resp;
+        if ([res.state isEqualToString:@"wx_oauth_authorization_state"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"wechat_authen_callback"
+                                                                object:nil
+                                                              userInfo:@{@"wechat_code": res.code}];
+        }
+    }
 }
 
 #pragma mark - OpenInstall

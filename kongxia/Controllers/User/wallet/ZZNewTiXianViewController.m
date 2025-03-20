@@ -41,6 +41,16 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(wechatgetAuthen:)
+                                                 name:@"wechat_authen_callback"
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - tableView 代理
@@ -178,8 +188,57 @@
     }
 }
 
+- (void)wechatgetAuthen:(NSNotification *)notification {
+    NSString *code = [notification.userInfo objectForKey:@"wechat_code"];
+    if (code == nil || [code isEqualToString:@""]) {
+        return;
+    }
+    
+    [WxHelper fetchWxInfoWithCode:code success:^(NSString * accessToken, NSString * openid) {
+        if (accessToken && openid) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self withDrawWithAccessToken:accessToken openid:openid];
+            });
+        }
+    } failure:^(NSError * error, NSString * errMsg) {
+        [ZZHUD showErrorWithStatus:@"获取信息错误"];
+    }];
+}
+
+- (void)withDrawWithAccessToken:(NSString *)accessToken openid:(NSString *)openid {
+    ZZTransfer *transfer = [[ZZTransfer alloc] init];
+    transfer.channel = @"wx";
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:self.tiXianTextField.text];
+    transfer.amount = myNumber;//[NSNumber numberWithFloat:[weakSelf.tiXianTextField.text floatValue]];
+    transfer.recipient = openid;
+    [transfer add:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+        if (error) {
+            [ZZHUD showErrorWithStatus:error.message];
+        } else if (data) {
+            [ZZCommissionShareToastView show];
+            if (self.tiXianBlock) {
+                self.tiXianBlock();
+            }
+            if (self.isTiXian) {
+                for (UIViewController* vc in self.navigationController.viewControllers) {
+                    if ([vc isKindOfClass:[ZZRechargeViewController class]]) {
+                        [self.navigationController popToViewController:vc animated:YES];
+                        return;
+                    }
+                }
+            }
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
+}
+
 - (void)withdrawInWeChat:(UIButton *)sender photo:(NSString *)url checkStatus:(NSInteger)status {
     WS(weakSelf);
+    
+    [WxHelper fetchAuthen];
+    return;
     [UmengHelper authenWithPlatform:UMSocialPlatformType_WechatSession in:self completion:^(id _Nullable result, NSError * _Nullable error) {
         if (!error) {
             UMSocialAuthResponse *response = result;
@@ -219,45 +278,6 @@
             [ZZHUD showErrorWithStatus:@"获取信息错误"];
         }
     }];
-//    [[UMSocialManager defaultManager] authWithPlatform:UMSocialPlatformType_WechatSession currentViewController:self completion:^(id result, NSError *error) {
-//        if (!error) {
-//            UMSocialAuthResponse *response = result;
-//            if (response.uid) {
-//                ZZTransfer *transfer = [[ZZTransfer alloc] init];
-//                transfer.channel = @"wx";
-//                NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-//                f.numberStyle = NSNumberFormatterDecimalStyle;
-//                NSNumber *myNumber = [f numberFromString:weakSelf.tiXianTextField.text];
-//                transfer.amount = myNumber;//[NSNumber numberWithFloat:[weakSelf.tiXianTextField.text floatValue]];
-//                transfer.recipient = response.openid;
-////                transfer.pic = url;
-////                transfer.face_status = status;
-//                [transfer add:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-//                    sender.userInteractionEnabled = YES;
-//                    if (error) {
-//                        [ZZHUD showErrorWithStatus:error.message];
-//                    } else if (data) {
-//                        [ZZCommissionShareToastView show];
-//                        if (weakSelf.tiXianBlock) {
-//                            weakSelf.tiXianBlock();
-//                        }
-//                        if (weakSelf.isTiXian) {
-//                            for (UIViewController* vc in self.navigationController.viewControllers) {
-//                                if ([vc isKindOfClass:[ZZRechargeViewController class]]) {
-//                                    [self.navigationController popToViewController:vc animated:YES];
-//                                    return;
-//                                }
-//                            }
-//                        }
-//                        [self.navigationController popToRootViewControllerAnimated:YES];
-//                    }
-//                }];
-//            }
-//        } else {
-//            sender.userInteractionEnabled = YES;
-//            [ZZHUD showErrorWithStatus:@"获取信息错误"];
-//        }
-//    }];
 }
 
 /**

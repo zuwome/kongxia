@@ -54,16 +54,29 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeBottom;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popupWindowTips:) name:kMsg_NoticeToWindows object:nil];
+    
     self.navigationItem.title = @"登录";
     self.navigationController.navigationBar.barTintColor = kGoldenRod;
     
     self.view.backgroundColor = kBGColor;
     [self createNavigationView];
     [self createViews];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popupWindowTips:) name:kMsg_NoticeToWindows object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(wechatLoginCallBack:)
+                                                 name:@"wechat_authen_callback"
+                                               object:nil];
 }
 
 - (void)popupWindowTips:(NSNotification *)notification {
@@ -247,67 +260,210 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)wechatLoginCallBack:(NSNotification *)notification {
+    NSString *code = [notification.userInfo objectForKey:@"wechat_code"];
+    if (code == nil || [code isEqualToString:@""]) {
+        return;
+    }
+    
+    [self getWechatAccessTokenWithCode:code];
+}
+
+- (void)getWechatAccessTokenWithCode:(NSString *)code {
+    NSString *url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code", @"wxb712a8b40aed6d29", @"fec73d5eaab29d326ecc735f9c5d76be", code];
+    [self requestDataWithURL:url success:^(NSInteger code, id res) {
+        if (![res isKindOfClass:[NSDictionary class]]) {
+            return;
+        }
+        
+        NSDictionary *dic = (NSDictionary *)res;
+        NSString *access_token = dic[@"access_token"];
+        NSString *openid = dic[@"openid"];
+
+        [self wechatLoginWithOpenID:openid accessToken:access_token];
+    } failure:^(NSError *error, NSString *msg) {
+        NSLog(@"error: %@", error.localizedDescription);
+    }];
+
+}
+
+- (void)wechatLoginWithOpenID:(NSString *)openID accessToken:(NSString *)accessToken {
+    if (openID && accessToken) {
+        [ZZHUD showWithStatus:@"正在登录..."];
+        [[ZZUser new] loginWithWechat:openID token:accessToken next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+            if (error) {
+                [ZZHUD showInfoWithStatus:error.message];
+            } else {
+                [ZZHUD dismiss];
+                WeakSelf;
+                BOOL accountCancel = [self isUserAccountCancel:data block:^{
+                    if ([weakSelf loginEndByResData:data]) {
+                        if (weakSelf.isPublick) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self dismissViewControllerAnimated:YES completion:^{
+                                    if ([ZZUserHelper shareInstance].location) {
+                                        [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
+                                    }
+                                }];
+                            });
+                        }
+                    } else {
+                        weakSelf.loginer.wechat.wx = openID;
+                        weakSelf.loginer.wechat.unionid = data[@"user"][@"wechat"][@"unionid"];
+                        [weakSelf rightBtnClick];
+                    }
+                }];
+                if (!accountCancel) {
+                    if ([self loginEndByResData:data]) {
+                        if (_isPublick) {
+                            return ;
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                if ([ZZUserHelper shareInstance].location) {
+                                    [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
+                                }
+                            }];
+                        });
+                    } else {
+                        _loginer.wechat.wx = openID;
+                        _loginer.wechat.unionid = data[@"user"][@"wechat"][@"unionid"];
+                        [self rightBtnClick];
+                    }
+                }
+            }
+        }];
+    } else {
+        [ZZHUD showErrorWithStatus:@"登录错误"];
+    }
+}
+
+- (void)requestDataWithURL:(NSString *)url
+                   success:(void (^)(NSInteger code, id res))success
+                   failure:(void (^)(NSError *error, NSString *msg))failure {
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (failure) {
+                failure(error, error.localizedDescription);
+            }
+            return;
+        }
+        
+        NSError *jsonError = nil;
+        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        
+        if (jsonError) {
+            if (failure) {
+                failure(jsonError, jsonError.localizedDescription);
+            }
+            return;
+        }
+        
+        NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
+        
+        if (statusCode == 200) {
+            if (success) {
+                success(statusCode, jsonResponse);
+            }
+        } else {
+            if (failure) {
+                failure(nil, [NSString stringWithFormat:@"HTTP Error %ld", (long)statusCode]);
+            }
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+
 - (void)wxBtnClick
 {
     //[MobClick event:Event_click_login_wx];
     [self.view endEditing:YES];
     
-    [UmengHelper authenWithPlatform:UMSocialPlatformType_WechatSession in:self completion:^(id _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            UMSocialAuthResponse *response = result;
-            if (response.openid && response.uid) {
-                [ZZHUD showWithStatus:@"正在登录..."];
-                [[ZZUser new] loginWithWechat:response.openid token:response.accessToken next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
-                    if (error) {
-                        [ZZHUD showInfoWithStatus:error.message];
-                    } else {
-                        [ZZHUD dismiss];
-                        WeakSelf;
-                        BOOL accountCancel = [self isUserAccountCancel:data block:^{
-                            if ([weakSelf loginEndByResData:data]) {
-                                if (weakSelf.isPublick) {
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        [self dismissViewControllerAnimated:YES completion:^{
-                                            if ([ZZUserHelper shareInstance].location) {
-                                                [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
-                                            }
-                                        }];
-                                    });
-                                }
-                            } else {
-                                weakSelf.loginer.wechat.wx = response.openid;
-                                weakSelf.loginer.wechat.unionid = data[@"user"][@"wechat"][@"unionid"];
-                                [weakSelf rightBtnClick];
-                            }
-                        }];
-                        if (!accountCancel) {
-                            if ([self loginEndByResData:data]) {
-                                if (_isPublick) {
-                                    return ;
-                                }
-                                
-                                
-                                
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    [self dismissViewControllerAnimated:YES completion:^{
-                                        if ([ZZUserHelper shareInstance].location) {
-                                            [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
-                                        }
-                                    }];
-                                });
-                            } else {
-                                _loginer.wechat.wx = response.openid;
-                                _loginer.wechat.unionid = data[@"user"][@"wechat"][@"unionid"];
-                                [self rightBtnClick];
-                            }
-                        }
-                    }
-                }];
-            } else {
-                [ZZHUD showErrorWithStatus:@"登录错误"];
-            }
-        }
-    }];
+    [WxHelper fetchAuthen];
+  
+//    [UmengHelper authenWithPlatform:UMSocialPlatformType_Sina in:self completion:^(id _Nullable result, NSError * _Nullable error) {
+//        UMSocialUserInfoResponse *userInfo = result;
+//        if (userInfo.iconurl) {
+//            [[ZZUser new] loginWithWeibo:userInfo.uid token:userInfo.accessToken nick:userInfo.name avatar:userInfo.iconurl profileURL:[NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid] next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+//                if (error) {
+//                    [ZZHUD showInfoWithStatus:error.message];
+//                } else {
+//                    [ZZHUD dismiss];
+//                    WeakSelf;
+//                    BOOL accountCancel = [self isUserAccountCancel:data block:^{
+//                        if ([weakSelf loginEndByResData:data]) {
+//                            if (!weakSelf.isPublick) {
+//                                NSDictionary *param = @{@"weibo":@{@"access_token":userInfo.accessToken,
+//                                                                   @"uid":userInfo.uid,
+//                                                                   @"userName":userInfo.name,
+//                                                                   @"iconURL":userInfo.iconurl,
+//                                                                   @"profileURL":[NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid]}};
+//                                [[ZZUserHelper shareInstance] updateUserWeiboWithParam:param next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+//                                    if (data) {
+//                                        dispatch_async(dispatch_get_main_queue(), ^{
+//                                            [weakSelf dismissViewControllerAnimated:YES completion:^{
+//                                                if ([ZZUserHelper shareInstance].location) {
+//                                                    [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
+//                                                }
+//                                            }];
+//                                        });
+//                                    }
+//                                }];
+//                            }
+//                        } else {
+//                            weakSelf.loginer.weibo.uid = userInfo.uid;
+//                            weakSelf.loginer.weibo.iconURL = userInfo.iconurl;
+//                            weakSelf.loginer.weibo.userName = userInfo.name;
+//                            weakSelf.loginer.weibo.profileURL = [NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid];
+//                            weakSelf.loginer.weibo.accessToken = userInfo.accessToken;
+//                            [weakSelf rightBtnClick];
+//                        }
+//                    }];
+//                    if (!accountCancel) {
+//                        if ([self loginEndByResData:data]) {
+//                            if (_isPublick) {
+//                                return ;
+//                            }
+//  
+//                            NSDictionary *param = @{@"weibo":@{@"uid":userInfo.uid,
+//                                                               @"userName":userInfo.name,
+//                                                               @"iconURL":userInfo.iconurl,
+//                                                               @"profileURL":[NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid]}};
+//                            [[ZZUserHelper shareInstance] updateUserWeiboWithParam:param next:^(ZZError *error, id data, NSURLSessionDataTask *task) {
+//                                if (data) {
+//                                    dispatch_async(dispatch_get_main_queue(), ^{
+//                                        [self dismissViewControllerAnimated:YES completion:^{
+//                                            
+//                                            if ([ZZUserHelper shareInstance].location) {
+//                                                [[ZZUserHelper shareInstance] updateUserLocationWithLocation:[ZZUserHelper shareInstance].location];
+//                                            }
+//                                        }];
+//                                    });
+//                                }
+//                            }];
+//                        } else {
+//                            _loginer.weibo.uid = userInfo.uid;
+//                            _loginer.weibo.iconURL = userInfo.iconurl;
+//                            _loginer.weibo.userName = userInfo.name;
+//                            _loginer.weibo.profileURL = [NSString stringWithFormat:@"http://weibo.com/u/%@",userInfo.uid];
+//                            _loginer.weibo.accessToken = userInfo.accessToken;
+//                            [self rightBtnClick];
+//                        }
+//                    }
+//                }
+//            }];
+//        } else {
+//            [ZZHUD showErrorWithStatus:@"登录错误"];
+//        }
+//    }];
 }
 
 - (void)wbBtnClick
